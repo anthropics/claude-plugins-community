@@ -4750,7 +4750,7 @@
     },
     {
       "name": "ctxforge",
-      "description": "Context engineering for AI coding agents — assemble, compress, and export perfect context bundles with live token counting. 15 MCP tools for building context bundles, managing profiles, persistent memory, and prompt templates.",
+      "description": "Deterministic prompt engineer for AI coding agents. 25 slash commands covering the full CLI surface — scenarios (bugfix/refactor/explain/code-review/migrate), bundle editing, per-dep docs detection with gap analysis, gh:// GitHub resources, saved profiles, cross-session memory, and cache verification. 31 MCP tools. Never calls an LLM — the agent does.",
       "source": {
         "source": "git-subdir",
         "url": "sylvester-francis/ctx-forge",
