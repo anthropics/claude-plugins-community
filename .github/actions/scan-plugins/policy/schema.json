@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "required": ["passes", "summary", "violations", "may_make_external_network_calls", "may_download_additional_software"],
+  "additionalProperties": true,
+  "properties": {
+    "passes": { "type": "boolean" },
+    "summary": { "type": "string" },
+    "violations": { "type": "string" },
+    "may_make_external_network_calls": { "type": "boolean" },
+    "may_download_additional_software": { "type": "boolean" }
+  }
+}

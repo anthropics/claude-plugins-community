@@ -147,6 +147,8 @@ source kinds added by the CLI are hardened automatically.
 | I7 | (per-file) PR does not edit assembled `marketplace.json` directly |
 | I8 | Vendored `source` path exists and contains `.claude-plugin/plugin.json` |
 | I9 | All string fields under `source` contain no shell metacharacters |
+| I10 | `name`/`description` contain no hidden-Unicode (zero-width, BOM, bidi controls) |
+| I11 | `name` matches `^[a-z0-9][a-z0-9-]{1,63}$` |
 
 ## Security model
 

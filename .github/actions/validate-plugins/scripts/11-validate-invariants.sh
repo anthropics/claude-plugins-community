@@ -11,6 +11,8 @@
 # I7  per-file mode: PR does not edit assembled marketplace.json directly
 # I8  vendored source path exists and contains .claude-plugin/plugin.json
 # I9  url/path/sha contain no shell metacharacters
+# I10 name/description contain no hidden-Unicode (zero-width / bidi controls)
+# I11 name matches ^[a-z0-9][a-z0-9-]{1,63}$
 
 source "$ACTION_PATH/lib/common.sh"
 
@@ -40,7 +42,7 @@ flag() {
   fi
 }
 
-group_start "Custom invariants I1-I9"
+group_start "Custom invariants I1-I11"
 
 # I1 sort (case-insensitive, matching upstream assembler convention)
 sorted="$(jq -r '[.plugins[].name | ascii_downcase] | . == (.|sort)' -- "$MP")"
@@ -50,10 +52,20 @@ sorted="$(jq -r '[.plugins[].name | ascii_downcase] | . == (.|sort)' -- "$MP")"
 dups="$(jq -r '[.plugins[].name] | group_by(.) | map(select(length>1) | .[0]) | .[]' -- "$MP")"
 [[ -z "$dups" ]] || flag "I2" "duplicate plugin names: $(tr '\n' ' ' <<<"$dups")"
 
-# I3 description bounds + whitespace
+# U+200B ZWSP, U+200C ZWNJ, U+200D ZWJ, U+200E LRM, U+200F RLM,
+# U+202A-202E bidi embedding/override, U+2066-2069 bidi isolates, U+FEFF BOM
+HIDDEN_UNI=$'​‌‍‎‏‪‫‬‭‮⁦⁧⁨⁩﻿'
+
+# I3/I10/I11 — per-entry name/description checks
 while IFS= read -r entry; do
   name="$(jq -r '.name' <<<"$entry")"
   desc="$(jq -r '.description' <<<"$entry")"
+  if [[ ! "$name" =~ ^[a-z0-9][a-z0-9-]{1,63}$ ]]; then
+    flag "I11" "$name: name does not match ^[a-z0-9][a-z0-9-]{1,63}\$" "$name"
+  fi
+  if [[ "$name$desc" == *["$HIDDEN_UNI"]* ]]; then
+    flag "I10" "$name: name/description contains hidden-Unicode (zero-width or bidi control)" "$name"
+  fi
   len=${#desc}
   if (( len < 10 || len > 2000 )); then
     flag "I3" "$name: description length $len not in [10,2000]" "$name"

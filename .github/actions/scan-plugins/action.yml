@@ -1,0 +1,112 @@
+name: Scan Plugins
+description: >
+  Claude-based policy/safety scan of changed external marketplace entries.
+  Clones each changed entry at its pinned SHA, runs Claude headless against
+  policy/prompt.md, and reports verdicts as inline annotations and a step
+  summary. Non-blocking by default (warnings); set fail-on-findings to make
+  policy violations fail the job. Bot-free: needs only an ANTHROPIC_API_KEY
+  secret.
+
+inputs:
+  anthropic-api-key:
+    description: API key for Claude. If unset/empty, the scan is skipped (graceful no-op).
+    default: ""
+  marketplace-path:
+    description: Path to marketplace.json
+    default: .claude-plugin/marketplace.json
+  base-ref:
+    description: Git ref to diff against for change detection
+    default: ${{ github.event.pull_request.base.sha || github.event.before || 'origin/main' }}
+  fail-on-findings:
+    description: If true, a `passes:false` verdict fails the job. Default false (annotate-only).
+    default: "false"
+  scan-all-external:
+    description: Scan EVERY external entry, not just changed ones. For nightly full sweeps.
+    default: "false"
+  policy-prompt:
+    description: Path to the policy prompt markdown. Override to point at a repo-local prompt.
+    default: ""
+  allowed-hosts:
+    description: Space-separated allowlist of git hosts to clone from (SSRF guard).
+    default: "github.com gitlab.com bitbucket.org"
+  claude-cli-version:
+    description: Version of @anthropic-ai/claude-code to install
+    default: latest
+  npm-registry:
+    description: Optional npm registry URL for tooling installs
+    default: ""
+  scan-timeout-secs:
+    description: Per-plugin timeout for the Claude scan
+    default: "300"
+
+outputs:
+  scanned:
+    description: JSON array of {name, passes, summary, violations, may_make_external_network_calls, may_download_additional_software}
+    value: ${{ steps.scan.outputs.scanned }}
+  failed:
+    description: JSON array of plugin names that failed policy
+    value: ${{ steps.scan.outputs.failed }}
+  result:
+    description: pass | fail | skipped
+    value: ${{ steps.scan.outputs.result }}
+
+runs:
+  using: composite
+  steps:
+    - name: Setup
+      shell: bash
+      run: |
+        set -euo pipefail
+        echo "ACTION_PATH=${{ github.action_path }}" >> "$GITHUB_ENV"
+        echo "VALIDATE_LIB=${{ github.action_path }}/../validate-plugins/lib/common.sh" >> "$GITHUB_ENV"
+        chmod +x "${{ github.action_path }}/scripts/"*.sh
+
+    - name: Skip if no API key
+      if: inputs.anthropic-api-key == ''
+      shell: bash
+      run: |
+        echo "::notice::scan-plugins: ANTHROPIC_API_KEY not set; skipping policy scan."
+        echo "result=skipped" >> "$GITHUB_OUTPUT"
+
+    - name: Install jq
+      if: inputs.anthropic-api-key != ''
+      shell: bash
+      run: command -v jq >/dev/null || sudo apt-get install -y jq
+
+    - name: Install Node
+      if: inputs.anthropic-api-key != ''
+      uses: actions/setup-node@v4
+      with:
+        node-version: "20"
+
+    - name: Configure npm registry
+      if: inputs.anthropic-api-key != '' && inputs.npm-registry != ''
+      shell: bash
+      env:
+        NPM_REGISTRY: ${{ inputs.npm-registry }}
+      run: npm config set registry "$NPM_REGISTRY"
+
+    - name: Install claude CLI
+      if: inputs.anthropic-api-key != ''
+      shell: bash
+      env:
+        CLAUDE_CLI_VERSION: ${{ inputs.claude-cli-version }}
+      run: |
+        set -euo pipefail
+        npm install -g "@anthropic-ai/claude-code@${CLAUDE_CLI_VERSION}"
+        claude --version
+
+    - name: Scan
+      if: inputs.anthropic-api-key != ''
+      id: scan
+      shell: bash
+      env:
+        ANTHROPIC_API_KEY: ${{ inputs.anthropic-api-key }}
+        MARKETPLACE_PATH: ${{ inputs.marketplace-path }}
+        BASE_REF: ${{ inputs.base-ref }}
+        FAIL_ON_FINDINGS: ${{ inputs.fail-on-findings }}
+        SCAN_ALL_EXTERNAL: ${{ inputs.scan-all-external }}
+        POLICY_PROMPT: ${{ inputs.policy-prompt }}
+        ALLOWED_HOSTS: ${{ inputs.allowed-hosts }}
+        SCAN_TIMEOUT_SECS: ${{ inputs.scan-timeout-secs }}
+      run: "$ACTION_PATH/scripts/scan.sh"

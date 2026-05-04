@@ -1,0 +1,94 @@
+name: Bump Plugin SHAs
+description: >
+  Discover external marketplace entries whose upstream HEAD has moved past the
+  pinned SHA, validate each at the new SHA with `claude plugin validate`, and
+  open a single PR with all passing bumps. Bot-free: uses the default
+  GITHUB_TOKEN with contents:write + pull-requests:write. Validation happens
+  inline in this run, so the PR body links here as the CI evidence (PRs opened
+  by GITHUB_TOKEN do not trigger on:pull_request workflows).
+
+inputs:
+  marketplace-path:
+    description: Path to marketplace.json
+    default: .claude-plugin/marketplace.json
+  max-bumps:
+    description: Maximum number of entries to bump per run
+    default: "20"
+  allowed-hosts:
+    description: Space-separated allowlist of git hosts (same semantics as validate-plugins)
+    default: "github.com gitlab.com bitbucket.org"
+  claude-cli-version:
+    description: Version of @anthropic-ai/claude-code to install
+    default: latest
+  npm-registry:
+    description: Optional npm registry URL for tooling installs
+    default: ""
+  pr-branch:
+    description: Branch name for the bump PR
+    default: bump/plugin-shas
+  base-branch:
+    description: Branch to open the PR against
+    default: ${{ github.event.repository.default_branch || 'main' }}
+  github-token:
+    description: Token with contents:write + pull-requests:write on this repo
+    default: ${{ github.token }}
+
+outputs:
+  bumped:
+    description: JSON array of {name, old_sha, new_sha} that were bumped
+    value: ${{ steps.bump.outputs.bumped }}
+  skipped:
+    description: JSON array of {name, reason} that were skipped (validation failed / unreachable)
+    value: ${{ steps.bump.outputs.skipped }}
+  pr-url:
+    description: URL of the bump PR (empty if nothing to bump)
+    value: ${{ steps.bump.outputs.pr-url }}
+
+runs:
+  using: composite
+  steps:
+    - name: Setup
+      shell: bash
+      run: |
+        set -euo pipefail
+        echo "ACTION_PATH=${{ github.action_path }}" >> "$GITHUB_ENV"
+        echo "VALIDATE_LIB=${{ github.action_path }}/../validate-plugins/lib/common.sh" >> "$GITHUB_ENV"
+        chmod +x "${{ github.action_path }}/scripts/"*.sh
+
+    - name: Install jq
+      shell: bash
+      run: command -v jq >/dev/null || sudo apt-get install -y jq
+
+    - name: Install Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: "20"
+
+    - name: Configure npm registry
+      if: inputs.npm-registry != ''
+      shell: bash
+      env:
+        NPM_REGISTRY: ${{ inputs.npm-registry }}
+      run: npm config set registry "$NPM_REGISTRY"
+
+    - name: Install claude CLI
+      shell: bash
+      env:
+        CLAUDE_CLI_VERSION: ${{ inputs.claude-cli-version }}
+      run: |
+        set -euo pipefail
+        npm install -g "@anthropic-ai/claude-code@${CLAUDE_CLI_VERSION}"
+        claude --version
+
+    - name: Discover, validate, and open PR
+      id: bump
+      shell: bash
+      env:
+        MARKETPLACE_PATH: ${{ inputs.marketplace-path }}
+        MAX_BUMPS: ${{ inputs.max-bumps }}
+        ALLOWED_HOSTS: ${{ inputs.allowed-hosts }}
+        PR_BRANCH: ${{ inputs.pr-branch }}
+        BASE_BRANCH: ${{ inputs.base-branch }}
+        GH_TOKEN: ${{ inputs.github-token }}
+        RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      run: "$ACTION_PATH/scripts/bump.sh"
