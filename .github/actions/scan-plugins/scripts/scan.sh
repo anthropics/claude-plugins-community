@@ -115,18 +115,19 @@ while IFS= read -r ext; do
   prompt="$(cat "$PROMPT_FILE")"$'\n\n'"The plugin files are in the current working directory. Read every relevant file (\`.claude-plugin/plugin.json\`, \`.mcp.json\`, \`skills/\`, \`agents/\`, \`commands/\`, \`hooks/\`, and any source) before deciding."
 
   schema="$(cat "$SCHEMA_FILE")"
+  # </dev/null: claude -p reads stdin if available, which would consume the
+  # remaining lines of the targets pipe and silently truncate the loop.
   raw="$(cd "$target" && timeout "$SCAN_TIMEOUT_SECS" \
            claude -p "$prompt" \
              --bare \
              --allowed-tools "Read,Glob,Grep" \
              --output-format json \
              --json-schema "$schema" \
-           2>&1 || true)"
+           </dev/null 2>&1 || true)"
 
-  # Only `passes` is gated here; --json-schema makes the other required fields
-  # present-or-retry at the model layer, so jq -r on them yields strings (or
-  # the literal "null" on rare malformed output) rather than crashing.
-  verdict="$(jq -c '.result // empty' <<<"$raw" 2>/dev/null || true)"
+  # --json-schema places the validated object at .structured_output;
+  # .result is the text result. Only `passes` is gated.
+  verdict="$(jq -c '.structured_output // empty' <<<"$raw" 2>/dev/null || true)"
   if [[ -z "$verdict" ]] || ! jq -e 'has("passes")' <<<"$verdict" >/dev/null 2>&1; then
     printf '::warning %s::scan-plugins: %s — could not parse verdict; raw output in step log\n' "$loc" "$name"
     log "$raw"
