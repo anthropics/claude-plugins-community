@@ -140,6 +140,9 @@ while IFS= read -r ext; do
 
   scanned="$(jq -c --arg n "$name" --argjson v "$verdict" '. + [($v + {name:$n})]' <<<"$scanned")"
 
+  log "  verdict:"
+  jq '.' <<<"$verdict" | sed 's/^/    /'
+
   if [[ "$passes" == "true" ]]; then
     log "  ✓ $name passes — $summary"
   else
