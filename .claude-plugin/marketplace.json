@@ -12849,13 +12849,15 @@
     },
     {
       "name": "oracle-ai-data-platform-workbench-spark-connectors",
-      "description": "18 model-invokable Claude Code skills that connect Oracle AI Data Platform Workbench Spark notebooks to every common data source — Oracle Autonomous Database (ALH/ADW/ATP), ExaCS, Fusion ERP, EPM Cloud, Essbase, OCI Streaming, OCI Object Storage, Iceberg, PostgreSQL, MySQL/HeatWave, SQL Server, Snowflake, Azure ADLS Gen2, AWS S3, generic REST, custom JDBC, and Excel. Each skill produces ready-to-paste Spark code with the right auth method (wallet, IAM DB-Token, OAuth, Basic, AWS keys, etc.). Live-validated: 17/21 test rows PASS on Spark 3.5.0.",
+      "description": "23 model-invokable Claude Code skills that connect Oracle AI Data Platform Workbench Spark notebooks to every common data source — Oracle Autonomous Database (ALH/ADW/ATP), generic Oracle Database, ExaCS, Oracle PeopleSoft, Oracle Siebel, Fusion ERP, Fusion BICC, EPM Cloud, Essbase, OCI Streaming, OCI Object Storage, Iceberg, PostgreSQL, MySQL/HeatWave, SQL Server, Apache Hive, Salesforce, Snowflake, Azure ADLS Gen2, AWS S3, generic REST, custom JDBC, and Excel. Each skill produces ready-to-paste Spark code with the right auth method (wallet, IAM DB-Token, OAuth, Basic, AWS keys, etc.) plus the latest oracle-samples patterns: pushdown.sql, catalog.id, and manifest.path.",
       "source": {
-        "source": "url",
-        "url": "https://github.com/ahmedawan-oracle/oracle-ai-data-platform-workbench-spark-connectors.git",
-        "sha": "c80626fb408a1a5473144a31058e04aea5b633e8"
+        "source": "git-subdir",
+        "url": "https://github.com/oracle-samples/oracle-aidp-samples.git",
+        "path": "ai/claude-code-plugins/oracle-ai-data-platform-workbench-spark-connectors",
+        "ref": "main",
+        "sha": "15c7b5627f21a5adb2623895c5e032ff4d9fbc69"
       },
-      "homepage": "https://github.com/ahmedawan-oracle/oracle-ai-data-platform-workbench-spark-connectors"
+      "homepage": "https://github.com/oracle-samples/oracle-aidp-samples/tree/main/ai/claude-code-plugins/oracle-ai-data-platform-workbench-spark-connectors"
     },
     {
       "name": "orchestra",
