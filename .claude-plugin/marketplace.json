@@ -1649,16 +1649,6 @@
       "homepage": "https://orbit.build/plugin"
     },
     {
-      "name": "aura-frog",
-      "description": "Structured AI development with 10 specialized agents, 5-phase TDD workflow, and performance-conscious design. Aura Frog turns Claude Code into a disciplined development team — agents auto-select per task, tests are written before code (RED→GREEN→REFACTOR), and 3-tier rule architecture loads only what's needed (74% less context overhead). Includes 27 lifecycle hooks, 6 bundled MCP servers, git worktree isolation, phase checkpoints with rollback, collaborative multi-perspective planning, and a self-learning system that improves with every session. Zero config required — install and start your first workflow in 30 seconds.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/nguyenthienthanh/aura-frog.git",
-        "sha": "b1381557a5edfd89c657ed176c82f246a5851eb2"
-      },
-      "homepage": "https://ethannguyenlabs.xyz/aura-frog/"
-    },
-    {
       "name": "aurakit",
       "description": "Sonnet Amplified fullstack development engine. Single /aura\n  command activates 34 modes (BUILD, FIX, CLEAN, DEPLOY, REVIEW +\n   28 extended). Features 5-step Sonnet Amplifier for Opus-level\n  code quality, SEC-01~15 OWASP-complete security rules, 13\n  runtime hooks for zero-token enforcement, Tiered Model\n  (ECO/PRO/MAX) with automatic model selection, 75% verified\n  token reduction, 10 language-specific code reviewers, 5\n  framework patterns, Instinct learning engine, and 8-language UI\n   support.",
       "source": {
@@ -2660,16 +2650,6 @@
       "homepage": "https://docs.carta.com/api-platform/docs/carta-fund-admin"
     },
     {
-      "name": "cartographer",
-      "description": "Agent-first code understanding system. Builds a persistent world-model of your codebase with evidence-grounded facts, visual map projections, and inspectable source anchors.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/miltonian/cartographer.git",
-        "sha": "277fb7ab64f76ddbb0f46df5b9d6794260d6e190"
-      },
-      "homepage": "https://github.com/miltonian/cartographer"
-    },
-    {
       "name": "cascade",
       "description": "AI-native coordination for multi-service development. Orchestrates cross-cutting changes across microservices with dependency-aware propagation, automatic contract sync, and cross-service verification.",
       "source": {
@@ -3039,16 +3019,6 @@
         "sha": "77cbc045388b6ed66f91fa47022557e7e9682d3c"
       },
       "homepage": "https://developers.circle.com/ai/skills"
-    },
-    {
-      "name": "circumpunct-ethics-virtues-plugin",
-      "description": "This is an ethical reasoning and diagnostic plugin based on four pillars (Good, Right, True, Agreement) kept alive by four corresponding virtues (Plasticity, Access, Curiosity, Validation).\n\nThis tool can detect cognitive viruses. A cognitive virus transmits through language, which means AI systems trained on human text inherit the same performed-ethics patterns (like narcissistic dynamics). This plugin serves as a perceptual calibration tool for both humans and AI: the diagnostic framework works the same way regardless of whether the host is biological or computational.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/AshmanRoonz/Fractal_Reality.git",
-        "sha": "d73b4af4987db73399d05e7d749b40ae714c49ed"
-      },
-      "homepage": "https://github.com/AshmanRoonz/Fractal_Reality/tree/main/circumpunct-ethics"
     },
     {
       "name": "cite2fn",
@@ -3711,16 +3681,6 @@
         "sha": "5d360037b6a1fa142ab2d8e3b87ebab68ac48c6d"
       },
       "homepage": "https://github.com/illarion/claude-jira-skill"
-    },
-    {
-      "name": "claude-launchpad",
-      "description": "Is your Claude Code setup actually good? This plugin tells you. It scans your CLAUDE.md, hooks, rules, and settings, gives you a score out of 100, and auto-fixes what's broken. One command to set up any project. One command to fix common issues. One command to test if Claude actually follows your rules. Works with any language or framework.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/mboss37/claude-launchpad.git",
-        "sha": "77c95e32914a831f859e6131c602e617f2823c65"
-      },
-      "homepage": "https://mboss37.github.io/claude-launchpad/"
     },
     {
       "name": "claude-lean",
@@ -4594,16 +4554,6 @@
       "homepage": "https://github.com/kennethleungty/code-music"
     },
     {
-      "name": "code-parser",
-      "description": "Index Dart, Python, and TypeScript codebases with code-parser to slash LLM token consumption by 70–97%. Extracts classes, methods, and exact line ranges so Claude reads only the code that matters instead of entire files.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/M97Chahboun/code-parser-plugin.git",
-        "sha": "9f8410d58c31537a267f19efda749c336ad2b44c"
-      },
-      "homepage": "https://github.com/M97Chahboun/code-parser-plugin"
-    },
-    {
       "name": "code-review",
       "description": "Multi-session code review with isolated reviewer and auto-fix loop. The reviewer \nruns in a separate \"claude -p\" session so it has zero bias from the current \nconversation context. Reviews code changes for bugs, security vulnerabilities, \nand quality issues with confidence-based filtering (only reports findings above \n80% confidence). Includes an auto-fix mode that reviews, fixes issues, and \nre-reviews until clean or max iterations reached.",
       "source": {
@@ -4846,16 +4796,6 @@
         "sha": "a026be536c908ca1bddd7bac1a037bcc804fb2c6"
       },
       "homepage": "https://github.com/ErinYu/coding-wisdom"
-    },
-    {
-      "name": "codixing",
-      "description": "Code retrieval engine that gives Claude structural understanding of your codebase. Before  modifying code, Codixing tells Claude what will break, predicting impact across the  dependency graph, finding affected tests, and tracing callers through the call hierarchy. Unlike text search,  Codixing builds an AST-aware index with BM25 + semantic hybrid retrieval, dependency graphs with PageRank ranking, and trigram-accelerated grep; all running locally with zero cloud dependencies.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/ferax564/codixing.git",
-        "sha": "ad4d2c4f4ee666d9369afec5bab586bc3b09297e"
-      },
-      "homepage": "https://codixing.com/"
     },
     {
       "name": "codspeed",
@@ -7003,16 +6943,6 @@
       "homepage": "https://github.com/phronesis-io/eigenflux-claude-plugin.git"
     },
     {
-      "name": "eight-eyes",
-      "description": "Multi-agent code review with 8 hook-enforced roles. Each role targets a different failure surface — the skeptic reviews blind without the implementer's narrative, the security auditor can only run approved scan commands, the test writer cannot touch source code, and the implementer cannot run Bash. Scope boundaries are enforced through deterministic Python hooks at the PreToolUse layer, not through prompt instructions.\n\nThe 8 roles: implementer (scoped writes, no Bash), test-writer (test directories only), skeptic (blind read-only review), security auditor (read-only + approved scan commands), performance profiler (benchmarks in isolated worktree), accessibility checker (a11y tools + WCAG 2.1 checks), docs writer (doc paths only), and verifier (approved verification commands only).\n\nFeatures include parallel audit phase (4 review agents run concurrently), TDD mode (hook-level test-first enforcement), custom roles via manifest (--custom-role), REVIEW.md injection for project-specific review criteria, mission timeout and failure tracking.\n\n96 tests. 100% Python stdlib. Zero external dependencies.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/AgentBuildersApp/eight-eyes.git",
-        "sha": "7400a654d3becd682c806a1548f3f9ad9734a108"
-      },
-      "homepage": "https://github.com/AgentBuildersApp/eight-eyes"
-    },
-    {
       "name": "elastic-sense",
       "description": "ElasticSense is a Claude Code plugin for Elastic workflows. It uses Elastic Agent Builder as the primary integration path and offers a deprecated legacy_direct fallback for environments that cannot expose the Agent Builder MCP endpoint yet.\n\nFor end users, the setup flow stays the same in both modes: install the plugin, fill the Claude userConfig prompts, then ask Claude for Elastic investigations in natural language. The mode only changes which backend the plugin starts behind the scenes.",
       "source": {
@@ -8052,18 +7982,6 @@
       "homepage": "https://github.com/siliconbrokers/genesis-governance-claude/blob/main/docs/guides/runbook.genesis-governance.user-manual.md"
     },
     {
-      "name": "genpptx",
-      "description": "Generate PowerPoint presentations (.pptx) from content files (meeting notes, memos) using Claude Code. Simply provide a content file and the plugin automatically designs a story-driven slide structure, generates a spec.yaml, and produces both PPTX and HTML output — no API key required.         \n                                                                                                                                            \n  Key features:                                                                                                                                            \n  - AI-driven slide design: story structure (Problem → Solution → Impact)\n  - 10 built-in layouts: cover, section, content, two-column, table, chart, image-text, image-full, summary, closing                                       \n  - Theme system: extract design tokens from existing PPTX files to create custom themes                                                                 \n  - HTML output: view presentations in a browser without PowerPoint                                                                                        \n  - Read & analyze existing PPTX files for revision",
-      "source": {
-        "source": "git-subdir",
-        "url": "yn01/claude-plugins",
-        "path": "genpptx",
-        "ref": "main",
-        "sha": "646368548add6433ed9dd676fdbcc7d65f97a863"
-      },
-      "homepage": "https://github.com/yn01/claude-plugins/tree/main/genpptx"
-    },
-    {
       "name": "genshijin",
       "description": "Ultra-compressed Japanese communication mode for Claude Code. Reduces output tokens by ~75% by eliminating keigo (polite language), filler phrases, and redundant particles while preserving full technical accuracy. Japanese-optimized fork of caveman with 3 intensity levels (丁寧/通常/極限). Safety valve auto-restores normal Japanese for destructive operations.",
       "source": {
@@ -8123,16 +8041,6 @@
         "sha": "fa949e2889f3e7114d6d164e83c225d0d63dc79c"
       },
       "homepage": "https://github.com/hegemonart/get-design-done"
-    },
-    {
-      "name": "geterdone",
-      "description": "Autonomous project execution engine for Claude Cowork. Plans multi-day projects with calendar-aware scheduling, executes tasks day-by-day with built-in QA gates, tracks progress across sessions via persistent memory, and surfaces proactive intelligence. Includes revenue-weighted decision filters, three-tier task classification (quick/standard/complex), and automation-first execution. Customizable for any business workflow.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/jayrockliffe-defused/geterdone.git",
-        "sha": "f88227cd96bcae6458d5e3dba83b55873733a437"
-      },
-      "homepage": "https://github.com/jayrockliffe-defused/geterdone"
     },
     {
       "name": "getlark",
@@ -9451,16 +9359,6 @@
       "homepage": "https://cli.infynon.com/docs/infynon"
     },
     {
-      "name": "infynon-pkg",
-      "description": "Universal package security manager — intercepts install commands across 14 ecosystems (npm, yarn, pnpm, bun, pip, uv, poetry, cargo, go, gem, composer, nuget, hex, pub), scans lock files for CVEs via OSV.dev, auto-fixes vulnerable dependencies, deep dependency auditing, and scheduled vulnerability monitoring with email alerts.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/d4rkNinja/code-guardian.git",
-        "sha": "61dc90a5b19fe0967ea8bf416f9f637fc14d2676"
-      },
-      "homepage": "https://cli.infynon.com/docs"
-    },
-    {
       "name": "insight-badger",
       "description": "Drop a CSV and get meaningful, actionable data insights — no formulas or coding required, even no questions needed. Autonomous exploratory analysis and guided investigation, delivered as polished interactive reports.",
       "source": {
@@ -9826,16 +9724,6 @@
       "homepage": "https://github.com/clouddrove/claude-skills/"
     },
     {
-      "name": "kaizen",
-      "description": "Continuous improvement toolkit for Claude Code. Instead of dumping a dozen skills upfront, kaizen starts with a single skill — /kaizen:coach — that analyzes your actual workflow and suggests only what you need:\n   the right skills, hooks, rules, and a well-structured CLAUDE.md. Once your environment is healthy, /kaizen:code handles the full dev pipeline: diagnose → implement → verify → commit.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/imadAttar/kaizen.git",
-        "sha": "61206a79076688c9d9f5c0870100bb07ad70a064"
-      },
-      "homepage": "https://github.com/imadAttar/kaizen"
-    },
-    {
       "name": "kansei-link",
       "description": "Discover 301 SaaS/API services with trust scores and auto-invocation skill. 91-96% token savings vs web research.",
       "source": {
@@ -9995,16 +9883,6 @@
         "sha": "8e6bfa0a31fdb339ac167dd11bb3e0b46dcd8622"
       },
       "homepage": "https://github.com/aklofas/kicad-happy"
-    },
-    {
-      "name": "kindex",
-      "description": "Kindex is a persistent knowledge graph for Claude Code. It turns Claude from a session-scoped tool into a project-scoped collaborator — capturing decisions, constraints, and context that survive across sessions, projects, and context resets.\nMemory plugins remember what happened. Kindex captures what it means and how it connects. Session 10 is as informed as session 1.\nKey features: session lifecycle management (tag_start, tag_resume, tag_end), constraint and watch enforcement across sessions, decision archaeology with reasoning preserved, and graph-structured context that surfaces insights by proximity rather than keyword search.\nGit blame tells you what changed. Kindex tells you why.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/jmcentire/kindex.git",
-        "sha": "24c9e8ecb9997133e58ac0c601f8690266cb3951"
-      },
-      "homepage": "https://kindex.tools/"
     },
     {
       "name": "knowmine-personal-knowledge-base",
@@ -10261,16 +10139,6 @@
       "homepage": "https://github.com/rinehardramos/leak-guard"
     },
     {
-      "name": "lean",
-      "description": "Plan tasks with optimal model routing to minimize token usage. Breaks work into steps, assigns each the right model (Haiku/Sonnet/Opus), adds quality gates between stages, persists the plan to file, and reports savings after execution. Includes a companion hook for always-on model suggestions. Use /lean before complex tasks.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/civillizard/claude-lean-skill.git",
-        "sha": "92807a333804f4545f554a7a907baed1f499b697"
-      },
-      "homepage": "https://github.com/civillizard/claude-lean-skill#readme"
-    },
-    {
       "name": "lean-kg",
       "description": "Lightweight Knowledge Graph for AI-Assisted Development\nLeanKG is a local-first knowledge graph that gives AI coding tools accurate codebase context. It indexes your code, builds dependency graphs, and exposes an MCP server so tools like Cursor, OpenCode, and Claude Code can query the knowledge graph directly. No cloud services, no external databases.\nVisualize your knowledge graph with force-directed layout, WebGL rendering, and community clustering.",
       "source": {
@@ -10299,16 +10167,6 @@
         "sha": "b3025d376a83841078f3ab5cf53b62c6960e46c3"
       },
       "homepage": "https://github.com/agent-sh/learn"
-    },
-    {
-      "name": "learncc",
-      "description": "Structured Claude Code education course. Guided exercises adapted to a user's specific role, such as a developer, PM, or non-technical.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/ryanxkh/learncc.git",
-        "sha": "e5906d01c73c9331fcc6486470c40cc5376e96be"
-      },
-      "homepage": "https://github.com/ryanxkh/learncc"
     },
     {
       "name": "learned-behavior",
@@ -10362,16 +10220,6 @@
         "sha": "f9fd8a0ca6e1421bc1aacb113a109663a7a6f6d8"
       },
       "homepage": "https://www.legalzoom.com/"
-    },
-    {
-      "name": "lesson-builder",
-      "description": "Generate complete bilingual TEFL/ESL courses with configurable page types — lessons, exams,\n  flashcards, conversations, pronunciation drills, worksheets, and syllabi. Works for any language pair and topic.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/ddtraveller/lesson-builder.git",
-        "sha": "11d37ae166847e36d9e583af785be5fee254d64b"
-      },
-      "homepage": "https://krueng.ai"
     },
     {
       "name": "lesson-skill-loop",
@@ -10808,17 +10656,6 @@
       "homepage": "https://maindex.io/help/plugins.html"
     },
     {
-      "name": "maister",
-      "description": "Structured, standards-aware SDLC orchestration for Claude Code — 5 workflow types, 23 agents, 15+ skills, visual companion server for product design.",
-      "category": "development",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/SkillPanel/maister.git",
-        "sha": "ee00f752cf9f7f46597f1e1b02f1485ce062cf90"
-      },
-      "homepage": "https://github.com/SkillPanel/maister"
-    },
-    {
       "name": "make-documentation",
       "description": "Claude Code plugin that generates and updates technical documentation for GitHub projects, with an optional clean-context subagent for task execution—particularly useful for large projects or context-heavy sessions.",
       "source": {
@@ -10859,16 +10696,6 @@
         "sha": "fa7124a6a52a7e2cbe30eeeca93b058e3cdde1bb"
       },
       "homepage": "https://www.managelm.com"
-    },
-    {
-      "name": "management-consulting",
-      "description": "Full consulting engagement lifecycle. Strategy, financial modeling, proposals, pricing, due diligence, implementation, change management, governance, deliverables, closeout. Asks for your data before building anything.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/anotb/management-consulting-plugin.git",
-        "sha": "7f92a17ee058bce3b7563db6715534997eae35e3"
-      },
-      "homepage": "https://github.com/anotb/management-consulting-plugin"
     },
     {
       "name": "mangrovetrader",
@@ -12336,18 +12163,6 @@
         "sha": "dfa91d4669bb8573948bbee29e259aa29b389f00"
       },
       "homepage": "https://network-output.com"
-    },
-    {
-      "name": "nodebench",
-      "description": "Operating intelligence for founders. 350 MCP tools across 57 domains — decision intelligence, entity research, QA automation, and session memory that compounds across sessions. Starts with 15 tools via progressive discovery, expands to 350 as agents discover what they need. Includes weekly resets, company analysis, competitor briefs, delegation packets, site crawling, diff comparison, and test generation. Ships with auto-QA rules, analyst diagnostic methodology, and agentic reliability checklist.",
-      "source": {
-        "source": "git-subdir",
-        "url": "HomenShum/nodebench-ai",
-        "path": "packages/mcp-local/claude-plugin",
-        "ref": "main",
-        "sha": "034e3d29fa74e909ce00d7796d3eae452fd57712"
-      },
-      "homepage": "https://nodebenchai.com"
     },
     {
       "name": "nonprofit-grant-writer-kit",
@@ -13892,16 +13707,6 @@
       "homepage": "https://github.com/xavierbriand/product-dev-agent"
     },
     {
-      "name": "product-org-os",
-      "description": "An entire product organization as AI agents. 133 skills, 13 agents, and 2 gateways covering strategy, requirements, GTM, competitive intelligence, business operations, and more. Agents have distinct roles and collaborate like a real product team.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/yohayetsion/product-org-os.git",
-        "sha": "8c0870e23af18567407a65ff39d965f32c5b4661"
-      },
-      "homepage": "https://yohayetsion.github.io/product-org-os/"
-    },
-    {
       "name": "product-review-expert",
       "description": "product-review-expert is a Claude Code plugin for structured product and UX review. It is intended to help users analyze product requirement documents, workflow descriptions, page plans, and interaction designs before implementation or release.\n\nThe plugin focuses on surfacing concrete quality issues rather than generating generic feedback. Its review scope includes workflow completeness, state-transition coverage, exception and edge-case handling, role and permission consistency, rule conflicts, action-path friction, missing feedback, and weak error-state design.\n\nThe repository currently includes:\n\n3 skills:\nproduct-audit\nlogic-defect-review\ninteraction-review\n1 agent:\nsenior-product-reviewer\n1 local hook:\na Stop hook that runs a bundled local script for lightweight normalization/logging purposes\nThe plugin does not depend on external APIs, hosted services, MCP servers, OAuth flows, or user-provided secrets. It does not send user content over the network. The included hook only executes a local bundled script and writes a timestamped diagnostic log under ${CLAUDE_PLUGIN_DATA}. It does not modify user repository files or perform analytics collection.\n\nThe plugin is documented with:\n\na public GitHub repository\na manifest in .claude-plugin/plugin.json\ninstallation and usage instructions in README.md\nsemantic versioning and changelog\nlicense information\nMarketplace-facing usage is documented with namespaced commands such as:\n\n/product-review-expert:product-audit\n/product-review-expert:logic-defect-review\n/product-review-expert:interaction-review\n/product-review-expert:senior-product-reviewer\nThe intended users are product managers, designers, business analysts, and teams reviewing process-heavy or stateful product designs such as approval systems, admin panels, internal tools, B2B workflows, and e-commerce flows.",
       "source": {
@@ -14167,16 +13972,6 @@
         "sha": "1af8df73f1029e2c494333894893a5bb93369136"
       },
       "homepage": "https://github.com/pskoett/pskoett-ai-skills/tree/main/plugin"
-    },
-    {
-      "name": "pty-mcp",
-      "description": "Interactive PTY sessions for AI agents. Supports local shell, SSH, serial port, and persistent remote sessions via MCP. Enables AI agents to run interactive commands, connect to remote servers, and communicate with serial devices.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/raychao-oao/pty-mcp.git",
-        "sha": "0fafc1e529ba6cb9094bfda6c1b51bc30ee94fe4"
-      },
-      "homepage": "https://github.com/raychao-oao/pty-mcp"
     },
     {
       "name": "public-api-toolkit",
@@ -19486,18 +19281,6 @@
         "sha": "715ebb3c1539f5e22d9bf9116e86c7275de1fe1e"
       },
       "homepage": "https://github.com/youdotcom-oss/agent-skills"
-    },
-    {
-      "name": "youtube-transcriber",
-      "description": "Transcribe YouTube videos and playlists using browser-based caption extraction. Works with any video that has auto-generated or manual captions — no API key, no external service, zero configuration. Supports single videos and full playlists in any language. Outputs timestamped transcripts ready for further processing.",
-      "source": {
-        "source": "git-subdir",
-        "url": "MSApps-Mobile/claude-plugins",
-        "path": "plugins/youtube-transcriber",
-        "ref": "main",
-        "sha": "88bf5d1e6e76cd3ff966103e3d273fcf797bd638"
-      },
-      "homepage": "https://msapps.mobi/plugins"
     },
     {
       "name": "yrdsl",
