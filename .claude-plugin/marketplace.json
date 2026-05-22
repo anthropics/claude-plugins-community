@@ -13030,6 +13030,16 @@
       "homepage": "https://github.com/Utopia5327/revit-bim#readme"
     },
     {
+      "name": "revolut-x",
+      "description": "Trade crypto, query account state, stream market data, run live indicator alerts, and operate grid bots on the Revolut X exchange via the revx CLI.",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/revolut-engineering/revolut-x-api.git",
+        "sha": "4a54609006f51424b842aea55755ec8045854711"
+      },
+      "homepage": "https://github.com/revolut-engineering/revolut-x-api"
+    },
+    {
       "name": "rex",
       "description": "Rex provides sub-second Python symbol search across all installed .venv packages. Three tools — rex_find, rex_show, rex_members — let Claude look up function signatures, docstrings, class members, and file locations instantly, without web search or grepping through source files. Results are grounded in the actually installed version — no outdated docs, no hallucinated parameters. Auto-indexes on first use and re-indexes incrementally when packages change. Read-only by design.",
       "source": {
