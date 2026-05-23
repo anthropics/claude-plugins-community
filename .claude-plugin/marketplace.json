@@ -3570,16 +3570,6 @@
       "homepage": "https://github.com/mangollc/claude-seo-skill"
     },
     {
-      "name": "claude-sfdx-iq",
-      "description": "Complete Salesforce DX plugin for Claude Code — agents, skills, hooks, commands, and rules for Apex, LWC, SOQL, Flows, and SFDX CI/CD",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/bhanu91221/claude-sfdx-iq.git",
-        "sha": "189c6c780c23079192e4278ebb51242b29029ecd"
-      },
-      "homepage": "https://github.com/bhanu91221/claude-sfdx-iq/blob/main/README.md"
-    },
-    {
       "name": "claude-skills-updater",
       "description": "A Claude Code plugin that audits and updates your installed plugins/skills to their latest versions.",
       "source": {
