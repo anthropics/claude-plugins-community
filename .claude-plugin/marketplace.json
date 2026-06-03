@@ -17107,11 +17107,12 @@
     },
     {
       "name": "save-your-work",
-      "description": "Two Claude Code skills for automatic development session tracking. /checkpoint saves progress after\n  every task and resumes from where you left off. /resume recovers crashed sessions instantly. Works with any project\n  that has a plan file",
+      "description": "Two Claude Code skills for automatic development session tracking. /saving-progress saves progress after every task and resumes from where you left off. /continue-progress recovers
+  crashed sessions instantly",
       "source": {
         "source": "url",
         "url": "https://github.com/gerson-ribeiro/save-your-work.git",
-        "sha": "50fe8223034342b6c206c145958dedc39202b515"
+        "sha": "4ef402135bff728798f62b3e83e9eaca0712796f"
       },
       "homepage": "https://github.com/gerson-ribeiro/save-your-work"
     },
