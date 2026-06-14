@@ -13644,7 +13644,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/garagon/nanostack.git",
-        "sha": "bab484ae6cf87f092e0b6fd028e48c4a9ff7880c"
+        "sha": "13dad7cb7a61960d967f52aa2d0c0c483dba5fd5"
       },
       "homepage": "https://github.com/garagon/nanostack"
     },
