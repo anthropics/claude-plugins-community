@@ -5965,7 +5965,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/conversiontools/agent-skills.git",
-        "sha": "e0d74fd6be3ef534591bce07dc5d56c714763ebf"
+        "sha": "9ac4dffcde0c442b63ad05d9855141404347e591"
       },
       "homepage": "https://conversiontools.io/docs/claude-plugin"
     },
