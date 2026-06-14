@@ -10402,7 +10402,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/ido4-dev/ido4specs.git",
-        "sha": "bf3b4c186515fccbcfb748d9bd5b3f8cf48c4aae"
+        "sha": "8f1a75c37443516de3898be1cc1f5b3a202652fa"
       },
       "homepage": "https://ido4.dev/specs"
     },
