@@ -5203,7 +5203,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/clover-security/clover-claude-plugin.git",
-        "sha": "a02da9e8e0fa191fa5059d215a06c17168e255bf"
+        "sha": "31f32c446072691b4dfe98ea1df16a440dcde1e0"
       },
       "homepage": "https://github.com/clover-security/clover-claude-plugin"
     },
