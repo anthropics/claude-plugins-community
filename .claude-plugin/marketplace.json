@@ -17141,7 +17141,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/kenryu42/claude-code-safety-net.git",
-        "sha": "3473cdb4ac4c52d8d20c60dcc976aafa35878a23"
+        "sha": "d33edb58939fa6ecdbbe4a61e5a2c292592a16a7"
       },
       "homepage": "https://github.com/kenryu42/claude-code-safety-net"
     },
