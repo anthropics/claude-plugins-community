@@ -11956,7 +11956,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/verivus-oss/llm-cli-gateway.git",
-        "sha": "c0bf7a87d7df347d357065e20929b8258ee33872"
+        "sha": "c9626b2d20cfb17f5585659265e7ceecab8902ce"
       },
       "homepage": "https://github.com/verivus-oss/llm-cli-gateway#readme"
     },
