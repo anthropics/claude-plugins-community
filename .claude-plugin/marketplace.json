@@ -11277,7 +11277,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Klarity-AI/klarity-mcp.git",
-        "sha": "fe14f2988ebb312b2b3fd8b01f9006daaeaf43b4"
+        "sha": "7a557aed4ad1b7ca0e7f4817cadf7d58fe7e8ae4"
       },
       "homepage": "https://github.com/Klarity-AI/klarity-mcp/blob/main/skills/klarity-architect/SKILL.md"
     },
