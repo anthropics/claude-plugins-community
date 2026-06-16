@@ -22672,6 +22672,16 @@
         "sha": "3cd46256306c60e0f435ac77ebe599d225984b92"
       },
       "homepage": "https://zuckerbot.ai"
+    },
+    {
+      "name": "dingdong",
+      "description": "Zero-dependency audio feedback for Claude Code — WAV sounds triggered by hooks. Cross-platform (Windows/macOS/Linux).",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/WhoKnowsNothing/dingdong.git",
+        "sha": "dce283e0dd23260b7871563fba5a9bd178fcc795"
+      },
+      "homepage": "https://github.com/WhoKnowsNothing/dingdong"
     }
   ]
 }
