@@ -5763,7 +5763,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/conductor-oss/conductor-skills.git",
-        "sha": "1e30c33b922f4d0bf315e08b540c9ccc989ce731"
+        "sha": "8a18124cb97a2e5e33d483a65bb91d3e075a6a3f"
       },
       "homepage": "https://docs.conductor-oss.org/devguide/how-tos/conductor-skills.html"
     },
