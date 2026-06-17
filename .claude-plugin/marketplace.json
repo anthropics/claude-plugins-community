@@ -6180,7 +6180,7 @@
         "url": "https://github.com/controlplane-com/ai-plugin.git",
         "path": "plugins/cpln",
         "ref": "main",
-        "sha": "cfa59143e340e84c8d945221b1464eb8d253a4f9"
+        "sha": "a9ee85c0e5a6b815d168864a464144dc9b427eb7"
       },
       "homepage": "https://docs.controlplane.com/mcp/ai-plugin"
     },
