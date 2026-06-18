@@ -1662,7 +1662,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Patchline-AI/aria.git",
-        "sha": "045c5a96cdb99251189d14eebde785ce6ce33d1a"
+        "sha": "1a5058f2f856def2e8af9ec2374b7e85667eef2b"
       },
       "homepage": "https://www.patchline.ai/claude"
     },
