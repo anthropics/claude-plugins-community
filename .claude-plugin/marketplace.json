@@ -3151,7 +3151,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/AllanHarlen/cc-orchestrador-subagents.git",
-        "sha": "93dd801bfa6257166051ef0678a46df0e6929b29"
+        "sha": "83ee0fe0416587e5f1e66693d257dab0dac5a93f"
       },
       "homepage": "https://github.com/AllanHarlen/cc-orchestrador-subagents/blob/main/README.md"
     },
