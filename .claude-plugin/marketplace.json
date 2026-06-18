@@ -1865,7 +1865,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/robertsfeir/atelier-pipeline.git",
-        "sha": "fd49dba70c620a0ce85bfb0c2547bb202d69a13f"
+        "sha": "56e46b938a0c818f9690c3ab480a4e3172748601"
       },
       "homepage": "https://github.com/robertsfeir/atelier-pipeline/blob/main/docs/guide/user-guide.md"
     },
