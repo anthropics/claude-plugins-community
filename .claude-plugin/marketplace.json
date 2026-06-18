@@ -256,7 +256,7 @@
         "url": "https://github.com/adaptyteam/adapty-sdk-integration-skill.git",
         "path": "plugins/adapty-sdk-integration",
         "ref": "main",
-        "sha": "c328976f58f319637128e40f1780e41dec35a2c8"
+        "sha": "79b4295705c4a5522ff55b18cd5dc5aef59b487a"
       },
       "homepage": "https://github.com/adaptyteam/adapty-sdk-integration-skill"
     },
