@@ -5543,7 +5543,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/CodSpeedHQ/codspeed.git",
-        "sha": "b29c40c3c045994c564410c07093cdd8001ab820"
+        "sha": "2533b0cf879d39ea13ae9c80f5d97ec3aa2d3e1d"
       },
       "homepage": "https://codspeed.io/docs"
     },
