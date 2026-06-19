@@ -1054,7 +1054,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/urbanairship/agent-tools.git",
-        "sha": "b1c1ed5a90bdb1d0f841963a274ad34faa4308dc"
+        "sha": "455aaed10861c323c1357f4dfe3ef5a18a94f97e"
       },
       "homepage": "https://www.airship.com/docs/developer/ai-tools/ai-tools/"
     },
