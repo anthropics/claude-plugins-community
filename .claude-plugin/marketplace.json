@@ -4137,7 +4137,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/jarrodwatts/claude-hud.git",
-        "sha": "813516c32a7b950478f0f574fdd9a19725510d76"
+        "sha": "b83b44593af24de1db6183788a51d08715501c02"
       },
       "homepage": "https://github.com/jarrodwatts/claude-hud/"
     },
