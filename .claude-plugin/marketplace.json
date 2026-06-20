@@ -2742,7 +2742,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/browser-use/browser-harness.git",
-        "sha": "2cfaa7ea4c77b17b4c2434403865fa4b6d637b29"
+        "sha": "a606cf773d3f9553fd56dee9638cd7de34d3b765"
       },
       "homepage": "https://browser-use.com"
     },
