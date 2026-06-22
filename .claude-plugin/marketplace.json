@@ -7828,7 +7828,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/phronesis-io/eigenflux-claude-plugin.git",
-        "sha": "0dfe0764fc4897a916c11c42c1601219f15cac1e"
+        "sha": "015e41125ede5cd13073f30b16dd307143e2be9b"
       },
       "homepage": "https://github.com/phronesis-io/eigenflux-claude-plugin.git"
     },
