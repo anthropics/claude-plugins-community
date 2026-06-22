@@ -8152,7 +8152,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/luminik-io/event-outbound-skill.git",
-        "sha": "0b2037649943ade55715e27fc0d2e659da5b706d"
+        "sha": "9e587173576b100851baf5e9a527f47e830210b6"
       },
       "homepage": "https://www.luminik.io/tools/event-outbound/"
     },
