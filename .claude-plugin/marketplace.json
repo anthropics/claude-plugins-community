@@ -14294,13 +14294,39 @@
     },
     {
       "name": "one-shot-prompting",
-      "description": "Generate a complete sidecar feature module from a single prompt. No approval gates, no back-and-forth. Claude makes decisions, states assumptions, and ships production-ready code in one response. Perfect for event-driven projects, when you'd rather regenerate than negotiate.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/usmanmughaltaleemabad/One-Shot-Plugin.git",
-        "sha": "d53f3cc81ad8dda2af8d1e58f91fb9ed5c5c295e"
+      "displayName": "One-Shot — Agentic Feature Generation",
+      "description": "Generate production-ready features that fit your existing codebase. Reads your code, understands your patterns, and writes idiomatic code with tests, migrations, and wiring. 9-stage agentic pipeline: architect → implement → test → verify → review → wire → critic. Supports FastAPI, Django, Spring Boot, Go, Node.js, NestJS.",
+      "author": {
+        "name": "Usman Mughal"
       },
-      "homepage": "https://github.com/usmanmughaltaleemabad/One-Shot-Plugin#readme"
+      "category": "development",
+      "source": {
+        "source": "github",
+        "repo": "usmanmughaltaleemabad/One-Shot-Plugin",
+        "ref": "master",
+        "sha": "28ad0fd216062ae820f0aeb9688569bcfb6cd665"
+      },
+      "homepage": "https://github.com/usmanmughaltaleemabad/One-Shot-Plugin#readme",
+      "license": "MIT",
+      "tags": [
+        "code-generation",
+        "agentic",
+        "fastapi",
+        "django",
+        "spring",
+        "go",
+        "nestjs",
+        "tdd",
+        "multi-agent"
+      ],
+      "keywords": [
+        "one-shot",
+        "agentic",
+        "code-generation",
+        "feature-generation",
+        "architect-agent",
+        "critic-loop"
+      ]
     },
     {
       "name": "one-workflow",
