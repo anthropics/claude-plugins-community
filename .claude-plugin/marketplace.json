@@ -1684,7 +1684,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/armosec/armoctl.git",
-        "sha": "5b5148d75bc0aee44f5a1c1263cd92cf67856f96"
+        "sha": "a87feb0babec89c5265fb765a3a611865668714b"
       },
       "homepage": "https://hub.armosec.io/docs/claude-code"
     },
