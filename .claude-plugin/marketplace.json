@@ -8072,7 +8072,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/epicsagas/epic-harness.git",
-        "sha": "a755011e417ab3617abf132930f22c4e16989ff5"
+        "sha": "a1b2de5d0ce3f717ca8419992ad09b280d085842"
       },
       "homepage": "https://github.com/epicsagas/plugins"
     },
