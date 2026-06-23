@@ -6442,7 +6442,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/d2c-ai/d2c.git",
-        "sha": "07410879523cdf61e6f6f70d13bc7b3cd4e6f74a"
+        "sha": "43e3f64d10c52459457a15141a83d7cf0da7f28d"
       },
       "homepage": "https://d2c.codestate.dev/"
     },
