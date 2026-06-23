@@ -501,7 +501,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/agentlinksh/agent.git",
-        "sha": "bf8621a805b776c7137924c8374b85a91b0595ed"
+        "sha": "dd3a7bdb1bffa43a8c46b040ceda5a38375b3fdf"
       },
       "homepage": "https://agentlink.sh/"
     },
