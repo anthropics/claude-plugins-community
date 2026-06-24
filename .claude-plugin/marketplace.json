@@ -5451,7 +5451,7 @@
         "url": "https://github.com/codescene-oss/codescene-mcp-server.git",
         "path": "claude-code-plugin",
         "ref": "main",
-        "sha": "723a2e2e0147c6986be916b5cbddbaadeeafd2c4"
+        "sha": "d3e7e528baf304c5bd001970614047e785c0e987"
       },
       "homepage": "https://github.com/codescene-oss/codescene-mcp-server"
     },
