@@ -6482,7 +6482,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/DailyBotHQ/dailybot-claude-plugin.git",
-        "sha": "3cbc1de60f1ca98ea5703526275937ce05a8a3b9"
+        "sha": "7d01cc8ee1a73b3d801880faa8153ec2fd0b0c35"
       },
       "homepage": "https://www.dailybot.com/connections/plugin-for-claude"
     },
