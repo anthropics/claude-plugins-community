@@ -2816,7 +2816,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/buildkite/skills.git",
-        "sha": "6ab569537d836b66edcc52d61c566bdfa670a7c2"
+        "sha": "ffffb1ed6c82a3b170433572b93d85b764c91bab"
       },
       "homepage": "https://buildkite.com/docs"
     },
@@ -4279,7 +4279,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/thedotmack/claude-mem.git",
-        "sha": "87e4836a86909bbfd056777a37546db443f90868"
+        "sha": "3fe0725a97e18b5edf3e61cde60e181ab2b6c997"
       },
       "homepage": "https://github.com/thedotmack/claude-mem"
     },
