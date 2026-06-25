@@ -2816,7 +2816,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/buildkite/skills.git",
-        "sha": "6ab569537d836b66edcc52d61c566bdfa670a7c2"
+        "sha": "ffffb1ed6c82a3b170433572b93d85b764c91bab"
       },
       "homepage": "https://buildkite.com/docs"
     },
@@ -7718,7 +7718,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/HassamSheikh/dynos-audit.git",
-        "sha": "87c19853dc3e01724bf0dede6f026a9982c15bce"
+        "sha": "8ad6cccd9e08767980ef37b10cce3693a7bf6bce"
       },
       "homepage": "https://github.com/HassamSheikh/dynos-audit"
     },
