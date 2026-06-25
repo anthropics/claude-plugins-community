@@ -2816,7 +2816,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/buildkite/skills.git",
-        "sha": "6ab569537d836b66edcc52d61c566bdfa670a7c2"
+        "sha": "ffffb1ed6c82a3b170433572b93d85b764c91bab"
       },
       "homepage": "https://buildkite.com/docs"
     },
@@ -5191,7 +5191,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/clover-security/clover-claude-plugin.git",
-        "sha": "33df75739531805c6068f74b977fd7291e825656"
+        "sha": "91a4097367bc2d73663d61db2671164b3eba215b"
       },
       "homepage": "https://github.com/clover-security/clover-claude-plugin"
     },
