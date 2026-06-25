@@ -2816,7 +2816,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/buildkite/skills.git",
-        "sha": "6ab569537d836b66edcc52d61c566bdfa670a7c2"
+        "sha": "ffffb1ed6c82a3b170433572b93d85b764c91bab"
       },
       "homepage": "https://buildkite.com/docs"
     },
@@ -5233,7 +5233,7 @@
         "url": "https://github.com/thewhyman/prompt-engineering-in-action.git",
         "path": "plugins/co-dialectic",
         "ref": "main",
-        "sha": "563975617e47bc4963862ab39512bc69f45f860c"
+        "sha": "acee09000d375b6282de7e5022365c757a738e16"
       },
       "homepage": "https://github.com/thewhyman/prompt-engineering-in-action"
     },
