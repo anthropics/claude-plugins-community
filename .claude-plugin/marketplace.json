@@ -2816,7 +2816,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/buildkite/skills.git",
-        "sha": "6ab569537d836b66edcc52d61c566bdfa670a7c2"
+        "sha": "ffffb1ed6c82a3b170433572b93d85b764c91bab"
       },
       "homepage": "https://buildkite.com/docs"
     },
@@ -8416,7 +8416,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/adelaidasofia/finance-mcp.git",
-        "sha": "dc210950504d6b7379926f89939c5b19c322ac1a"
+        "sha": "1b93bb39f2bf1a4dedc071209bc90b61777badf4"
       },
       "homepage": "https://myceliumai.co/plugins/finance-mcp"
     },
