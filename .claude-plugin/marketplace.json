@@ -2816,7 +2816,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/buildkite/skills.git",
-        "sha": "6ab569537d836b66edcc52d61c566bdfa670a7c2"
+        "sha": "ffffb1ed6c82a3b170433572b93d85b764c91bab"
       },
       "homepage": "https://buildkite.com/docs"
     },
@@ -8950,7 +8950,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/dekart-xyz/geosql.git",
-        "sha": "1b447019cc0f37dda559f14d64250452ee0aaad0"
+        "sha": "fb6129d568313b11b1dbd74434d1e47f9c01bc4a"
       },
       "homepage": "https://github.com/dekart-xyz/geosql"
     },
