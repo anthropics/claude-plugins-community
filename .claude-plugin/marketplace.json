@@ -1977,7 +1977,7 @@
         "url": "https://github.com/nguyenthienthanh/aura-frog.git",
         "path": "aura-frog",
         "ref": "main",
-        "sha": "84387f23fe91c9906fd3edb899686d7acb6444f0"
+        "sha": "abf5924be6b8152b01f0f48191ecc9cf700c5053"
       },
       "homepage": "https://ethannguyenlabs.xyz/aura-frog/"
     },
@@ -2816,7 +2816,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/buildkite/skills.git",
-        "sha": "6ab569537d836b66edcc52d61c566bdfa670a7c2"
+        "sha": "ffffb1ed6c82a3b170433572b93d85b764c91bab"
       },
       "homepage": "https://buildkite.com/docs"
     },
