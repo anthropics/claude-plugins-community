@@ -2816,7 +2816,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/buildkite/skills.git",
-        "sha": "6ab569537d836b66edcc52d61c566bdfa670a7c2"
+        "sha": "ffffb1ed6c82a3b170433572b93d85b764c91bab"
       },
       "homepage": "https://buildkite.com/docs"
     },
@@ -8386,7 +8386,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/robukh/figma-suite.git",
-        "sha": "57077499a24c673a2c6c393830a10a984cd0b33e"
+        "sha": "e4d6d4a1c0e3a4a1d2944172e05f0f2873902f97"
       },
       "homepage": "https://github.com/robukh/figma-suite"
     },
