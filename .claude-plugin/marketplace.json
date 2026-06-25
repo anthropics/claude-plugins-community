@@ -2816,7 +2816,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/buildkite/skills.git",
-        "sha": "6ab569537d836b66edcc52d61c566bdfa670a7c2"
+        "sha": "ffffb1ed6c82a3b170433572b93d85b764c91bab"
       },
       "homepage": "https://buildkite.com/docs"
     },
@@ -8396,7 +8396,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/figma/mcp-server-guide.git",
-        "sha": "2efd0e37d10c35c4a7cf6d2b7381c9dc1a569bd4"
+        "sha": "bea8bea5f676ab2bf76fa822b82f50b66653c098"
       },
       "homepage": "https://github.com/figma/mcp-server-guide.git"
     },
