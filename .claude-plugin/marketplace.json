@@ -2816,7 +2816,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/buildkite/skills.git",
-        "sha": "6ab569537d836b66edcc52d61c566bdfa670a7c2"
+        "sha": "ffffb1ed6c82a3b170433572b93d85b764c91bab"
       },
       "homepage": "https://buildkite.com/docs"
     },
@@ -5491,7 +5491,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/haenara-shin/codex-hud.git",
-        "sha": "431b1453f814997971c3af37ea3480e6234b1f25"
+        "sha": "786c27b2e9682e0866a2deda3947a02a31d62734"
       },
       "homepage": "https://github.com/haenara-shin/codex-hud"
     },
