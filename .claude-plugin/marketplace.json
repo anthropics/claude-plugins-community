@@ -2816,7 +2816,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/buildkite/skills.git",
-        "sha": "6ab569537d836b66edcc52d61c566bdfa670a7c2"
+        "sha": "ffffb1ed6c82a3b170433572b93d85b764c91bab"
       },
       "homepage": "https://buildkite.com/docs"
     },
@@ -4911,7 +4911,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/crisandrews/ClawCode.git",
-        "sha": "c62ab29b7b4cd098f24ba15fc440a0eb3ebd39e1"
+        "sha": "c0fcb9cd3ab65a7fa320e8f6fd044876dd37634c"
       },
       "homepage": "https://github.com/crisandrews/ClawCode"
     },
