@@ -9509,7 +9509,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/gritive/grits-agent.git",
-        "sha": "326d6aa68dd04951f113cc3f2e02943dca81b55a"
+        "sha": "e3e0b79f70f790c560492712ad988cfcb28bbab9"
       },
       "homepage": "https://grits.gritive.com"
     },
