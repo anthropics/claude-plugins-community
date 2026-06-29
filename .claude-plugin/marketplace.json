@@ -1064,7 +1064,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/aiven/aiven-ai-plugins.git",
-        "sha": "699d4030671e5dbe48368377fd1064fccfbbfa38"
+        "sha": "914b79822770399614441ddd6e472bd7c206bd2e"
       },
       "homepage": "https://github.com/aiven/aiven-ai-plugins"
     },
