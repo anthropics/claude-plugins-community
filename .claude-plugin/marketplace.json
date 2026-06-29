@@ -10066,7 +10066,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/honeydew-ai/honeydew-ai-coding-agents-plugins.git",
-        "sha": "134a39eddc4caeae97986d0d88cba6c2f93553cd"
+        "sha": "6c84b4c17fc009c556371c031fb817559a0524c4"
       },
       "homepage": "https://honeydew-ai.github.io/honeydew-ai-coding-agents-plugins/"
     },
