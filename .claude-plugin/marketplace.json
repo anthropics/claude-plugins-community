@@ -4279,7 +4279,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/thedotmack/claude-mem.git",
-        "sha": "3fe0725a97e18b5edf3e61cde60e181ab2b6c997"
+        "sha": "3a2ba296135b89c74b9ea9835af170fc7dae4fab"
       },
       "homepage": "https://github.com/thedotmack/claude-mem"
     },
