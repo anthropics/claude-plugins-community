@@ -5325,7 +5325,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/CodeAlive-AI/codealive-skills.git",
-        "sha": "12e23a4066885c86ae70dfaf492e90b630583d37"
+        "sha": "fea0bd6979cefe5b90eeaad3e5fdea532f088971"
       },
       "homepage": "https://docs.codealive.ai/integrations/plugin-claude-code"
     },
