@@ -10390,7 +10390,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/ido4-dev/ido4specs.git",
-        "sha": "70bd3c3d257e1fc13afe15c32c5bf06ab64b5517"
+        "sha": "3b230e874a8b26ee0558d800fe5cb8b76821a730"
       },
       "homepage": "https://ido4.dev/specs"
     },
