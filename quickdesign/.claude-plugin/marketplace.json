@@ -1,0 +1,13 @@
+{
+  "name": "quickdesign-plugins",
+  "owner": {
+    "name": "Community"
+  },
+  "plugins": [
+    {
+      "name": "quickdesign",
+      "source": "./",
+      "strict": false
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none" role="img" aria-label="QuickDesign">
+  <!--
+    QuickDesign plugin icon — 5×5 pixel-grid Q (brand "Logo 07").
+    Dark rounded tile so the mark reads in both light and dark Claude Code
+    themes without a colour-mode swap. Grid math: 80px mark centred in a
+    128px tile (24px padding), each cell 13.44px with 2.88 radius, lime
+    #C8FF3D fill matching the v2 landing brand mark.
+  -->
+  <rect width="128" height="128" rx="28" fill="#0A0B0A" />
+  <g transform="translate(24 24)">
+    <rect x="17.28" y="1.28"  width="13.44" height="13.44" rx="2.88" fill="#C8FF3D" />
+    <rect x="33.28" y="1.28"  width="13.44" height="13.44" rx="2.88" fill="#C8FF3D" />
+    <rect x="49.28" y="1.28"  width="13.44" height="13.44" rx="2.88" fill="#C8FF3D" />
+    <rect x="1.28"  y="17.28" width="13.44" height="13.44" rx="2.88" fill="#C8FF3D" />
+    <rect x="65.28" y="17.28" width="13.44" height="13.44" rx="2.88" fill="#C8FF3D" />
+    <rect x="1.28"  y="33.28" width="13.44" height="13.44" rx="2.88" fill="#C8FF3D" />
+    <rect x="65.28" y="33.28" width="13.44" height="13.44" rx="2.88" fill="#C8FF3D" />
+    <rect x="1.28"  y="49.28" width="13.44" height="13.44" rx="2.88" fill="#C8FF3D" />
+    <rect x="49.28" y="49.28" width="13.44" height="13.44" rx="2.88" fill="#C8FF3D" />
+    <rect x="65.28" y="49.28" width="13.44" height="13.44" rx="2.88" fill="#C8FF3D" />
+    <rect x="17.28" y="65.28" width="13.44" height="13.44" rx="2.88" fill="#C8FF3D" />
+    <rect x="33.28" y="65.28" width="13.44" height="13.44" rx="2.88" fill="#C8FF3D" />
+    <rect x="49.28" y="65.28" width="13.44" height="13.44" rx="2.88" fill="#C8FF3D" />
+    <rect x="65.28" y="65.28" width="13.44" height="13.44" rx="2.88" fill="#C8FF3D" />
+  </g>
+</svg>

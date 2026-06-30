@@ -22736,6 +22736,14 @@
         "sha": "3cd46256306c60e0f435ac77ebe599d225984b92"
       },
       "homepage": "https://zuckerbot.ai"
+    },
+    {
+      "name": "quickdesign",
+      "source": "./quickdesign",
+      "strict": false,
+      "description": "AI media generation skill for the QuickDesign CLI. Seedance 2.0 R2V (universal default for UGC / talking-avatar / promo), Sora 2, Kling, Nano Banana 2 (multi-ref image edit), video upscale. Multi-segment voice continuity, multi-product reference composition, anatomy self-check, model-agnostic concepts + per-model reference cards.",
+      "category": "development",
+      "homepage": "https://github.com/quickdesignio/quickdesign-cli.git"
     }
   ]
 }
