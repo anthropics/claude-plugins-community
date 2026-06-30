@@ -1,0 +1,8 @@
+{
+  "name": "video-analyze",
+  "version": "0.1.0",
+  "description": "Analyze local video files and video URLs (YouTube, Vimeo, TikTok, X, etc.) — extracts frames and transcript locally with ffmpeg + whisper.cpp, then Claude reads them. No third-party AI dependency.",
+  "homepage": "https://github.com/sryharsha781-ctrl/claude-video-analyze",
+  "keywords": ["video", "ffmpeg", "whisper", "youtube", "transcription", "multimodal"],
+  "license": "MIT"
+}

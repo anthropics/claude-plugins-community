@@ -1,0 +1,13 @@
+{
+  "name": "video-analyze-plugins",
+  "owner": {
+    "name": "Community"
+  },
+  "plugins": [
+    {
+      "name": "video-analyze",
+      "source": "./",
+      "strict": false
+    }
+  ]
+}

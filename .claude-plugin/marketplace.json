@@ -22736,6 +22736,14 @@
         "sha": "3cd46256306c60e0f435ac77ebe599d225984b92"
       },
       "homepage": "https://zuckerbot.ai"
+    },
+    {
+      "name": "video-analyze",
+      "source": "./video-analyze",
+      "strict": false,
+      "description": "Analyze local video files and video URLs (YouTube, Vimeo, TikTok, X, etc.) — extracts frames and transcript locally with ffmpeg + whisper.cpp, then Claude reads them. No third-party AI dependency.",
+      "category": "development",
+      "homepage": "https://github.com/sryharsha781-ctrl/claude-video-analyze.git"
     }
   ]
 }
