@@ -7404,7 +7404,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/docusealco/docuseal-agent-skills.git",
-        "sha": "25cd7f69d97738252e62bab74456d6480859b9c5"
+        "sha": "21eab4c66132f3aad40f16c1211da81a1acd3ce5"
       },
       "homepage": "https://www.docuseal.com/"
     },
