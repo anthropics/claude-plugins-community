@@ -995,18 +995,6 @@
       "homepage": "https://github.com/CronusL-1141/AI-company"
     },
     {
-      "name": "aic",
-      "description": "Local-first MCP server that sits transparently between your AI editor and any model, classifying intent, selecting the right files, and compiling focused context — with zero manual invocation.",
-      "source": {
-        "source": "git-subdir",
-        "url": "https://github.com/Jatbas/agent-input-compiler.git",
-        "path": "integrations/claude/plugin",
-        "ref": "main",
-        "sha": "9cfd5632e4574fb11f8304ea548605d26134678a"
-      },
-      "homepage": "https://github.com/Jatbas/agent-input-compiler"
-    },
-    {
       "name": "aight",
       "description": "Aight is a channel plugin that bridges Claude Code to an iOS\napp via a Cloudflare Workers relay. Users pair with a 6-digit\ncode — no port forwarding, no LAN requirement. The plugin exposes\nreply and react tools so Claude can send messages, markdown, and\nfile attachments to the phone. It also forwards tool events\n(Bash, Read, Edit, etc.) in real-time so users can monitor\nClaude's work from their phone. Built with Bun, TypeScript strict\nmode, 68 tests. Security: HMAC-SHA256 auth tokens,\nsession-isolated hook routing, rate limiting, input validation.",
       "source": {
