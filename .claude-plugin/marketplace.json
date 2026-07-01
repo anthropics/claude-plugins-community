@@ -22724,6 +22724,20 @@
       "description": "AI media generation skill for the QuickDesign CLI. Seedance 2.0 R2V (universal default for UGC / talking-avatar / promo), Sora 2, Kling, Nano Banana 2 (multi-ref image edit), video upscale. Multi-segment voice continuity, multi-product reference composition, anatomy self-check, model-agnostic concepts + per-model reference cards.",
       "category": "development",
       "homepage": "https://github.com/quickdesignio/quickdesign-cli.git"
+    },
+    {
+      "name": "reco",
+      "source": "./reco",
+      "strict": false,
+      "description": "Reco SaaS & AI security — query app risks, shadow IT, AI agents, user posture, and access events directly from Claude Code",
+      "category": "development",
+      "homepage": "https://github.com/RecoLabs/reco-mcp-plugins",
+      "mcpServers": {
+        "reco": {
+          "type": "http",
+          "url": "https://${RECO_MCP_DOMAIN:-not-setup}/mcp"
+        }
+      }
     }
   ]
 }

@@ -1,0 +1,12 @@
+{
+  "name": "reco",
+  "description": "Reco SaaS & AI security — query app risks, shadow IT, AI agents, user posture, and access events directly from Claude Code",
+  "version": "1.0.0",
+  "author": {
+    "name": "Reco",
+    "email": "support@reco.ai"
+  },
+  "homepage": "https://reco.ai",
+  "repository": "https://github.com/RecoLabs/reco-mcp-plugins",
+  "keywords": ["security", "saas", "posture", "risk", "shadow-it"]
+}

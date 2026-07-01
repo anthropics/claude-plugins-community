@@ -1,0 +1,13 @@
+{
+  "name": "reco-plugins",
+  "owner": {
+    "name": "Community"
+  },
+  "plugins": [
+    {
+      "name": "reco",
+      "source": "./",
+      "strict": false
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "reco": {
+      "type": "http",
+      "url": "https://${RECO_MCP_DOMAIN:-not-setup}/mcp"
+    }
+  }
+}
