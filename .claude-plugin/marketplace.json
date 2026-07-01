@@ -19989,7 +19989,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/JetBrains/teamcity-cli.git",
-        "sha": "4865b1b75e77889355393a46dc56a0363ce3330d"
+        "sha": "32dfd91cc8a9b6d44f47896c1ef1b183ab58e973"
       },
       "homepage": "https://jb.gg/tc/docs/ai"
     },
