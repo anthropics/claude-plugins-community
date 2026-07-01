@@ -1,0 +1,13 @@
+{
+  "name": "testdino-plugins",
+  "owner": {
+    "name": "Community"
+  },
+  "plugins": [
+    {
+      "name": "testdino",
+      "source": "./",
+      "strict": false
+    }
+  ]
+}
