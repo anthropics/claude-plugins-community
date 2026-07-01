@@ -1,0 +1,101 @@
+{
+  "fade-in": {
+    "name": "Fade In",
+    "type": "in",
+    "material_type": "video",
+    "effect_id": "6798320778182922760",
+    "resource_id": "6798320778182922760",
+    "md5": "883ad04bd79b502aaa55b5d9b87175ea",
+    "default_duration_us": 500000,
+    "category_id": "2037708296",
+    "third_resource_id": "6798320778182922760"
+  },
+  "fade-out": {
+    "name": "Fade Out",
+    "type": "out",
+    "material_type": "video",
+    "effect_id": "6798320902548230669",
+    "resource_id": "6798320902548230669",
+    "md5": "c6f05ce62355b537be762550040bfc08",
+    "default_duration_us": 500000,
+    "category_id": "2037708296",
+    "third_resource_id": "0"
+  },
+  "flash-in": {
+    "name": "Flash In",
+    "type": "in",
+    "material_type": "video",
+    "effect_id": "7211044701367964162",
+    "resource_id": "7211044701367964162",
+    "md5": "6a680c49cd11a05f3eb0e5a3fed165f7",
+    "default_duration_us": 433333,
+    "category_id": "2037708312",
+    "third_resource_id": "7211044701367964162"
+  },
+  "pulsing-zooms": {
+    "name": "Pulsing Zooms",
+    "type": "in",
+    "material_type": "video",
+    "effect_id": "7530463994486820097",
+    "resource_id": "7530463994486820097",
+    "md5": "c2223de4486ee5b2a5900d707e9a362b",
+    "default_duration_us": 3000000,
+    "category_id": "2037708296",
+    "third_resource_id": "0"
+  },
+  "scroll-up": {
+    "name": "Scroll up",
+    "type": "in",
+    "material_type": "video",
+    "effect_id": "7315336764636271105",
+    "resource_id": "7315336764636271105",
+    "md5": "cb8899ed512a2d40bd27d9e03d039ec0",
+    "default_duration_us": 1200000,
+    "category_id": "in_fav",
+    "third_resource_id": "7315336764636271105"
+  },
+  "stripe-merge": {
+    "name": "Stripe Merge",
+    "type": "in",
+    "material_type": "video",
+    "effect_id": "7570497406203251973",
+    "resource_id": "7570497406203251973",
+    "md5": "fc08875f779dae706387fb160dbaa898",
+    "default_duration_us": 633333,
+    "category_id": "2037708296",
+    "third_resource_id": "0"
+  },
+  "zoom-out": {
+    "name": "Zoom Out",
+    "type": "in",
+    "material_type": "video",
+    "effect_id": "6798332584276267527",
+    "resource_id": "6798332584276267527",
+    "md5": "0c736f993d36a7b1ef00cc73d2ba656f",
+    "default_duration_us": 2000000,
+    "category_id": "",
+    "third_resource_id": ""
+  },
+  "blur-out": {
+    "name": "Blur Out",
+    "type": "out",
+    "material_type": "video",
+    "effect_id": "7507514531212479761",
+    "resource_id": "7507514531212479761",
+    "md5": "78d0826a4aba60259f37acb30149b258",
+    "default_duration_us": 1000000,
+    "category_id": "out_fav",
+    "third_resource_id": "0"
+  },
+  "smoke": {
+    "name": "Smoke",
+    "type": "out",
+    "material_type": "video",
+    "effect_id": "7229983825080619522",
+    "resource_id": "7229983825080619522",
+    "md5": "e70e26e7aa770d0deedca54e3eac0323",
+    "default_duration_us": 900000,
+    "category_id": "out_fav",
+    "third_resource_id": "7229983825080619522"
+  }
+}

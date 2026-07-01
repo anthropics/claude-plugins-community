@@ -1,0 +1,24 @@
+{
+  "name": "capcut-cli",
+  "version": "0.1.4",
+  "description": "Edit CapCut and JianYing projects from Claude Code — subtitles, timing, speed, volume, templates, cut long-form to shorts.",
+  "author": {
+    "name": "René Zander",
+    "url": "https://github.com/renezander030"
+  },
+  "homepage": "https://github.com/renezander030/capcut-cli",
+  "repository": "https://github.com/renezander030/capcut-cli",
+  "license": "MIT",
+  "keywords": [
+    "capcut",
+    "jianying",
+    "video-editing",
+    "subtitles",
+    "srt",
+    "timeline",
+    "templates",
+    "shorts",
+    "automation"
+  ],
+  "skills": "./skills/"
+}

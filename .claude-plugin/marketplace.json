@@ -22724,6 +22724,14 @@
       "description": "AI media generation skill for the QuickDesign CLI. Seedance 2.0 R2V (universal default for UGC / talking-avatar / promo), Sora 2, Kling, Nano Banana 2 (multi-ref image edit), video upscale. Multi-segment voice continuity, multi-product reference composition, anatomy self-check, model-agnostic concepts + per-model reference cards.",
       "category": "development",
       "homepage": "https://github.com/quickdesignio/quickdesign-cli.git"
+    },
+    {
+      "name": "capcut-cli",
+      "source": "./capcut-cli",
+      "strict": false,
+      "description": "Edit CapCut and JianYing projects from Claude Code — subtitles, timing, speed, volume, templates, cut long-form to shorts.",
+      "category": "development",
+      "homepage": "https://github.com/renezander030/capcut-cli.git"
     }
   ]
 }

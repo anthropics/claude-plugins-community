@@ -1,0 +1,15 @@
+{
+  "description": "Ensure the capcut-cli npm package is installed when the plugin is active.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"const{execSync}=require('child_process');try{execSync('npm ls -g capcut-cli',{stdio:'ignore'})}catch(e){execSync('npm i -g capcut-cli',{stdio:'inherit'})}\""
+          }
+        ]
+      }
+    ]
+  }
+}

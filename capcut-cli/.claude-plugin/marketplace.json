@@ -1,0 +1,13 @@
+{
+  "name": "capcut-cli-plugins",
+  "owner": {
+    "name": "Community"
+  },
+  "plugins": [
+    {
+      "name": "capcut-cli",
+      "source": "./",
+      "strict": false
+    }
+  ]
+}
