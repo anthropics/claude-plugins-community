@@ -22724,6 +22724,20 @@
       "description": "AI media generation skill for the QuickDesign CLI. Seedance 2.0 R2V (universal default for UGC / talking-avatar / promo), Sora 2, Kling, Nano Banana 2 (multi-ref image edit), video upscale. Multi-segment voice continuity, multi-product reference composition, anatomy self-check, model-agnostic concepts + per-model reference cards.",
       "category": "development",
       "homepage": "https://github.com/quickdesignio/quickdesign-cli.git"
+    },
+    {
+      "name": "foundation",
+      "source": "./foundation",
+      "strict": false,
+      "description": "Connect sources and search processed documents with Unstructured Foundation. Provides MCP access to source setup, processing status, document search, and document retrieval.",
+      "category": "productivity",
+      "homepage": "https://github.com/Unstructured-IO/unstructured-foundation-marketplace",
+      "mcpServers": {
+        "foundation": {
+          "type": "http",
+          "url": "https://mcp.foundation.unstructured.io/mcp"
+        }
+      }
     }
   ]
 }

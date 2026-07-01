@@ -1,0 +1,13 @@
+{
+  "name": "foundation-plugins",
+  "owner": {
+    "name": "Community"
+  },
+  "plugins": [
+    {
+      "name": "foundation",
+      "source": "./",
+      "strict": false
+    }
+  ]
+}

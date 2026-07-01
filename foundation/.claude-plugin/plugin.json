@@ -1,0 +1,14 @@
+{
+  "name": "foundation",
+  "version": "0.1.0",
+  "description": "Connect sources and search processed documents with Unstructured Foundation. Provides MCP access to source setup, processing status, document search, and document retrieval.",
+  "author": {
+    "name": "Unstructured"
+  },
+  "homepage": "https://unstructured.io",
+  "repository": "https://github.com/Unstructured-IO/unstructured-foundation-marketplace",
+  "license": "Apache-2.0",
+  "keywords": ["unstructured", "foundation", "documents", "sources", "search"],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json"
+}
