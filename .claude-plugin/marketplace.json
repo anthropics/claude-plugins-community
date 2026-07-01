@@ -251,18 +251,6 @@
       "homepage": "https://adaptlypost.com/features/agents"
     },
     {
-      "name": "adapty",
-      "description": "End-to-end Adapty SDK integration for mobile apps. The skill detects the project's platform, configures the Adapty dashboard (apps, products, paywalls, placements) via the Adapty CLI, installs the SDK, implements paywall display and purchase handling, and verifies each stage with build checks before moving on. Supports iOS, Android, Flutter, React Native, Unity, Kotlin Multiplatform, and Capacitor.",
-      "source": {
-        "source": "git-subdir",
-        "url": "https://github.com/adaptyteam/adapty-sdk-integration-skill.git",
-        "path": "plugins/adapty-sdk-integration",
-        "ref": "main",
-        "sha": "4c0fc45ba3693b8019e036836cddd56ff97e1076"
-      },
-      "homepage": "https://github.com/adaptyteam/adapty-sdk-integration-skill"
-    },
-    {
       "name": "adcp-client",
       "description": "Adds the /adcp skill for calling AdCP advertising agent tools over MCP or A2A, running protocol compliance scenarios, and querying the AdCP registry. Includes built-in test agents for zero-config use.",
       "source": {
