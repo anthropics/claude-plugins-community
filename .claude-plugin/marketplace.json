@@ -22724,6 +22724,20 @@
       "description": "AI media generation skill for the QuickDesign CLI. Seedance 2.0 R2V (universal default for UGC / talking-avatar / promo), Sora 2, Kling, Nano Banana 2 (multi-ref image edit), video upscale. Multi-segment voice continuity, multi-product reference composition, anatomy self-check, model-agnostic concepts + per-model reference cards.",
       "category": "development",
       "homepage": "https://github.com/quickdesignio/quickdesign-cli.git"
+    },
+    {
+      "name": "testdino",
+      "source": "./testdino",
+      "strict": false,
+      "description": "Use TestDino inside Claude Code through the hosted remote MCP server to inspect test runs, debug failing test cases, manage manual tests, and run TestDino audits.",
+      "category": "development",
+      "homepage": "https://github.com/testdino-hq/TestDino-Plugins",
+      "mcpServers": {
+        "testdino": {
+          "type": "http",
+          "url": "https://mcp.testdino.com"
+        }
+      }
     }
   ]
 }
