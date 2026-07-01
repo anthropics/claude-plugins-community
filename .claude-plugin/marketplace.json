@@ -883,16 +883,6 @@
       "homepage": "https://ai-first.techwolf.ai"
     },
     {
-      "name": "ai-guard",
-      "description": "Production-hardened guardrails for Claude Code that catch costly mistakes before they happen. Includes 6 guards: billing-guard (stops infinite retry loops on payment errors), dry-guard (warns before creating duplicate files), code-standards-enforcer (blocks as any, ts-ignore, require(), TODO placeholders, underscore naming, logic in index files), auto-lint-fix (runs Biome after every write), auto-summarize-input (warns on large inputs to preserve context window), and capture-insights (learns from recurring anti-patterns across sessions via persistent JSONL memory).",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/YosefHayim/ai-guard-plugins.git",
-        "sha": "138dff575e3c9e796e6be1e06d522644e648bb12"
-      },
-      "homepage": "https://github.com/YosefHayim/ai-guard-plugins#readme"
-    },
-    {
       "name": "ai-instruct",
       "description": "Five practical skills covering the domains developers most often Google when shipping a website. Each skill auto-loads only when relevant to the task: Web Accessibility on UI work, SEO/LLMO before launch, Core Web Vitals on performance issues, AWS SPA deploy on Amplify/CDK work, and Google Analytics 4 on tracking setup. Originally distributed as standalone markdown guides for any AI tool (also available via npx ai-instruct init); now packaged as a single Claude Code plugin for one-command install.",
       "source": {
