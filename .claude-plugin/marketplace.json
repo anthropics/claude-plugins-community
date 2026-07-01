@@ -333,7 +333,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Ad-Up-VC/adup-claude-plugin.git",
-        "sha": "6e84d231f09ba64806877e06438c7c93e6e40f63"
+        "sha": "60be500075bd2ea3e7bb59310cf742864365f9de"
       },
       "homepage": "https://www.adup.io"
     },
