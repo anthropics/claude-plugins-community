@@ -1,0 +1,13 @@
+{
+  "name": "waldo-fyi-plugins",
+  "owner": {
+    "name": "Community"
+  },
+  "plugins": [
+    {
+      "name": "waldo-fyi",
+      "source": "./",
+      "strict": false
+    }
+  ]
+}

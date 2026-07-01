@@ -1,0 +1,10 @@
+{
+  "name": "waldo-fyi",
+  "description": "Waldo strategy agent skills for ad intelligence, social listening, web research, data analysis, and archival knowledge — powered by the Waldo MCP connector",
+  "author": {
+    "name": "Waldo"
+  },
+  "homepage": "https://waldo.fyi",
+  "repository": "https://github.com/waldo-fyi/waldo-claude-plugin",
+  "license": "Apache-2.0"
+}

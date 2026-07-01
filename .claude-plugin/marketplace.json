@@ -22724,6 +22724,20 @@
       "description": "AI media generation skill for the QuickDesign CLI. Seedance 2.0 R2V (universal default for UGC / talking-avatar / promo), Sora 2, Kling, Nano Banana 2 (multi-ref image edit), video upscale. Multi-segment voice continuity, multi-product reference composition, anatomy self-check, model-agnostic concepts + per-model reference cards.",
       "category": "development",
       "homepage": "https://github.com/quickdesignio/quickdesign-cli.git"
+    },
+    {
+      "name": "waldo-fyi",
+      "source": "./waldo-fyi",
+      "strict": false,
+      "description": "Waldo strategy agent skills for ad intelligence, social listening, web research, data analysis, and archival knowledge — powered by the Waldo MCP connector",
+      "category": "development",
+      "homepage": "https://github.com/waldo-fyi/waldo-claude-plugin.git",
+      "mcpServers": {
+        "waldo": {
+          "type": "http",
+          "url": "https://mcp.waldo.fyi/strategy"
+        }
+      }
     }
   ]
 }
