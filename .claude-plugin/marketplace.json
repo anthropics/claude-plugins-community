@@ -52,7 +52,7 @@
         "url": "42Crunch-AI/claude-plugins",
         "path": "plugins/api-security-testing",
         "ref": "v1.0.1",
-        "sha": "bc781f96be8ce17a2972e8a9a3ef38b1ca7e8cc4"
+        "sha": "96b1036b0c44447f6547647d0346d2301f4f6d85"
       },
       "homepage": "https://docs.42crunch.com"
     },
@@ -118,7 +118,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/AccelByte/ai-plugins.git",
-        "sha": "98cfe91e72e14e8393024a0a2e0f823d0006b8c0"
+        "sha": "35eef723d516da434a83ff5a18fbdb8c0d9083c5"
       },
       "homepage": "https://accelbyte.io/"
     },
@@ -256,7 +256,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/adcontextprotocol/adcp-client.git",
-        "sha": "38be5fffaa07da2ca387f879e599cbe01ee36473"
+        "sha": "cdf15b30019f4b2972acc26bfab3c53bb2316ef5"
       },
       "homepage": "https://github.com/adcontextprotocol/adcp-client"
     },
@@ -321,7 +321,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Ad-Up-VC/adup-claude-plugin.git",
-        "sha": "6e84d231f09ba64806877e06438c7c93e6e40f63"
+        "sha": "60be500075bd2ea3e7bb59310cf742864365f9de"
       },
       "homepage": "https://www.adup.io"
     },
@@ -627,7 +627,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/SalesforceAIResearch/agentforce-adlc.git",
-        "sha": "534a608c13b49b776e879b0d314e7b8e5a998bf1"
+        "sha": "f17012bd8b6e7f6b140d60a825aa4277d8c05f07"
       },
       "homepage": "https://github.com/SalesforceAIResearch/agentforce-adlc/"
     },
@@ -1698,7 +1698,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/armoriq/armorClaude.git",
-        "sha": "51dd7b17ae22cdea746cb409ceba73c983064d58"
+        "sha": "626dceeb340d5c6a43d808fddc76d2b7ba892f6d"
       },
       "homepage": "https://armorclaude-docs.armoriq.ai"
     },
@@ -1840,7 +1840,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/astronomer/agents.git",
-        "sha": "d33a14ddd4cd8045f90acfe49d2552120feeeced"
+        "sha": "8827e93429f4d3741bf30377027c9cbfe8b58f3c"
       },
       "homepage": "https://github.com/astronomer/agents"
     },
@@ -2122,7 +2122,7 @@
         "url": "https://github.com/awslabs/agent-plugins.git",
         "path": "plugins/aws-serverless",
         "ref": "main",
-        "sha": "ba79e65ab968ed456b3cbee5f2d851d58239e864"
+        "sha": "8adddcc285b8c7f55a29f256fe657e8e870b350f"
       },
       "homepage": "https://github.com/awslabs/agent-plugins"
     },
@@ -2304,7 +2304,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/base44/skills.git",
-        "sha": "7b301e25d0952235c985bb159ca71cc520f27bcf"
+        "sha": "1463369a8664bb3dbf127d041a710dd7a085f4fa"
       },
       "homepage": "https://github.com/base44/skills"
     },
@@ -2482,7 +2482,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/blaxel-ai/agent-skills.git",
-        "sha": "4f99d64da566dd5cc1a464c536ba1cdcf858197b"
+        "sha": "beff431bf812b513f4a3cf28450970e0809f7fda"
       },
       "homepage": "https://docs.blaxel.ai"
     },
@@ -2710,7 +2710,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/brilliantdirectories/brilliant-directories-mcp.git",
-        "sha": "51e44a23364ee7955c4e69ed0d3d3b565055f9ce"
+        "sha": "58cab2ab895e20cd528052df999a8e51937976ab"
       },
       "homepage": "https://www.brilliantdirectories.com"
     },
@@ -2826,7 +2826,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/buildkite/skills.git",
-        "sha": "6ab569537d836b66edcc52d61c566bdfa670a7c2"
+        "sha": "24242e53c688546fb39e40a7f1f769dbbcd77400"
       },
       "homepage": "https://buildkite.com/docs"
     },
@@ -3025,7 +3025,7 @@
         "url": "carta/plugins",
         "path": "plugins/carta-investors",
         "ref": "main",
-        "sha": "787932173c1bc0fb6f2346e380fddd2349ceb8df"
+        "sha": "1b6e78b4682160975952f4d2c90a81493cd4c7d0"
       },
       "homepage": "https://docs.carta.com/api-platform/docs/carta-fund-admin"
     },
@@ -3037,7 +3037,7 @@
         "url": "https://github.com/miltonian/cartographer.git",
         "path": "plugin",
         "ref": "main",
-        "sha": "1b7f2098ef95c8590a494749601525d6d2720294"
+        "sha": "19b166bd678b1f5ce53cece25dfdfcfeb69f3f6b"
       },
       "homepage": "https://github.com/miltonian/cartographer"
     },
@@ -3159,7 +3159,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/GarySonyak/cc-native.git",
-        "sha": "2c87a32f26cc4360e268b80a9d76c37fe5bef9e9"
+        "sha": "6172ead0bd5a0bb01a4ad89abeb718b25ce07c83"
       },
       "homepage": "https://claudecode.sonyak.investments/feature-guide/"
     },
@@ -3179,7 +3179,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/xiaolai/cc-suite.git",
-        "sha": "5a05677ab22d37a5286089e59314ce425832b7c3"
+        "sha": "bb605ec441862e1d35f182af5d9f0503c7d27d79"
       },
       "homepage": "https://github.com/xiaolai/cc-suite"
     },
@@ -3241,7 +3241,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/soyukke/ccguard.git",
-        "sha": "2509f2089a7d32c34d5daa29f35f5f1e2392f382"
+        "sha": "e093ef5b805325732829de04201a9eab4a50abb5"
       },
       "homepage": "https://github.com/soyukke/ccguard"
     },
@@ -3383,7 +3383,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/harry-harish/chrome-extension-builder.git",
-        "sha": "0098063be07c67f19966452bb22100253eb9a54d"
+        "sha": "22ac5a3ec7ddbb867eef8ab0fec20dc5faba8970"
       },
       "homepage": "https://github.com/harry-harish/chrome-extension-builder"
     },
@@ -4007,7 +4007,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/laurac8r/claude-damn.git",
-        "sha": "ee43cffdaa21b50a94e03f76c0afd3bddfcf54ef"
+        "sha": "88d7c985bf88e2efbf96a26d952197454ed115b3"
       },
       "homepage": "https://github.com/laurac8r/claude-damn"
     },
@@ -4299,7 +4299,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/thedotmack/claude-mem.git",
-        "sha": "3a2ba296135b89c74b9ea9835af170fc7dae4fab"
+        "sha": "cbdce2d676a9646b73dc236eebb53e4019870dcf"
       },
       "homepage": "https://github.com/thedotmack/claude-mem"
     },
@@ -4369,7 +4369,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/a2ngerer/claude_onboarding_agent.git",
-        "sha": "b6f77540d45e136294d737bf29d7bf73b8eb9bc0"
+        "sha": "ae7a344c5ded03c8b6f4bb349c1b70672bbe3fdc"
       },
       "homepage": "https://github.com/a2ngerer/claude_onboarding_agent"
     },
@@ -4479,7 +4479,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Innestic/claude-relay.git",
-        "sha": "ed82fb88bbbc8af193d0d505dedd3b2100186b98"
+        "sha": "5875ca2727c1ffa3011e1c097937a455aa554176"
       },
       "homepage": "https://github.com/Innestic/claude-relay/blob/main/README.md"
     },
@@ -4931,7 +4931,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/crisandrews/ClawCode.git",
-        "sha": "3787664ede56a18e54ff7ed61efa959f894fb93a"
+        "sha": "a29b1d6da13b953e1a73ee4af155dc7726c0b2b9"
       },
       "homepage": "https://github.com/crisandrews/ClawCode"
     },
@@ -5093,7 +5093,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/ClickHouse/agent-skills.git",
-        "sha": "544384f4fab1d6ed59f16a354d1c68296dfa6007"
+        "sha": "faa5b11bfa6c1b615cfff0ac017c73b8c255a3f7"
       },
       "homepage": "https://clickhouse.com"
     },
@@ -5257,7 +5257,7 @@
         "url": "https://github.com/thewhyman/prompt-engineering-in-action.git",
         "path": "plugins/co-dialectic",
         "ref": "main",
-        "sha": "282d2c8f39b890d8f9f139ab12ed664a923a5502"
+        "sha": "d9e9b4f98e973a76503dd9411e869bb20ea3b709"
       },
       "homepage": "https://github.com/thewhyman/prompt-engineering-in-action"
     },
@@ -5287,7 +5287,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/cockroachdb/claude-plugin.git",
-        "sha": "736bd11df55bac97e2a6c98be8e93503b125902c"
+        "sha": "c511ba806b1797b1737fc4cbffbe3dba8697b1f2"
       },
       "homepage": "https://github.com/cockroachdb/claude-plugin"
     },
@@ -5639,7 +5639,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/comment-io/claude-code-plugin.git",
-        "sha": "6aea7f6ae67df02b4a23bbe870b300c182a3baf9"
+        "sha": "9449f1aa4f3e1da3fe3cf49529818036df47d478"
       },
       "homepage": "https://comment.io"
     },
@@ -5691,7 +5691,7 @@
         "url": "enalbenerraw/blanewarrene",
         "path": "plugins/comparative-landscape-brief",
         "ref": "main",
-        "sha": "e3e08287ef85c9cc9f9e0f1d8bbbd7046702cfb4"
+        "sha": "3aadc65ac5a9cf0435f9f473d942adbb0d14c6ea"
       },
       "homepage": "https://github.com/enalbenerraw/blanewarrene/blob/main/plugins/comparative-landscape-brief/README.md"
     },
@@ -5867,7 +5867,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/netlify/context-and-tools.git",
-        "sha": "7fcceabbc53cad0934bb24c722bfc6d2283861ea"
+        "sha": "b922fd4d6fe02a63034e175b452dc2660c2ed3e4"
       },
       "homepage": "https://github.com/netlify/context-and-tools"
     },
@@ -22712,6 +22712,20 @@
       "description": "AI media generation skill for the QuickDesign CLI. Seedance 2.0 R2V (universal default for UGC / talking-avatar / promo), Sora 2, Kling, Nano Banana 2 (multi-ref image edit), video upscale. Multi-segment voice continuity, multi-product reference composition, anatomy self-check, model-agnostic concepts + per-model reference cards.",
       "category": "development",
       "homepage": "https://github.com/quickdesignio/quickdesign-cli.git"
+    },
+    {
+      "name": "testdino",
+      "source": "./testdino",
+      "strict": false,
+      "description": "Use TestDino inside Claude Code through the hosted remote MCP server to inspect test runs, debug failing test cases, manage manual tests, and run TestDino audits.",
+      "category": "development",
+      "homepage": "https://github.com/testdino-hq/TestDino-Plugins",
+      "mcpServers": {
+        "testdino": {
+          "type": "http",
+          "url": "https://mcp.testdino.com"
+        }
+      }
     }
   ]
 }
