@@ -3395,7 +3395,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/harry-harish/chrome-extension-builder.git",
-        "sha": "0098063be07c67f19966452bb22100253eb9a54d"
+        "sha": "22ac5a3ec7ddbb867eef8ab0fec20dc5faba8970"
       },
       "homepage": "https://github.com/harry-harish/chrome-extension-builder"
     },
