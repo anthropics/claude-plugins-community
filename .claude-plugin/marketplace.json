@@ -4381,7 +4381,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/a2ngerer/claude_onboarding_agent.git",
-        "sha": "b6f77540d45e136294d737bf29d7bf73b8eb9bc0"
+        "sha": "ae7a344c5ded03c8b6f4bb349c1b70672bbe3fdc"
       },
       "homepage": "https://github.com/a2ngerer/claude_onboarding_agent"
     },
