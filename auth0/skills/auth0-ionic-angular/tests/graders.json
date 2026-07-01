@@ -1,0 +1,27 @@
+[
+  {"type": "matches", "pattern": "npm install.*@auth0/auth0-angular|@auth0/auth0-angular.*\\d+\\.\\d+", "description": "Auth0 Angular SDK installed via npm"},
+  {"type": "contains", "value": "@auth0/auth0-angular", "description": "Has correct import or dependency for @auth0/auth0-angular"},
+  {"type": "contains_any", "values": ["provideAuth0", "AuthModule.forRoot"], "description": "Auth0 SDK initialized (provideAuth0 or AuthModule.forRoot configured)"},
+  {"type": "matches", "pattern": "provideAuth0|AuthModule\\.forRoot|Auth0Provider", "description": "Has Auth0 provider/wrapper component configured"},
+  {"type": "matches", "pattern": "loginWithRedirect|login\\(", "description": "Implements login functionality"},
+  {"type": "matches", "pattern": "logout\\(|auth\\.logout", "description": "Implements logout functionality"},
+
+  {"type": "file_contains", "file_pattern": "**/environment*.ts", "value": "dev-example.auth0.com", "description": "Auth0 domain written to correct config file (environment.ts)"},
+  {"type": "file_contains", "file_pattern": "**/environment*.ts", "value": "abc123def456ghi789jkl012", "description": "Client ID written to correct config file (environment.ts)"},
+
+  {"type": "not_contains_any", "values": ["@auth0/nextjs-auth0", "express-openid-connect", "auth0-react-native"], "description": "Does not use server or native SDK in Ionic Angular app"},
+  {"type": "not_contains", "value": "client_secret", "description": "No client secret in Ionic Angular code (Native app uses PKCE)"},
+  {"type": "not_contains", "value": "localStorage", "description": "Does not store tokens in localStorage (insecure on mobile)"},
+
+  {"type": "judge", "description": "Does the solution correctly integrate Auth0 into an Ionic Angular Capacitor app", "question": "Does the solution correctly integrate Auth0 into an Ionic Angular Capacitor app with Auth0 provider (provideAuth0 or AuthModule.forRoot), login/logout using Browser.open, and deep link callback handling?", "examples": "PASS: Uses provideAuth0 or AuthModule.forRoot, loginWithRedirect with Browser.open, appUrlOpen listener with handleRedirectCallback in ngZone.run.\nFAIL: Uses server-side session instead of SPA token flow.\nFAIL: Uses window.location.href instead of Browser.open for login.", "framework": "ionic-angular"},
+
+  {"type": "matches", "pattern": "\\d+\\.\\d+\\.\\d+", "description": "Uses a specific SDK version in dependency declaration"},
+  {"type": "matches", "pattern": "useRefreshTokens\\s*:\\s*true", "description": "Configures refresh token rotation (useRefreshTokens: true) — required for mobile"},
+  {"type": "matches", "pattern": "useRefreshTokensFallback\\s*:\\s*false", "description": "Disables refresh token fallback (useRefreshTokensFallback: false) — required for mobile"},
+  {"type": "matches", "pattern": "ngZone\\.run|NgZone", "description": "Uses NgZone.run() for Capacitor callback handling (Angular change detection)"},
+  {"type": "matches", "pattern": "Browser\\.open|@capacitor/browser", "description": "Uses Capacitor Browser plugin for system browser authentication"},
+  {"type": "matches", "pattern": "appUrlOpen|@capacitor/app", "description": "Uses Capacitor App plugin for deep link callback handling"},
+  {"type": "matches", "pattern": "handleRedirectCallback", "description": "Calls handleRedirectCallback to process deep link auth response"},
+
+  {"type": "judge", "description": "Contains skill-specific advanced pattern for Ionic Capacitor", "question": "Check ONLY for these skill-specific advanced patterns (NOT basic SDK usage like loginWithRedirect, logout, isAuthenticated, user$, AuthService). Look for at least 2 of: (1) useRefreshTokens: true AND useRefreshTokensFallback: false, (2) ngZone.run() wrapping Capacitor callbacks, (3) Browser.open instead of default redirect, (4) appUrlOpen listener with handleRedirectCallback. These are Ionic Capacitor-specific patterns taught by the skill that are NOT part of standard Angular SPA quickstart knowledge. Answer YES only if at least 2 of these advanced patterns are present, NO otherwise.", "examples": "PASS: Uses useRefreshTokens: true AND wraps handleRedirectCallback in ngZone.run().\nFAIL: Only uses basic provideAuth0 with loginWithRedirect, no Capacitor-specific patterns.", "framework": "ionic-angular"}
+]

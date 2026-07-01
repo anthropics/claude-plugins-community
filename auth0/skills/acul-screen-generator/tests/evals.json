@@ -1,0 +1,172 @@
+{
+  "skill_name": "acul-screen-generator",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I want to build a new ACUL project from scratch with React and Tailwind CSS. I need login-id, login-password, and signup screens. My brand color is #4F46E5.",
+      "expected_output": "Should run auth0 acul init with -t react -s login-id,login-password,signup, detect Tailwind as styling, derive a full token set from #4F46E5 (including hover #4338CA, white text), generate tailwind.config.ts with brand tokens, and produce modular screen components following the auth0-acul-samples architecture (index.tsx + components/ + hooks/ + locales/) since all three screens are in auth0-acul-samples.",
+      "files": [],
+      "assertions": [
+        "Runs auth0 login and auth0 acul config list to verify CLI auth and custom domain",
+        "Runs auth0 acul init with -t react flag and -s login-id,login-password,signup",
+        "Identifies Tailwind CSS as the styling library",
+        "Derives primary-hover color by darkening #4F46E5 ~10%",
+        "Generates a tailwind.config.ts using the theme template with brand color tokens filled in",
+        "Generates login-id screen with modular architecture: index.tsx, components/, hooks/, locales/",
+        "Generates login-password screen with modular architecture",
+        "Generates signup screen with modular architecture",
+        "Uses correct SDK import paths: @auth0/auth0-acul-react/login-id, /login-password, /signup",
+        "Each screen has a use<ScreenName>Manager hook wrapping SDK hooks",
+        "Provides auth0 acul dev command for local preview"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Add an MFA OTP challenge screen to my existing ACUL React project in ./my-acul-app. We use CSS Modules.",
+      "expected_output": "Should verify acul_config.json exists, run auth0 acul screen add mfa-otp-challenge, check screen-catalog.md and find mfa-otp-challenge is NOT in auth0-acul-samples, fetch the SDK example from GitHub, generate a single-file component (Path B) using the correct screen-specific hook pattern, and apply CSS Modules styling.",
+      "files": [],
+      "assertions": [
+        "Checks for acul_config.json in ./my-acul-app",
+        "Runs auth0 acul screen add mfa-otp-challenge -d ./my-acul-app",
+        "Checks screen-catalog.md and determines mfa-otp-challenge is NOT in auth0-acul-samples (Samples column is ❌)",
+        "Fetches SDK example from https://github.com/auth0/universal-login/blob/master/packages/auth0-acul-react/examples/mfa-otp-challenge.md",
+        "Generates a single-file component (Path B, not modular)",
+        "Uses correct import path: @auth0/auth0-acul-react/mfa-otp-challenge",
+        "Uses screen-specific hook pattern (Pattern B) rather than generic useScreen()",
+        "Does not hardcode UI strings — uses screen.texts.* with locale fallback",
+        "Error state uses SDK source (hasErrors / useErrors), not local-only error state"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Generate a custom login-id screen using vanilla JavaScript with plain CSS. Include Google and GitHub social login. Brand colors: primary #1E40AF, background #F8FAFC.",
+      "expected_output": "Should generate a vanilla JS login-id component using @auth0/auth0-acul-js/login-id manager class pattern, a globals.css theme file with the provided colors and derived tokens, and include social login buttons for Google and GitHub rendered from alternateConnections data.",
+      "files": [],
+      "assertions": [
+        "Uses @auth0/auth0-acul-js/login-id import with LoginId class",
+        "Creates manager instance: const manager = new LoginId()",
+        "Reads social connections from manager.transaction.alternateConnections, not hardcoded",
+        "Renders social buttons dynamically from alternateConnections array",
+        "Calls manager.federatedLogin({ connection: conn.name }) for social login clicks",
+        "Generates globals.css with --color-primary: #1E40AF and --color-background: #F8FAFC",
+        "Derives hover state from #1E40AF (darkened ~10%)",
+        "Uses manager.screen.texts.* for UI strings with fallback defaults",
+        "Attaches event listeners after rendering (imperative DOM pattern)",
+        "Escapes HTML in dynamically injected connection data to prevent XSS"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "I want to modify my existing login-password screen to add passkey support and update the brand color to #059669. The project uses React with styled-components.",
+      "expected_output": "Should fetch the current screen config, resolve the login-password reference from auth0-acul-samples (it has ✅), check the existing code, add passkey button conditional on screen.isPasskeyEnabled, call passkeyLogin() on click, and update the styled-components theme with the new brand color.",
+      "files": [],
+      "assertions": [
+        "Verifies acul_config.json exists",
+        "Runs auth0 acul config get login-password to fetch current config",
+        "Reads the existing screen file from the codebase",
+        "Resolves reference from auth0-acul-samples (login-password has ✅ in Samples column)",
+        "Adds passkey button conditional on screen.isPasskeyEnabled",
+        "Calls passkeyLogin() imported from @auth0/auth0-acul-react/login-password",
+        "Updates styled-components theme with primary: '#059669'",
+        "Derives hover, text, and focus ring tokens from #059669"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Build a complete ACUL project with all password reset screens: reset-password-request, reset-password-email, reset-password, reset-password-success, and reset-password-error. Use React with Tailwind. Apply a consistent theme across all screens with primary color #DC2626.",
+      "expected_output": "Should init project with all 5 password reset screens, note all are in auth0-acul-samples (✅), generate modular architecture for each, create a shared tailwind.config.ts theme file with #DC2626 tokens applied consistently, and use the correct SDK action for each screen (requestPasswordReset for request, continueMethod for reset, no action for email/success/error).",
+      "files": [],
+      "assertions": [
+        "Runs auth0 acul init with -s reset-password-request,reset-password-email,reset-password,reset-password-success,reset-password-error",
+        "Checks screen-catalog.md and confirms all 5 screens are in auth0-acul-samples",
+        "Generates modular architecture (Path A) for all 5 screens",
+        "Uses requestPasswordReset() action for reset-password-request screen",
+        "Uses continueMethod() action for reset-password screen",
+        "reset-password-email, reset-password-success, reset-password-error have no submit action (display-only screens)",
+        "Generates a shared tailwind.config.ts with #DC2626 as primary color",
+        "All 5 screens reference the same shared theme — no inline token duplication",
+        "Correct SDK import paths for each screen (e.g., @auth0/auth0-acul-react/reset-password-request)"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "I have a screenshot of our login page design. Can you generate the login-id screen to match it? We use React with CSS Modules.",
+      "expected_output": "Should ask the user to provide the screenshot/image, analyze it to extract colors, typography, spacing, border radius, and layout type, then generate design tokens, a tokens.css file, and a modular login-id screen component matching the extracted design.",
+      "files": [],
+      "assertions": [
+        "Requests the screenshot/image from the user if not already provided",
+        "Extracts primary, secondary, accent, background, and surface colors from the image",
+        "Identifies font family and weights from the image",
+        "Determines border radius style (sharp/slight/rounded/pill)",
+        "Determines layout type (centered card/full-bleed/split-panel/floating card)",
+        "Generates tokens.css with extracted values replacing all {{TOKEN}} placeholders",
+        "Generates modular login-id screen (Path A since it's in auth0-acul-samples)",
+        "Component styling references CSS custom properties from tokens.css"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Add the email-identifier-challenge and phone-identifier-challenge screens to my existing React project. We use plain CSS.",
+      "expected_output": "Should add both screens, check screen-catalog.md to find both ARE in auth0-acul-samples (✅), fetch the sample implementations, generate modular architecture for both with the correct screen-specific hooks and continueMethod() action, and apply consistent plain CSS styling.",
+      "files": [],
+      "assertions": [
+        "Checks screen-catalog.md for both screens",
+        "Confirms both email-identifier-challenge and phone-identifier-challenge are in auth0-acul-samples",
+        "Fetches reference from auth0-acul-samples for both screens",
+        "Generates modular architecture (Path A) for both — index.tsx, components/, hooks/, locales/",
+        "Uses continueMethod() as primary action for both screens",
+        "Correct import: @auth0/auth0-acul-react/email-identifier-challenge and /phone-identifier-challenge",
+        "Both screens share the same plain CSS globals styling"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Generate a consent screen for my vanilla JS project. Use Tailwind CSS.",
+      "expected_output": "Should check screen-catalog.md and find consent is NOT in auth0-acul-samples, fall back to SDK JS example, use the JS manager class pattern, generate a single-file component with continueMethod() action, and apply Tailwind classes.",
+      "files": [],
+      "assertions": [
+        "Checks screen-catalog.md and determines consent is NOT in auth0-acul-samples (❌)",
+        "Fetches SDK JS example from https://github.com/auth0/universal-login/blob/master/packages/auth0-acul-js/examples/consent.md",
+        "Uses JS manager class: import Consent from '@auth0/auth0-acul-js/consent'",
+        "Generates a single-file component (Path B)",
+        "Uses continueMethod() action from the SDK example",
+        "Reads acul-js-sdk.md reference for JS SDK patterns",
+        "Uses Tailwind utility classes for styling",
+        "Uses manager.screen.texts.* for UI strings"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "I need a login-id screen with captcha enabled, passkey support, and social login with Google, Apple, and Microsoft. React with Tailwind.",
+      "expected_output": "Should generate a modular login-id screen with all three conditional features enabled: captcha field conditional on screen.isCaptchaAvailable, passkey button conditional on screen.isPasskeyEnabled calling passkeyLogin(), and social login buttons rendered from alternateConnections using federatedLogin(). All social buttons should use dynamic data, not hardcoded provider names.",
+      "files": [],
+      "assertions": [
+        "Generates modular login-id screen (Path A)",
+        "Includes captcha field conditional on screen.isCaptchaAvailable",
+        "Includes passkey button conditional on screen.isPasskeyEnabled",
+        "Passkey button calls passkeyLogin() from the SDK",
+        "Social login buttons rendered from alternateConnections array, not hardcoded",
+        "Social login calls federatedLogin({ connection: conn.name })",
+        "Reads social-providers.md reference for social button implementation",
+        "Uses dynamic identifierLabel from useLoginIdentifiers() hook",
+        "Error display uses useErrors() hook from SDK"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "Generate the mfa-webauthn-platform-enrollment screen for my React project with styled-components. This screen has multiple actions.",
+      "expected_output": "Should check screen-catalog.md and find this screen is NOT in auth0-acul-samples, fetch the SDK example, note it has 3 distinct actions (submitPasskeyCredential, snoozeEnrollment, refuseEnrollmentOnThisDevice), generate a single-file component with all three action handlers, and use styled-components for theming.",
+      "files": [],
+      "assertions": [
+        "Checks screen-catalog.md — mfa-webauthn-platform-enrollment is NOT in auth0-acul-samples",
+        "Fetches SDK React example from GitHub",
+        "Identifies 3 actions: submitPasskeyCredential(), snoozeEnrollment(), refuseEnrollmentOnThisDevice()",
+        "Generates a single-file component (Path B)",
+        "All three action functions are imported and wired to UI elements",
+        "Uses screen-specific hook pattern (Pattern B)",
+        "Correct import path: @auth0/auth0-acul-react/mfa-webauthn-platform-enrollment",
+        "Uses styled-components theme for styling"
+      ]
+    }
+  ]
+}

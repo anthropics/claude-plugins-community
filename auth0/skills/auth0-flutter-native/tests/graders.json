@@ -1,0 +1,101 @@
+[
+  {
+    "type": "matches",
+    "pattern": "auth0_flutter:\\s*\\^|auth0_flutter:",
+    "description": "auth0_flutter SDK added to pubspec.yaml dependencies"
+  },
+  {
+    "type": "contains",
+    "value": "package:auth0_flutter/auth0_flutter.dart",
+    "description": "Has import for the auth0_flutter package (import package:auth0_flutter/auth0_flutter.dart)"
+  },
+  {
+    "type": "matches",
+    "pattern": "Auth0\\(['\"]|Auth0\\(\\s",
+    "description": "Uses the Auth0 mobile class (not Auth0Web)"
+  },
+  {
+    "type": "matches",
+    "pattern": "webAuthentication\\(",
+    "description": "Uses webAuthentication() for Web Auth login/logout"
+  },
+  {
+    "type": "matches",
+    "pattern": "\\.login\\(",
+    "description": "Implements login via webAuthentication().login()"
+  },
+  {
+    "type": "matches",
+    "pattern": "\\.logout\\(",
+    "description": "Implements logout via webAuthentication().logout()"
+  },
+  {
+    "type": "matches",
+    "pattern": "credentialsManager|CredentialsManager",
+    "description": "Uses the CredentialsManager for token storage"
+  },
+  {
+    "type": "matches",
+    "pattern": "hasValidCredentials\\(|credentialsManager\\.credentials\\(",
+    "description": "Restores session via hasValidCredentials() / credentials() on startup"
+  },
+  {
+    "type": "matches",
+    "pattern": "manifestPlaceholders",
+    "description": "Adds Android manifestPlaceholders (auth0Domain, auth0Scheme) to build.gradle"
+  },
+  {
+    "type": "matches",
+    "pattern": "auth0Domain|auth0Scheme",
+    "description": "Sets auth0Domain / auth0Scheme placeholder values for Android"
+  },
+  {
+    "type": "contains",
+    "value": "dev-example.auth0.com",
+    "description": "Auth0 domain dev-example.auth0.com passed to the Auth0 constructor"
+  },
+  {
+    "type": "contains",
+    "value": "abc123def456ghi789jkl012",
+    "description": "Client ID abc123def456ghi789jkl012 passed to the Auth0 constructor"
+  },
+  {
+    "type": "not_contains_any",
+    "values": ["Auth0Web(", "auth0_flutter_web.dart", "auth0-spa-js"],
+    "description": "Does not use web-specific APIs (Auth0Web, auth0_flutter_web.dart, auth0-spa-js)"
+  },
+  {
+    "type": "not_contains",
+    "value": "client_secret",
+    "description": "No client_secret in native code (PKCE does not require one)"
+  },
+  {
+    "type": "judge",
+    "description": "Solution correctly integrates Auth0 into a Flutter mobile app with login, logout, and credential handling",
+    "question": "Does the solution correctly integrate Auth0 into a Flutter mobile (iOS/Android) app with: (1) working login via auth0.webAuthentication().login(), (2) logout via webAuthentication().logout() (and/or clearCredentials()), (3) credential handling via credentialsManager (hasValidCredentials / credentials), (4) Android manifestPlaceholders (auth0Domain, auth0Scheme) configured in build.gradle, and (5) correct Auth0(domain, clientId) initialization?",
+    "examples": "PASS: Uses Auth0(domain, clientId), webAuthentication().login() for login, webAuthentication().logout() for logout, credentialsManager.hasValidCredentials() on startup, and build.gradle has manifestPlaceholders.\nFAIL: Uses Auth0Web instead of the Auth0 mobile class.\nFAIL: Missing manifestPlaceholders in build.gradle.\nFAIL: Only implements login without logout or session restore.",
+    "framework": "dart"
+  },
+  {
+    "type": "matches",
+    "pattern": "2\\.1|\\^2\\.1|\\^2\\.[0-9]+",
+    "description": "Uses current SDK version (2.1.0) in pubspec.yaml dependency"
+  },
+  {
+    "type": "matches",
+    "pattern": "offline_access",
+    "description": "Requests offline_access scope to enable refresh token renewal"
+  },
+  {
+    "type": "matches",
+    "pattern": "WebAuthenticationException|CredentialsManagerException|isUserCancelledException|isNoCredentialsFound|isTokenRenewFailed",
+    "description": "Handles Auth0-specific mobile error types (WebAuthenticationException / CredentialsManagerException) instead of generic catch-all"
+  },
+  {
+    "type": "judge",
+    "description": "Contains skill-specific advanced patterns beyond basic SDK usage (offline_access, error types, session restore, manifestPlaceholders, version)",
+    "question": "Check ONLY for these skill-specific advanced patterns (NOT basic SDK usage like Auth0, webAuthentication, login, logout, credentials). Look for at least 2 of: (1) SDK version 2.1.0 in pubspec.yaml, (2) offline_access scope in the login call, (3) Auth0-specific mobile error handling (WebAuthenticationException or CredentialsManagerException with flags like isUserCancelledException / isNoCredentialsFound / isTokenRenewFailed — not just generic catch), (4) Android manifestPlaceholders (auth0Domain + auth0Scheme) in build.gradle, (5) session restoration on startup via hasValidCredentials() + credentials() with branching logic. These are advanced patterns taught by the skill that are NOT part of standard quickstart knowledge. Answer YES only if at least 2 of these advanced patterns are present, NO otherwise.",
+    "examples": "PASS: Login call includes offline_access scope AND build.gradle declares manifestPlaceholders with auth0Domain/auth0Scheme.\nPASS: pubspec.yaml declares ^2.1.0 AND code catches CredentialsManagerException checking isNoCredentialsFound.\nFAIL: Code only uses basic Auth0().webAuthentication().login() with no offline_access, no error handling, no manifestPlaceholders.\nFAIL: Correct basic structure but only catches generic Exception, never the Auth0 exception types.",
+    "framework": "dart"
+  }
+]

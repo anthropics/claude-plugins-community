@@ -1,0 +1,177 @@
+/* ACUL Screen Generator — Plain CSS globals template
+   Replace {{TOKEN}} placeholders with extracted design tokens from Phase 5
+   Import once in your entry point: import './styles/globals.css' */
+
+:root {
+  --color-primary:          {{COLOR_PRIMARY}};
+  --color-primary-hover:    {{COLOR_PRIMARY_HOVER}};
+  --color-primary-text:     {{COLOR_PRIMARY_TEXT}};
+  --color-background:       {{COLOR_BACKGROUND}};
+  --color-surface:          {{COLOR_SURFACE}};
+  --color-text-primary:     {{COLOR_TEXT_PRIMARY}};
+  --color-text-secondary:   {{COLOR_TEXT_SECONDARY}};
+  --color-text-placeholder: {{COLOR_TEXT_PLACEHOLDER}};
+  --color-border:           {{COLOR_BORDER}};
+  --color-border-focus:     var(--color-primary);
+  --color-error:            {{COLOR_ERROR}};
+  --color-error-bg:         {{COLOR_ERROR_BG}};
+  --color-success:          {{COLOR_SUCCESS}};
+  --font-family:            '{{FONT_FAMILY}}', ui-sans-serif, system-ui, sans-serif;
+  --radius-card:            {{RADIUS_CARD}};
+  --radius-input:           {{RADIUS_INPUT}};
+  --radius-btn:             {{RADIUS_BTN}};
+  --space-card-padding:     {{SPACE_CARD_PADDING}};
+  --shadow-card:            0 1px 3px rgba(0,0,0,0.10), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-input-focus:     0 0 0 3px {{COLOR_PRIMARY_FOCUS_RING}};
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background: var(--color-background);
+  color: var(--color-text-primary);
+}
+
+/* Shared layout utilities */
+.acul-page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: var(--color-background);
+}
+
+.acul-card {
+  width: 100%;
+  max-width: 400px;
+  background: var(--color-surface);
+  border-radius: var(--radius-card);
+  padding: var(--space-card-padding);
+  box-shadow: var(--shadow-card);
+}
+
+.acul-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-input);
+  font-family: var(--font-family);
+  font-size: 0.875rem;
+  color: var(--color-text-primary);
+  background: var(--color-surface);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.acul-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-input-focus);
+}
+
+.acul-input::placeholder {
+  color: var(--color-text-placeholder);
+}
+
+.acul-btn-primary {
+  width: 100%;
+  padding: 10px 16px;
+  background: var(--color-primary);
+  color: var(--color-primary-text);
+  border: none;
+  border-radius: var(--radius-btn);
+  font-family: var(--font-family);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.acul-btn-primary:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+}
+
+.acul-btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.acul-error-banner {
+  padding: 10px 12px;
+  background: var(--color-error-bg);
+  border: 1px solid var(--color-error);
+  border-radius: var(--radius-input);
+  color: var(--color-error);
+  font-size: 0.875rem;
+  margin-bottom: 16px;
+}
+
+.acul-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+}
+
+.acul-social-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-btn);
+  font-family: var(--font-family);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: background 0.15s;
+  margin-bottom: 8px;
+}
+
+.acul-social-btn:hover {
+  background: var(--color-background);
+}
+
+.acul-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.acul-divider::before,
+.acul-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.acul-divider span {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary);
+}
+
+.acul-footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
+  font-size: 0.8125rem;
+}
+
+.acul-footer-links a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.acul-footer-links a:hover {
+  text-decoration: underline;
+}

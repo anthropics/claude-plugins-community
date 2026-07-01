@@ -1,0 +1,31 @@
+{
+  "skill_name": "auth0-flutter-native",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Add Auth0 authentication to a Flutter mobile (iOS/Android) application using the auth0_flutter SDK.\n\n**Auth0 Credentials:**\n- Domain: `dev-example.auth0.com`\n- Client ID: `abc123def456ghi789jkl012`",
+      "expected_output": "Working Flutter mobile app with Auth0 Web Auth login/logout via the system browser, secure token storage via CredentialsManager, and correct Android manifestPlaceholders / iOS configuration",
+      "expectations": [
+        "auth0_flutter SDK added to pubspec.yaml dependencies",
+        "Has import for the auth0_flutter package (import package:auth0_flutter/auth0_flutter.dart)",
+        "Uses the Auth0 mobile class (not Auth0Web)",
+        "Uses webAuthentication() for Web Auth login/logout",
+        "Implements login via webAuthentication().login()",
+        "Implements logout via webAuthentication().logout()",
+        "Uses the CredentialsManager for token storage",
+        "Restores session via hasValidCredentials() / credentials() on startup",
+        "Adds Android manifestPlaceholders (auth0Domain, auth0Scheme) to build.gradle",
+        "Sets auth0Domain / auth0Scheme placeholder values for Android",
+        "Auth0 domain dev-example.auth0.com passed to the Auth0 constructor",
+        "Client ID abc123def456ghi789jkl012 passed to the Auth0 constructor",
+        "Does not use web-specific APIs (Auth0Web, auth0_flutter_web.dart, auth0-spa-js)",
+        "No client_secret in native code (PKCE does not require one)",
+        "Solution correctly integrates Auth0 into a Flutter mobile app with login, logout, and credential handling",
+        "Uses current SDK version (2.1.0) in pubspec.yaml dependency",
+        "Requests offline_access scope to enable refresh token renewal",
+        "Handles Auth0-specific mobile error types (WebAuthenticationException / CredentialsManagerException) instead of generic catch-all",
+        "Solution contains at least 2 skill-specific advanced patterns (version, offline_access, error types, manifestPlaceholders, or session restore)"
+      ]
+    }
+  ]
+}

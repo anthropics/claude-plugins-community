@@ -1,0 +1,27 @@
+[
+  {"type": "matches", "pattern": "npm install @auth0/auth0-react|yarn add @auth0/auth0-react|\"@auth0/auth0-react\"\\s*:", "description": "Auth0 React SDK installed via any valid method"},
+  {"type": "matches", "pattern": "import\\s+.*from\\s+['\"]@auth0/auth0-react['\"]|require\\(['\"]@auth0/auth0-react['\"]\\)", "description": "Has correct import statement for @auth0/auth0-react"},
+  {"type": "contains_any", "values": ["Auth0Provider", "useAuth0"], "description": "Auth0 SDK initialized (provider mounted or hook used)"},
+  {"type": "contains", "value": "loginWithRedirect", "description": "Implements login functionality via loginWithRedirect"},
+  {"type": "matches", "pattern": "logout\\s*\\(", "description": "Implements logout functionality"},
+  {"type": "matches", "pattern": "@capacitor/browser|Browser\\.open\\s*\\(", "description": "Uses Capacitor Browser plugin for native browser opening"},
+  {"type": "matches", "pattern": "@capacitor/app|CapApp\\.addListener|App\\.addListener", "description": "Uses Capacitor App plugin for deep link handling"},
+  {"type": "contains", "value": "useRefreshTokens", "description": "Uses secure credential storage via refresh tokens (useRefreshTokens)"},
+
+  {"type": "file_contains", "file_pattern": "**/*.{tsx,ts,jsx,js,env*}", "value": "dev-example.auth0.com", "description": "Auth0 domain written to config or source file"},
+  {"type": "file_contains", "file_pattern": "**/*.{tsx,ts,jsx,js,env*}", "value": "abc123def456ghi789jkl012", "description": "Client ID written to config or source file"},
+
+  {"type": "not_contains", "value": "client_secret", "description": "No client secret in native app (not needed)"},
+  {"type": "not_contains", "value": "window.location.origin", "description": "Does not use window.location.origin as redirect URI (must use custom scheme)"},
+
+  {"type": "judge", "id": "correctness", "description": "Does the solution correctly integrate Auth0 with login, logout, deep links, and custom URL scheme", "question": "Does the solution correctly integrate Auth0 into an Ionic React + Capacitor native mobile app with working login via Capacitor Browser, deep link callback handling via Capacitor App plugin, logout, and proper custom URL scheme configuration?", "examples": "PASS: Uses Auth0Provider with loginWithRedirect using Browser.open in openUrl callback, handles appUrlOpen deep link events with handleRedirectCallback, implements logout with Browser.open, and uses custom scheme callback URL.\nFAIL: Only implements basic React SPA login without Capacitor Browser/App plugins.\nFAIL: Uses window.location.origin as redirect URI instead of custom URL scheme.", "framework": "ionic-react"},
+
+  {"type": "matches", "pattern": "2\\.1[6-9]\\.|2\\.[2-9]\\d\\.|[3-9]\\.\\d", "description": "Uses current SDK version (2.16.2 or newer) in dependency declaration"},
+  {"type": "matches", "pattern": "useRefreshTokens\\s*=\\s*\\{?\\s*true|useRefreshTokens:\\s*true", "description": "Enables refresh tokens (required for Capacitor - no iframe available)"},
+  {"type": "matches", "pattern": "useRefreshTokensFallback\\s*=\\s*\\{?\\s*false|useRefreshTokensFallback:\\s*false", "description": "Disables refresh token iframe fallback (required for Capacitor)"},
+  {"type": "matches", "pattern": "handleRedirectCallback\\s*\\(", "description": "Calls handleRedirectCallback to process deep link auth response"},
+  {"type": "matches", "pattern": "Browser\\.close\\s*\\(", "description": "Closes Capacitor Browser after handling callback"},
+  {"type": "matches", "pattern": "appUrlOpen", "description": "Listens for appUrlOpen deep link event from Capacitor App plugin"},
+
+  {"type": "judge", "id": "skill-attribution", "description": "Uses skill-specific advanced pattern knowledge for Capacitor integration", "question": "Check ONLY for these skill-specific advanced patterns (NOT basic SDK usage like Auth0Provider, loginWithRedirect, useAuth0). Look for at least 2 of: (1) useRefreshTokens={true} AND useRefreshTokensFallback={false} configured together, (2) Browser.open() used inside an openUrl callback parameter of loginWithRedirect, (3) CapApp.addListener('appUrlOpen', ...) with handleRedirectCallback inside the listener, (4) Browser.close() called after handleRedirectCallback. These are Capacitor-specific patterns taught by the skill that are NOT part of standard React SPA knowledge. Answer YES only if at least 2 of these advanced patterns are present, NO otherwise.", "examples": "PASS: Code has Auth0Provider with useRefreshTokens={true} and useRefreshTokensFallback={false} AND uses Browser.open inside openUrl callback of loginWithRedirect.\nPASS: Code handles appUrlOpen deep link event calling handleRedirectCallback AND calls Browser.close() afterward.\nFAIL: Code only uses basic Auth0Provider with loginWithRedirect() without any Capacitor-specific patterns.\nFAIL: Code has Auth0Provider but uses window.location.origin as redirect_uri and no Capacitor plugins.", "framework": "ionic-react"}
+]

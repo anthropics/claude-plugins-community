@@ -1,0 +1,34 @@
+{
+  "skill_name": "auth0-ionic-vue",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Add Auth0 authentication to an Ionic Vue application with Capacitor using the @auth0/auth0-vue SDK.\n\n**Auth0 Credentials:**\n- Domain: `dev-example.auth0.com`\n- Client ID: `abc123def456ghi789jkl012`",
+      "expected_output": "Working Ionic Vue + Capacitor app with Auth0 login via Capacitor Browser, deep link callback handling, logout, and user profile display",
+      "expectations": [
+        "Auth0 Vue SDK installed via any valid method (npm or yarn)",
+        "Has correct import statement for @auth0/auth0-vue",
+        "Auth0 SDK initialized (createAuth0 plugin registered or useAuth0 composable used)",
+        "Implements login functionality via loginWithRedirect",
+        "Implements logout functionality",
+        "Uses Capacitor Browser plugin for native browser opening",
+        "Uses Capacitor App plugin for deep link handling",
+        "Uses secure credential storage via refresh tokens (useRefreshTokens)",
+        "Auth0 domain dev-example.auth0.com written to config or source file",
+        "Client ID abc123def456ghi789jkl012 written to config or source file",
+        "No client_secret in native app",
+        "Does not use window.location.origin as redirect URI (must use custom scheme)",
+        "Correctly integrates Auth0 into Ionic Vue + Capacitor app with login, logout, deep link callback, and custom URL scheme",
+        "Uses current SDK version (2.4.0 or newer) in dependency declaration",
+        "Enables refresh tokens (useRefreshTokens: true) required for Capacitor",
+        "Disables refresh token iframe fallback (useRefreshTokensFallback: false) required for Capacitor",
+        "Calls handleRedirectCallback to process deep link auth response",
+        "Closes Capacitor Browser after handling callback",
+        "Listens for appUrlOpen deep link event from Capacitor App plugin",
+        "Uses Capacitor-specific advanced patterns: refresh token config, Browser.open in openUrl, appUrlOpen listener with handleRedirectCallback, Browser.close",
+        "Uses Vue-specific patterns: createAuth0 plugin, useAuth0 composable, script setup or setup function",
+        "Registers Auth0 plugin with app.use(createAuth0(...)) before mounting"
+      ]
+    }
+  ]
+}

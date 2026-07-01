@@ -1,0 +1,25 @@
+[
+  {"type": "matches", "pattern": "@auth0/auth0-spa-js|\"dependencies\"[\\s\\S]*?@auth0/auth0-spa-js", "description": "Auth0 SPA JS SDK installed as an npm dependency"},
+  {"type": "matches", "pattern": "import.*@auth0/auth0-spa-js|require.*@auth0/auth0-spa-js", "description": "Has correct import statement for @auth0/auth0-spa-js"},
+  {"type": "contains_any", "values": ["createAuth0Client(", "new Auth0Client("], "description": "Auth0 client created (via createAuth0Client or Auth0Client constructor)"},
+  {"type": "matches", "pattern": "createAuth0Client\\(|new Auth0Client\\(", "description": "Has Auth0 client initialization"},
+  {"type": "matches", "pattern": "loginWithRedirect\\(|loginWithPopup\\(", "description": "Implements login functionality"},
+  {"type": "matches", "pattern": "\\.logout\\(", "description": "Implements logout functionality"},
+
+  {"type": "file_contains", "file_pattern": "**/.env*", "value": "dev-example.auth0.com", "description": "Auth0 domain written to .env config file"},
+  {"type": "file_contains", "file_pattern": "**/.env*", "value": "abc123def456ghi789jkl012", "description": "Client ID written to .env config file"},
+
+  {"type": "not_contains_any", "values": ["@auth0/nextjs-auth0", "@auth0/express-openid-connect"], "description": "Does not use server-side SDK in SPA"},
+  {"type": "not_contains", "value": "localStorage", "description": "Does not store tokens in localStorage"},
+  {"type": "not_contains", "value": "client_secret", "description": "No client secret in SPA code"},
+
+  {"type": "judge", "question": "Does the solution correctly integrate Auth0 into a Vanilla JS or framework-agnostic SPA using @auth0/auth0-spa-js with working login, logout, and user profile access? The implementation should use createAuth0Client() or Auth0Client, call handleRedirectCallback() after redirect, and NOT store tokens in localStorage.", "description": "Correctly integrates Auth0 into a Vanilla JS SPA with login, logout, and user profile", "examples": "PASS: Uses createAuth0Client() with domain and clientId, calls handleRedirectCallback() on page load, implements loginWithRedirect() and logout() with logoutParams.returnTo.\nPASS: Uses Auth0Client constructor with authorizationParams, handles redirect callback, updates UI based on isAuthenticated().\nFAIL: Uses @auth0/auth0-react or Auth0Provider component (wrong SDK for Vanilla JS).\nFAIL: Stores access token in localStorage.\nFAIL: Missing handleRedirectCallback() call — URL params not cleaned up after login.", "framework": "vanilla-js"},
+
+  {"type": "matches", "pattern": "\\^2\\.18|~2\\.18|\"2\\.18\\.", "description": "Uses current SDK version (v2.18.3) in package.json dependency declaration"},
+  {"type": "matches", "pattern": "useRefreshTokens\\s*:\\s*true", "description": "Configures refresh token rotation (useRefreshTokens: true)"},
+  {"type": "matches", "pattern": "VITE_AUTH0_|REACT_APP_AUTH0_", "description": "Uses correct framework-specific env var prefix (VITE_AUTH0_ for Vite, REACT_APP_AUTH0_ for CRA)"},
+  {"type": "matches", "pattern": "handleRedirectCallback\\(", "description": "Calls handleRedirectCallback() to process redirect after login"},
+  {"type": "not_contains_any", "values": ["auth0.lock", "Auth0Lock", "WebAuth("], "description": "Does not use deprecated Auth0 Lock or legacy WebAuth (uses @auth0/auth0-spa-js instead)"},
+
+  {"type": "judge", "question": "Check ONLY for these skill-specific advanced patterns (NOT basic SDK usage like createAuth0Client, loginWithRedirect, logout, isAuthenticated, getUser). Look for at least 2 of: (1) SDK version 2.18.x in a package.json dependency (e.g., '^2.18', '~2.18', '2.18.3'), (2) useRefreshTokens: true in the client configuration, (3) correct framework-specific env var prefix (VITE_AUTH0_ for Vite projects or REACT_APP_AUTH0_ for CRA), (4) handleRedirectCallback() called with URL param check before calling it. These are advanced patterns taught by the skill that are NOT part of standard quickstart knowledge. Answer YES only if at least 2 of these advanced patterns are present, NO otherwise.", "description": "Uses skill-specific advanced patterns (version, refresh tokens, env var prefix, or callback handling)", "examples": "PASS: Code has '^2.18.3' in package.json AND configures useRefreshTokens: true.\nPASS: Code uses VITE_AUTH0_DOMAIN env var AND calls handleRedirectCallback() with a proper code/state check.\nFAIL: Code only uses createAuth0Client() with hardcoded domain and clientId and basic loginWithRedirect() — no version specified, no refresh tokens, no env var prefix.\nFAIL: Code has correct basic structure but stores token in localStorage and doesn't check for code/state before calling handleRedirectCallback.", "framework": "vanilla-js"}
+]

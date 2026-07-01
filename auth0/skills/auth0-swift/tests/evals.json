@@ -1,0 +1,29 @@
+{
+  "skill_name": "auth0-swift",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Add Auth0 authentication to a Swift iOS application using the Auth0.swift SDK.\n\n**Auth0 Credentials:**\n- Domain: `dev-example.auth0.com`\n- Client ID: `abc123def456ghi789jkl012`",
+      "expected_output": "Working iOS Swift app with Auth0 Web Auth login, secure Keychain credential storage via CredentialsManager, and proper Auth0.plist configuration",
+      "expectations": [
+        "Auth0 SDK installed via any valid method (SPM URL, CocoaPods pod line, or Carthage)",
+        "Has correct import statement (import Auth0)",
+        "Implements login via Auth0 WebAuth browser flow",
+        "Implements logout via clearSession (clears Auth0 session cookie)",
+        "Uses CredentialsManager for secure Keychain credential storage",
+        "Stores credentials in Keychain after login",
+        "Retrieves credentials (with auto-refresh) from CredentialsManager",
+        "Auth0 domain dev-example.auth0.com written to Auth0.plist config file",
+        "Client ID abc123def456ghi789jkl012 written to Auth0.plist config file",
+        "Does not use a SPA SDK instead of the native Auth0.swift SDK",
+        "No client_secret in native iOS/macOS app (PKCE does not require one)",
+        "Solution correctly integrates Auth0 into iOS Swift app with login, logout, secure credential storage, and Auth0.plist configuration",
+        "Uses current SDK version (2.18.0) in dependency declaration",
+        "Requests offline_access scope to enable refresh token issuance and silent token renewal",
+        "Configures biometric protection (Face ID / Touch ID) for credential retrieval",
+        "Handles Auth0-specific error types instead of generic catch-all",
+        "Solution contains at least 2 skill-specific advanced patterns (version, offline_access, SDK error types, or biometrics)"
+      ]
+    }
+  ]
+}

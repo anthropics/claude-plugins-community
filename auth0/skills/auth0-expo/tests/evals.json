@@ -1,0 +1,29 @@
+{
+  "skill_name": "auth0-expo",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Add Auth0 authentication to an Expo (React Native) application using the react-native-auth0 SDK.\n\n**Auth0 Credentials:**\n- Domain: `dev-example.auth0.com`\n- Client ID: `abc123def456ghi789jkl012`",
+      "expected_output": "Working Expo (React Native) app with Auth0 Web Auth login, secure credential storage, and user profile display",
+      "expectations": [
+        "Auth0 SDK installed via any valid method (npx expo install react-native-auth0)",
+        "Has correct import statement (from 'react-native-auth0')",
+        "Auth0 SDK initialized (Auth0Provider or useAuth0 hook)",
+        "Implements login via authorize()",
+        "Implements logout via clearSession()",
+        "Uses secure credential storage (getCredentials or credentialsManager)",
+        "Auth0 domain dev-example.auth0.com written to app.json config file",
+        "Client ID abc123def456ghi789jkl012 present in application code",
+        "Does not use SPA SDK (@auth0/auth0-react, @auth0/auth0-spa-js) in native app",
+        "Does not use localhost callback in native app",
+        "No client secret in native app",
+        "Solution correctly integrates Auth0 into Expo app with login, logout, credential storage, and customScheme configuration",
+        "Uses current SDK version (v5.5.0) in dependency declaration",
+        "Configures customScheme for Expo callback URL redirection",
+        "Uses typed Auth0 error handling (WebAuthErrorCodes or CredentialsManagerErrorCodes)",
+        "Does not use deprecated expo-auth-session (uses react-native-auth0 instead)",
+        "Uses at least 2 skill-specific advanced patterns beyond basic SDK usage"
+      ]
+    }
+  ]
+}

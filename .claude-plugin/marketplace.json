@@ -22724,6 +22724,14 @@
       "description": "AI media generation skill for the QuickDesign CLI. Seedance 2.0 R2V (universal default for UGC / talking-avatar / promo), Sora 2, Kling, Nano Banana 2 (multi-ref image edit), video upscale. Multi-segment voice continuity, multi-product reference composition, anatomy self-check, model-agnostic concepts + per-model reference cards.",
       "category": "development",
       "homepage": "https://github.com/quickdesignio/quickdesign-cli.git"
+    },
+    {
+      "name": "auth0",
+      "source": "./auth0",
+      "strict": false,
+      "description": "Auth0 skills for quickstarts, migration, major version upgrades, MFA, branding, custom domains, Advanced Custom Universal Login (ACUL) screen generation, and framework-specific SDK integrations for React, Next.js, Vue, Nuxt, Angular, Express, Fastify, FastAPI, Flask, Go, Spring Boot, Java MVC, Swift, Android, Flutter, Flutter Web, ASP.NET Core, React Native, Expo, Ionic React (Capacitor), Ionic Angular (Capacitor), and Ionic Vue (Capacitor).",
+      "category": "security",
+      "homepage": "https://github.com/auth0/agent-skills"
     }
   ]
 }

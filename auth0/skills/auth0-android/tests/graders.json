@@ -1,0 +1,25 @@
+[
+  {"type": "matches", "pattern": "com\\.auth0\\.android:auth0|implementation.*auth0|libs\\.auth0", "description": "Auth0 Android SDK installed as a Gradle dependency"},
+  {"type": "matches", "pattern": "import com\\.auth0\\.android", "description": "Has correct Auth0 Android import statement"},
+  {"type": "contains", "value": "WebAuthProvider", "description": "Uses WebAuthProvider for the authentication flow"},
+  {"type": "contains_any", "values": ["Auth0.getInstance(", "Auth0("], "description": "Auth0 instance created (via getInstance or constructor)"},
+  {"type": "matches", "pattern": "WebAuthProvider[\\s\\S]*?\\.login|\\.login\\(auth0\\)|\\.login\\(account\\)", "description": "Implements login via WebAuthProvider"},
+  {"type": "matches", "pattern": "WebAuthProvider[\\s\\S]*?\\.logout|\\.logout\\(auth0\\)|\\.logout\\(account\\)", "description": "Implements logout via WebAuthProvider"},
+  {"type": "contains_any", "values": ["CredentialsManager", "SecureCredentialsManager", "credentialsManager"], "description": "Uses Auth0 credential storage (CredentialsManager or SecureCredentialsManager)"},
+
+  {"type": "file_contains", "file_pattern": "**/strings.xml", "value": "dev-example.auth0.com", "description": "Auth0 domain written to strings.xml config file"},
+  {"type": "file_contains", "file_pattern": "**/strings.xml", "value": "abc123def456ghi789jkl012", "description": "Client ID written to strings.xml config file"},
+
+  {"type": "not_contains_any", "values": ["@auth0/auth0-react", "@auth0/auth0-angular", "@auth0/auth0-spa-js", "@auth0/auth0-vue"], "description": "Does not use web SPA SDK in Android native app"},
+  {"type": "not_contains", "value": "localhost", "description": "Does not use localhost callback in native Android app"},
+  {"type": "not_contains", "value": "client_secret", "description": "No client secret in Android app (native apps use PKCE, not client secrets)"},
+
+  {"type": "judge", "question": "Does the solution correctly integrate Auth0 into an Android native app with WebAuthProvider login, logout, CredentialsManager credential storage, and proper strings.xml configuration for the Auth0 domain and client ID?", "description": "Correctly integrates Auth0 into Android native app with login, logout, and credential storage", "examples": "PASS: Uses WebAuthProvider.login() for login, WebAuthProvider.logout() for logout, CredentialsManager or SecureCredentialsManager for storage, and configures strings.xml with domain and clientId.\nPASS: Uses coroutine .await() pattern with WebAuthProvider and SecureCredentialsManager.\nFAIL: Only implements login without logout or credential storage.\nFAIL: Uses @auth0/auth0-react or another web SDK instead of com.auth0.android:auth0.\nFAIL: Hardcodes credentials in source code instead of strings.xml.", "framework": "android"},
+
+  {"type": "matches", "pattern": "auth0:[3-9]\\.\\d+(?:\\.\\d+)?|auth0\\s*=\\s*\"[3-9]\\.\\d+(?:\\.\\d+)?\"", "description": "Uses a current Auth0 Android SDK version in Gradle dependency declaration (inline or version catalog)"},
+  {"type": "matches", "pattern": "manifestPlaceholders.*auth0|auth0Domain.*@string|auth0Scheme.*https|\"auth0Domain\"", "description": "Configures manifestPlaceholders with auth0Domain and auth0Scheme in build.gradle.kts"},
+  {"type": "matches", "pattern": "offline_access", "description": "Requests offline_access scope for refresh token support"},
+  {"type": "not_contains_any", "values": ["WebAuthProvider.init("], "description": "Does not use deprecated WebAuthProvider.init() (uses WebAuthProvider.login() instead)"},
+
+  {"type": "judge", "question": "Check ONLY for these skill-specific advanced patterns (NOT basic SDK usage like WebAuthProvider, saveCredentials, CredentialsManager, hasValidCredentials, login, logout, clearCredentials). Look for at least 2 of: (1) a current Auth0 Android SDK version in a Gradle dependency declaration (e.g., auth0:3.15.0, auth0:4.0.0, or auth0 = \"4.0.0\"), (2) manifestPlaceholders containing auth0Domain or auth0Scheme in build.gradle.kts, (3) offline_access scope in the withScope() call, (4) AuthenticationException or CredentialsManagerException caught specifically (not just generic Exception). These are advanced patterns taught by the skill that are NOT part of standard quickstart knowledge. Answer YES only if at least 2 of these advanced patterns are present, NO otherwise.", "description": "Uses skill-specific advanced patterns (version, manifestPlaceholders, offline_access, or SDK-specific exception handling)", "examples": "PASS: Code has 'auth0:4.0.0' in build.gradle.kts AND 'manifestPlaceholders += mapOf(\"auth0Domain\" to ...)' in defaultConfig.\nPASS: Code catches AuthenticationException specifically (not generic Exception) AND includes 'offline_access' in withScope().\nFAIL: Code only uses basic WebAuthProvider.login() with no version specified and generic catch(e: Exception) without SDK-specific exception handling.\nFAIL: Code has correct basic structure but only catches Exception generically, never using AuthenticationException.", "framework": "android"}
+]

@@ -1,0 +1,85 @@
+[
+  {
+    "type": "judge",
+    "description": "Creates safety backup before modifying code",
+    "question": "Does the solution verify a clean git state and/or create a backup branch before making any code changes? Look for: git status check, git checkout -b backup, git stash, or any explicit backup step.",
+    "examples": "PASS: Runs git status --porcelain to verify a clean tree, then creates an auth0-v4-migration-backup branch before proceeding.\nPASS: Checks git status and confirms a clean working tree before editing.\nFAIL: Immediately starts editing files without any git safety check.\nFAIL: Mentions a backup in passing but never runs git commands.",
+    "framework": "android"
+  },
+  {
+    "type": "judge",
+    "description": "Detects current version and resolves/validates the target version dynamically",
+    "question": "Does the solution detect the current Auth0.Android version from the project files (build.gradle, build.gradle.kts, libs.versions.toml, gradle.lockfile) and determine the target v4 version by querying GitHub releases (auto-resolving the latest v4 release including pre-releases) or by validating a version passed as an argument?",
+    "examples": "PASS: Reads build.gradle.kts to find '3.19.0', then queries the GitHub releases API and resolves the latest v4 tag (e.g. 4.0.0-beta.1).\nPASS: Validates a user-provided version argument as a real published v4 tag that is not a downgrade before using it.\nFAIL: Assumes a target version without checking releases or validating the argument.\nFAIL: Skips version detection entirely.",
+    "framework": "android"
+  },
+  {
+    "type": "judge",
+    "description": "Fetches v4 SDK Kotlin source before applying changes",
+    "question": "Does the solution fetch actual Kotlin source files (e.g., SecureCredentialsManager.kt, SSOCredentials.kt, WebAuthProvider.kt) from the auth0/Auth0.Android repository at the target v4 tag (or the v4_development branch) before making code changes? The source must be fetched dynamically (curl/gh), not applied from memory alone.",
+    "examples": "PASS: Fetches SecureCredentialsManager.kt and SSOCredentials.kt from the v4 tag, reads the actual constructor signatures and property names, then applies changes based on the source.\nPASS: Lists the SDK source tree at the tag and fetches the relevant .kt files to confirm signatures before editing.\nFAIL: Applies changes from memory without fetching any SDK source files.\nFAIL: Fetches only the migration guide or a CHANGELOG but not the actual .kt source.",
+    "framework": "android"
+  },
+  {
+    "type": "judge",
+    "description": "Reads project source to gate changes — does not apply changes for APIs the project doesn't use",
+    "question": "Does the solution read the project's source files (those importing com.auth0.android) to identify which APIs are actually used before applying changes, and skip changes for APIs the project never calls? In this scenario the project does NOT use PasskeyAuthProvider, UsersAPIClient (Management API), the deprecated MFA methods, useDPoP, or DPoPException — the solution must not modify code for any of those.",
+    "examples": "PASS: Reads AuthManager.kt, identifies SecureCredentialsManager construction, SSOCredentials.expiresIn, getCredentials, and clearCredentials, and explicitly skips Passkey/Management/MFA/DPoP sections because they aren't used.\nPASS: States it skipped the Management API and MFA migrations because no UsersAPIClient or loginWithOTP calls were found.\nFAIL: Applies PasskeyAuthProvider or UsersAPIClient changes even though the project never references them.\nFAIL: Applies all breaking-change sections wholesale without checking which APIs the project uses.",
+    "framework": "android"
+  },
+  {
+    "type": "judge",
+    "description": "Raises the v4 prerequisites (minSdk 26, Java 17)",
+    "question": "Does the solution raise the build prerequisites required by v4: minSdk from 24 to 26, and Java from 8 to 17 (sourceCompatibility/targetCompatibility VERSION_17 and/or jvmTarget 17)? These are gating requirements for v4.",
+    "examples": "PASS: Changes minSdk = 24 to minSdk = 26 and sourceCompatibility/targetCompatibility from VERSION_1_8 to VERSION_17.\nPASS: Updates minSdk to 26, Java to 17, and notes the Gradle/AGP/Kotlin requirements.\nFAIL: Updates the dependency to v4 but leaves minSdk at 24 or Java at 8.\nFAIL: Ignores the prerequisite requirements entirely.",
+    "framework": "android"
+  },
+  {
+    "type": "matches",
+    "pattern": "com\\.auth0\\.android:auth0:4\\.|auth0\\s*=\\s*\"4\\.|auth0:4\\.",
+    "description": "Updates the com.auth0.android:auth0 dependency to a v4 version"
+  },
+  {
+    "type": "judge",
+    "description": "Applies the correct v4 breaking changes to the actual call sites",
+    "question": "Does the solution correctly apply the two compile-time breaking changes present in the provided code: (1) rebuild SecureCredentialsManager construction to pass an AuthenticationAPIClient (built from the Auth0 account) instead of the Auth0 instance directly (§7.7), and (2) rename SSOCredentials.expiresIn to expiresAt, updating the return type from Int to Date (§7.6)?",
+    "examples": "PASS: Creates 'val apiClient = AuthenticationAPIClient(account)' and changes 'SecureCredentialsManager(account, context, storage)' to 'SecureCredentialsManager(apiClient, context, storage)'; changes 'sso.expiresIn' to 'sso.expiresAt' and the function return type from Int to Date.\nFAIL: Updates the dependency but leaves SecureCredentialsManager(account, ...) unchanged.\nFAIL: Renames expiresIn to expiresAt but leaves the return type as Int when it is now a Date.",
+    "framework": "android"
+  },
+  {
+    "type": "judge",
+    "description": "Surfaces the behavioral (non-compile) changes",
+    "question": "Does the solution surface the v4 behavioral changes that require no code change but affect runtime: the credentials manager default minTtl changing from 0 to 60 seconds (§8.1), and clearCredentials() now clearing all storage including API credentials (§8.3)? These should appear in the summary or be called out to the user.",
+    "examples": "PASS: Notes in the summary that getCredentials now renews tokens 60s before expiry (minTtl default 60) and that clearCredentials() now clears all storage.\nFAIL: Migrates the code but never mentions either behavioral change.",
+    "framework": "android"
+  },
+  {
+    "type": "not_contains",
+    "value": "client_secret",
+    "description": "Does not introduce client_secret in a native app"
+  },
+  {
+    "type": "not_contains_any",
+    "values": ["putString(\"access_token\"", "putString(\"refresh_token\"", "putString(\"id_token\""],
+    "description": "Does not downgrade credential storage to plain SharedPreferences token writes"
+  },
+  {
+    "type": "judge",
+    "description": "Preserves all existing features",
+    "question": "Does the migrated code preserve all three existing features: getCredentials (credential retrieval), SSO expiry reading, and logout? The migration must update API calls but must NOT remove features — getCredentials must still retrieve credentials, the SSO expiry function must still return the expiry (now a Date), and logout must still clear credentials.",
+    "examples": "PASS: getCredentials still calls credentialsManager.getCredentials, the SSO function still reads the expiry via expiresAt, logout still calls clearCredentials().\nFAIL: Removes the SSO expiry function because expiresIn no longer compiles, instead of renaming to expiresAt.\nFAIL: Drops the logout body instead of keeping clearCredentials().",
+    "framework": "android"
+  },
+  {
+    "type": "matches",
+    "pattern": "gradlew\\s+(assemble|build|test)|assembleDebug|BUILD SUCCESSFUL",
+    "description": "Attempts a ./gradlew build to verify the migration compiles"
+  },
+  {
+    "type": "judge",
+    "description": "Presents a migration summary after completion",
+    "question": "Does the solution present a summary after migration covering: what was changed (API changes applied with files touched), prerequisite bumps, behavioral changes to verify, anything needing manual review, and follow-up actions? The user must know what changed and what to do next.",
+    "examples": "PASS: Lists the prerequisite bumps (minSdk 26, Java 17), the two code changes applied (SecureCredentialsManager constructor, expiresIn to expiresAt), notes the minTtl and clearCredentials behavioral changes, and mentions optional improvements like clearAll().\nPASS: Shows git diff --stat and calls out each change with a brief explanation.\nFAIL: Finishes silently with no summary.\nFAIL: Just says 'done' with no detail about what changed.",
+    "framework": "android"
+  }
+]

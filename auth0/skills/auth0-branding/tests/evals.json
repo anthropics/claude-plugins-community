@@ -1,0 +1,171 @@
+{
+  "skill_name": "auth0-branding",
+  "notes": "Routing-first evals. Each prompt should cause Claude to load the auth0-branding skill and pick the correct capability. Assertions also check that behavioral guardrails from SKILL.md and references/capability-*.md are respected (free-text routing, GET-merge-PATCH for themes, GET-merge-PUT for custom text, tenant confirmation before writes, Classic-toggle awareness, Plan mode deferral).",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Brand my Auth0 tenant to match ferrari.com.",
+      "expected_output": "Should route to capability 1 (Brand my tenant) via free-text intent parsing, not a picker. Extracts tokens via Brandfetch if a key is available (asks once, saves key, falls through to manual ask if skipped), fills the four slots (primary color, logo URL, font, page background), confirms the active tenant, shows one proposal with provenance + 'Also available' knobs, then PATCHes branding + theme (GET-merge-PATCH, full theme body).",
+      "files": [],
+      "assertions": [
+        "Invokes the auth0-branding skill",
+        "Routes to capability 1 (Brand my tenant) directly from the intent, not via a picker",
+        "Checks for a stored Brandfetch key at ${XDG_CONFIG_HOME:-$HOME/.config}/auth0-branding/brandfetch.key before asking",
+        "If no key is present, asks once whether to paste / sign up / skip, and persists the decision",
+        "Fills the four slots: primary color, logo URL, font family, page background (background defaults to white)",
+        "Runs auth0 tenants list and surfaces the active tenant before writing",
+        "Shows a single proposal with per-slot provenance (from Brandfetch / you supplied / Auth0 default)",
+        "Includes the 'Also available (off unless you ask)' block for page template, layout override, voice rewriting",
+        "Uses PATCH /branding for tenant branding settings and GET + PATCH /branding/themes/{themeId} with the full merged object for the theme (not a partial PATCH)",
+        "Does NOT create additional themes via POST /branding/themes",
+        "Does NOT rewrite text by default (voice rewriting is off unless the user asks)",
+        "After writing, offers to run auth0 test login to verify in the browser"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Here are my brand values: primary #0051BA, logo https://acme.example/logo.svg, font Inter. Apply them to my tenant.",
+      "expected_output": "Should route to capability 1 and take the inline-values path (no Brandfetch, no URL extraction). Fills the slots from the pasted values, defaults page background to white, confirms tenant, shows proposal, applies.",
+      "files": [],
+      "assertions": [
+        "Invokes the auth0-branding skill",
+        "Routes to capability 1 (Brand my tenant)",
+        "Takes the inline-values path; does NOT call Brandfetch or ask for a Brandfetch key",
+        "Validates the logo URL with a HEAD request before staging (skipped only for cdn.brandfetch.io)",
+        "Resolves 'Inter' to a Google Fonts URL",
+        "Confirms the active tenant before writing",
+        "Uses PATCH /branding and GET + PATCH /branding/themes/{themeId} (full merged object)"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Change the primary button color on my login page to #FF5733.",
+      "expected_output": "Should route to capability 2 (Change specific settings). Resolves 'primary button color' to theme.colors.primary_button and optionally tenant branding colors.primary, runs a WCAG AA contrast check against the button label, stages the change, confirms the active tenant, PATCHes the full merged theme object.",
+      "files": [],
+      "assertions": [
+        "Invokes the auth0-branding skill",
+        "Routes to capability 2 (Change specific settings)",
+        "Resolves the intent to colors.primary_button (theme) and offers to update colors.primary (tenant branding) as well if it's set",
+        "Loads current theme state via GET /branding/themes/default before staging",
+        "Runs a WCAG AA contrast check against the button label color and surfaces a warning if it fails (warn, not block)",
+        "Restates the concrete change in plain language and confirms before staging",
+        "Confirms the active tenant before writing",
+        "Uses GET + PATCH /branding/themes/{themeId} with the full merged theme object (not a partial PATCH)",
+        "Does NOT auto-rewrite text or change other theme fields"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Make the button color green.",
+      "expected_output": "Ambiguous: 'button color' could mean fill, label, or secondary border. Skill should disambiguate in one question with current values shown, not guess silently.",
+      "files": [],
+      "assertions": [
+        "Invokes the auth0-branding skill",
+        "Routes to capability 2 (Change specific settings)",
+        "Asks one disambiguation question listing fill vs label vs secondary border",
+        "Shows the current value for each option so the user sees what they'd be changing",
+        "Does NOT silently pick one and write",
+        "Does NOT render the disambiguation as an AskUserQuestion picker unless the three gates in SKILL.md's 'Prompt style' apply (this is disambiguation between 3 non-obvious paths, so AskUserQuestion is acceptable here)"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Rewrite the Universal Login copy to sound like mailchimp.com; casual and direct.",
+      "expected_output": "Should route to capability 3 (Match my brand voice). Parses the URL + descriptor, asks which prompts to rewrite via free text ('list / detect / pick'), checks enabled_locales, sources English baseline from Auth0's docs page merged with tenant overrides, checks connection identifier config before picking the correct placeholder key, and PUTs per-prompt/locale with GET-merge-PUT.",
+      "files": [],
+      "assertions": [
+        "Invokes the auth0-branding skill",
+        "Routes to capability 3 (Match my brand voice)",
+        "Parses the free-text source reply; does NOT force an [a][b][c] picker",
+        "Asks which prompts to rewrite with 'list / detect / pick' as a free-text prompt",
+        "Checks GET /tenants/settings → enabled_locales before generating",
+        "Sources English baseline from the Auth0 docs page (customize-text-elements) merged with GET /prompts/{prompt}/custom-text/en (tenant overrides), not from the tenant response alone",
+        "Reads GET /connections and inspects options.attributes to pick the correct placeholder key (emailPlaceholder / phonePlaceholder / phoneOrEmailPlaceholder / etc.)",
+        "Excludes keys whose rewrite is identical to the Auth0 default (no-op overrides are not sent)",
+        "Uses GET-merge-PUT per (prompt, language); does NOT PUT without merging",
+        "Does NOT touch colors, layout, or logo",
+        "After writing, offers to run auth0 test login"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Reset my theme and clear the custom text on the login and signup prompts.",
+      "expected_output": "Should route to capability 4 (Rollback to Auth0 defaults). Runs the scope pre-check for delete:branding before anything else, asks for surfaces via AskUserQuestion (multi-select) and backup via AskUserQuestion (single), confirms the active tenant, optionally saves a backup JSON to disk, then executes DELETE /branding/themes/{themeId} and PUT /prompts/{prompt}/custom-text/{lang} with {} for each selected (prompt, locale) pair.",
+      "files": [],
+      "assertions": [
+        "Invokes the auth0-branding skill",
+        "Routes to capability 4 (Rollback to Auth0 defaults)",
+        "Runs the delete:branding scope pre-check before asking the backup question or confirming",
+        "If the scope is missing, surfaces the auth0 login --scopes delete:branding instruction and stops; does NOT fall through to the backup or confirm steps",
+        "Uses AskUserQuestion (multi-select) for surfaces to reset and AskUserQuestion (single) for the backup decision — matches the 'destructive safety gate' exemption in SKILL.md's Prompt style",
+        "For custom text, lists the locales covered by existing overrides so the user sees the scope",
+        "Confirms the active tenant before writing",
+        "If backup is opted in, writes the combined JSON before any destructive call and refuses to proceed if the file write fails",
+        "Uses DELETE /branding/themes/{themeId} for the theme; does NOT try to clear the theme via PATCH",
+        "Uses PUT /prompts/{prompt}/custom-text/{lang} with {} to clear overrides per locale",
+        "Does NOT touch surfaces the user didn't select"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "I applied a theme but my login page still looks like the old defaults. What's wrong?",
+      "expected_output": "Ambiguous diagnostic intent. Should route to capability 5 (Check my setup) as the safe, read-only starter, flag any Classic toggles (universal_login_experience, change_password.enabled, guardian_mfa_page.enabled), and surface the specific fix. Does NOT write.",
+      "files": [],
+      "assertions": [
+        "Invokes the auth0-branding skill",
+        "Routes to capability 5 (Check my setup) first, not to capability 1 or 2",
+        "Runs the six checks in parallel where possible (tenant settings, prompts, custom-domains, theme, connections)",
+        "Flags any tenant-wide Classic toggle that is currently on (universal_login_experience: classic, change_password.enabled: true, guardian_mfa_page.enabled: true)",
+        "States plainly which flows the theme will and will not affect",
+        "Surfaces the concrete fix (e.g. PATCH /tenants/settings with guardian_mfa_page.enabled: false) but does NOT apply it automatically",
+        "Does NOT perform any writes",
+        "Does NOT prompt the user to run auth0 test login (capability 5 is read-only)"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Upload a new page template I wrote (attached) to my tenant.",
+      "expected_output": "Should route to capability 2 (page template branch). Validates auth0:head and auth0:widget are present, checks the tenant has a custom domain, confirms active tenant, PUTs the template. Refuses the PUT if either tag is missing (fail-block, not fail-warn).",
+      "files": [],
+      "assertions": [
+        "Invokes the auth0-branding skill",
+        "Routes to capability 2 (Change specific settings) — page template branch",
+        "Validates the template includes both auth0:head and auth0:widget; refuses the PUT if either is missing (fail-block)",
+        "Checks for a custom domain via GET /custom-domains before PUT; if absent, directs the user to the auth0-custom-domains skill",
+        "Confirms the active tenant before writing",
+        "Uses PUT /branding/templates/universal-login with the template key in the body",
+        "After writing, offers to run auth0 test login"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "/auth0-branding",
+      "expected_output": "No intent provided. Skill should show the capability table and ask a single free-text line ('Pick a number, name one, or describe what you want'), accepting 1, 'brand my tenant', or 'make it look like acme.com' equivalently. Does NOT force an AskUserQuestion picker for routing.",
+      "files": [],
+      "assertions": [
+        "Invokes the auth0-branding skill",
+        "Renders the 5-row capability table from SKILL.md",
+        "Asks a single free-text line for selection; does NOT use AskUserQuestion for routing",
+        "Accepts a number, a capability name, or a free-text description equivalently",
+        "Does NOT start executing any capability before the user replies"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "[In Plan Mode] Brand my tenant to match stripe.com.",
+      "expected_output": "Plan mode is active. Skill should run GETs to load current state, render the full proposal, and list every concrete Management API write (method, path, body summary) plus any local file writes (Brandfetch key save path, if applicable) in the plan, then call ExitPlanMode. Does NOT execute any writes before approval.",
+      "files": [],
+      "assertions": [
+        "Invokes the auth0-branding skill",
+        "Routes to capability 1 (Brand my tenant)",
+        "Runs GETs freely: tenants list, /branding, /branding/themes/default, etc.",
+        "Still collects intent-gathering answers (Brandfetch key prompt is asked, not skipped) but notes in the plan that the key save to ${XDG_CONFIG_HOME:-$HOME/.config}/auth0-branding/brandfetch.key will happen on approval",
+        "Produces a plan listing every write: PATCH /branding (body summary), GET + PATCH /branding/themes/{themeId} (full merged theme), local file writes with absolute paths",
+        "Includes the active tenant name in the plan",
+        "Calls ExitPlanMode once the plan is complete",
+        "Does NOT call PATCH/PUT/DELETE/POST against the Management API before approval",
+        "Does NOT run auth0 test login before approval"
+      ]
+    }
+  ]
+}

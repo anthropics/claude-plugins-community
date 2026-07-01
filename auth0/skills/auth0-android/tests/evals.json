@@ -1,0 +1,30 @@
+{
+  "skill_name": "auth0-android",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Add Auth0 authentication to an Android application using the com.auth0.android:auth0 SDK.\n\n**Auth0 Credentials:**\n- Domain: `dev-example.auth0.com`\n- Client ID: `abc123def456ghi789jkl012`",
+      "expected_output": "Working Android app with Auth0 Web Auth login, secure credential storage, and user profile display",
+      "expectations": [
+        "Auth0 Android SDK installed via Gradle (inline or version catalog)",
+        "Has correct Auth0 Android import statement",
+        "Uses WebAuthProvider for the authentication flow",
+        "Auth0 instance created (via getInstance)",
+        "Implements login via WebAuthProvider",
+        "Implements logout via WebAuthProvider",
+        "Uses Auth0 credential storage (CredentialsManager or SecureCredentialsManager)",
+        "Auth0 domain dev-example.auth0.com written to strings.xml config file",
+        "Client ID abc123def456ghi789jkl012 written to strings.xml config file",
+        "Does not use web SPA SDK in Android native app",
+        "Does not use localhost callback in native Android app",
+        "No client secret in Android app (native apps use PKCE, not client secrets)",
+        "Correctly integrates Auth0 into Android native app with login, logout, and credential storage",
+        "Uses a current Auth0 Android SDK version in Gradle dependency declaration",
+        "Configures manifestPlaceholders with auth0Domain and auth0Scheme in build.gradle.kts",
+        "Requests offline_access scope for refresh token support",
+        "Does not use deprecated WebAuthProvider.init()",
+        "Uses skill-specific advanced patterns (version, manifestPlaceholders, offline_access, or SDK-specific exception handling)"
+      ]
+    }
+  ]
+}

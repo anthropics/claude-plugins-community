@@ -1,0 +1,27 @@
+{
+  "skill_name": "auth0-swift-major-migration",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Migrate my iOS app from Auth0.swift v2 to v3. If you need to choose a target version, use the latest available v3 release. Here's my current code:\n\n**Package.swift dependency:**\n```swift\n.package(url: \"https://github.com/auth0/Auth0.swift\", from: \"2.0.0\")\n```\n\n**AuthenticationService.swift:**\n```swift\nimport Auth0\n\nclass AuthenticationService: ObservableObject {\n    @Published var isAuthenticated = false\n    private let credentialsManager = CredentialsManager(authentication: Auth0.authentication())\n\n    init() { isAuthenticated = credentialsManager.canRenew() }\n\n    func login() async {\n        do {\n            let credentials = try await Auth0.webAuth()\n                .scope(\"openid profile email offline_access\")\n                .start()\n            _ = credentialsManager.store(credentials: credentials)\n            await MainActor.run { isAuthenticated = true }\n        } catch WebAuthError.userCancelled { }\n        catch { print(\"Login failed: \\(error)\") }\n    }\n\n    func logout() async {\n        do { try await Auth0.webAuth().clearSession() }\n        catch { print(\"Logout failed: \\(error)\") }\n        _ = credentialsManager.clear()\n        await MainActor.run { isAuthenticated = false }\n    }\n\n    func getUser() -> UserInfo? {\n        return credentialsManager.user\n    }\n}\n```\n\nThe project is in a clean git state and builds successfully on v2.",
+      "expected_output": "Successfully migrated AuthenticationService to Auth0.swift v3 with all breaking changes resolved, building successfully",
+      "expectations": [
+        "Creates a backup branch or verifies clean git state before starting",
+        "Detects current version as v2 from Package.swift",
+        "Fetches the v3 SDK source code from GitHub (CredentialsManager.swift, WebAuth.swift, etc.) before applying changes",
+        "Updates Package.swift dependency from v2 to v3 — uses exact: \"<tag>\" for a pre-release beta (e.g. exact: \"3.0.0-beta.2\"), or from: \"3.0.0\" once a stable release exists",
+        "Renames clearSession() to logout() based on the v3 WebAuth.swift source",
+        "Converts store(credentials:) from discarded Bool (_ =) to a throwing call (try? or do-catch)",
+        "Converts clear() from discarded Bool (_ =) to a throwing call (try? or do-catch)",
+        "Renames credentialsManager.user property access to try credentialsManager.userProfile() method call (userProfile() throws in v3)",
+        "Renames UserInfo return type to UserProfile",
+        "Optionally removes redundant await MainActor.run wrappers around Auth0 callback bodies, since v3 callbacks are @MainActor and already deliver on the main thread (not a breaking change — wrappers still compile, but removal is correct)",
+        "Does not introduce client_secret in native app",
+        "Does not downgrade from CredentialsManager to UserDefaults",
+        "Preserves existing login/logout/getUser functionality (does not remove features)",
+        "Attempts an xcodebuild to verify the migration compiles",
+        "Presents a summary of changes to the user after migration"
+      ]
+    }
+  ]
+}

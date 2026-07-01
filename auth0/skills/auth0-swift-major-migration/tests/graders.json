@@ -1,0 +1,71 @@
+[
+  {
+    "type": "judge",
+    "description": "Creates safety backup before modifying code",
+    "question": "Does the solution verify a clean git state and/or create a backup branch before making any code changes? Look for: git status check, git checkout -b backup, git stash, or any explicit backup step.",
+    "examples": "PASS: Runs git status to verify clean state, then creates a backup branch before proceeding.\nPASS: Checks git status and confirms clean working tree before making changes.\nFAIL: Immediately starts editing files without any git safety check.\nFAIL: Mentions backup in passing but never actually runs git commands.",
+    "framework": "swift"
+  },
+  {
+    "type": "judge",
+    "description": "Detects current version and determines target version dynamically",
+    "question": "Does the solution detect the current Auth0.swift version from the project files (Package.swift, Podfile, Cartfile, Package.resolved) and determine the target v3 version by checking GitHub releases or using the confirmed v3 tag?",
+    "examples": "PASS: Reads Package.swift to find current version '2.0.0', then checks GitHub releases for latest v3 tag.\nPASS: Finds version in Package.resolved and confirms target with user.\nFAIL: Assumes target version without checking releases or asking user.\nFAIL: Skips version detection entirely.",
+    "framework": "swift"
+  },
+  {
+    "type": "judge",
+    "description": "Fetches v3 SDK source files before applying changes",
+    "question": "Does the solution fetch actual Swift source files (e.g., WebAuth.swift, CredentialsManager.swift) from the auth0/Auth0.swift repository at the target v3 tag before making any code changes? The source must be fetched dynamically using curl or similar — not applied from memory alone.",
+    "examples": "PASS: Fetches CredentialsManager.swift and WebAuth.swift from the v3 tag using curl, reads the actual method signatures, then applies changes based on what the source shows.\nPASS: Fetches core SDK files to verify method names (logout vs clearSession, store throwing vs Bool) before editing project files.\nFAIL: Applies changes from memory without fetching any SDK source files.\nFAIL: Fetches only a CHANGELOG or migration guide but not the actual .swift source files.",
+    "framework": "swift"
+  },
+  {
+    "type": "judge",
+    "description": "Reads project source files to identify which APIs are used before applying any change — does not apply changes for APIs the project doesn't use",
+    "question": "Does the solution read the project's Swift source files (files that import Auth0) to identify which APIs are actually used before applying changes? It must NOT apply changes for APIs the project never calls. For example: if the project doesn't use a custom CredentialsStorage implementation, the solution must NOT modify CredentialsStorage-related code.",
+    "examples": "PASS: Reads AuthenticationService.swift and identifies clearSession, store, clear, and credentialsManager.user before applying changes. Skips CredentialsStorage section because no custom implementation was found.\nPASS: Explicitly states it skipped MFA migration because no login(withOTP:) calls were found when reading the project files.\nFAIL: Applies CredentialsStorage protocol changes even though the project never implements a custom one.\nFAIL: Applies all 14 change sections wholesale without checking whether each API is actually used in the project.",
+    "framework": "swift"
+  },
+  {
+    "type": "matches",
+    "pattern": "from:\\s*\"([3-9]|[1-9][0-9]+)\\.|exact:\\s*\"([3-9]|[1-9][0-9]+)\\.|~>\\s*([3-9]|[1-9][0-9]+)\\.|\"auth0/Auth0\\.swift\"\\s*~>\\s*([3-9]|[1-9][0-9]+)",
+    "description": "Updates Package.swift (or Podfile/Cartfile) dependency to v3 — matches both stable (from: \"3.\") and pre-release (exact: \"3.x.y-beta.z\") forms"
+  },
+  {
+    "type": "judge",
+    "description": "Applies the correct v3 breaking changes to actual call sites",
+    "question": "Does the solution correctly apply all four breaking changes present in the provided code: (1) rename clearSession() to logout(), (2) convert store(credentials:) from discarded Bool to throws, (3) convert clear() from discarded Bool to throws, (4) rename credentialsManager.user property to credentialsManager.userProfile() method and update the return type from UserInfo to UserProfile?",
+    "examples": "PASS: Changes 'clearSession()' to 'logout()', changes '_ = credentialsManager.store(credentials:' to 'try? credentialsManager.store(credentials:', changes '_ = credentialsManager.clear()' to 'try? credentialsManager.clear()', changes 'credentialsManager.user' to 'try? credentialsManager.userProfile()' and updates '-> UserInfo?' to '-> UserProfile?'.\nFAIL: Renames clearSession but misses the store/clear Bool-to-throws changes.\nFAIL: Updates store() but leaves credentialsManager.user as a property access.\nFAIL: Renames UserInfo without updating the credentialsManager.user call site.",
+    "framework": "swift"
+  },
+  {
+    "type": "not_contains",
+    "value": "client_secret",
+    "description": "Does not introduce client_secret in native app"
+  },
+  {
+    "type": "not_contains_any",
+    "values": ["UserDefaults.standard.set", "UserDefaults().set"],
+    "description": "Does not downgrade from CredentialsManager to UserDefaults"
+  },
+  {
+    "type": "judge",
+    "description": "Preserves all existing features — login, logout, getUser all still work",
+    "question": "Does the migrated code preserve all three existing features: login, logout, and getUser/user profile retrieval? The migration must update API calls but must NOT remove features. getUser() must still return a user profile (using the v3 API), logout must still call the Auth0 logout method (renamed from clearSession), and login must still use WebAuth.start().",
+    "examples": "PASS: login() still calls webAuth().start(), logout() still calls webAuth().logout() (updated from clearSession), getUser() still returns a UserProfile? using credentialsManager.userProfile().\nFAIL: Removes getUser() entirely because credentialsManager.user no longer compiles.\nFAIL: Removes logout body because clearSession was renamed, instead of updating to logout().",
+    "framework": "swift"
+  },
+  {
+    "type": "matches",
+    "pattern": "xcodebuild\\s+build|xcodebuild\\s+test|BUILD SUCCEEDED",
+    "description": "Attempts an xcodebuild to verify the migration compiles"
+  },
+  {
+    "type": "judge",
+    "description": "Presents a migration summary after completion",
+    "question": "Does the solution present a summary after migration that covers: what was changed (list of API changes applied with files touched), anything that needs manual review, and any follow-up actions? The user must know what changed and what to do next.",
+    "examples": "PASS: Lists all four changes applied (clearSession→logout, store/clear Bool→throws, user→userProfile(), UserInfo→UserProfile), notes files changed, mentions the offline_access default scope change as a behavioural note.\nPASS: Shows git diff --stat and calls out each breaking change with a brief explanation.\nFAIL: Silently finishes with no summary.\nFAIL: Just says 'done' with no details about what changed.",
+    "framework": "swift"
+  }
+]

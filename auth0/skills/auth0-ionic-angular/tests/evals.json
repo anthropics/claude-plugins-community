@@ -1,0 +1,32 @@
+{
+  "skill_name": "auth0-ionic-angular",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Add Auth0 authentication to an Ionic Angular application using the @auth0/auth0-angular SDK with Capacitor.\n\n**Auth0 Credentials:**\n- Domain: `dev-example.auth0.com`\n- Client ID: `abc123def456ghi789jkl012`",
+      "expected_output": "Working Ionic Angular Capacitor app with Auth0 provider, login/logout via system browser, deep link callback handling, and user profile display",
+      "expectations": [
+        "Auth0 Angular SDK installed via npm",
+        "Has correct import or dependency for @auth0/auth0-angular",
+        "Auth0 SDK initialized (provideAuth0 or AuthModule.forRoot configured)",
+        "Has Auth0 provider/wrapper component configured",
+        "Implements login functionality",
+        "Implements logout functionality",
+        "Auth0 domain dev-example.auth0.com written to environment.ts config file",
+        "Client ID abc123def456ghi789jkl012 written to environment.ts config file",
+        "Does not use server or native SDK in Ionic Angular app",
+        "No client secret in Ionic Angular code (Native app uses PKCE)",
+        "Does not store tokens in localStorage (insecure on mobile)",
+        "Solution correctly integrates Auth0 into Ionic Angular Capacitor app with provider, login/logout using Browser.open, and deep link callback handling",
+        "Uses a specific SDK version in dependency declaration",
+        "Configures refresh token rotation (useRefreshTokens: true) for mobile",
+        "Disables refresh token fallback (useRefreshTokensFallback: false) for mobile",
+        "Uses NgZone.run() for Capacitor callback handling",
+        "Uses Capacitor Browser plugin for system browser authentication",
+        "Uses Capacitor App plugin for deep link callback handling",
+        "Calls handleRedirectCallback to process deep link auth response",
+        "Contains at least 2 Ionic Capacitor-specific advanced patterns (useRefreshTokens, ngZone.run, Browser.open, appUrlOpen)"
+      ]
+    }
+  ]
+}

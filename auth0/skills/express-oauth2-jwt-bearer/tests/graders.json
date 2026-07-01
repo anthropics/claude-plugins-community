@@ -1,0 +1,25 @@
+[
+  {"type": "matches", "pattern": "express-oauth2-jwt-bearer", "description": "Auth0 SDK (express-oauth2-jwt-bearer) present in project"},
+  {"type": "matches", "pattern": "require\\s*\\(['\"]express-oauth2-jwt-bearer['\"]\\)|from\\s+['\"]express-oauth2-jwt-bearer['\"]", "description": "Has correct import statement (express-oauth2-jwt-bearer)"},
+  {"type": "contains_any", "values": ["auth({", "auth()"], "description": "Auth0 SDK initialized (auth() middleware configured)"},
+  {"type": "contains", "value": "ISSUER_BASE_URL", "description": "ISSUER_BASE_URL environment variable configured"},
+  {"type": "matches", "pattern": "auth\\s*\\(\\{|const\\s+\\w+\\s*=\\s*auth\\s*\\(|app\\.use\\s*\\(auth\\s*\\(", "description": "Configures JWT Bearer token validation middleware"},
+  {"type": "matches", "pattern": "audience:|AUTH0_AUDIENCE|AUDIENCE", "description": "Configures API audience for token validation"},
+  {"type": "matches", "pattern": "app\\.(get|post|put|delete|patch)\\s*\\([^,]+,\\s*checkJwt|app\\.use\\s*\\(checkJwt|router\\.(get|post|put|delete|patch)\\s*\\([^,]+,\\s*checkJwt", "description": "Has protected API endpoint with JWT middleware"},
+  {"type": "matches", "pattern": "cors\\s*\\(|require\\s*\\(['\"]cors['\"]\\)|from\\s+['\"]cors['\"]", "description": "Configures CORS middleware"},
+
+  {"type": "file_contains", "file_pattern": "**/.env*", "value": "dev-example.auth0.com", "description": "Auth0 domain written to .env config file"},
+  {"type": "file_contains", "file_pattern": "**/.env*", "value": "https://api.example.com", "description": "API audience written to .env config file"},
+
+  {"type": "not_contains_any", "values": ["loginWithRedirect", "Auth0Provider", "handleAuth", "/callback"], "description": "No login UI methods or callback URLs in stateless API"},
+  {"type": "not_contains", "value": "client_secret", "description": "No client secret in API config (uses JWKS for validation)"},
+
+  {"type": "judge", "question": "Does the solution correctly configure Auth0 JWT Bearer token validation, RBAC permissions, and CORS in an Express Node.js API?", "examples": "PASS: Validates JWT using JWKS endpoint via express-oauth2-jwt-bearer, checks audience, applies checkJwt middleware to protected routes, configures CORS before auth.\nFAIL: Uses client secret for token validation instead of JWKS.\nFAIL: Has login routes or session cookies — APIs should be stateless JWT only.\nFAIL: Uses @auth0/auth0-react or @auth0/auth0-spa-js — those are SPA SDKs, not API middleware.", "framework": "express", "description": "correctness-judge: Solution correctly integrates Auth0 JWT validation in Express API"},
+
+  {"type": "matches", "pattern": "\\^1\\.7|\"1\\.7\\.|~1\\.7|1\\.7\\.4", "description": "Uses current SDK version (v1.7.4) in dependency declaration"},
+  {"type": "matches", "pattern": "clockTolerance|issuerBaseURL|tokenSigningAlg", "description": "Configures specific token validation options (clockTolerance, issuerBaseURL, or tokenSigningAlg)"},
+  {"type": "matches", "pattern": "payload\\.permissions|requiredScopes|claimIncludes|claimEquals|claimCheck", "description": "Uses claim validation functions (requiredScopes, claimIncludes, claimCheck) for RBAC"},
+  {"type": "not_contains_any", "values": ["express-jwt", "jwks-rsa"], "description": "Does not use deprecated express-jwt + jwks-rsa combo (uses current express-oauth2-jwt-bearer)"},
+
+  {"type": "judge", "question": "Check ONLY for these skill-specific advanced patterns (NOT basic SDK usage like auth, checkJwt, app.use(auth, Authorization, Bearer). Look for at least 2 of: (1) SDK version 1.7.4 in a dependency declaration (e.g., '^1.7.4' in package.json), (2) specific validation options like clockTolerance or issuerBaseURL passed to auth() config object, (3) RBAC implementation using requiredScopes() or claimIncludes() with permissions claim, (4) DPoP configuration via dpop option, (5) CORS configured explicitly before auth middleware. These are advanced patterns taught by the skill that are NOT part of standard quickstart knowledge. Answer YES only if at least 2 of these advanced patterns are present, NO otherwise.", "examples": "PASS: Uses '^1.7.4' in package.json AND uses requiredScopes() or claimIncludes() for RBAC authorization.\nPASS: Sets clockTolerance in auth() config AND configures CORS middleware before auth middleware.\nFAIL: Only configures basic auth() with issuerBaseURL and audience — no advanced options, no RBAC, no specific version.\nFAIL: Uses checkJwt correctly but has no permission checking beyond basic JWT validation and no advanced configuration.", "framework": "express", "description": "skill-attribution-judge: At least 2 skill-specific advanced patterns present (version, advanced validation options, RBAC, DPoP, CORS ordering)"}
+]

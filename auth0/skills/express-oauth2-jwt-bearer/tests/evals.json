@@ -1,0 +1,30 @@
+{
+  "skill_name": "express-oauth2-jwt-bearer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Add Auth0 authentication to an Express Node.js application using the express-oauth2-jwt-bearer SDK.\n\n**Auth0 Credentials:**\n- Domain: `dev-example.auth0.com`\n- Client ID: `abc123def456ghi789jkl012`\n- API Audience: `https://api.example.com`",
+      "expected_output": "Working Express Node.js API with Auth0 JWT validation, protected endpoints, and RBAC permissions",
+      "expectations": [
+        "Auth0 SDK (express-oauth2-jwt-bearer) present in project",
+        "Has correct import statement (express-oauth2-jwt-bearer)",
+        "Auth0 SDK initialized (auth() middleware configured)",
+        "ISSUER_BASE_URL environment variable configured",
+        "Configures JWT Bearer token validation middleware",
+        "Configures API audience for token validation",
+        "Has protected API endpoint with JWT middleware",
+        "Configures CORS middleware",
+        "Auth0 domain dev-example.auth0.com written to .env config file",
+        "API audience https://api.example.com written to .env config file",
+        "No login UI methods or callback URLs in stateless API",
+        "No client secret in API config (uses JWKS for validation)",
+        "Solution correctly configures Auth0 JWT Bearer token validation, RBAC permissions, and CORS in an Express Node.js API",
+        "Uses current SDK version (v1.7.4) in dependency declaration",
+        "Configures specific token validation options (clockTolerance, issuerBaseURL, or tokenSigningAlg)",
+        "Uses claim validation functions (requiredScopes, claimIncludes, claimCheck) for RBAC",
+        "Does not use deprecated express-jwt + jwks-rsa combo (uses current express-oauth2-jwt-bearer)",
+        "At least 2 skill-specific advanced patterns present (version, advanced validation options, RBAC, DPoP, CORS ordering)"
+      ]
+    }
+  ]
+}

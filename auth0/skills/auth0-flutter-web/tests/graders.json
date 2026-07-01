@@ -1,0 +1,91 @@
+[
+  {
+    "type": "matches",
+    "pattern": "auth0_flutter:\\s*\\^|auth0_flutter:",
+    "description": "auth0_flutter SDK added to pubspec.yaml dependencies"
+  },
+  {
+    "type": "contains",
+    "value": "package:auth0_flutter/auth0_flutter.dart",
+    "description": "Has base import for types (import package:auth0_flutter/auth0_flutter.dart for Credentials, UserProfile)"
+  },
+  {
+    "type": "contains",
+    "value": "package:auth0_flutter/auth0_flutter_web.dart",
+    "description": "Has web import for Auth0Web class (import package:auth0_flutter/auth0_flutter_web.dart)"
+  },
+  {
+    "type": "matches",
+    "pattern": "Auth0Web\\(|Auth0Web\\s*\\(",
+    "description": "Uses Auth0Web class (not Auth0 mobile class)"
+  },
+  {
+    "type": "matches",
+    "pattern": "auth0-spa-js|auth0-spa-js\\.production\\.js",
+    "description": "Auth0 SPA JS script tag added to web/index.html"
+  },
+  {
+    "type": "matches",
+    "pattern": "loginWithRedirect\\(|loginWithPopup\\(",
+    "description": "Implements login via loginWithRedirect() or loginWithPopup()"
+  },
+  {
+    "type": "matches",
+    "pattern": "\\.logout\\(|auth0\\.logout|_auth0\\.logout",
+    "description": "Implements logout via auth0.logout()"
+  },
+  {
+    "type": "matches",
+    "pattern": "\\.onLoad\\(|onLoad\\(\\)",
+    "description": "Calls onLoad() on app startup to handle redirect callback"
+  },
+  {
+    "type": "contains",
+    "value": "dev-example.auth0.com",
+    "description": "Auth0 domain dev-example.auth0.com passed to Auth0Web constructor"
+  },
+  {
+    "type": "contains",
+    "value": "abc123def456ghi789jkl012",
+    "description": "Client ID abc123def456ghi789jkl012 passed to Auth0Web constructor"
+  },
+  {
+    "type": "not_contains_any",
+    "values": ["Auth0.plist", "CredentialsManager", "webAuth"],
+    "description": "Does not use mobile-specific APIs (webAuth, CredentialsManager, Auth0.plist)"
+  },
+  {
+    "type": "not_contains",
+    "value": "client_secret",
+    "description": "No client_secret in SPA code (PKCE does not require one)"
+  },
+  {
+    "type": "judge",
+    "description": "Solution correctly integrates Auth0 into Flutter web app with login, logout, and credential handling",
+    "question": "Does the solution correctly integrate Auth0 into a Flutter web app with: (1) working login via loginWithRedirect() or loginWithPopup(), (2) logout that clears the session, (3) credential handling via onLoad() and/or credentials(), (4) Auth0 SPA JS included in web/index.html, and (5) correct Auth0Web initialization with domain and clientId?",
+    "examples": "PASS: Uses Auth0Web constructor with domain/clientId, loginWithRedirect() for login, .logout() for logout, and calls onLoad() on startup. web/index.html has auth0-spa-js script.\nFAIL: Only implements login without logout or onLoad().\nFAIL: Uses mobile Auth0 class instead of Auth0Web.\nFAIL: Missing auth0-spa-js script in index.html.",
+    "framework": "dart"
+  },
+  {
+    "type": "matches",
+    "pattern": "auth0_flutter:\\s*\\^?2\\.1\\.\\d+",
+    "description": "Uses current SDK version (2.1.0) in pubspec.yaml dependency"
+  },
+  {
+    "type": "matches",
+    "pattern": "offline_access",
+    "description": "Requests offline_access scope to enable refresh token rotation"
+  },
+  {
+    "type": "matches",
+    "pattern": "on\\s+WebException|catch.*WebException|WebException.*code.*(login_required|consent_required)",
+    "description": "Handles Auth0-specific web error types (WebException) instead of generic catch-all"
+  },
+  {
+    "type": "judge",
+    "description": "Contains skill-specific advanced patterns beyond basic SDK usage (offline_access, error types, onLoad, version)",
+    "question": "Check ONLY for these skill-specific advanced patterns (NOT basic SDK usage like Auth0Web, loginWithRedirect, logout, credentials). Look for at least 2 of: (1) SDK version 2.1.0 in pubspec.yaml, (2) offline_access scope in a login call, (3) Auth0-specific web error handling (WebException with error codes like login_required, consent_required — not just generic catch), (4) proper onLoad() session restoration with null-check logic. These are advanced patterns taught by the skill that are NOT part of standard quickstart knowledge. Answer YES only if at least 2 of these advanced patterns are present, NO otherwise.",
+    "examples": "PASS: Login call includes offline_access scope AND code catches WebException with specific error codes.\nPASS: pubspec.yaml declares version ^2.1.0 AND onLoad() is called with proper null-check branching logic.\nFAIL: Code only uses basic Auth0Web().loginWithRedirect() with no offline_access and no error handling.\nFAIL: Code has correct basic structure but only catches generic Exception, never WebException.",
+    "framework": "dart"
+  }
+]

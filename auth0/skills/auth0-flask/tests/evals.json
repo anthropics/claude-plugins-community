@@ -1,0 +1,30 @@
+{
+  "skill_name": "auth0-flask",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Add Auth0 authentication to a Flask web application using the auth0-server-python SDK.\n\n**Auth0 Credentials:**\n- Domain: `dev-example.auth0.com`\n- Client ID: `abc123def456ghi789jkl012`\n- Client Secret: `YOUR_AUTH0_CLIENT_SECRET`",
+      "expected_output": "Working Flask web app with Auth0 session-based login, callback, profile, and logout routes",
+      "expectations": [
+        "Auth0 SDK (auth0-server-python) present in project",
+        "Has correct import statement (auth0_server_python)",
+        "Auth0 SDK initialized (ServerClient configured)",
+        "Implements login functionality (start_interactive_login)",
+        "Implements callback handling (complete_interactive_login)",
+        "Implements user retrieval (get_user)",
+        "Implements logout functionality",
+        "Uses flask[async] in requirements (required for async route handlers)",
+        "Auth0 domain dev-example.auth0.com written to .env config file",
+        "Client ID abc123def456ghi789jkl012 written to .env config file",
+        "Does not use wrong authentication libraries (Authlib, python-jose, Flask-Login, Flask-Dance)",
+        "Does not use JavaScript SPA SDK in Python server app",
+        "Does not use in-memory stores (production anti-pattern)",
+        "Solution correctly integrates Auth0 session-based authentication in Flask",
+        "At least 2 skill-specific advanced patterns present (custom stores, flask[async], session security, JWE encryption)",
+        "Implements custom Flask session-based store classes (core skill differentiation)",
+        "Uses async route handlers with await for SDK calls",
+        "Configures Flask session cookie security settings"
+      ]
+    }
+  ]
+}

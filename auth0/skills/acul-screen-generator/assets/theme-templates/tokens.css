@@ -1,0 +1,60 @@
+/* ACUL Screen Generator — CSS Custom Properties token template
+   Replace {{TOKEN}} placeholders with extracted design tokens from Phase 5
+   Import this file once in your entry point or each screen's module CSS */
+
+:root {
+  /* Brand colors */
+  --color-primary:         {{COLOR_PRIMARY}};        /* e.g., #4F46E5 */
+  --color-primary-hover:   {{COLOR_PRIMARY_HOVER}};  /* e.g., #4338CA */
+  --color-primary-text:    {{COLOR_PRIMARY_TEXT}};   /* e.g., #FFFFFF */
+
+  /* Backgrounds */
+  --color-background:      {{COLOR_BACKGROUND}};     /* page bg, e.g., #F9FAFB */
+  --color-surface:         {{COLOR_SURFACE}};        /* card bg, e.g., #FFFFFF */
+  --color-surface-raised:  {{COLOR_SURFACE_RAISED}}; /* elevated card, e.g., #FFFFFF */
+
+  /* Text */
+  --color-text-primary:    {{COLOR_TEXT_PRIMARY}};   /* headings, e.g., #111827 */
+  --color-text-secondary:  {{COLOR_TEXT_SECONDARY}}; /* labels, e.g., #6B7280 */
+  --color-text-placeholder:{{COLOR_TEXT_PLACEHOLDER}};/* e.g., #9CA3AF */
+
+  /* Borders */
+  --color-border:          {{COLOR_BORDER}};         /* input borders, e.g., #E5E7EB */
+  --color-border-focus:    var(--color-primary);
+
+  /* States */
+  --color-error:           {{COLOR_ERROR}};          /* e.g., #EF4444 */
+  --color-error-bg:        {{COLOR_ERROR_BG}};       /* e.g., #FEF2F2 */
+  --color-success:         {{COLOR_SUCCESS}};        /* e.g., #22C55E */
+
+  /* Spacing */
+  --space-card-padding:    {{SPACE_CARD_PADDING}};   /* e.g., 32px */
+  --space-form-gap:        {{SPACE_FORM_GAP}};       /* e.g., 16px */
+
+  /* Typography */
+  --font-family:           {{FONT_FAMILY}}, ui-sans-serif, system-ui, sans-serif;
+  --font-size-heading:     {{FONT_SIZE_HEADING}};    /* e.g., 1.5rem */
+  --font-size-body:        {{FONT_SIZE_BODY}};       /* e.g., 0.875rem */
+  --font-weight-heading:   {{FONT_WEIGHT_HEADING}};  /* e.g., 700 */
+
+  /* Border radius */
+  --radius-card:           {{RADIUS_CARD}};          /* e.g., 12px */
+  --radius-input:          {{RADIUS_INPUT}};         /* e.g., 8px */
+  --radius-btn:            {{RADIUS_BTN}};           /* e.g., 8px */
+  --radius-full:           9999px;
+
+  /* Shadows */
+  --shadow-card:           0 1px 3px rgba(0,0,0,0.10), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-input-focus:    0 0 0 3px {{COLOR_PRIMARY_FOCUS_RING}}; /* primary at 20% */
+}
+
+/* Base resets for ACUL screens */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-body);
+  color: var(--color-text-primary);
+  background: var(--color-background);
+}

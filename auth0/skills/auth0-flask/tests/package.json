@@ -1,0 +1,16 @@
+{
+  "name": "auth0-flask-evals",
+  "version": "1.0.0",
+  "description": "Eval runner for auth0-flask skill",
+  "type": "module",
+  "scripts": {
+    "eval": "node run-evals.mjs",
+    "eval:3x": "node run-evals.mjs --runs 3",
+    "eval:sequential": "node run-evals.mjs --sequential",
+    "eval:grade-only": "node run-evals.mjs --grade-only"
+  },
+  "dependencies": {
+    "execa": "^9.0.0",
+    "ora": "^8.0.0"
+  }
+}

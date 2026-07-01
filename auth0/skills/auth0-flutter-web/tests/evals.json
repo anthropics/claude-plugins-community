@@ -1,0 +1,29 @@
+{
+  "skill_name": "auth0-flutter-web",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Add Auth0 authentication to a Flutter web application using the auth0_flutter SDK.\n\n**Auth0 Credentials:**\n- Domain: `dev-example.auth0.com`\n- Client ID: `abc123def456ghi789jkl012`",
+      "expected_output": "Working Flutter web app with Auth0 redirect login, credential caching via Auth0 SPA JS, and proper web/index.html configuration",
+      "expectations": [
+        "auth0_flutter SDK added to pubspec.yaml dependencies",
+        "Has base import for types (import package:auth0_flutter/auth0_flutter.dart for Credentials, UserProfile)",
+        "Has web import for Auth0Web class (import package:auth0_flutter/auth0_flutter_web.dart)",
+        "Uses Auth0Web class (not Auth0 mobile class)",
+        "Auth0 SPA JS script tag added to web/index.html",
+        "Implements login via loginWithRedirect() or loginWithPopup()",
+        "Implements logout via auth0.logout()",
+        "Calls onLoad() on app startup to handle redirect callback",
+        "Auth0 domain dev-example.auth0.com passed to Auth0Web constructor",
+        "Client ID abc123def456ghi789jkl012 passed to Auth0Web constructor",
+        "Does not use mobile-specific APIs (webAuth, CredentialsManager, Auth0.plist)",
+        "No client_secret in SPA code (PKCE does not require one)",
+        "Solution correctly integrates Auth0 into Flutter web app with login, logout, and credential handling",
+        "Uses current SDK version (2.1.0) in pubspec.yaml dependency",
+        "Requests offline_access scope to enable refresh token rotation",
+        "Handles Auth0-specific web error types (WebException) instead of generic catch-all",
+        "Solution contains at least 2 skill-specific advanced patterns (version, offline_access, error types, or onLoad session restore)"
+      ]
+    }
+  ]
+}

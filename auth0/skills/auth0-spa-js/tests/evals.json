@@ -1,0 +1,30 @@
+{
+  "skill_name": "auth0-spa-js",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Add Auth0 authentication to a Vanilla JS application using the @auth0/auth0-spa-js SDK.\n\n**Auth0 Credentials:**\n- Domain: `dev-example.auth0.com`\n- Client ID: `abc123def456ghi789jkl012`",
+      "expected_output": "Working Vanilla JS SPA with Auth0 client initialization, login/logout, and user profile access",
+      "expectations": [
+        "Auth0 SPA JS SDK installed as an npm dependency",
+        "Has correct import statement for @auth0/auth0-spa-js",
+        "Auth0 client created (via createAuth0Client or Auth0Client constructor)",
+        "Has Auth0 client initialization",
+        "Implements login functionality",
+        "Implements logout functionality",
+        "Auth0 domain dev-example.auth0.com written to .env config file",
+        "Client ID abc123def456ghi789jkl012 written to .env config file",
+        "Does not use server-side SDK in SPA",
+        "Does not store tokens in localStorage",
+        "No client secret in SPA code",
+        "Correctly integrates Auth0 into a Vanilla JS SPA with login, logout, and user profile",
+        "Uses current SDK version (v2.18.3) in package.json dependency declaration",
+        "Configures refresh token rotation (useRefreshTokens: true)",
+        "Uses correct framework-specific env var prefix (VITE_AUTH0_ for Vite, REACT_APP_AUTH0_ for CRA)",
+        "Calls handleRedirectCallback() to process redirect after login",
+        "Does not use deprecated Auth0 Lock or legacy WebAuth",
+        "Uses skill-specific advanced patterns (version, refresh tokens, env var prefix, or callback handling)"
+      ]
+    }
+  ]
+}

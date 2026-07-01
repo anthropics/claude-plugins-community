@@ -1,0 +1,64 @@
+{
+  "metadata": {
+    "skill_name": "auth0-flask",
+    "sdk_type": "BACKEND_WEBAPP",
+    "framework": "Flask",
+    "language": "Python",
+    "package": "auth0-server-python",
+    "generated_by": "quickstart-skill-generator",
+    "generated_date": "2026-04-16T00:00:00.000Z"
+  },
+  "configurations": {
+    "baseline": {
+      "name": "Baseline (no tools)",
+      "description": "Single LLM call, no tools, no skill — pure training data knowledge",
+      "skill_context": "none",
+      "tools": "none"
+    },
+    "without_skill": {
+      "name": "Agent Only",
+      "description": "Agent has tools but no skill context",
+      "skill_context": "none",
+      "tools": "full"
+    },
+    "with_skill": {
+      "name": "Agent + Skill",
+      "description": "Agent has tools and generated SKILL.md in context",
+      "skill_context": "full",
+      "tools": "full"
+    }
+  },
+  "scaffold": {
+    "sdk_type": "BACKEND_WEBAPP",
+    "framework": "Flask",
+    "language": "Python"
+  },
+  "graders": {
+    "source": "graders.json",
+    "total_count": 18,
+    "breakdown": {
+      "contains_matches": 10,
+      "file_contains": 2,
+      "not_contains": 3,
+      "judge": 2
+    }
+  },
+  "scoring": {
+    "dimensions": {
+      "correctness": {"weight": 0.25, "source": "contains/matches graders"},
+      "credential_placement": {"weight": 0.15, "source": "file_contains graders"},
+      "hallucination": {"weight": 0.15, "source": "not_contains graders"},
+      "security": {"weight": 0.15, "source": "security not_contains graders"},
+      "semantic": {"weight": 0.30, "source": "judge graders"}
+    }
+  },
+  "thresholds": {
+    "skill_valuable": "delta.without_skill_to_with_skill >= 0.25",
+    "skill_acceptable": "with_skill.pass_rate >= 0.85",
+    "needs_improvement": "delta.without_skill_to_with_skill < 0.15"
+  },
+  "feedback": {
+    "generate": true,
+    "output": "feedback.json"
+  }
+}

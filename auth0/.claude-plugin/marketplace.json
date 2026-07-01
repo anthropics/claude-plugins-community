@@ -1,0 +1,13 @@
+{
+  "name": "auth0-plugins",
+  "owner": {
+    "name": "Community"
+  },
+  "plugins": [
+    {
+      "name": "auth0",
+      "source": "./",
+      "strict": false
+    }
+  ]
+}

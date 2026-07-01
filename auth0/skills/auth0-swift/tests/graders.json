@@ -1,0 +1,93 @@
+[
+  {
+    "type": "matches",
+    "pattern": "https://github\\.com/auth0/Auth0\\.swift|pod ['\"]Auth0['\"]|github \"auth0/Auth0\\.swift\"",
+    "description": "Auth0 SDK installed via any valid method (SPM URL, CocoaPods pod line, or Carthage)"
+  },
+  {
+    "type": "contains",
+    "value": "import Auth0",
+    "description": "Has correct import statement (import Auth0)"
+  },
+  {
+    "type": "matches",
+    "pattern": "Auth0\\.webAuth\\(\\)|webAuth\\(\\)\\.useHTTPS|webAuth\\(\\).*start|webAuth\\(.*clientId",
+    "description": "Implements login via Auth0 WebAuth browser flow"
+  },
+  {
+    "type": "matches",
+    "pattern": "\\.clearSession\\(\\)|clearSession\\(|webAuth.*clearSession",
+    "description": "Implements logout via clearSession (clears Auth0 session cookie)"
+  },
+  {
+    "type": "matches",
+    "pattern": "CredentialsManager\\(authentication:|CredentialsManager\\(auth:",
+    "description": "Uses CredentialsManager for secure Keychain credential storage"
+  },
+  {
+    "type": "matches",
+    "pattern": "credentialsManager\\.store\\(credentials:|credentialsManager\\.store\\(creds:",
+    "description": "Stores credentials in Keychain after login"
+  },
+  {
+    "type": "matches",
+    "pattern": "credentialsManager\\.credentials\\(\\)|credentialsManager\\.credentials\\s*{|try await credentialsManager\\.credentials",
+    "description": "Retrieves credentials (with auto-refresh) from CredentialsManager"
+  },
+  {
+    "type": "file_contains",
+    "file_pattern": "**/Auth0.plist",
+    "value": "dev-example.auth0.com",
+    "description": "Auth0 domain written to Auth0.plist config file"
+  },
+  {
+    "type": "file_contains",
+    "file_pattern": "**/Auth0.plist",
+    "value": "abc123def456ghi789jkl012",
+    "description": "Client ID written to Auth0.plist config file"
+  },
+  {
+    "type": "not_contains_any",
+    "values": ["@auth0/auth0-react", "@auth0/auth0-spa-js", "@auth0/auth0-angular", "auth0-spa-js"],
+    "description": "Does not use a SPA SDK instead of the native Auth0.swift SDK"
+  },
+  {
+    "type": "not_contains",
+    "value": "client_secret",
+    "description": "No client_secret in native iOS/macOS app (PKCE does not require one)"
+  },
+  {
+    "type": "judge",
+    "description": "Solution correctly integrates Auth0 into Swift iOS app with login, logout, and secure credential storage",
+    "question": "Does the solution correctly integrate Auth0 into an iOS or macOS Swift app with: (1) working login via WebAuth browser flow, (2) logout that clears the session cookie, (3) secure credential storage using CredentialsManager (Keychain), and (4) proper Auth0.plist configuration with ClientId and Domain keys?",
+    "examples": "PASS: Uses Auth0.webAuth().start() for login, .clearSession() for logout, CredentialsManager to store and retrieve credentials, and has Auth0.plist with ClientId and Domain.\nFAIL: Only implements login without logout or credential storage.\nFAIL: Stores tokens in UserDefaults instead of CredentialsManager.\nFAIL: Uses @auth0/auth0-react or another web SDK instead of Auth0.swift.",
+    "framework": "swift"
+  },
+  {
+    "type": "matches",
+    "pattern": "2\\.18|~> 2\\.18|~> 2\\.[0-9]+|from: \"2\\.[0-9]+|upToNextMajor.*2\\.",
+    "description": "Uses current SDK version (2.18.0) in dependency declaration"
+  },
+  {
+    "type": "matches",
+    "pattern": "offline_access",
+    "description": "Requests offline_access scope to enable refresh token issuance and silent token renewal"
+  },
+  {
+    "type": "matches",
+    "pattern": "enableBiometrics\\(|biometric|LAPolicy|evaluatePolicy",
+    "description": "Configures biometric protection (Face ID / Touch ID) for credential retrieval"
+  },
+  {
+    "type": "matches",
+    "pattern": "WebAuthError\\.|CredentialsManagerError\\.|AuthenticationError\\.|catch.*WebAuthError|catch.*CredentialsManagerError|\\.userCancelled|\\.biometricsFailed|\\.failedToRenewCredentials|\\.noCredentialsAvailable",
+    "description": "Handles Auth0-specific error types instead of generic catch-all"
+  },
+  {
+    "type": "judge",
+    "description": "Contains skill-specific advanced patterns beyond basic SDK usage (offline_access, error types, biometrics, version)",
+    "question": "Check ONLY for these skill-specific advanced patterns (NOT basic SDK usage like webAuth, clearSession, CredentialsManager, start, credentials, import Auth0). Look for at least 2 of: (1) SDK version 2.18.0 in a dependency declaration, (2) offline_access scope in a login call, (3) Auth0-specific error types (WebAuthError, CredentialsManagerError, AuthenticationError — not just generic catch), (4) biometric protection setup (enableBiometrics, LAPolicy). These are advanced patterns taught by the skill that are NOT part of standard quickstart knowledge. Answer YES only if at least 2 of these advanced patterns are present, NO otherwise.",
+    "examples": "PASS: Login call includes offline_access scope AND code catches WebAuthError.userCancelled specifically.\nPASS: Package declares version 2.18.0 AND credentialsManager.enableBiometrics(withTitle:) is called.\nFAIL: Code only uses basic webAuth().start() with no offline_access, no SDK-specific error types, no biometrics.\nFAIL: Code has correct basic structure but only catches generic Error, never the SDK-specific WebAuthError or CredentialsManagerError.",
+    "framework": "swift"
+  }
+]

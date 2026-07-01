@@ -1,0 +1,49 @@
+{
+  "metadata": {
+    "skill_name": "auth0-swift",
+    "sdk_type": "NATIVE_MOBILE",
+    "framework": "Swift iOS",
+    "language": "Swift",
+    "package": "Auth0",
+    "generated_by": "quickstart-skill-generator"
+  },
+  "configurations": {
+    "baseline": {
+      "name": "Baseline (no tools)",
+      "description": "Single LLM call, no tools, no skill — pure training data knowledge",
+      "skill_context": "none",
+      "tools": "none"
+    },
+    "without_skill": {
+      "name": "Agent Only",
+      "description": "Agent has tools but no skill context",
+      "skill_context": "none",
+      "tools": "full"
+    },
+    "with_skill": {
+      "name": "Agent + Skill",
+      "description": "Agent has tools and generated SKILL.md in context",
+      "skill_context": "full",
+      "tools": "full"
+    }
+  },
+  "scaffold": {
+    "sdk_type": "NATIVE_MOBILE",
+    "framework": "Swift iOS",
+    "language": "Swift"
+  },
+  "scoring": {
+    "dimensions": {
+      "correctness": 0.20,
+      "hallucination": 0.15,
+      "security": 0.15,
+      "skill_differentiation": 0.30,
+      "semantic": 0.20
+    },
+    "thresholds": {
+      "skill_valuable": { "delta_gte": 0.30 },
+      "skill_acceptable": { "with_skill_pass_rate_gte": 0.85 },
+      "needs_improvement": { "delta_lt": 0.15 }
+    }
+  }
+}

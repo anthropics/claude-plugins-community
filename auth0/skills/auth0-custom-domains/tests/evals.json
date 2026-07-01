@@ -1,0 +1,152 @@
+{
+  "skill_name": "auth0-custom-domains",
+  "notes": "Routing-first evals. Each prompt should cause Claude to load the auth0-custom-domains skill and pick the correct capability. Assertions also check that behavioral guardrails from SKILL.md are respected (e.g. correct type value, GET-merge-PATCH for metadata, no speculative create probe).",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Check the health of my Auth0 custom domains.",
+      "expected_output": "Should route to capability 5 (Check domain health). Read-only; lists domains, compares DNS to expected CNAME, probes reachability + TLS, flags renewal-at-risk if DNS was changed after verification.",
+      "files": [],
+      "assertions": [
+        "Invokes the auth0-custom-domains skill",
+        "Routes to capability 5 (Check domain health)",
+        "Surfaces the active Auth0 CLI tenant before fetching state",
+        "Uses auth0 api get custom-domains (or equivalent) to list domains",
+        "Compares live DNS via dig against verification.methods[0].record",
+        "Probes HTTPS reachability (curl) and/or TLS cert expiry",
+        "Does NOT perform any writes (no create/PATCH/delete)",
+        "Does NOT attempt a speculative create to probe credit-card-on-file status"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Set up login.example.com as a custom domain on my Auth0 tenant. My DNS is at Cloudflare.",
+      "expected_output": "Should route to capability 1 (Set up a custom domain). Gathers inputs one at a time (hostname, then confirms tenant), creates the domain with type: auth0_managed_certs, detects Cloudflare via NS lookup, routes to Tier 1 via Cloudflare MCP, writes the CNAME with proxied=false, triggers verification, polls until ready.",
+      "files": [],
+      "assertions": [
+        "Invokes the auth0-custom-domains skill",
+        "Routes to capability 1 (Set up a custom domain)",
+        "Gathers inputs as plain conversational text, not a structured widget",
+        "Uses type: auth0_managed_certs (short form, NOT auth0_managed_certificates)",
+        "Runs dig +short NS on the root domain to detect the provider",
+        "Routes to Tier 1 Cloudflare and uses the Cloudflare MCP",
+        "Sets proxied: false on the CNAME record",
+        "For a subdomain, speculatively includes relying_party_identifier (eTLD+1) and retries without it on operation_not_supported",
+        "Triggers verify after DNS propagates",
+        "Polls GET /custom-domains/{id} with backoff until status becomes ready",
+        "Does NOT suggest a plan upgrade on 403 (directs to Billing for credit-card-on-file instead)"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "My custom domain login.acme.com has been stuck in pending_verification for over an hour.",
+      "expected_output": "Should route to capability 2 (Troubleshoot verification). Walks the diagnostic ladder: fetch current state, compare DNS to expected, check for proxy/flattening/conflicting records/propagation/private-zone, retry verification. Does NOT delete and recreate.",
+      "files": [],
+      "assertions": [
+        "Invokes the auth0-custom-domains skill",
+        "Routes to capability 2 (Troubleshoot verification)",
+        "Surfaces the active tenant before reading domain state",
+        "Fetches the domain's current state and expected verification record",
+        "Walks the diagnostic ladder in order (DNS compare, proxy, flattening, conflicting records, propagation)",
+        "Uses dig against an external resolver (8.8.8.8 or 1.1.1.1) to cross-check propagation",
+        "Does NOT suggest deleting and recreating the domain as a first-line fix",
+        "Does NOT retry verification in a tight loop"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "I have three custom domains on this tenant. Make login-eu.example.com the default, and set the relying party identifier on login.example.com to example.com.",
+      "expected_output": "Should route to capability 3 (Manage existing domains). Lists current state, stages both changes as a batch, confirms tenant, shows diffs, applies PATCH /tenants/settings for the default and PATCH /custom-domains/{id} for the RPID. Warns that existing passkeys become invalid when RPID changes.",
+      "files": [],
+      "assertions": [
+        "Invokes the auth0-custom-domains skill",
+        "Routes to capability 3 (Manage existing domains)",
+        "Fetches current custom domains and tenant settings once, reuses cached state",
+        "Confirms the active tenant before PATCHing",
+        "Uses PATCH /custom-domains/default or PATCH /tenants/settings for the default (does NOT reference a non-existent `auth0 domains default set` CLI command)",
+        "Uses PATCH /custom-domains/{id} with relying_party_identifier for the RPID change",
+        "Shows a diff (current → new) before applying each change",
+        "Warns that changing relying_party_identifier invalidates existing passkeys",
+        "Does NOT attempt to change certificate type via PATCH"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Tag login.example.com with region=us-east and brand=acme so Actions can read it.",
+      "expected_output": "Should route to capability 3 (Manage existing domains) and use the GET-merge-PATCH pattern for domain_metadata. Confirms the tenant, reads current metadata, merges the new keys client-side, PATCHes the full merged object, enforces the 10-key / 255-char limits.",
+      "files": [],
+      "assertions": [
+        "Invokes the auth0-custom-domains skill",
+        "Routes to capability 3 and specifically the domain_metadata operation",
+        "GETs current domain_metadata before writing",
+        "Merges the new keys into the existing object client-side (GET-merge-PATCH)",
+        "PATCHes the full merged object, not just the delta",
+        "Enforces the 10-key total limit and 255-char key/value limits before the write",
+        "Mentions that Actions reads event.custom_domain.domain_metadata",
+        "Does NOT claim that setting a value to null is the way to remove keys (should instead omit the key from the merged object)"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Remove login-legacy.example.com from my Auth0 tenant. DNS is at Route 53.",
+      "expected_output": "Should route to capability 4 (Remove a custom domain). Runs the default-safe flow: tenant confirm, default-domain check, only-domain check, then shows the full list of places the domain could be referenced and asks the user to pick skip / quick scan / deep scan before scanning anything. After the user's decision (or on skip), confirms explicitly and deletes from Auth0, then cleans up the CNAME in Route 53 using the exact-match DELETE pattern.",
+      "files": [],
+      "assertions": [
+        "Invokes the auth0-custom-domains skill",
+        "Routes to capability 4 (Remove a custom domain)",
+        "Confirms the active tenant before deleting",
+        "Checks whether the domain is the default (reads default_custom_domain_id)",
+        "Checks whether it is the only custom domain on the tenant",
+        "Shows the user the full list of surfaces the domain could be referenced on (API-reachable and external) before scanning anything",
+        "Asks the user to choose: skip the scan, run a quick scan, or run a deep scan (does NOT scan by default)",
+        "If the user chooses quick scan, checks clients + tenant settings + emails/provider + email templates (from and body) in parallel",
+        "If the user chooses deep scan, extends to actions, rules, hooks, branding templates, organizations, connections, resource servers, log streams, prompts",
+        "After any scan, reminds the user that external surfaces (SDK configs, backend JWT validators, SAML SP metadata, IaC, third-party integrations, email DNS SPF/DKIM/DMARC) are not reachable and must be hand-checked",
+        "Requires explicit yes confirmation that shows the full impact and reflects the scan tier chosen",
+        "Uses DELETE /custom-domains/{id} for the Auth0 side",
+        "Detects Route 53 via NS and attempts automated CNAME cleanup, not manual",
+        "For the Route 53 DELETE, first reads the live record exact values (Name, Type, TTL, Value) then submits an exact-match change batch"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Something's wrong with my Auth0 custom domain, can you look at it?",
+      "expected_output": "Ambiguous intent. Should default-route to capability 5 (Check domain health) as the safe, read-only starter, surface findings, then recommend a follow-up capability (usually Troubleshoot verification).",
+      "files": [],
+      "assertions": [
+        "Invokes the auth0-custom-domains skill",
+        "Routes to capability 5 (Check domain health) first, not directly to Troubleshoot",
+        "Does NOT perform any writes before the user has seen the health report",
+        "After the health report, recommends the appropriate follow-up capability based on findings"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Create a custom domain login.example.com with self-managed certs on my Free tenant.",
+      "expected_output": "Should route to capability 1 but surface two blockers up front: self-managed certs require Enterprise, and Free tenants need a credit card on file. Should NOT silently attempt the create and fail with a confusing 403.",
+      "files": [],
+      "assertions": [
+        "Invokes the auth0-custom-domains skill",
+        "Routes to capability 1 (Set up a custom domain)",
+        "Uses type: self_managed_certs in the create body (short form)",
+        "Surfaces the Enterprise requirement for self_managed_certs before attempting the create",
+        "Surfaces the Free-tier credit-card-on-file requirement before attempting the create",
+        "Directs the user to Dashboard → Tenant Settings → Billing for the card (does NOT suggest a plan upgrade to fix a 403 on Free)"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "I want to switch login.example.com from Auth0-managed to self-managed certs.",
+      "expected_output": "Should route to capability 3, explain that type is not PATCHable, and outline the delete-and-recreate path with a warning about auth downtime. Does NOT attempt PATCH with type in the body.",
+      "files": [],
+      "assertions": [
+        "Invokes the auth0-custom-domains skill",
+        "Routes to capability 3 (Manage existing domains)",
+        "Explains that type is fixed at create time and rejected by PATCH",
+        "Routes the user to delete + recreate (capability 4 then capability 1)",
+        "Warns about auth downtime during the DNS + reverse-proxy cutover",
+        "Does NOT send type in a PATCH body"
+      ]
+    }
+  ]
+}

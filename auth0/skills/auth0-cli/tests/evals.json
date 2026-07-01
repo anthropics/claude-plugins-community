@@ -1,0 +1,252 @@
+{
+  "skill_name": "auth0-cli",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm building a new React SPA on localhost:5173 and need to set up Auth0 for it. After creating the app, I want to test login and watch for any failures in real time. Walk me through the CLI commands.",
+      "expected_output": "Should use auth0 apps create with --type spa and correct callback/logout/origin URLs for localhost:5173, then suggest auth0 test login to test, and auth0 logs tail --filter type:f to debug failures. Should NOT hallucinate flags or suggest dashboard-only steps.",
+      "files": [],
+      "assertions": [
+        "Runs auth0 login (or verifies auth) before other commands",
+        "Uses auth0 apps create with --type spa",
+        "Sets --callbacks to http://localhost:5173",
+        "Sets --logout-urls to http://localhost:5173",
+        "Sets --origins or --web-origins to http://localhost:5173",
+        "Suggests auth0 test login <client-id> to test the flow",
+        "Suggests auth0 logs tail --filter type:f for debugging failures",
+        "Does NOT invent non-existent flags or subcommands",
+        "Does NOT suggest using the Auth0 dashboard for steps the CLI can handle"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I need to create an 'editor' role in my Auth0 tenant and assign it to a user whose email is jane@example.com. How do I do this with the CLI?",
+      "expected_output": "Should use the dedicated auth0 roles create command (NOT raw API mode) to create the role, auth0 users search to find the user ID, and auth0 users roles assign to assign the role. The CLI has built-in roles and users roles subcommands — the response must NOT claim these don't exist or suggest using auth0 api as a workaround.",
+      "files": [],
+      "assertions": [
+        "Uses auth0 roles create --name editor --description ... to create the role",
+        "Uses auth0 users search --query email:jane@example.com (or auth0 users search-by-email jane@example.com) to find the user ID",
+        "Uses auth0 users roles assign <user-id> --roles <role-id> to assign the role",
+        "Uses dedicated CLI commands (auth0 roles, auth0 users roles) instead of raw auth0 api mode",
+        "Does NOT claim that the Auth0 CLI lacks a dedicated roles command",
+        "Gets the role ID from the create response to use in the assignment step",
+        "Does NOT invent non-existent flags or subcommands"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I'm writing a bash script that needs to: 1) list all my Auth0 apps, 2) extract just the client_id and name of each one, and 3) find a specific user by email and dump their full profile. Show me the commands with JSON output I can pipe through jq.",
+      "expected_output": "Should use --json flag on apps list and users search/show, piped to jq with correct field paths. Should use the right jq selectors for Auth0's JSON structure.",
+      "files": [],
+      "assertions": [
+        "Uses auth0 apps list --json piped to jq",
+        "jq selector extracts client_id and name fields (e.g., jq '.[] | {client_id, name}' or similar)",
+        "Uses auth0 users search --query email:... for finding the user",
+        "Uses --json flag on the user lookup command",
+        "Uses auth0 users show <user-id> --json for the full profile dump",
+        "Does NOT use --format json (correct flag is --json)",
+        "All jq expressions use valid syntax"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "I'm building a backend API at https://api.myapp.com and need to register it in Auth0 with read:data and write:data scopes. I also want tokens to expire after 1 hour. Show me the CLI commands.",
+      "expected_output": "Should use auth0 apis create with correct identifier, scopes, and token-lifetime flags.",
+      "files": [],
+      "assertions": [
+        "Uses auth0 apis create with --name and --identifier https://api.myapp.com",
+        "Sets --scopes to include read:data and write:data",
+        "Sets --token-lifetime to 3600 (1 hour in seconds)",
+        "Uses the correct flag names (--identifier, --scopes, --token-lifetime)",
+        "Does NOT suggest using the dashboard when the CLI can handle it",
+        "Does NOT invent non-existent flags or subcommands"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "I'm setting up a B2B SaaS product. I need to create an organization called 'acme-corp' with display name 'Acme Corporation', a logo, and custom branding colors (accent #FF6600, background #FFFFFF). Then I need to invite a new member admin@acme.com to it.",
+      "expected_output": "Should use auth0 orgs create with all branding flags and auth0 orgs invitations create to invite the member.",
+      "files": [],
+      "assertions": [
+        "Uses auth0 orgs create --name acme-corp with --display 'Acme Corporation'",
+        "Sets --accent #FF6600 and --background #FFFFFF on the org create command",
+        "Sets --logo with a URL on the org create command",
+        "Uses auth0 orgs invitations create to invite admin@acme.com",
+        "Invitation command includes --org-id, --invitee-email, --inviter-name, and --client-id flags",
+        "Does NOT invent non-existent flags or subcommands"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "I want to add a custom claim to my access tokens after login. Create a post-login Auth0 Action that adds the user's app_metadata.role as a 'role' custom claim, then deploy it.",
+      "expected_output": "Should use auth0 actions create with --trigger post-login and correct code using api.accessToken.setCustomClaim, then auth0 actions deploy.",
+      "files": [],
+      "assertions": [
+        "Uses auth0 actions create with --trigger post-login",
+        "Action code uses exports.onExecutePostLogin with event and api parameters",
+        "Action code calls api.accessToken.setCustomClaim to add the role claim",
+        "Action code reads from event.user.app_metadata.role (or similar path)",
+        "Uses auth0 actions deploy <action-id> after creating the action",
+        "Mentions that deploy is required for the action to take effect in live traffic",
+        "Does NOT invent non-existent flags or subcommands"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Users are reporting login failures. I need to watch for failed logins in real-time and also pull the last 20 failure events. Show me the CLI commands for debugging.",
+      "expected_output": "Should use auth0 logs tail with filter for failed logins and auth0 logs list for historical data.",
+      "files": [],
+      "assertions": [
+        "Uses auth0 logs tail --filter type:f for real-time failed login monitoring",
+        "Uses auth0 logs list --filter type:f --number 20 for historical failures",
+        "Explains that type:f is the log type code for failed logins",
+        "Does NOT use incorrect filter syntax or non-existent flags",
+        "Does NOT suggest only the dashboard for log viewing"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "I want to set up a custom domain auth.myapp.com for my Auth0 tenant using Auth0-managed certificates. Walk me through the steps.",
+      "expected_output": "Should use auth0 domains create and auth0 domains verify, and mention DNS configuration.",
+      "files": [],
+      "assertions": [
+        "Uses auth0 domains create --domain auth.myapp.com --type auth0_managed_certs",
+        "Uses auth0 domains verify <domain-id> to verify DNS configuration",
+        "Mentions that DNS records need to be configured (CNAME or similar)",
+        "Does NOT invent non-existent flags or subcommands"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "I want to brand my Auth0 Universal Login page with my company's logo (https://myapp.com/logo.png), accent color #0066FF, background color #F5F5F5, and the Inter font from Google Fonts.",
+      "expected_output": "Should use auth0 ul update with correct branding flags.",
+      "files": [],
+      "assertions": [
+        "Uses auth0 ul update (or auth0 universal-login update)",
+        "Sets --logo to https://myapp.com/logo.png",
+        "Sets --accent to #0066FF",
+        "Sets --background to #F5F5F5",
+        "Sets --font to a Google Fonts URL for Inter",
+        "Does NOT invent non-existent flags or subcommands"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "I need to export my Auth0 tenant configuration as Terraform. I only want to export clients and connections, and save to a ./terraform directory.",
+      "expected_output": "Should use auth0 terraform generate with --output-dir and --resources flags.",
+      "files": [],
+      "assertions": [
+        "Uses auth0 terraform generate",
+        "Sets --output-dir to ./terraform",
+        "Sets --resources to include auth0_client and auth0_connection",
+        "Does NOT invent non-existent flags or subcommands"
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "I need to create a test user testuser@example.com with password 'SecureP@ss123!' in my default database connection, then check if another user user@locked.com is blocked and unblock them if they are.",
+      "expected_output": "Should use auth0 users create with correct flags and auth0 users blocks list/unblock for the blocked user.",
+      "files": [],
+      "assertions": [
+        "Uses auth0 users create with --connection-name Username-Password-Authentication",
+        "Sets --email to testuser@example.com and --password to the provided password",
+        "Uses auth0 users blocks list user@locked.com (or user ID) to check blocks",
+        "Uses auth0 users blocks unblock user@locked.com (or user ID) to remove blocks",
+        "Does NOT invent non-existent flags or subcommands"
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "I want to harden my Auth0 tenant security. Enable brute-force protection, breached password detection, and bot detection via the CLI.",
+      "expected_output": "Should use auth0 protection subcommands to enable each security feature.",
+      "files": [],
+      "assertions": [
+        "Uses auth0 protection brute-force-protection update --enabled true",
+        "Uses auth0 protection breached-password-detection update --enabled true",
+        "Uses auth0 protection bot-detection update --enabled true",
+        "Uses the correct command structure (auth0 protection <type> update)",
+        "Does NOT invent non-existent flags or subcommands"
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "I need to list all connections in my Auth0 tenant and create a client grant that gives my app (client ID: abc123) access to my API (audience: https://api.myapp.com) with read:data scope. The CLI doesn't have dedicated commands for connections or client grants.",
+      "expected_output": "Should use auth0 api (raw API mode) for connections and client grants since these lack dedicated CLI commands.",
+      "files": [],
+      "assertions": [
+        "Uses auth0 api get connections to list connections",
+        "Uses auth0 api post client-grants with --data flag containing JSON payload",
+        "JSON payload includes client_id, audience, and scope fields",
+        "Uses correct Management API v2 paths (connections, client-grants)",
+        "Does NOT invent dedicated CLI commands for connections or client grants",
+        "Does NOT invent non-existent flags or subcommands"
+      ]
+    },
+    {
+      "id": 14,
+      "prompt": "I need to authenticate with my Auth0 tenant for CI/CD using a client secret (domain: mycompany.auth0.com, client-id: ci_client_123, secret: my_secret_456). After authenticating, I want to list all tenants I have access to and switch to a different one.",
+      "expected_output": "Should use auth0 login with machine login flags and auth0 tenants commands.",
+      "files": [],
+      "assertions": [
+        "Uses auth0 login with --domain mycompany.auth0.com",
+        "Includes --client-id ci_client_123 and --client-secret my_secret_456 for machine login",
+        "Uses auth0 tenants list to show all authenticated tenants",
+        "Uses auth0 tenants use to switch the active tenant",
+        "Does NOT invent non-existent flags or subcommands"
+      ]
+    },
+    {
+      "id": 15,
+      "prompt": "I need to set up RBAC for my API. Create an 'admin' role, add read:data and write:data permissions from my API (api ID: api_123) to the role, then list the permissions on the role to verify.",
+      "expected_output": "Should use auth0 roles create, auth0 roles permissions add, and auth0 roles permissions list.",
+      "files": [],
+      "assertions": [
+        "Uses auth0 roles create --name admin --description ... to create the role",
+        "Uses auth0 roles permissions add <role-id> --api-id api_123 --permissions read:data,write:data",
+        "Uses auth0 roles permissions list <role-id> to verify the permissions",
+        "Uses the correct flag names (--api-id, --permissions)",
+        "Does NOT suggest using raw auth0 api mode for role permission management",
+        "Does NOT invent non-existent flags or subcommands"
+      ]
+    },
+    {
+      "id": 16,
+      "prompt": "I need to bulk import users from a JSON array into my Auth0 tenant's default database connection and upsert any existing users. Here are the users: [{\"email\":\"user1@example.com\",\"password\":\"pass1\"},{\"email\":\"user2@example.com\",\"password\":\"pass2\"}]",
+      "expected_output": "Should use auth0 users import with --users, --connection-name, and --upsert flags.",
+      "files": [],
+      "assertions": [
+        "Uses auth0 users import command",
+        "Sets --connection-name to Username-Password-Authentication",
+        "Passes user data via --users flag with the JSON array",
+        "Includes --upsert flag to update existing users",
+        "Does NOT invent non-existent flags or subcommands"
+      ]
+    },
+    {
+      "id": 17,
+      "prompt": "I want to send my Auth0 logs to Datadog for monitoring and also set up a custom webhook log stream. Show me how to create both log streams.",
+      "expected_output": "Should use auth0 logs streams create for both Datadog and HTTP webhook stream types.",
+      "files": [],
+      "assertions": [
+        "Uses auth0 logs streams create datadog for the Datadog stream",
+        "Uses auth0 logs streams create http for the custom webhook stream",
+        "Mentions auth0 logs streams list to verify created streams",
+        "Does NOT invent non-existent flags or subcommands"
+      ]
+    },
+    {
+      "id": 18,
+      "prompt": "I want to manage my regular web app (Express/Next.js). Create it with callback URL http://localhost:3000/api/auth/callback and logout URL http://localhost:3000, then update it to add a production callback https://myapp.com/api/auth/callback. Finally, show me how to delete it.",
+      "expected_output": "Should use auth0 apps create with --type regular, auth0 apps update to add URLs, and auth0 apps delete.",
+      "files": [],
+      "assertions": [
+        "Uses auth0 apps create with --type regular",
+        "Sets --callbacks to http://localhost:3000/api/auth/callback on create",
+        "Sets --logout-urls to http://localhost:3000 on create",
+        "Uses auth0 apps update <client-id> --callbacks with both localhost and production URLs",
+        "Shows auth0 apps delete <client-id> for deletion",
+        "Does NOT invent non-existent flags or subcommands"
+      ]
+    }
+  ]
+}

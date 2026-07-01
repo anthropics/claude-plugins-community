@@ -1,0 +1,28 @@
+{
+  "skill_name": "auth0-android-major-migration",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Migrate my Android app from Auth0.Android v3 to v4. If you need to choose a target version, use the latest available v4 release. The project is in a clean git state and builds successfully on v3.\n\n**app/build.gradle.kts dependency:**\n```kotlin\ndependencies {\n    implementation(\"com.auth0.android:auth0:3.19.0\")\n}\nandroid {\n    defaultConfig { minSdk = 24 }\n    compileOptions {\n        sourceCompatibility = JavaVersion.VERSION_1_8\n        targetCompatibility = JavaVersion.VERSION_1_8\n    }\n}\n```\n\n**AuthManager.kt:**\n```kotlin\nimport com.auth0.android.Auth0\nimport com.auth0.android.authentication.AuthenticationAPIClient\nimport com.auth0.android.authentication.storage.SecureCredentialsManager\nimport com.auth0.android.authentication.storage.SharedPreferencesStorage\nimport com.auth0.android.callback.Callback\nimport com.auth0.android.provider.WebAuthProvider\nimport com.auth0.android.result.Credentials\nimport com.auth0.android.result.SSOCredentials\nimport com.auth0.android.authentication.AuthenticationException\n\nclass AuthManager(context: Context) {\n    private val account = Auth0.getInstance(context)\n    private val storage = SharedPreferencesStorage(context)\n    private val credentialsManager = SecureCredentialsManager(account, context, storage)\n\n    fun getCredentials(callback: Callback<Credentials, com.auth0.android.authentication.storage.CredentialsManagerException>) {\n        credentialsManager.getCredentials(callback)\n    }\n\n    fun secondsUntilSsoExpiry(sso: SSOCredentials): Int {\n        return sso.expiresIn\n    }\n\n    fun logout() {\n        credentialsManager.clearCredentials()\n    }\n}\n```",
+      "expected_output": "AuthManager migrated to Auth0.Android v4: SecureCredentialsManager built from an AuthenticationAPIClient, SSOCredentials.expiresIn updated to expiresAt, prerequisites (minSdk 26, Java 17) raised, dependency updated to the latest v4 release, building successfully, with a summary of behavioral changes.",
+      "expectations": [
+        "Verifies a clean git state and/or creates a backup branch before making any code changes",
+        "Detects the current version as 3.19.0 from build.gradle.kts",
+        "Resolves the target version dynamically — auto-resolves the latest v4 release (e.g. 4.0.0-beta.1) via the GitHub releases API, or validates a provided version argument",
+        "Fetches the v4 SDK Kotlin source (SecureCredentialsManager.kt, SSOCredentials.kt, etc.) from GitHub before applying changes — not from memory or a guide alone",
+        "Raises minSdk from 24 to 26 (prerequisite gate)",
+        "Raises Java from 8 to 17 (sourceCompatibility/targetCompatibility, jvmTarget)",
+        "Updates the com.auth0.android:auth0 dependency from 3.19.0 to a v4 tag",
+        "Rebuilds SecureCredentialsManager construction to pass an AuthenticationAPIClient instead of an Auth0 instance (§7.7)",
+        "Renames SSOCredentials.expiresIn to expiresAt and updates the return type from Int to Date (§7.6)",
+        "Reads the project source to identify which APIs are used, and does NOT apply changes for APIs the project never calls (e.g. no PasskeyAuthProvider, UsersAPIClient, or MFA changes)",
+        "Surfaces the behavioral changes that need no code change: minTtl default 0 to 60s (§8.1) and clearCredentials() now clearing all storage (§8.3)",
+        "Does not introduce client_secret in the native app",
+        "Does not downgrade credential storage from SecureCredentialsManager to plain SharedPreferences",
+        "Preserves existing functionality (getCredentials, SSO expiry, logout all still work)",
+        "Attempts a ./gradlew build to verify the migration compiles",
+        "Presents a migration summary after completion"
+      ]
+    }
+  ]
+}

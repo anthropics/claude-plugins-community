@@ -1,0 +1,14 @@
+{
+  "name": "auth0-spa-js-bootstrap",
+  "version": "1.0.0",
+  "description": "Bootstrap Auth0 configuration for SPA JS projects",
+  "type": "module",
+  "scripts": {
+    "auth0:bootstrap": "node bootstrap.mjs"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^8.1.0",
+    "execa": "^9.0.0",
+    "ora": "^8.0.0"
+  }
+}

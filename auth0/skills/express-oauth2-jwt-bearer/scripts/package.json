@@ -1,0 +1,13 @@
+{
+  "name": "express-oauth2-jwt-bearer-bootstrap",
+  "version": "1.0.0",
+  "description": "Bootstrap Auth0 configuration for Node OAuth2 JWT Bearer projects",
+  "type": "module",
+  "scripts": {
+    "auth0:bootstrap": "node bootstrap.mjs"
+  },
+  "dependencies": {
+    "execa": "^9.0.0",
+    "ora": "^8.0.0"
+  }
+}
