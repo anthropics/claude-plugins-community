@@ -1,0 +1,13 @@
+{
+  "name": "ireview-plugins",
+  "owner": {
+    "name": "Community"
+  },
+  "plugins": [
+    {
+      "name": "ireview",
+      "source": "./",
+      "strict": false
+    }
+  ]
+}

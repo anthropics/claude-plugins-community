@@ -22724,6 +22724,14 @@
       "description": "AI media generation skill for the QuickDesign CLI. Seedance 2.0 R2V (universal default for UGC / talking-avatar / promo), Sora 2, Kling, Nano Banana 2 (multi-ref image edit), video upscale. Multi-segment voice continuity, multi-product reference composition, anatomy self-check, model-agnostic concepts + per-model reference cards.",
       "category": "development",
       "homepage": "https://github.com/quickdesignio/quickdesign-cli.git"
+    },
+    {
+      "name": "ireview",
+      "source": "./ireview",
+      "strict": false,
+      "description": "AI-to-AI code review router. Any OpenAI-compatible model reviews your code. No Codex CLI or Node.js required.",
+      "category": "development",
+      "homepage": "https://github.com/ilang-ai/iReview.git"
     }
   ]
 }
