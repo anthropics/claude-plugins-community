@@ -3049,7 +3049,7 @@
         "url": "https://github.com/miltonian/cartographer.git",
         "path": "plugin",
         "ref": "main",
-        "sha": "1b7f2098ef95c8590a494749601525d6d2720294"
+        "sha": "19b166bd678b1f5ce53cece25dfdfcfeb69f3f6b"
       },
       "homepage": "https://github.com/miltonian/cartographer"
     },
