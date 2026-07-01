@@ -1,0 +1,13 @@
+{
+  "name": "agentkit-seo-plugins",
+  "owner": {
+    "name": "Community"
+  },
+  "plugins": [
+    {
+      "name": "agentkit-seo",
+      "source": "./",
+      "strict": false
+    }
+  ]
+}

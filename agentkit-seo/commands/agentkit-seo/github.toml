@@ -1,0 +1,20 @@
+description = "Improve GitHub profile, repository, README, and agent-readiness signals."
+prompt = """
+Use AgentKit SEO module `agentkit-seo-github`.
+
+Read `skills/agentkit-seo-github/SKILL.md` from the active AgentKit SEO Gemini
+extension context before auditing or changing GitHub material. Treat the user
+arguments as a repository path, profile README path, target audience, or
+requested GitHub SEO task:
+
+{{args}}
+
+Prioritize profile clarity, repository structure, README discoverability,
+agent-readable context, and accurate project positioning.
+
+Use a bounded default audit unless the user asks for a complete repo-by-repo
+review. Inspect the profile, profile README, pinned repositories, and at most
+3 highest-signal repositories. Keep the source ledger compact. If deeper file
+inspection would improve the answer, add a short depth note and ask before
+expanding instead of silently loading more material.
+"""

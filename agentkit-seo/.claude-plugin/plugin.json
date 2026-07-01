@@ -1,0 +1,20 @@
+{
+  "name": "agentkit-seo",
+  "version": "1.8.3",
+  "description": "Portable agent skills for LinkedIn, GitHub, CV/ATS, portfolio SEO, X, and agent context optimization.",
+  "author": {
+    "name": "Renato Mignone and Elia Innocenti"
+  },
+  "homepage": "https://agentkit-seo.github.io/",
+  "repository": "https://github.com/agentkit-seo/agentkit-seo",
+  "license": "MIT",
+  "keywords": [
+    "agent-skills",
+    "seo",
+    "career",
+    "resume",
+    "linkedin",
+    "github",
+    "portfolio"
+  ]
+}

@@ -1,0 +1,18 @@
+description = "Build or maintain a personal career context file."
+prompt = """
+Use AgentKit SEO module `agentkit-seo-agent-context-optimization`.
+
+Read `skills/agentkit-seo-agent-context-optimization/SKILL.md` from the active
+AgentKit SEO Gemini extension context before drafting or editing. Treat the
+user arguments as the source path, target path, persona focus, or requested
+context update:
+
+{{args}}
+
+Prefer explicit files provided by the user. If no target is provided, ask
+whether to use a workspace draft, a named portable default such as
+`~/.agentkit-seo/<name-surname>-seo-context.md`, or the generic
+`~/.agentkit-seo/context.md` only by user preference. Do not scan the whole
+filesystem. Use bounded source ingestion and add a depth note before expanding
+to full reconciliation.
+"""

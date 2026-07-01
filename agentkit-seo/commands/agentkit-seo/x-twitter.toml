@@ -1,0 +1,18 @@
+description = "Optimize X/Twitter profile, bio, pinned post, and content strategy."
+prompt = """
+Use AgentKit SEO module `agentkit-seo-x-twitter`.
+
+Read `skills/agentkit-seo-x-twitter/SKILL.md` from the active AgentKit SEO
+Gemini extension context before auditing, rewriting, or planning. Treat the
+user arguments as profile text, a bio, pinned post, content plan, target
+audience, or requested X/Twitter task:
+
+{{args}}
+
+Keep recommendations grounded, avoid opaque certainty about ranking behavior,
+and separate profile copy from posting and engagement strategy.
+Use the skill's bounded default scope unless the user asks for a full account
+audit. Include a depth note for broad audits, load only task-relevant
+references, and separate official product capabilities, architectural
+inference, and empirical tactics.
+"""

@@ -1,0 +1,18 @@
+description = "Optimize LinkedIn profile, positioning, discoverability, and activity."
+prompt = """
+Use AgentKit SEO module `agentkit-seo-linkedin`.
+
+Read `skills/agentkit-seo-linkedin/SKILL.md` from the active AgentKit SEO
+Gemini extension context before auditing, rewriting, or planning. Treat the
+user arguments as a LinkedIn export, pasted profile text, target role, draft
+section, or requested LinkedIn task:
+
+{{args}}
+
+Stay grounded in supplied facts, separate profile edits from activity strategy,
+and label unverifiable ranking claims as confidence-scored rather than certain.
+Use the skill's bounded default scope unless the user asks for a full profile
+optimization. Include a depth note for broad or incomplete audits, load only
+task-relevant references, and ask for the smallest missing input before using
+screenshots or expanding scope.
+"""
