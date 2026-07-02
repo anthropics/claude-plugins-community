@@ -1,0 +1,13 @@
+{
+  "name": "tres-finance-plugin-plugins",
+  "owner": {
+    "name": "Community"
+  },
+  "plugins": [
+    {
+      "name": "tres-finance-plugin",
+      "source": "./",
+      "strict": false
+    }
+  ]
+}

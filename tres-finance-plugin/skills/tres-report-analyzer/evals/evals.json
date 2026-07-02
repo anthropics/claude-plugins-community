@@ -1,0 +1,17 @@
+{
+  "skill_name": "tres-report-analyzer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Can you analyze this report and tell me if there are any issues?",
+      "expected_output": "Should identify the file as a Ledger Reconciliation report, run the analysis script, mention the roll forward pass rate, flag the 40 rows with token slippage, flag the 43 rows with missing prices, and suggest investigating those as action items.",
+      "files": ["/sessions/vigilant-kind-bardeen/mnt/uploads/reconciliation_ledger_2026-04-16.xlsx"]
+    },
+    {
+      "id": 2,
+      "prompt": "Walk me through what this reconciliation report shows. Any red flags?",
+      "expected_output": "Should identify it as Ledger Reconciliation, explain the 7-tab structure, highlight that roll forward checks all pass, but flag the high number of missing prices (43/79) and token slippage (40/79) as concerns worth investigating.",
+      "files": ["/sessions/vigilant-kind-bardeen/mnt/uploads/reconciliation_ledger_2026-04-16.xlsx"]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "tres-finance-plugin",
+  "description": "The first official TRES Finance plugin for Claude Code — blockchain accounting workflows, ledger management, and transaction analysis. Connects to the hosted TRES Finance MCP server; collects no usage telemetry. Privacy: https://tres.finance/privacy-policy/",
+  "version": "1.12.1",
+  "author": {
+    "name": "Nadav Gilliam",
+    "email": "nadav@tres.finance"
+  },
+  "homepage": "https://tres.finance",
+  "repository": "https://github.com/Tres-Finance-Public/tres-claude-plugin",
+  "license": "MIT",
+  "keywords": [
+    "tres-finance",
+    "blockchain",
+    "accounting",
+    "ledger",
+    "crypto"
+  ],
+  "userConfig": {
+    "DEBANK_API_KEY": {
+      "title": "DeBank API Key",
+      "description": "Your DeBank Pro API key for balance validation (from https://cloud.debank.com)",
+      "type": "string",
+      "sensitive": true
+    }
+  }
+}

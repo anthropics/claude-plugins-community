@@ -22738,6 +22738,20 @@
           "url": "https://mcp.testdino.com"
         }
       }
+    },
+    {
+      "name": "tres-finance-plugin",
+      "source": "./tres-finance-plugin",
+      "strict": false,
+      "description": "The first official TRES Finance plugin for Claude Code — blockchain accounting workflows, ledger management, and transaction analysis. Connects to the hosted TRES Finance MCP server; collects no usage telemetry. Privacy: https://tres.finance/privacy-policy/",
+      "category": "development",
+      "homepage": "https://github.com/Tres-Finance-Public/tres-claude-plugin",
+      "mcpServers": {
+        "TRES Finance": {
+          "type": "http",
+          "url": "https://ai.tres.finance/mcp"
+        }
+      }
     }
   ]
 }

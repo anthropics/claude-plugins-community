@@ -1,0 +1,115 @@
+<!--
+  Rollup Rules Proposal — HTML report template.
+
+  Use this skeleton VERBATIM: copy the CSS and structure as-is, only replace the
+  <!-- PLACEHOLDER --> comments with real data rows. Do NOT regenerate the CSS or layout —
+  that keeps the output small and fast. Title example: "Rollup Rules Proposal — Q1 2025".
+  Write the finished file to the working directory and tell the user the path to open it.
+  Target under 4000 tokens of body.
+-->
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Manrope',sans-serif;background:#F4F5FA;color:#1A1D4E;font-size:13px}.hd{background:#1A1D4E;color:#fff;padding:20px 24px}.hd h1{font-size:18px;font-weight:700}.hd p{font-size:12px;color:#9BA3C7;margin-top:4px}.ct{padding:20px 24px}.sg{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}.cd{background:#fff;border:1px solid #E4E6F0;border-radius:10px;padding:14px}.cd .l{font-size:11px;color:#6B7280;font-weight:500;text-transform:uppercase;letter-spacing:.5px}.cd .v{font-size:22px;font-weight:700;color:#1A1D4E;margin-top:4px}.cd .s{font-size:11px;color:#9BA3C7;margin-top:2px}.st{font-size:13px;font-weight:700;color:#1A1D4E;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #E4E6F0}.pl{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600}.pg{background:#D1FAE5;color:#065F46}.pb{background:#DBEAFE;color:#1E40AF}.pp{background:#EDE9FE;color:#5B21B6}table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #E4E6F0;border-radius:10px;overflow:hidden;margin-bottom:20px}th{background:#F8F9FC;font-size:11px;font-weight:600;color:#6B7280;text-transform:uppercase;letter-spacing:.4px;padding:10px 12px;text-align:left;border-bottom:1px solid #E4E6F0}td{padding:10px 12px;border-bottom:1px solid #F0F1F8;vertical-align:top}tr:last-child td{border-bottom:none}tr:hover td{background:#FAFBFF}.rn{font-weight:600;color:#1A1D4E;font-size:12px}.rd{font-size:11px;color:#6B7280;margin-top:3px}.mo{font-family:monospace;font-size:10px;background:#F4F5FA;padding:1px 4px;border-radius:4px;color:#5B5FEF}.bh{background:#D1FAE5;color:#065F46;padding:2px 7px;border-radius:20px;font-size:10px;font-weight:700}.bm{background:#EEF0FE;color:#5B5FEF;padding:2px 7px;border-radius:20px;font-size:10px;font-weight:700}.bl{background:#F1F2F7;color:#6B7280;padding:2px 7px;border-radius:20px;font-size:10px;font-weight:700}.sk td{color:#9BA3C7}.nb{background:#EDE9FE;border:1px solid #C4B5FD;border-radius:8px;padding:12px 14px;font-size:12px;color:#4C1D95}.lk{display:inline-block;margin-top:5px;font-size:11px;color:#5B5FEF;text-decoration:none;font-weight:600}.lk:hover{text-decoration:underline}</style>
+</head><body>
+<div class="hd"><h1>TITLE</h1><p>SUBTITLE</p></div>
+<div class="ct">
+<div class="sg"><!-- SUMMARY CARDS --></div>
+<div class="st">Proposed Rollup Rules</div>
+<table><thead><tr><th>#</th><th>Rule Name</th><th>Wallet</th><th>Asset / Platform</th><th>Filter</th><th>Volume (sub-tx / tx)</th><th>Avg Value</th><th>Interval</th><th>Impact</th></tr></thead>
+<tbody><!-- PROPOSED RULES ROWS --></tbody></table>
+<div class="st">Skipped / Not Proposed</div>
+<table class="sk"><thead><tr><th>Group</th><th>Reason Skipped</th></tr></thead>
+<tbody><!-- SKIPPED ROWS --></tbody></table>
+<div class="nb"><!-- ANALYSIS NOTE --></div>
+</div></body></html>
+
+<!--
+============================================================================
+TEMPLATE PATTERNS — copy exactly, only replace CAPS placeholders.
+============================================================================
+
+Summary card:
+  <div class="cd"><div class="l">LABEL</div><div class="v">VALUE</div><div class="s">SUB</div></div>
+
+Proposed rule row:
+  <tr><td><b>NUM</b></td>
+  <td><div class="rn">RULE_NAME</div><div class="rd">DESCRIPTION</div><a class="lk" href="PREVIEW_URL" target="_blank" rel="noopener">Preview matched txs ↗</a></td>
+  <td>WALLET_NAME<br><span class="mo">id: WALLET_ID</span></td>
+  <td><span class="pl pb">SYMBOL</span> <span class="pl pp">PLATFORM</span><br>DIRECTION</td>
+  <td><span class="mo">FILTER</span></td>
+  <td>~<b>SUBTX_COUNT</b> / ~TX_COUNT</td><td>AVG_VALUE</td>
+  <td><span class="pl pg">INTERVAL</span></td>
+  <td><span class="bh">HIGH</span></td></tr>
+
+Skipped row:
+  <tr><td>GROUP</td><td>REASON</td></tr>
+  (include candidates the rollup_review gate dropped, e.g. "0 matching sub-txs",
+   "overlaps rule #38211")
+
+----------------------------------------------------------------------------
+VOLUME COLUMN — always `Volume (sub-tx / tx)`, values always prefixed with `~`
+----------------------------------------------------------------------------
+The Volume column shows the rollup_review-validated sub-tx count and distinct parent-tx
+count. ALWAYS format it as `~<subtx> / ~<tx>` — the header is ALWAYS `Volume (sub-tx / tx)`
+(never bare `Volume`, in any table variant), and the values are ALWAYS prefixed with `~`.
+The `~` is required because the Preview link's ledger filters can't express every rule
+filter, so the previewed count may differ slightly from the exact rollup_review count — the
+`~` sets that expectation.
+
+----------------------------------------------------------------------------
+IMPACT BADGES — high volume is a GOOD result, never an alarm
+----------------------------------------------------------------------------
+  <span class="bh">HIGH</span>   (green)
+  <span class="bm">MEDIUM</span> (indigo)
+  <span class="bl">LOW</span>    (grey)
+Red is reserved exclusively for actual problems (the 🟢/🟡/🔴 validation status), never for
+impact — a rule catching many transactions is the win, so it must read as positive.
+
+----------------------------------------------------------------------------
+PREVIEW_URL — the per-candidate "Preview matched txs" link
+----------------------------------------------------------------------------
+Each proposed rule gets a link that opens the org's ledger in a new tab, filtered to the
+transactions the rule targets, so the user can eyeball them before approving. Build it the
+way the dashboard's "Preview matched transactions" action does.
+
+Base: `https://<org-subdomain>.tres.finance/ledger` (subdomain = org_name from get_viewer).
+Append `?` + a query string. URL-encode values, comma-join array values, and OMIT any param
+whose source field is unset:
+- internalAccounts=<internalAccountId>
+- assets=<assetId> (the asset key)
+- platforms=<platform> (lowercase, as stored on the rule)
+- balanceFactor=1 for INFLOW, -1 for OUTFLOW
+- methodIds=<m1>,<m2> from the rule's methodIds
+- thirdPartyAccounts=<senderIdentifier and/or recipientIdentifier> (whichever set)
+- ignoreFee=true ONLY when fees=EXCLUDE (never emit =false)
+- Amount bounds only if you resolve the asset's assetClass id
+  (asset(key_In: ["<assetId>"]) { results { assetClass { id } } }): then add
+  amountBetween=<min>,<max> (always one comma; leave a side empty if open) +
+  amountAsset=<assetClassId> + assetClasses=<assetClassId>. Omit all three if you can't
+  resolve the id.
+- Dates: open-ended rule → dateType=All%20time; otherwise dateType=Custom%20date +
+  fromDate/toDate (YYYY-MM-DD).
+
+This link is intentionally an APPROXIMATION (slightly broader than the rule): fees
+INCLUDE/ONLY, subtxType, excludeFiat, excludeInternal, and original_*_prefix have no ledger
+filter, so they're dropped. It's a visual sanity-preview — the exact count is the Step 2.5
+subTransactionRollupRulePreview value.
+
+----------------------------------------------------------------------------
+PER-METHOD VARIANT
+----------------------------------------------------------------------------
+If per-methodId rules are proposed, adjust the table headers to:
+  #, Rule Name, Method ID, Known Signature, Volume (sub-tx / tx), Avg Value, Interval, Impact
+and group rules under separate <div class="st"> section headers per wallet. The Volume
+header keeps the `(sub-tx / tx)` qualifier in EVERY table variant.
+
+----------------------------------------------------------------------------
+HASH / ADDRESS DISPLAY RULE — applies to every value rendered in the report
+----------------------------------------------------------------------------
+Any value starting with "0x" (transaction hashes, wallet addresses, contract addresses)
+must be rendered truncated (first 8 chars + "…" + last 6 chars, e.g. `0xd9aa7ca5…7d02`).
+Store the full value in a `data-full` attribute and `title` (hover tooltip). Set
+`cursor:pointer` on the element. Add an `ondblclick` handler that copies the full hash:
+`navigator.clipboard.writeText(this.dataset.full)` then briefly replaces the visible text
+with "✓ Copied" for 1 second before restoring the truncated form.
+-->

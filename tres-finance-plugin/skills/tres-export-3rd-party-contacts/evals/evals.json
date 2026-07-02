@@ -1,0 +1,23 @@
+{
+  "skill_name": "tres-export-3rd-party-contacts",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Export all 3rd party addresses from my TRES environment as a contacts file",
+      "expected_output": "An XLSX with a Contacts tab (Contact Name, Contact Address, Contact Tag) matching the TRES import template and an Address details tab with network, tx counts, and USD volumes; deduplicated unidentified addresses from accountTxsSummary",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I want to build my address book — can you find all the external counterparties from my transactions and put them in a file I can import back?",
+      "expected_output": "XLSX workbook sourced from accountTxsSummary with identificationState UNIDENTIFIED, excludeInternalAccounts true, paginated; Contacts tab ready for user to fill names/tags before import",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "We need to label our counterparties for the auditor. Can you pull all the unknown addresses from our ledger into a file I can fill in?",
+      "expected_output": "XLSX listing unidentified counterparty addresses sorted by total fiat volume, with enrichment tab to prioritize labeling",
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "skill_name": "tres-report-advisor",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "My auditor is asking for proof of all our asset movements during Q1 2026. What report should I give them?",
+      "expected_output": "Should recommend Asset Roll Forward as primary, mention Cost Basis Roll Forward if they need cost basis detail, and suggest Ledger Reconciliation for the full reconciliation package. Should include the API types.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I see a balance difference between what TRES shows and what I see on-chain for my Ethereum wallet. How do I investigate this?",
+      "expected_output": "Should recommend Ledger Reconciliation and point to the Historical Token Reconciliation tab specifically. Should mention that non-zero Check columns indicate drift. May also mention Asset Balances as the UI source of truth.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "We need to file taxes and calculate our capital gains for 2025. Which report has realized gains per transaction?",
+      "expected_output": "Should recommend Realized Gains & Losses (EXTENDED_RAW_TRANSACTIONS) as primary. Should mention the Summary Per Year tab for annual totals. Should mention Cost Breakdown if they need lot-level detail for FIFO/LIFO verification.",
+      "files": []
+    }
+  ]
+}

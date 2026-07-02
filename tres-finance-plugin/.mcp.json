@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "TRES Finance": {
+      "type": "http",
+      "url": "https://ai.tres.finance/mcp"
+    }
+  }
+}
