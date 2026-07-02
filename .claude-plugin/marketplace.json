@@ -6212,7 +6212,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/crate/agent-skills.git",
-        "sha": "a2983f5b72524ecac19dd67b2503b9d6ee677196"
+        "sha": "e270d2cb3d332bb9ba09f3a269eb317d3afa55eb"
       },
       "homepage": "https://github.com/crate/agent-skills"
     },
