@@ -3025,7 +3025,7 @@
         "url": "carta/plugins",
         "path": "plugins/carta-investors",
         "ref": "main",
-        "sha": "1b6e78b4682160975952f4d2c90a81493cd4c7d0"
+        "sha": "5e5439145d853da1f15f382a49f8cc95fc354cf7"
       },
       "homepage": "https://docs.carta.com/api-platform/docs/carta-fund-admin"
     },
@@ -6563,7 +6563,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/dash0hq/dash0-agent-plugin.git",
-        "sha": "0952f646ef121eb6b030663e5dff39df3467cb9a"
+        "sha": "e137596c31fd5d33c8129735b601d62cf28d997d"
       },
       "homepage": "https://dash0.com"
     },
@@ -6573,7 +6573,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/gemini-cli-extensions/data-agent-kit-starter-pack.git",
-        "sha": "23d0e064cce2f7034e9270f770dc10d96bccde39"
+        "sha": "b5bc330f03758618e63cecd8e47c5f1ac87af2c1"
       },
       "homepage": "https://github.com/gemini-cli-extensions/data-agent-kit-starter-pack/blob/main/README.md"
     },
@@ -6593,7 +6593,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/astronomer/agents.git",
-        "sha": "d33a14ddd4cd8045f90acfe49d2552120feeeced"
+        "sha": "8827e93429f4d3741bf30377027c9cbfe8b58f3c"
       },
       "homepage": "https://github.com/astronomer/agents"
     },
