@@ -3013,7 +3013,7 @@
         "url": "carta/plugins",
         "path": "plugins/carta-investors",
         "ref": "main",
-        "sha": "5e5439145d853da1f15f382a49f8cc95fc354cf7"
+        "sha": "c3b215afca71e5fd3b607fb6b558a85c23272d59"
       },
       "homepage": "https://docs.carta.com/api-platform/docs/carta-fund-admin"
     },
