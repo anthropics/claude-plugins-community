@@ -22728,6 +22728,22 @@
           "url": "https://ai.tres.finance/mcp"
         }
       }
+    },
+    {
+      "name": "capcut-cli",
+      "source": "./capcut-cli",
+      "strict": false,
+      "description": "Edit CapCut and JianYing projects from Claude Code — subtitles, timing, speed, volume, templates, cut long-form to shorts.",
+      "category": "development",
+      "homepage": "https://github.com/renezander030/capcut-cli.git"
+    },
+    {
+      "name": "ireview",
+      "source": "./ireview",
+      "strict": false,
+      "description": "AI-to-AI code review router. Any OpenAI-compatible model reviews your code. No Codex CLI or Node.js required.",
+      "category": "development",
+      "homepage": "https://github.com/ilang-ai/iReview.git"
     }
   ]
 }
