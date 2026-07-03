@@ -63,4 +63,3 @@ thumbgate
 tmux-cc-state
 wicked-garden
 writ
-zilliz

@@ -22636,7 +22636,8 @@
       "source": {
         "source": "url",
         "url": "https://github.com/zilliztech/zilliz-plugin.git",
-        "sha": "bc59907dafea901b5d4120877d16d1e5e662241d"
+        "path": "plugins/zilliz",
+        "sha": "768d3db5fdb69b74116ada2b371032a49bfb3fe1"
       },
       "homepage": "https://github.com/zilliztech/zilliz-plugin"
     },
