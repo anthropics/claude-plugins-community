@@ -5123,7 +5123,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/closedloop-ai-org/claude-code-skills.git",
-        "sha": "38cffd70d7bb7a1e0e252839f0a82ea48df404f7"
+        "sha": "5587c3012cd58e37a5257c4692c8f52d3ef5141f"
       },
       "homepage": "https://closedloop.sh/docs/mcp-server/skills"
     },
