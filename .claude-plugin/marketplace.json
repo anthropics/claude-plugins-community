@@ -7184,7 +7184,7 @@
         "url": "yn01/claude-plugins",
         "path": "plugins/dev-forge",
         "ref": "main",
-        "sha": "28ab7264a446f75ed9239f1b017bbe60f7489ad1"
+        "sha": "d02ed20cf50a419e4528c15f74ff9efe7287ea5f"
       },
       "homepage": "https://github.com/yn01/claude-plugins/tree/main/plugins/dev-forge"
     },
