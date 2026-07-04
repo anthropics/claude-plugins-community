@@ -7162,7 +7162,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/agent-sh/deslop.git",
-        "sha": "4bbec3b4cd2b0474563b9a34824275793355a161"
+        "sha": "96db51fe74175a512fc33440934d0376f7eeb241"
       },
       "homepage": "https://github.com/agent-sh/deslop"
     },
