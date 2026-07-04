@@ -11,12 +11,9 @@
 # Provenance: output/community-gate-analysis/genuine_freeze.txt in
 # bryan-anthropic/mcp-local-directory (issue #1861 / PR #68 gate analysis).
 acp-find
-agent-guardrails-template
 ai-operations-consultant
 ai-plugins
 akii-seo-ai-search-optimizer
-alps-writer
-archcore
 autocode
 axint
 bitfab
@@ -24,7 +21,6 @@ canadian-regulatory-compliance
 casemgr-channel
 chaingpt-developer-kit
 claude-code-hermit
-claude-launchpad
 codex-bridge
 copy-that-sells
 ddd-coding-skills
@@ -52,10 +48,7 @@ ololand-dd
 opendeploy
 orchestra
 outlook
-product-review-expert
 releases
-scandit-sdk
-sfagent-tools
 spec-to-code
 strands-sdk
 swift-focusengine-pro

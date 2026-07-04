@@ -463,7 +463,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/TheArchitectit/agent-guardrails-template.git",
-        "sha": "4af9ff36ba97c201e94838ff88a749cea5706be7"
+        "sha": "f43b1397516bee9207f423a50060da941f16bdb6"
       },
       "homepage": "https://github.com/TheArchitectit/agent-guardrails-template"
     },
@@ -1214,7 +1214,8 @@
       "source": {
         "source": "url",
         "url": "https://github.com/haandol/alps-writer-mcp.git",
-        "sha": "01c7fda5bdce265b9b92eda32cfc30f0bddb0482"
+        "path": "plugins/alps-writer",
+        "sha": "89a22dba4b95960fe7c9c597a1fe5694ae9b8727"
       },
       "homepage": "https://github.com/haandol/alps-writer-mcp"
     },
@@ -1634,7 +1635,8 @@
       "source": {
         "source": "url",
         "url": "https://github.com/archcore-ai/archcore-plugin.git",
-        "sha": "10ee1fd546558afe2f4ae920f97318c4c2b0f3d7"
+        "path": "plugins/archcore",
+        "sha": "01de1c2e7ab2b2e1a09da02547a2ce90bac84ada"
       },
       "homepage": "https://archcore.ai/"
     },
@@ -4195,7 +4197,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/mboss37/claude-launchpad.git",
-        "sha": "fcb398921307dd243d9129f3148c131dc506e81b"
+        "sha": "dfadebf05a7a1c38a799ea279808e3c8571291a7"
       },
       "homepage": "https://mboss37.github.io/claude-launchpad/"
     },
@@ -15813,7 +15815,8 @@
       "source": {
         "source": "url",
         "url": "https://github.com/YuSec2021/product-review-expert.git",
-        "sha": "7a76712360b737de0b9c85a7a3fe19f84a3fc7ed"
+        "path": "plugins/product-review-expert",
+        "sha": "fea37bdcb07d7fd062c8cd881773819107f47a6f"
       },
       "homepage": "https://github.com/YuSec2021/product-review-expert"
     },
@@ -17371,7 +17374,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/scandit/scandit-sdk-skills.git",
-        "sha": "4246986f8e25d7b180997e1feab8c266fbebf209"
+        "sha": "49591895a92bbb98f88279f64456c1f6047265fb"
       },
       "homepage": "https://docs.scandit.com/"
     },
@@ -17972,7 +17975,8 @@
       "source": {
         "source": "url",
         "url": "https://github.com/lucianostraga/sfagent-tools.git",
-        "sha": "097f5f88f3d40436eb531ea607c3782308402356"
+        "path": "packages/claude-code-plugin",
+        "sha": "9fb6aea88f32fbcf024062ca55e0391cd87df4e0"
       },
       "homepage": "https://github.com/lucianostraga/sfagent-tools"
     },
