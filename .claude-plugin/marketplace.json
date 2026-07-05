@@ -13735,6 +13735,18 @@
       "homepage": "https://github.com/Softtor/nestjs-hexagonal"
     },
     {
+      "name": "netsujo-aio",
+      "description": "Production-tested AIO/SEO toolkit for Next.js + Strapi + Japanese-language sites. 20 skills covering Google Search Console weekly audits, a full JSON-LD suite (Organization/Article/FAQPage/Event/Breadcrumb/Speakable), llms.txt generation for AI search, GA4 custom dimensions and event wiring, and Japanese typography checks (H1 mobile line breaks, ASCII-Japanese spacing). Battle-tested in production on netsujo.jp and miyakodeit.com.",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/suirindo/netsujo-aio-seo.git",
+        "path": "plugins/netsujo-aio",
+        "ref": "main",
+        "sha": "bc80d16358b6c27abd0f9a1fe9618aa2d15c72a4"
+      },
+      "homepage": "https://github.com/suirindo/netsujo-aio-seo"
+    },
+    {
       "name": "neutrally",
       "description": "Persistent cross-session memory for Claude Code. Neutrally auto-injects your project context, decisions, and tech stack at session start so Claude already knows who you are and what you're building. Conversations are captured every 5 minutes and survive /compact, crashes, and session restarts. Memory works across Claude Code, VS Code, Cursor, and neutrally.app.",
       "source": {
