@@ -403,7 +403,7 @@
         "url": "https://github.com/agent-blueprint/agent-blueprint-skills.git",
         "path": "plugins/agent-blueprint-skills",
         "ref": "main",
-        "sha": "4d65fbba6c6e71db41f037c3e3f5ebabd37ee3ae"
+        "sha": "d755f380973227a88d9eb816f251ff66d1d99206"
       },
       "homepage": "https://agentblueprint.ai"
     },
