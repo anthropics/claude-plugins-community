@@ -466,7 +466,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/TheArchitectit/agent-guardrails-template.git",
-        "sha": "f43b1397516bee9207f423a50060da941f16bdb6"
+        "sha": "4af9ff36ba97c201e94838ff88a749cea5706be7"
       },
       "homepage": "https://github.com/TheArchitectit/agent-guardrails-template"
     },
@@ -4190,7 +4190,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/mboss37/claude-launchpad.git",
-        "sha": "dfadebf05a7a1c38a799ea279808e3c8571291a7"
+        "sha": "fcb398921307dd243d9129f3148c131dc506e81b"
       },
       "homepage": "https://mboss37.github.io/claude-launchpad/"
     },
