@@ -3016,7 +3016,7 @@
         "url": "carta/plugins",
         "path": "plugins/carta-investors",
         "ref": "main",
-        "sha": "e32d1707c89887768fd8462c3942865ae3b7e343"
+        "sha": "27e98f1acdcbfa66337b6646098e3a547b60423b"
       },
       "homepage": "https://docs.carta.com/api-platform/docs/carta-fund-admin"
     },
