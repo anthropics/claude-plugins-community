@@ -5630,7 +5630,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/comment-io/claude-code-plugin.git",
-        "sha": "38856b012f3a317ac2bc43aa92fb64f21a09003e"
+        "sha": "7fd08f9afd852e39e8194381b9c5d9975b36550c"
       },
       "homepage": "https://comment.io"
     },
