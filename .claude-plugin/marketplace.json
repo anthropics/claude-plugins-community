@@ -3,6 +3,9 @@
   "owner": {
     "name": "Anthropic"
   },
+  "renames": {
+    "qodo-skills": "qodo"
+  },
   "plugins": [
     {
       "name": "0x",
@@ -256,7 +259,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/adcontextprotocol/adcp-client.git",
-        "sha": "fc18b409c89584fa668953c1d713a5b6db808796"
+        "sha": "9ec52858e0930527e54959cbb897a443df2e16c3"
       },
       "homepage": "https://github.com/adcontextprotocol/adcp-client"
     },
@@ -403,7 +406,7 @@
         "url": "https://github.com/agent-blueprint/agent-blueprint-skills.git",
         "path": "plugins/agent-blueprint-skills",
         "ref": "main",
-        "sha": "4d65fbba6c6e71db41f037c3e3f5ebabd37ee3ae"
+        "sha": "d755f380973227a88d9eb816f251ff66d1d99206"
       },
       "homepage": "https://agentblueprint.ai"
     },
@@ -678,7 +681,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Clear-Capabilities/agentic-security.git",
-        "sha": "eb541bf8ca877afcbace14ee47b830739ee74b89"
+        "sha": "e186cccbc4c11eab3414611a1c51c614e290340e"
       },
       "homepage": "https://www.clearcapabilities.com/products/agentic-security"
     },
@@ -834,7 +837,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/BULDEE/ai-craftsman-superpowers.git",
-        "sha": "a469601b5494b9267b3565d1afaa93a9056829c3"
+        "sha": "74efb39ed8013c34793efe5a41955aac2f9aea29"
       },
       "homepage": "https://github.com/BULDEE/ai-craftsman-superpowers/tree/main/docs"
     },
@@ -869,16 +872,6 @@
         "sha": "f6380c947b04ae0817c2723fbf589784d4501357"
       },
       "homepage": "https://ai-first.techwolf.ai"
-    },
-    {
-      "name": "ai-guard",
-      "description": "Production-hardened guardrails for Claude Code that catch costly mistakes before they happen. Includes 6 guards: billing-guard (stops infinite retry loops on payment errors), dry-guard (warns before creating duplicate files), code-standards-enforcer (blocks as any, ts-ignore, require(), TODO placeholders, underscore naming, logic in index files), auto-lint-fix (runs Biome after every write), auto-summarize-input (warns on large inputs to preserve context window), and capture-insights (learns from recurring anti-patterns across sessions via persistent JSONL memory).",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/YosefHayim/ai-guard-plugins.git",
-        "sha": "138dff575e3c9e796e6be1e06d522644e648bb12"
-      },
-      "homepage": "https://github.com/YosefHayim/ai-guard-plugins#readme"
     },
     {
       "name": "ai-instruct",
@@ -1698,7 +1691,7 @@
         "url": "AppsVortex/arness",
         "path": "plugins/arn-code",
         "ref": "main",
-        "sha": "b9084b6ae3e4a0e6331503fbf3aa2260bb1b04af"
+        "sha": "598ff6dc1c7e1a7bc7298567adc688cb482e7fa6"
       },
       "homepage": "https://arness.appsvortex.com"
     },
@@ -1710,7 +1703,7 @@
         "url": "AppsVortex/arness",
         "path": "plugins/arn-infra",
         "ref": "main",
-        "sha": "b9084b6ae3e4a0e6331503fbf3aa2260bb1b04af"
+        "sha": "598ff6dc1c7e1a7bc7298567adc688cb482e7fa6"
       },
       "homepage": "https://arness.appsvortex.com"
     },
@@ -1722,7 +1715,7 @@
         "url": "AppsVortex/arness",
         "path": "plugins/arn-spark",
         "ref": "main",
-        "sha": "b9084b6ae3e4a0e6331503fbf3aa2260bb1b04af"
+        "sha": "598ff6dc1c7e1a7bc7298567adc688cb482e7fa6"
       },
       "homepage": "https://arness.appsvortex.com"
     },
@@ -16252,7 +16245,8 @@
       "homepage": "https://github.com/Pupfish-LLC/qlik-agents/blob/main/README.md"
     },
     {
-      "name": "qodo-skills",
+      "name": "qodo",
+      "displayName": "Qodo",
       "description": "Qodo Skills provides a curated library of reusable AI agent capabilities that extend Claude's functionality for software development workflows. Each skill is designed to integrate seamlessly into your development process, enabling tasks like code quality checks, automated testing, security scanning, and compliance validation. Skills operate across your entire SDLC—from IDE to CI/CD—ensuring consistent standards and catching issues early.",
       "source": {
         "source": "url",
