@@ -22722,6 +22722,19 @@
           "url": "https://ai.tres.finance/mcp"
         }
       }
+    },
+    {
+      "name": "resolve-ai",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/resolve-ai-oss/resolve-ai-plugins",
+        "path": "plugins/claude/resolve-ai",
+        "ref": "d6627cc32863f8f5f79bab4de1fb886f458b0236",
+        "sha": "d6627cc32863f8f5f79bab4de1fb886f458b0236"
+      },
+      "description": "Use Resolve for investigations, incidents, and production context.",
+      "category": "development",
+      "homepage": "https://github.com/resolve-ai-oss/resolve-ai-plugins"
     }
   ]
 }
