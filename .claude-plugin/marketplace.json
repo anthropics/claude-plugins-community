@@ -20614,10 +20614,8 @@
       "name": "trabuco",
       "description": "Trabuco generates production-ready Java multi-module Maven projects and migrates existing Spring Boot 2.x/3.x repos into the same shape. It exposes both halves to Claude Code: 8 skills (/trabuco:new-project, /trabuco:design-system, /trabuco:add-module, /trabuco:extend, /trabuco:migrate, /trabuco:doctor, /trabuco:suggest, /trabuco:sync), 17 subagents (architect + AI-agent expert + a 15-agent migration team), and a 25-tool MCP server.\n\nThe generated projects are opinionated and production-grade by default: Spring Boot 3 with Spring Data JDBC (no JPA), Flyway migrations, Testcontainers, Resilience4j circuit breakers, Google Java Format enforced by Spotless, ArchUnit boundary tests, RFC 7807 Problem Details, virtual threads, OpenTelemetry tracing, and the modular layout (Model / SQLDatastore / NoSQLDatastore / Shared / API / Worker / EventConsumer / AIAgent) with compile-time boundaries. A first-class AI Agent module ships scaffolding for tool calling, guardrails, MCP server endpoints, A2A protocol, and knowledge-base integration on Spring\nAlongside the code, Trabuco lays down per-agent rule files (CLAUDE.md, AGENTS.md, .cursor/rules, .github/instructions) that teach the major coding agents the project's architecture so they can extend it correctly without re-explaining conventions every session.",
       "source": {
-        "source": "git-subdir",
+        "source": "url",
         "url": "https://github.com/arianlopezc/Trabuco.git",
-        "path": "plugin",
-        "ref": "main",
         "sha": "27f3c315c9f57a23b380b2ea51c8dc90869331e5"
       },
       "homepage": "https://github.com/arianlopezc/Trabuco"
