@@ -94,14 +94,52 @@
       "homepage": "https://github.com/barnburner121/claude-plugin-marketplace"
     },
     {
-      "name": "abap-dev",
-      "description": "SAP development utilities and ABAP Workbench automation. Act as an ABAP developer from end to end.\n1. Read specification document(Excel/Word/PDF).\n2. Generate DDIC definition, Message text and ABAP source code.\n3. Deploy to SAP system via SE11/SE38/SE37/SE24/SE91.\n4. Fix errors and pass ATC.",
+      "name": "sap-dev-core",
+      "description": "Core SAP development utilities and ABAP Workbench automation: login, connection management, credential storage, BDC execution, add-on table maintenance, and SAP GUI Scripting for SE38, SE37, SE24, SE11, SE19, SE41, SE51, SE54, SE91, CMOD, and GUI inspection / recording. Also provides shared resources (shared/tables/, shared/scripts/) used by all other sap-dev plugins. Install this plugin first.",
       "source": {
-        "source": "url",
+        "source": "git-subdir",
         "url": "https://github.com/sapdev-ai/sap-dev.git",
-        "sha": "415d82c9c0066b34958157f1c1f1e063ad82b18f"
+        "path": "plugins/sap-dev-core",
+        "ref": "main",
+        "sha": "ed622a03402f7d5a53cc33a2a3aa336ddc17205f"
       },
-      "homepage": "https://www.sapdev.ai"
+      "homepage": "https://sapdev.ai"
+    },
+    {
+      "name": "sap-gen-code",
+      "description": "ABAP code generation pipeline: convert design docs, extract structured data, validate process/DDIC, generate ABAP (incl. CDS views) and ABAP Unit tests, and run an AI semantic + security review. Companion to sap-dev-core (install that first — its shared scripts are required at runtime).",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/sapdev-ai/sap-dev.git",
+        "path": "plugins/sap-gen-code",
+        "ref": "main",
+        "sha": "ed622a03402f7d5a53cc33a2a3aa336ddc17205f"
+      },
+      "homepage": "https://sapdev.ai"
+    },
+    {
+      "name": "sap-migrate",
+      "description": "S/4HANA custom-code migration engine: run a brownfield conversion as a tracked campaign — inventory custom (Z/Y) objects, flag unused code for decommission, run the S/4HANA-readiness ATC, triage findings, and remediate mechanical changes at scale on a sandbox. Companion to sap-dev-core (install that first).",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/sapdev-ai/sap-dev.git",
+        "path": "plugins/sap-migrate",
+        "ref": "main",
+        "sha": "ed622a03402f7d5a53cc33a2a3aa336ddc17205f"
+      },
+      "homepage": "https://sapdev.ai"
+    },
+    {
+      "name": "sap-tcd",
+      "description": "SAP transaction automation for business processes: Business Partner (BP), Material Master (MM01), and Sales Order (VA01) management. Companion to sap-dev-core (install that first — its shared scripts are required at runtime).",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/sapdev-ai/sap-dev.git",
+        "path": "plugins/sap-tcd",
+        "ref": "main",
+        "sha": "ed622a03402f7d5a53cc33a2a3aa336ddc17205f"
+      },
+      "homepage": "https://sapdev.ai"
     },
     {
       "name": "ac-artifact-workflow",
