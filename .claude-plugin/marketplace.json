@@ -259,7 +259,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/adcontextprotocol/adcp-client.git",
-        "sha": "64cfa5f8d6995d73a0b69a35c1b6108a299647e5"
+        "sha": "c4ea625e8a58b017edf624647e59b0e1d06b4ced"
       },
       "homepage": "https://github.com/adcontextprotocol/adcp-client"
     },
