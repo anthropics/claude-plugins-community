@@ -55,7 +55,7 @@
         "url": "42Crunch-AI/claude-plugins",
         "path": "plugins/api-security-testing",
         "ref": "v1.0.1",
-        "sha": "8ee6dc2f96fca5c551e1932f50feb21550ffd3c6"
+        "sha": "8fef98bdfb09f254e861693c54683543050ff0ca"
       },
       "homepage": "https://docs.42crunch.com"
     },
@@ -259,7 +259,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/adcontextprotocol/adcp-client.git",
-        "sha": "64cfa5f8d6995d73a0b69a35c1b6108a299647e5"
+        "sha": "c4ea625e8a58b017edf624647e59b0e1d06b4ced"
       },
       "homepage": "https://github.com/adcontextprotocol/adcp-client"
     },
@@ -725,7 +725,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Agentiqa/agentiqa-plugin.git",
-        "sha": "6926b2b1653a0021d411f6534e62990c44299688"
+        "sha": "927127ecd153d060d84354f2e0f97fa82da334a0"
       },
       "homepage": "https://agentiqa.com/en"
     },
@@ -735,7 +735,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Agentiqa/agentiqa-plugin.git",
-        "sha": "6926b2b1653a0021d411f6534e62990c44299688"
+        "sha": "927127ecd153d060d84354f2e0f97fa82da334a0"
       },
       "homepage": "https://github.com/Agentiqa/agentiqa-plugin"
     },
@@ -991,7 +991,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/AikidoSec/aikido-claude-plugin.git",
-        "sha": "fbe11e287175e5eda448516dd2f741a63b276514"
+        "sha": "17b7c113b50aa57c43856612ce98ce9d96bc37f8"
       },
       "homepage": "https://github.com/AikidoSec/aikido-claude-plugin"
     },
@@ -1749,7 +1749,7 @@
         "url": "https://github.com/Yoodaddy0311/artibot.git",
         "path": "plugins/artibot",
         "ref": "master",
-        "sha": "9d69a0f285ceb73f06642c991bff7557139952fb"
+        "sha": "5ea2ac190f519150e9faf46cd47f66a42b1dec90"
       },
       "homepage": "https://github.com/Yoodaddy0311/artibot"
     },
@@ -2277,7 +2277,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/YBSbarker/barker-stablecoin-skills.git",
-        "sha": "d2012f41abd3a67425705302ce095bf8db89bca8"
+        "sha": "d7657414fe2a42717bebde37f6c8013a69027a32"
       },
       "homepage": "https://github.com/YBSbarker/barker-stablecoin-skills"
     },
@@ -2287,7 +2287,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/base44/skills.git",
-        "sha": "398ba8153b64c1c233bb9a58255e6832fa5757cc"
+        "sha": "d04c22ea298c8e370a9dd2e7c3e8c0aa6c0623eb"
       },
       "homepage": "https://github.com/base44/skills"
     },
@@ -2693,7 +2693,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/brilliantdirectories/brilliant-directories-mcp.git",
-        "sha": "b618dac939d7cef7f48a809b3c4c981d8f6c6152"
+        "sha": "fe020720f95b472460015b2f2820a0a99ffdb876"
       },
       "homepage": "https://www.brilliantdirectories.com"
     },
@@ -2735,7 +2735,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/browser-use/browser-harness.git",
-        "sha": "4d75f115c039bf769d614fbd8d996a961e143567"
+        "sha": "0846918624ef195df8039af626e65617de3d5711"
       },
       "homepage": "https://browser-use.com"
     },
@@ -2996,7 +2996,7 @@
         "url": "carta/plugins",
         "path": "plugins/carta-cap-table",
         "ref": "main",
-        "sha": "27e98f1acdcbfa66337b6646098e3a547b60423b"
+        "sha": "40706dea1458015f902037a101330069473dc832"
       },
       "homepage": "https://docs.carta.com/api-platform/docs/carta-cap-table"
     },
@@ -3008,7 +3008,7 @@
         "url": "carta/plugins",
         "path": "plugins/carta-investors",
         "ref": "main",
-        "sha": "27e98f1acdcbfa66337b6646098e3a547b60423b"
+        "sha": "40706dea1458015f902037a101330069473dc832"
       },
       "homepage": "https://docs.carta.com/api-platform/docs/carta-fund-admin"
     },
@@ -3062,7 +3062,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Cassiiopeia/SUH-DEVOPS-TEMPLATE.git",
-        "sha": "6226a77ddb9a6f9a5a0ec6345be74be0783dff1e"
+        "sha": "58d89f67ba851b1dc074951a0e69f8484f9e2b4c"
       },
       "homepage": "https://github.com/Cassiiopeia/SUH-DEVOPS-TEMPLATE"
     },
@@ -3142,7 +3142,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/GarySonyak/cc-native.git",
-        "sha": "fa523eb0bd9f9d6358329c741c8d424a949b3a07"
+        "sha": "4f21ef25db9e9fef3d3b676c9a0c10250d381bfa"
       },
       "homepage": "https://claudecode.sonyak.investments/feature-guide/"
     },
@@ -3990,7 +3990,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/laurac8r/claude-damn.git",
-        "sha": "62606d15dd7b572fb66781a4c859fef06539ebdc"
+        "sha": "1011f19a17e3b2dc3e8786eac00fb65dae7b2e24"
       },
       "homepage": "https://github.com/laurac8r/claude-damn"
     },
@@ -4492,7 +4492,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/ramakay/claude-self-reflect.git",
-        "sha": "0bbc160935800540d02e55d71cca8f028f80bf4f"
+        "sha": "91fd9a3715d28d041235fe25769b8e033789b434"
       },
       "homepage": "https://ramakay.github.io/claude-self-reflect/"
     },
@@ -4852,7 +4852,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/houseofwolvesllc/claudescrumskill.git",
-        "sha": "c4df645b6bd406123647b77a7ce09771f30001dd"
+        "sha": "269291c074bd5e37b3d1a8effddfe4b75636828c"
       },
       "homepage": "https://github.com/houseofwolvesllc/claudescrumskill"
     },
@@ -4914,7 +4914,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/crisandrews/ClawCode.git",
-        "sha": "4cf557429701a297b3652e49c0d974505b85411a"
+        "sha": "5d43dac5899500c31ab14a1a1284e5dcd7517f08"
       },
       "homepage": "https://github.com/crisandrews/ClawCode"
     },
@@ -4988,7 +4988,7 @@
         "url": "https://github.com/DinoQuinten/cleancode-assistant.git",
         "path": "cleancode",
         "ref": "main",
-        "sha": "5b148404ea3ac0b2bbcf312a2a540c1a5295e216"
+        "sha": "b55183b2dc463b3812c1397a2eb4fa3e5eef3d66"
       },
       "homepage": "https://github.com/DinoQuinten/cleancode-assistant/blob/main/README.md"
     },
@@ -5554,7 +5554,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/CodSpeedHQ/codspeed.git",
-        "sha": "7ce2c9823f67522a81572814c6c8bebab0ca5687"
+        "sha": "3278ec8967a2247c1d2ac97f5d9ea066ff268956"
       },
       "homepage": "https://codspeed.io/docs"
     },
@@ -5854,7 +5854,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/netlify/context-and-tools.git",
-        "sha": "fce2a2fd13fa32a9d6a9b603634c2c26cd95f2e5"
+        "sha": "cde74280f877635d93272b818b7d14826be7a513"
       },
       "homepage": "https://github.com/netlify/context-and-tools"
     },
@@ -5904,7 +5904,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/mksglu/context-mode.git",
-        "sha": "475dc23800404c458f88ddc7d2641aa6963b5b4a"
+        "sha": "477d8457e0d6893404658521209ada2e07ced5a0"
       },
       "homepage": "https://context-mode.mksg.lu/"
     },
@@ -6213,7 +6213,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/crate/agent-skills.git",
-        "sha": "e270d2cb3d332bb9ba09f3a269eb317d3afa55eb"
+        "sha": "b60432cca58e2834bdb4fff86baa1cf6f7e35a57"
       },
       "homepage": "https://github.com/crate/agent-skills"
     },
@@ -6562,7 +6562,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/gemini-cli-extensions/data-agent-kit-starter-pack.git",
-        "sha": "e1922d8efb1770ed54d7a9758d3a5f7863b1f5a6"
+        "sha": "c1dc5990d698da3a9f82af390632d36b1880a2a7"
       },
       "homepage": "https://github.com/gemini-cli-extensions/data-agent-kit-starter-pack/blob/main/README.md"
     },
@@ -6710,7 +6710,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/daytona/skills.git",
-        "sha": "9783fb9d377188d3fe65afdd5a1994c8c4d2c600"
+        "sha": "d584d9c0aaa78a6d2d57541e237c2bf6056ba697"
       },
       "homepage": "https://github.com/daytona/skills"
     },
@@ -6840,7 +6840,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/mootable/decimal-scaled.git",
-        "sha": "41b1f971bf9bc49d76c4003e785d28c2c9db94f7"
+        "sha": "d99e50a291fc1a9e84b4b72466fc6a329cdee877"
       },
       "homepage": "https://github.com/mootable/decimal-scaled"
     },
@@ -7111,7 +7111,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/imsaif/design-with-claude.git",
-        "sha": "c357497506efcc4a65b95173e0dddc6becfddf71"
+        "sha": "1e0dbaa8609ed62269898482bf8bcecfd73f641d"
       },
       "homepage": "https://www.designwithclaude.com"
     },
@@ -7141,7 +7141,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/imsaif/design-with-claude.git",
-        "sha": "c357497506efcc4a65b95173e0dddc6becfddf71"
+        "sha": "1e0dbaa8609ed62269898482bf8bcecfd73f641d"
       },
       "homepage": "https://www.designwithclaude.com/"
     },
@@ -22753,6 +22753,17 @@
       "description": "Use Resolve for investigations, incidents, and production context.",
       "category": "development",
       "homepage": "https://github.com/resolve-ai-oss/resolve-ai-plugins"
+    },
+    {
+      "name": "catalyst-by-zoho",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/catalystbyzoho/claude-plugin",
+        "sha": "1283d7e4ac7326c5a53ddcf86ddb7ecb590cda04"
+      },
+      "description": "Official Claude Code plugin for Catalyst by Zoho — full-stack serverless cloud platform. With Skills that covers all services, SDKs, CLI, architecture patterns, pricing, migration guides, and Zoho MCP tool-based resource management.",
+      "category": "development",
+      "homepage": "https://github.com/catalystbyzoho/claude-plugin"
     }
   ]
 }
