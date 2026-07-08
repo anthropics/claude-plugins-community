@@ -22750,6 +22750,17 @@
       "description": "Use Resolve for investigations, incidents, and production context.",
       "category": "development",
       "homepage": "https://github.com/resolve-ai-oss/resolve-ai-plugins"
+    },
+    {
+      "name": "catalyst-by-zoho",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/catalystbyzoho/claude-plugin",
+        "sha": "1283d7e4ac7326c5a53ddcf86ddb7ecb590cda04"
+      },
+      "description": "Official Claude Code plugin for Catalyst by Zoho — full-stack serverless cloud platform. With Skills that covers all services, SDKs, CLI, architecture patterns, pricing, migration guides, and Zoho MCP tool-based resource management.",
+      "category": "development",
+      "homepage": "https://github.com/catalystbyzoho/claude-plugin"
     }
   ]
 }
