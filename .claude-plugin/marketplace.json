@@ -4922,8 +4922,10 @@
       "name": "clawkeeper",
       "description": "Frictionless security, compliance, and threat detection for Claude Code and Co-Work. Advanced Behavioral detection patterns catch credential exfiltration, reverse shells, prompt injection, and supply chain attacks before execution. \n\nIncludes slash commands for security auditing, secret scanning, and plugin inspection. Works instantly with no account — zero network calls in local  mode.",
       "source": {
-        "source": "url",
+        "source": "git-subdir",
         "url": "https://github.com/rad-security/claude-code-plugin.git",
+        "path": "plugins/clawkeeper-code",
+        "ref": "main",
         "sha": "3eec7b1b898c4c2a9cb567754d6508f21d8d75d9"
       },
       "homepage": "https://clawkeeper.dev/claude-code-security"
@@ -4982,8 +4984,10 @@
       "name": "clean-code-assistant",
       "description": "Enforces clean code principles across your project and fixes the code for you - not just flags\nwhat's wrong. Ships with 14 plain-language rules (formal textbook names in parentheses for experts),\n13 skills, a background reviewer agent that appends non-blocking suggestions after every edit, and\na plan-mode hook that reminds Claude to factor clean code into every plan. Every detection skill\nsupports both report-only mode and a fix mode that applies the changes directly. Multi-platform:\ngenerates matching configs for Cursor (.cursorrules) and Codex CLI (AGENTS.md) from one source of\ntruth. Based on Code Complete 2nd Ed., The Art of Clean Code, and OOP vs. Functional Programming.",
       "source": {
-        "source": "url",
+        "source": "git-subdir",
         "url": "https://github.com/DinoQuinten/cleancode-assistant.git",
+        "path": "cleancode",
+        "ref": "main",
         "sha": "5b148404ea3ac0b2bbcf312a2a540c1a5295e216"
       },
       "homepage": "https://github.com/DinoQuinten/cleancode-assistant/blob/main/README.md"
@@ -6000,8 +6004,10 @@
       "name": "coordinator-claude",
       "description": "Engineering management layer for Claude Code --- structures your session like a real dev team where you're PM and Claude is EM. Provides session workflows, multi-persona code review (staff engineer, UX, front-end, data science reviewers), structured planning, agent delegation, handoffs between sessions, and daily routines. You set direction; Claude makes engineering calls and runs them by you.",
       "source": {
-        "source": "url",
+        "source": "git-subdir",
         "url": "https://github.com/oduffy-delphi/coordinator-claude.git",
+        "path": "plugins/coordinator",
+        "ref": "main",
         "sha": "e9424db28722cd1bfba9fae2427a8d23b09b23c5"
       },
       "homepage": "https://github.com/oduffy-delphi/coordinator-claude/blob/main/README.md"
@@ -12743,8 +12749,10 @@
       "name": "membase",
       "description": "Membase connects Claude Code to Membase Cloud, giving Claude persistent memory and wiki workflows across coding sessions. It can recall relevant prior context before prompts, save durable project decisions and user preferences, and search stable wiki documents while you work.\n\nThe plugin includes slash commands, MCP tools, project-aware recall, optional summary capture, and privacy safeguards for avoiding secrets, raw source files, and private blocks.",
       "source": {
-        "source": "url",
+        "source": "git-subdir",
         "url": "https://github.com/aristoapp/claude-membase.git",
+        "path": "plugin",
+        "ref": "main",
         "sha": "e53548615b94ccf21218f27045aa13f3510285e1"
       },
       "homepage": "https://membase.so/"
@@ -13375,8 +13383,10 @@
       "name": "monte-carlo-agent-toolkit",
       "description": "Monte Carlo Agent Toolkit gives AI coding agents data observability superpowers across the full data lifecycle. Before querying a table, the agent checks freshness, alerts, and monitor coverage. When an alert fires, it triages, traces root cause, and proposes fixes. When code changes a dbt model, it surfaces blast radius before the edit lands. It plans monitor coverage on new domains, tunes noisy monitors, diagnoses slow pipelines, identifies storage waste, and generates validation queries for PRs.",
       "source": {
-        "source": "url",
+        "source": "git-subdir",
         "url": "https://github.com/monte-carlo-data/mc-agent-toolkit.git",
+        "path": "plugins/claude-code",
+        "ref": "main",
         "sha": "dfdcdc190eaa4b3484fb27d610b4777d9a2878be"
       },
       "homepage": "https://docs.getmontecarlo.com/docs/agent-toolkit"
@@ -13405,8 +13415,10 @@
       "name": "motus",
       "description": "The plugin is an interface to the Motus agent serving platform. Motus enables developers to seamlessly deploy their agents to the cloud. The plugin includes information for both deployment and development of agents.",
       "source": {
-        "source": "url",
+        "source": "git-subdir",
         "url": "https://github.com/lithos-ai/motus.git",
+        "path": "plugins/motus",
+        "ref": "main",
         "sha": "5c38502ad685c1a0ff8fd7936fd5f839b84243f1"
       },
       "homepage": "https://www.lithosai.com"
@@ -21212,8 +21224,10 @@
       "name": "vardoger",
       "description": "vardoger personalizes Claude Code by analyzing your own conversation history and turning recurring patterns into tailored rules.\n\nHow it works: the plugin's `analyze` skill calls the `vardoger` CLI, which reads your local `~/.claude/projects/` session files in batches. Claude summarizes each batch for behavioral signals (tools you prefer, libraries you use, coding conventions you follow, mistakes you don't want repeated), then synthesizes the summaries into a single personalization that lands in your rules file. Re-running refreshes the personalization as your history grows.\n\nEverything runs on your machine — conversations never leave your disk, there is no server or account, and the output is plain Markdown you can edit or delete. The same CLI also supports Cursor, Codex, and OpenClaw, so the personalization stays consistent across assistants if you use more than one.",
       "source": {
-        "source": "url",
+        "source": "git-subdir",
         "url": "https://github.com/dstrupl/vardoger.git",
+        "path": "plugins/claude-code",
+        "ref": "main",
         "sha": "4831c7a419cf254cbd78690d8f0c52ed6f3def89"
       },
       "homepage": "https://github.com/dstrupl/vardoger/tree/main/plugins/claude-code"
@@ -22633,7 +22647,8 @@
       "source": {
         "source": "url",
         "url": "https://github.com/zilliztech/zilliz-plugin.git",
-        "sha": "bc59907dafea901b5d4120877d16d1e5e662241d"
+        "path": "plugins/zilliz",
+        "sha": "768d3db5fdb69b74116ada2b371032a49bfb3fe1"
       },
       "homepage": "https://github.com/zilliztech/zilliz-plugin"
     },
@@ -22725,6 +22740,19 @@
           "url": "https://ai.tres.finance/mcp"
         }
       }
+    },
+    {
+      "name": "resolve-ai",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/resolve-ai-oss/resolve-ai-plugins",
+        "path": "plugins/claude/resolve-ai",
+        "ref": "d6627cc32863f8f5f79bab4de1fb886f458b0236",
+        "sha": "d6627cc32863f8f5f79bab4de1fb886f458b0236"
+      },
+      "description": "Use Resolve for investigations, incidents, and production context.",
+      "category": "development",
+      "homepage": "https://github.com/resolve-ai-oss/resolve-ai-plugins"
     }
   ]
 }
