@@ -17969,8 +17969,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/lucianostraga/sfagent-tools.git",
-        "path": "packages/claude-code-plugin",
-        "sha": "9fb6aea88f32fbcf024062ca55e0391cd87df4e0"
+        "sha": "097f5f88f3d40436eb531ea607c3782308402356"
       },
       "homepage": "https://github.com/lucianostraga/sfagent-tools"
     },

@@ -51,6 +51,7 @@ opendeploy
 orchestra
 outlook
 releases
+sfagent-tools
 spec-to-code
 strands-sdk
 swift-focusengine-pro
