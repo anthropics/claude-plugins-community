@@ -22750,6 +22750,64 @@
       "description": "Use Resolve for investigations, incidents, and production context.",
       "category": "development",
       "homepage": "https://github.com/resolve-ai-oss/resolve-ai-plugins"
+    },
+    {
+      "name": "agentkit-seo",
+      "source": "./agentkit-seo",
+      "strict": false,
+      "description": "Portable agent skills for LinkedIn, GitHub, CV/ATS, portfolio SEO, X, and agent context optimization.",
+      "category": "development",
+      "homepage": "https://github.com/agentkit-seo/agentkit-seo.git"
+    },
+    {
+      "name": "waldo-fyi",
+      "source": "./waldo-fyi",
+      "strict": false,
+      "description": "Waldo strategy agent skills for ad intelligence, social listening, web research, data analysis, and archival knowledge — powered by the Waldo MCP connector",
+      "category": "development",
+      "homepage": "https://github.com/waldo-fyi/waldo-claude-plugin.git",
+      "mcpServers": {
+        "waldo": {
+          "type": "http",
+          "url": "https://mcp.waldo.fyi/strategy"
+        }
+      }
+    },
+    {
+      "name": "foundation",
+      "source": "./foundation",
+      "strict": false,
+      "description": "Connect sources and search processed documents with Unstructured Foundation. Provides MCP access to source setup, processing status, document search, and document retrieval.",
+      "category": "productivity",
+      "homepage": "https://github.com/Unstructured-IO/unstructured-foundation-marketplace",
+      "mcpServers": {
+        "foundation": {
+          "type": "http",
+          "url": "https://mcp.foundation.unstructured.io/mcp"
+        }
+      }
+    },
+    {
+      "name": "auth0",
+      "source": "./auth0",
+      "strict": false,
+      "description": "Auth0 skills for quickstarts, migration, major version upgrades, MFA, branding, custom domains, Advanced Custom Universal Login (ACUL) screen generation, and framework-specific SDK integrations for React, Next.js, Vue, Nuxt, Angular, Express, Fastify, FastAPI, Flask, Go, Spring Boot, Java MVC, Swift, Android, Flutter, Flutter Web, ASP.NET Core, React Native, Expo, Ionic React (Capacitor), Ionic Angular (Capacitor), and Ionic Vue (Capacitor).",
+      "category": "security",
+      "homepage": "https://github.com/auth0/agent-skills"
+    },
+    {
+      "name": "reco",
+      "source": "./reco",
+      "strict": false,
+      "description": "Reco SaaS & AI security — query app risks, shadow IT, AI agents, user posture, and access events directly from Claude Code",
+      "category": "development",
+      "homepage": "https://github.com/RecoLabs/reco-mcp-plugins",
+      "mcpServers": {
+        "reco": {
+          "type": "http",
+          "url": "https://${RECO_MCP_DOMAIN:-not-setup}/mcp"
+        }
+      }
     }
   ]
 }
