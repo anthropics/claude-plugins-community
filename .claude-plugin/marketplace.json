@@ -2337,7 +2337,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/llamadrive/bengo-toolkit.git",
-        "sha": "10342bf73e968bd6d263ebbbd9c152975c1ea087"
+        "sha": "f6564bc6af49ac335561b5015d5cf9fe7f2c99f9"
       },
       "homepage": "https://llama-drive.com/bengo-toolkit"
     },
