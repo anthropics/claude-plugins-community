@@ -5624,7 +5624,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/comment-io/claude-code-plugin.git",
-        "sha": "7fd08f9afd852e39e8194381b9c5d9975b36550c"
+        "sha": "8dd9fb91d4fc12ad63e6a505858a93b7774db316"
       },
       "homepage": "https://comment.io"
     },
