@@ -4460,7 +4460,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Innestic/claude-relay.git",
-        "sha": "5875ca2727c1ffa3011e1c097937a455aa554176"
+        "sha": "dfb12b6c58f04d8037100ea0d698f91c48b8f5d5"
       },
       "homepage": "https://github.com/Innestic/claude-relay/blob/main/README.md"
     },
