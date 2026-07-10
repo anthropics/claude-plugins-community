@@ -4,7 +4,8 @@
     "name": "Anthropic"
   },
   "renames": {
-    "qodo-skills": "qodo"
+    "qodo-skills": "qodo",
+    "wordpress-com": "build-with-wordpress"
   },
   "plugins": [
     {
@@ -22278,8 +22279,8 @@
       "homepage": "https://www.wonda.sh/"
     },
     {
-      "name": "wordpress-com",
-      "description": "Building WordPress themes and sites from scratch can be complex - theme.json, block markup, template parts, design systems, responsive layouts. This plugin handles it for you. You describe your site (e.g., “A landing page for my pottery studio called Clay & Fire”), pick from 3 generated design directions, and get a fully deployed theme on a local WordPress Studio site.",
+      "name": "build-with-wordpress",
+      "description": "Craft production-grade WordPress sites and applications. Everything from themes and plugins to commerce and deployment.",
       "source": {
         "source": "url",
         "url": "https://github.com/Automattic/claude-code-wordpress.com.git",
