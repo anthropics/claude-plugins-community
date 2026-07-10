@@ -951,7 +951,7 @@
         "url": "charlesjones-dev/claude-code-plugins-dev",
         "path": "plugins/ai-statusline",
         "ref": "main",
-        "sha": "46c774dc15c52b67f7d2cdd1b673e28a7a570a17"
+        "sha": "801255a48c204e24149e97f2b4ba49dafa37deff"
       },
       "homepage": "https://github.com/charlesjones-dev/claude-code-plugins-dev"
     },
