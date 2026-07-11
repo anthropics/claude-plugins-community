@@ -2995,7 +2995,7 @@
         "url": "carta/plugins",
         "path": "plugins/carta-cap-table",
         "ref": "main",
-        "sha": "b89e4029f3ee1bc885d05c483a79bf6fd0de74d9"
+        "sha": "a8b2c4bb64765d6fff78019679eda0641de5cdf8"
       },
       "homepage": "https://docs.carta.com/api-platform/docs/carta-cap-table"
     },
