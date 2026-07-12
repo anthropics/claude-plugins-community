@@ -8102,7 +8102,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/ergo-services/claude.git",
-        "sha": "e63604611b400acf65ff10379a939915f69f730f"
+        "sha": "d3118f850d82285a16b23fcda0ac27a361fa04a5"
       },
       "homepage": "https://docs.ergo.services"
     },
