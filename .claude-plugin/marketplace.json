@@ -8501,7 +8501,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/firetiger-oss/claude-plugin.git",
-        "sha": "51421ce20adc7c30eb014e6847c7087ed34cb879"
+        "sha": "4a9e6dfd1d9a8a7c8e3595a916f19b5469df4173"
       },
       "homepage": "https://www.firetiger.com/"
     },
