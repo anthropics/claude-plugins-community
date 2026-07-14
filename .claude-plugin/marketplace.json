@@ -23455,6 +23455,17 @@
         "sha": "7f9d853e65c917692142c5813b7442787544ca95"
       },
       "homepage": "https://www.zyte.com"
+    },
+    {
+      "name": "mattpocock-skills",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/mattpocock/skills",
+        "sha": "e9fcdf95b402d360f90f1db8d776d5dd450f9234"
+      },
+      "description": "Matt Pocock's agent skills for real engineering — grilling, spec/ticket flows, TDD, code review, domain modelling and more. Plug-and-play, not vibe coding.",
+      "category": "development",
+      "homepage": "https://github.com/mattpocock/skills"
     }
   ]
 }
