@@ -4651,7 +4651,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/jeongph/claude-telemetry.git",
-        "sha": "af80d115c8b6966c92b6497d99c0d44b53f13ea6"
+        "sha": "0cf65957addc7cfa02ce2598f0a796b3058bc3ea"
       },
       "homepage": "https://github.com/jeongph/claude-telemetry"
     },
