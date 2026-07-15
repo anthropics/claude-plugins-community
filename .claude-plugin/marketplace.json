@@ -2724,7 +2724,7 @@
         "url": "https://github.com/browser-act/claude-code-browser-act.git",
         "path": "plugins/browser-act",
         "ref": "main",
-        "sha": "30420511ef9b58fa26fb75c93dc459f548cb217c"
+        "sha": "0c4d6d5cae9bd7a6c48d2db06ef326562baafe20"
       },
       "homepage": "https://www.browseract.com/"
     },
