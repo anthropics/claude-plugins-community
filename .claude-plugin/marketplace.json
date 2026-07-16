@@ -1218,7 +1218,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/altertable-ai/skills.git",
-        "sha": "d5431a879156f8314128b8e69d90b34ae7134bc7"
+        "sha": "35283b4e78a880f837f86d3f234f4ea91c8779d0"
       },
       "homepage": "https://altertable.ai/docs/agentic/claude-plugin"
     },
