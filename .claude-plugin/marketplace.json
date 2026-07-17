@@ -5578,12 +5578,26 @@
       "homepage": "https://github.com/herrhelms/cognito-plugin"
     },
     {
-      "name": "coinpaprika-dexpaprika",
-      "description": "Bundles MCP servers, agents, and skills for working with crypto market data and DEX analytics in Claude Code. Includes a CoinPaprika MCP server (12,000 coins, 350 exchanges, OHLCV, historical prices), a DexPaprika MCP server (34 chains, pool data, real-time SSE streaming), two specialized agents (crypto-analyst, defi-data-analyst), and five skills covering API access, market search, and DEX security analysis.",
+      "name": "coinpaprika",
+      "description": "Access cryptocurrency market data from CoinPaprika: real-time prices, OHLCV, exchanges, contract lookups for 12,000+ cryptocurrencies and 350+ exchanges. Free tier, no API key needed.",
       "source": {
-        "source": "url",
+        "source": "git-subdir",
         "url": "https://github.com/coinpaprika/claude-marketplace.git",
-        "sha": "1e577a3ecfff7213cac9773310e78d8c14a781c7"
+        "path": "plugins/coinpaprika-claude-plugin",
+        "ref": "main",
+        "sha": "85db5a39aa56c46722df4869798547e074869d20"
+      },
+      "homepage": "https://coinpaprika.com"
+    },
+    {
+      "name": "dexpaprika",
+      "description": "Access comprehensive DeFi data from DexPaprika: DEXes, liquidity pools, tokens, and trading across 36 blockchains. Free, no API key needed.",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/coinpaprika/claude-marketplace.git",
+        "path": "plugins/dexpaprika-claude-plugin",
+        "ref": "main",
+        "sha": "85db5a39aa56c46722df4869798547e074869d20"
       },
       "homepage": "https://coinpaprika.com"
     },
