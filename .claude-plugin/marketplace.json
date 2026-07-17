@@ -4801,7 +4801,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/drewalth/claude-xcindex.git",
-        "sha": "abbf3d42dac97e335d66462310f8aa5313334447"
+        "sha": "0680fb9a7bcb07a763b66d22cbb8f236785bfcb3"
       },
       "homepage": "https://drewalth.github.io/claude-xcindex/"
     },
