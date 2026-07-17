@@ -4129,7 +4129,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Chachamaru127/claude-code-harness.git",
-        "sha": "2a919f474a296cb28efba4db6cfc6cee450da89d"
+        "sha": "edb36de792c3716bcc6ea8c398d08a389515abc4"
       },
       "homepage": "https://github.com/Chachamaru127/claude-code-harness"
     },
