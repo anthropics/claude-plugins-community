@@ -5211,7 +5211,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/cm64-studio/cm64-cli.git",
-        "sha": "bae2820f4458227e514b3fdfc54ee0d7af5e5583"
+        "sha": "06b5e38ef2e73c95965206e45c2ab80ae50dc792"
       },
       "homepage": "https://cm64.io"
     },
