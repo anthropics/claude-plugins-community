@@ -1557,7 +1557,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/aporthq/aport-agent-guardrails.git",
-        "sha": "32f6cbbadb5c9ba89d3c877a573e0f96f9d5a132"
+        "sha": "282f7c4db51de34bebc61d928cbe81d795750037"
       },
       "homepage": "https://aport.io/frameworks/claude-code/"
     },
