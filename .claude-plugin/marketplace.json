@@ -23467,6 +23467,17 @@
       "description": "Matt Pocock's agent skills for real engineering — grilling, spec/ticket flows, TDD, code review, domain modelling and more. Plug-and-play, not vibe coding.",
       "category": "development",
       "homepage": "https://github.com/mattpocock/skills"
+    },
+    {
+      "name": "loop-and-gate-build-kit",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/slogsdon/loop-and-gate-build-kit",
+        "sha": "eca820328bc80a42d5df815615854155d4b92dfb"
+      },
+      "description": "A judgment layer for building software with an agentic loop — eleven human-decision gates plus the loop-and-gate operating skill.",
+      "category": "development",
+      "homepage": "https://github.com/slogsdon/loop-and-gate-build-kit"
     }
   ]
 }
