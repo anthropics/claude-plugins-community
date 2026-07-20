@@ -23467,6 +23467,17 @@
       "description": "Matt Pocock's agent skills for real engineering — grilling, spec/ticket flows, TDD, code review, domain modelling and more. Plug-and-play, not vibe coding.",
       "category": "development",
       "homepage": "https://github.com/mattpocock/skills"
+    },
+    {
+      "name": "newrelic",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/newrelic/claude-code-plugin",
+        "sha": "f8e5f8b62139072a22153ec92de1c0cc1af2f56a"
+      },
+      "description": "New Relic observability intelligence for Claude Code. Investigate APM performance, analyze cloud costs, debug Kubernetes, write NRQL queries, and respond to alerts — all from your terminal using New Relic telemetry data.",
+      "category": "development",
+      "homepage": "https://github.com/newrelic/claude-code-plugin"
     }
   ]
 }
