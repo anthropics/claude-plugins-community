@@ -23467,6 +23467,19 @@
       "description": "Matt Pocock's agent skills for real engineering — grilling, spec/ticket flows, TDD, code review, domain modelling and more. Plug-and-play, not vibe coding.",
       "category": "development",
       "homepage": "https://github.com/mattpocock/skills"
+    },
+    {
+      "name": "windmill-hr",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/windmill-dev/windmill-plugin",
+        "path": "plugins/windmill",
+        "ref": "main",
+        "sha": "7b2b010a54cf0bb48b84726fdf3fd0ba350a29d6"
+      },
+      "description": "Connect Claude Code to Windmill for performance reviews, feedback, 1:1s, pulse surveys, and more.",
+      "category": "development",
+      "homepage": "https://github.com/windmill-dev/windmill-plugin"
     }
   ]
 }
