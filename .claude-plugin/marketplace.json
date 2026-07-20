@@ -9655,7 +9655,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Prog-Jacob/habit.git",
-        "sha": "c0ba93d49c52bd7f63732712a13628c83ade4d3e"
+        "sha": "0e7732c53804a76f61f8af79b7bf0474f99f4b22"
       },
       "homepage": "https://github.com/Prog-Jacob/habit"
     },
@@ -9859,7 +9859,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/arslan70/haytham.git",
-        "sha": "aff13d9900246b101a5ea13217e4e138ad89d883"
+        "sha": "437ac96e5c35503e7566eff8e5c87c8ba26bf5f8"
       },
       "homepage": "https://github.com/arslan70/haytham"
     },
@@ -9889,7 +9889,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/aks129/HealthClawGuardrails.git",
-        "sha": "03e6949b163e326acbc0e7dc2ea5cc4c49429ee9"
+        "sha": "5b0c3756657b1e2e10a3dd674d6c2140693f653f"
       },
       "homepage": "https://healthclaw.io"
     },
@@ -9981,7 +9981,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/activeloopai/hivemind.git",
-        "sha": "ed0c75037a7d471345ee0d8695a5adc038c42485"
+        "sha": "2611cd6c028fe1df7fcd22d2ee1f9e26b0d3d4ae"
       },
       "homepage": "https://deeplake.ai/hivemind"
     },
@@ -10015,7 +10015,7 @@
         "url": "https://github.com/holistics/skills.git",
         "path": "plugins/holistics-development",
         "ref": "main",
-        "sha": "8bd196f5921ac7908bfbc10e643249afda5f2fa3"
+        "sha": "cbd93cfd5ccdb88deb6edc0f8ec92e8c67bc07fd"
       },
       "homepage": "https://github.com/holistics/skills"
     },
@@ -10070,7 +10070,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/honeydew-ai/honeydew-ai-coding-agents-plugins.git",
-        "sha": "6c84b4c17fc009c556371c031fb817559a0524c4"
+        "sha": "6a4338dcfdd26ecfb24baf65393d32d66ddb31c9"
       },
       "homepage": "https://github.com/honeydew-ai/honeydew-ai-coding-agents-plugins"
     },
