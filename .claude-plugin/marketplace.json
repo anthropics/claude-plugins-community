@@ -23467,6 +23467,17 @@
       "description": "Matt Pocock's agent skills for real engineering — grilling, spec/ticket flows, TDD, code review, domain modelling and more. Plug-and-play, not vibe coding.",
       "category": "development",
       "homepage": "https://github.com/mattpocock/skills"
+    },
+    {
+      "name": "review-all",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/ncoevoet/claude-review-all",
+        "sha": "08f90ba3baf36a5d758de01ecff3dde2d1f801f7"
+      },
+      "description": "Comprehensive, project-agnostic, multi-agent code review for Claude Code with verification to eliminate false positives.",
+      "category": "development",
+      "homepage": "https://github.com/ncoevoet/claude-review-all"
     }
   ]
 }
