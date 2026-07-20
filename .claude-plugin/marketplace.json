@@ -23467,6 +23467,19 @@
       "description": "Matt Pocock's agent skills for real engineering — grilling, spec/ticket flows, TDD, code review, domain modelling and more. Plug-and-play, not vibe coding.",
       "category": "development",
       "homepage": "https://github.com/mattpocock/skills"
+    },
+    {
+      "name": "aws-architecture-diagram",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/vidanov/aws-architecture-diagram-skill",
+        "path": "plugins/aws-architecture-diagram",
+        "ref": "99f375a937f36b7681d2f433de24d73048dcd674",
+        "sha": "99f375a937f36b7681d2f433de24d73048dcd674"
+      },
+      "description": "Generate AWS architecture diagrams as draw.io XML with 270+ verified icons, left-to-right layout, and reference templates",
+      "category": "development",
+      "homepage": "https://github.com/vidanov/aws-architecture-diagram-skill"
     }
   ]
 }
