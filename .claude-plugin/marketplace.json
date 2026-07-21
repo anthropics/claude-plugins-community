@@ -23467,6 +23467,17 @@
       "description": "Matt Pocock's agent skills for real engineering — grilling, spec/ticket flows, TDD, code review, domain modelling and more. Plug-and-play, not vibe coding.",
       "category": "development",
       "homepage": "https://github.com/mattpocock/skills"
+    },
+    {
+      "name": "descope-skills",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/descope/skills",
+        "sha": "7c67cef05e070dcd6c346ad5dadc3a6c9c6611e1"
+      },
+      "description": "Descope authentication skills: integration, Auth0/Okta/WorkOS/Stytch migration, Terraform, FGA authorization schemas, security review, and BYOS custom UI",
+      "category": "development",
+      "homepage": "https://github.com/descope/skills"
     }
   ]
 }
