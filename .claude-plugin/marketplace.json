@@ -1638,7 +1638,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/AlpacaLabsLLC/skills-for-architects.git",
-        "sha": "ad7d4bec38bed866300254290605e0372a8df98c"
+        "sha": "29cd7ea74fbb6555e70ec1b25cea1fe7556cc640"
       },
       "homepage": "https://www.alpa.llc/plugins"
     },
@@ -1822,7 +1822,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/astronomer/agents.git",
-        "sha": "5432198caa8ef9ec33218124bcd44016db2d31bf"
+        "sha": "87d780cd5dc85a25c7ceb1f1720031fa4e48f781"
       },
       "homepage": "https://github.com/astronomer/agents"
     },
@@ -1833,7 +1833,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/astronomer/agents.git",
-        "sha": "5432198caa8ef9ec33218124bcd44016db2d31bf"
+        "sha": "87d780cd5dc85a25c7ceb1f1720031fa4e48f781"
       },
       "homepage": "https://github.com/astronomer/agents"
     },
@@ -2692,7 +2692,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/brilliantdirectories/brilliant-directories-mcp.git",
-        "sha": "ae14950bec8a143d99f2c30ba4fcaa10cc5068df"
+        "sha": "f873afbc3dbe3557155b53a545821f8d0055d2dc"
       },
       "homepage": "https://www.brilliantdirectories.com"
     },
@@ -2808,7 +2808,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/buildkite/skills.git",
-        "sha": "369d93ebb0d6f9112615b7b8693f98f6fc241e5e"
+        "sha": "e854e111766e9494d742fe6836d5b6ecefd10b68"
       },
       "homepage": "https://buildkite.com/docs"
     },
@@ -2995,7 +2995,7 @@
         "url": "carta/plugins",
         "path": "plugins/carta-cap-table",
         "ref": "main",
-        "sha": "4f46ba0181f4d07b45b7fd8e51208c9699afd566"
+        "sha": "f2c2cbb11ed4dfabf88c59d61827b4b1aefb0611"
       },
       "homepage": "https://docs.carta.com/api-platform/docs/carta-cap-table"
     },
@@ -3007,7 +3007,7 @@
         "url": "carta/plugins",
         "path": "plugins/carta-investors",
         "ref": "main",
-        "sha": "70c61a2abbc976280e102edbc696cdb84da6a7f1"
+        "sha": "f2c2cbb11ed4dfabf88c59d61827b4b1aefb0611"
       },
       "homepage": "https://docs.carta.com/api-platform/docs/carta-fund-admin"
     },
@@ -3061,7 +3061,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Cassiiopeia/SUH-DEVOPS-TEMPLATE.git",
-        "sha": "0680a3a096c42a41fe54ea218673bd494336c92a"
+        "sha": "fcab473555f32644d66e01bf8002c0c69cfd3a9a"
       },
       "homepage": "https://github.com/Cassiiopeia/SUH-DEVOPS-TEMPLATE"
     },
@@ -3141,7 +3141,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/GarySonyak/cc-native.git",
-        "sha": "b89b3dfd3ae47fc500193f7cafdb8c502a220134"
+        "sha": "c9151748d5ad446fd5fb272d0a145fc0a4caa752"
       },
       "homepage": "https://claudecode.sonyak.investments/feature-guide/"
     },
@@ -3775,7 +3775,7 @@
         "url": "This-HW/claude-code-kit",
         "path": "plugins/common",
         "ref": "main",
-        "sha": "0f5f79a39da6da67f86652156069a97b2a9e0e4d"
+        "sha": "3632cc4039a344eda27d35c2e52d7f86edc8d88c"
       },
       "homepage": "https://github.com/This-HW/claude-code-kit"
     },
@@ -4129,7 +4129,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Chachamaru127/claude-code-harness.git",
-        "sha": "d52e09729353c0a55fe4c6ebf9238e64d4b04b87"
+        "sha": "1a3af98dd2563ea459d5d9f145b334173f1e600e"
       },
       "homepage": "https://github.com/Chachamaru127/claude-code-harness"
     },
@@ -4139,7 +4139,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/jarrodwatts/claude-hud.git",
-        "sha": "2bbfaedb32ac2619c172b0d825bbf172369a1147"
+        "sha": "e39bafc6d778d61f41592eced53f8aa58bf5239c"
       },
       "homepage": "https://github.com/jarrodwatts/claude-hud/"
     },
@@ -4219,7 +4219,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/tabers77/claude_experiments.git",
-        "sha": "09f74f9771f029dc877e1ab8d52033553a8cb250"
+        "sha": "48e05590e7f9e2b442d0b4895c59a4879c6db61f"
       },
       "homepage": "https://github.com/tabers77/claude_experiments"
     },
@@ -4491,7 +4491,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/ramakay/claude-self-reflect.git",
-        "sha": "632b25e3947adf04bdddd893e7461bb4cc79baa9"
+        "sha": "c375984a8587318b44362e96f1b3035556795c24"
       },
       "homepage": "https://ramakay.github.io/claude-self-reflect/"
     },
@@ -4501,7 +4501,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/AgriciDaniel/claude-seo.git",
-        "sha": "6cf1ea9fe4c2088b2ad3089797f846850fd66164"
+        "sha": "09d37c7b66ed3ca9c6efbdb765a805a6c76a8f01"
       },
       "homepage": "https://claude-seo.md"
     },
@@ -4851,7 +4851,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/houseofwolvesllc/claudescrumskill.git",
-        "sha": "269291c074bd5e37b3d1a8effddfe4b75636828c"
+        "sha": "fb67d4292fcf90f4179fcde4ab159fbefde1e21b"
       },
       "homepage": "https://github.com/houseofwolvesllc/claudescrumskill"
     },
@@ -4913,7 +4913,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/crisandrews/ClawCode.git",
-        "sha": "2673b73f30dd98cfb67980b1f8b76832814f0f3d"
+        "sha": "150619e2c73066901187754c9170d991ccd6e83a"
       },
       "homepage": "https://github.com/crisandrews/ClawCode"
     },
@@ -5201,7 +5201,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/clover-security/clover-claude-plugin.git",
-        "sha": "d7fa868e421314fb32ecfd2c7a5b67e6b8e2991d"
+        "sha": "b19904c5aea64621513a36d8edd36827f0fa6c42"
       },
       "homepage": "https://github.com/clover-security/clover-claude-plugin"
     },
@@ -5253,7 +5253,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/gwittebolle/claude-carbon.git",
-        "sha": "199bffc8901f2a71103a93ccb84fc33edc3a8a26"
+        "sha": "490659f03ca71099a6647487ce6ac4bb0d526979"
       },
       "homepage": "https://github.com/gwittebolle/claude-carbon"
     },
@@ -5461,7 +5461,7 @@
         "url": "https://github.com/codescene-oss/codescene-mcp-server.git",
         "path": "claude-code-plugin",
         "ref": "main",
-        "sha": "c5cb122ef5104a7eadaa93dceb63b2e55d710e7c"
+        "sha": "5f96ea25d7fd133d0725e22026a998c8aa8fa7af"
       },
       "homepage": "https://github.com/codescene-oss/codescene-mcp-server"
     },
@@ -5543,7 +5543,7 @@
         "url": "https://github.com/ferax564/codixing.git",
         "path": "claude-plugin",
         "ref": "main",
-        "sha": "9930c2170e19c1d7a57a1fef7d382a3d59eeacb0"
+        "sha": "e3a560380a562d7a90ecee52f4ca62fc354b658f"
       },
       "homepage": "https://codixing.com/"
     },
@@ -5553,7 +5553,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/CodSpeedHQ/codspeed.git",
-        "sha": "5c27231b94437287b71ab505faba533d06e0cb24"
+        "sha": "26fb4b598f08faee386a8fa4212b8350c33dc013"
       },
       "homepage": "https://codspeed.io/docs"
     },
@@ -5903,7 +5903,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/mksglu/context-mode.git",
-        "sha": "1618d9764921c66f3c9cdab8a45d2d8f7f0b0648"
+        "sha": "2f368c58485dd74deeec3b4b3299b1da0452b965"
       },
       "homepage": "https://context-mode.mksg.lu/"
     },
@@ -6182,7 +6182,7 @@
         "url": "https://github.com/controlplane-com/ai-plugin.git",
         "path": "plugins/cpln",
         "ref": "main",
-        "sha": "0f8d01a762a07aa7c9f046b25f2a890462c85b35"
+        "sha": "5f59c564a7de6b9d75776d1d0a69d59a32becff7"
       },
       "homepage": "https://docs.controlplane.com/mcp/ai-plugin"
     },
