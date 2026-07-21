@@ -682,7 +682,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Clear-Capabilities/agentic-security.git",
-        "sha": "2f076cca2c1080aa06a56023c9732ed1f285fc8e"
+        "sha": "4ba51912c2783c7606124c27ea24baa2ad679289"
       },
       "homepage": "https://www.clearcapabilities.com/products/agentic-security"
     },
@@ -726,7 +726,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Agentiqa/agentiqa-plugin.git",
-        "sha": "927127ecd153d060d84354f2e0f97fa82da334a0"
+        "sha": "660f82e6d59446bf3daba626c73918330e743d63"
       },
       "homepage": "https://agentiqa.com/en"
     },
@@ -736,7 +736,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Agentiqa/agentiqa-plugin.git",
-        "sha": "927127ecd153d060d84354f2e0f97fa82da334a0"
+        "sha": "660f82e6d59446bf3daba626c73918330e743d63"
       },
       "homepage": "https://github.com/Agentiqa/agentiqa-plugin"
     },
@@ -1969,7 +1969,7 @@
         "url": "https://github.com/nguyenthienthanh/aura-frog.git",
         "path": "aura-frog",
         "ref": "main",
-        "sha": "75dc85568b3ef39ebb06a211037dd117cee4fa09"
+        "sha": "94b5588c98af4b6054aa33c6fc0ca99d3df2b38c"
       },
       "homepage": "https://ethannguyenlabs.xyz/aura-frog/"
     },
@@ -2288,7 +2288,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/base44/skills.git",
-        "sha": "58a183b6e912fe8ae2827c603d485a37b7d00e1b"
+        "sha": "40e548021670ed409d3bae15601726cf652d846f"
       },
       "homepage": "https://github.com/base44/skills"
     },
@@ -2694,7 +2694,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/brilliantdirectories/brilliant-directories-mcp.git",
-        "sha": "82dfc955a6674a4b0de5f7a6f58ed8f28c275ce3"
+        "sha": "ae14950bec8a143d99f2c30ba4fcaa10cc5068df"
       },
       "homepage": "https://www.brilliantdirectories.com"
     },
@@ -2810,7 +2810,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/buildkite/skills.git",
-        "sha": "48619b1b5187209d74b333a215d63a2c7088f614"
+        "sha": "369d93ebb0d6f9112615b7b8693f98f6fc241e5e"
       },
       "homepage": "https://buildkite.com/docs"
     },
@@ -3063,7 +3063,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Cassiiopeia/SUH-DEVOPS-TEMPLATE.git",
-        "sha": "94aa3224bfac64356a4abe7f4a42adcf7452cc3b"
+        "sha": "0680a3a096c42a41fe54ea218673bd494336c92a"
       },
       "homepage": "https://github.com/Cassiiopeia/SUH-DEVOPS-TEMPLATE"
     },
@@ -3143,7 +3143,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/GarySonyak/cc-native.git",
-        "sha": "6c7e5e9a665b7bef65e2716f78c0b73958fda2d2"
+        "sha": "b89b3dfd3ae47fc500193f7cafdb8c502a220134"
       },
       "homepage": "https://claudecode.sonyak.investments/feature-guide/"
     },
@@ -3163,7 +3163,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/xiaolai/cc-suite.git",
-        "sha": "3c8c9581c8652cab75d5aa09783c2c9b95bd4f79"
+        "sha": "015bf0897339c31e7a1d319f1f9ebbe9b96a4660"
       },
       "homepage": "https://github.com/xiaolai/cc-suite"
     },
@@ -3205,7 +3205,7 @@
         "url": "https://github.com/romiluz13/cc10x.git",
         "path": "plugins/cc10x",
         "ref": "main",
-        "sha": "f945e92d2d84b62a9bac3f0ec4f1d44dda923756"
+        "sha": "f357380833cdc690aced71936993f29f8d09e9cb"
       },
       "homepage": "https://cc10x.cc/"
     },
@@ -3991,7 +3991,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/laurac8r/claude-damn.git",
-        "sha": "1011f19a17e3b2dc3e8786eac00fb65dae7b2e24"
+        "sha": "04bb02e604f3601e724e1e7c8dec7329da31a098"
       },
       "homepage": "https://github.com/laurac8r/claude-damn"
     },
@@ -4131,7 +4131,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Chachamaru127/claude-code-harness.git",
-        "sha": "571d1ee1ba3ef6411906855004e3b411dede58b5"
+        "sha": "d52e09729353c0a55fe4c6ebf9238e64d4b04b87"
       },
       "homepage": "https://github.com/Chachamaru127/claude-code-harness"
     },
@@ -4141,7 +4141,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/jarrodwatts/claude-hud.git",
-        "sha": "10979d16dce075b112b7564bead95c5f236d8a87"
+        "sha": "2bbfaedb32ac2619c172b0d825bbf172369a1147"
       },
       "homepage": "https://github.com/jarrodwatts/claude-hud/"
     },
@@ -5071,7 +5071,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/ClickHouse/clickhouse-claude-code-plugin.git",
-        "sha": "0b64ebd82240c14639c55c6f800bcad4626e3224"
+        "sha": "4c60200bf523342b68d5935b53f4dd0acb53e6b8"
       },
       "homepage": "https://github.com/ClickHouse/clickhouse-claude-code-plugin"
     },
@@ -5255,7 +5255,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/gwittebolle/claude-carbon.git",
-        "sha": "bc730699ff555449d08afae8c58c2460a1c903e2"
+        "sha": "199bffc8901f2a71103a93ccb84fc33edc3a8a26"
       },
       "homepage": "https://github.com/gwittebolle/claude-carbon"
     },
@@ -5545,7 +5545,7 @@
         "url": "https://github.com/ferax564/codixing.git",
         "path": "claude-plugin",
         "ref": "main",
-        "sha": "53236047802894dbd69d80bc7309848494988cad"
+        "sha": "9930c2170e19c1d7a57a1fef7d382a3d59eeacb0"
       },
       "homepage": "https://codixing.com/"
     },
@@ -5905,7 +5905,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/mksglu/context-mode.git",
-        "sha": "fe2f53ba6987f743330d7fc5ab74d096830d3f64"
+        "sha": "1618d9764921c66f3c9cdab8a45d2d8f7f0b0648"
       },
       "homepage": "https://context-mode.mksg.lu/"
     },
@@ -8268,7 +8268,7 @@
         "url": "expo/skills",
         "path": "plugins/expo",
         "ref": "main",
-        "sha": "8d72763f53c4fe11ed3ae0441b921bda821d2a74"
+        "sha": "8bd359f8a44d2446de12f1fe6e6316daf043056e"
       },
       "homepage": "https://github.com/expo/skills/blob/main/plugins/expo/README.md"
     },
@@ -9545,7 +9545,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/etr/groundwork.git",
-        "sha": "2380e95fdc5da66ec5d4374deac1f1c235d3560a"
+        "sha": "ff78605f04e8b6a19a9e89c37626feb1a4d65623"
       },
       "homepage": "https://github.com/etr/groundwork"
     },
