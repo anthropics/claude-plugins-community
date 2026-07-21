@@ -23532,6 +23532,19 @@
       "homepage": "https://github.com/newrelic/claude-code-plugin"
     },
     {
+      "name": "windmill-hr",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/windmill-dev/windmill-plugin",
+        "path": "plugins/windmill",
+        "ref": "main",
+        "sha": "7b2b010a54cf0bb48b84726fdf3fd0ba350a29d6"
+      },
+      "description": "Connect Claude Code to Windmill for performance reviews, feedback, 1:1s, pulse surveys, and more.",
+      "category": "development",
+      "homepage": "https://github.com/windmill-dev/windmill-plugin"
+    },
+    {
       "name": "mise",
       "source": {
         "source": "url",
