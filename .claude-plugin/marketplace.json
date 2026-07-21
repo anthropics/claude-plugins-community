@@ -95,14 +95,52 @@
       "homepage": "https://github.com/barnburner121/claude-plugin-marketplace"
     },
     {
-      "name": "abap-dev",
-      "description": "SAP development utilities and ABAP Workbench automation. Act as an ABAP developer from end to end.\n1. Read specification document(Excel/Word/PDF).\n2. Generate DDIC definition, Message text and ABAP source code.\n3. Deploy to SAP system via SE11/SE38/SE37/SE24/SE91.\n4. Fix errors and pass ATC.",
+      "name": "sap-dev-core",
+      "description": "Core SAP development utilities and ABAP Workbench automation: login, connection management, credential storage, BDC execution, add-on table maintenance, and SAP GUI Scripting for SE38, SE37, SE24, SE11, SE19, SE41, SE51, SE54, SE91, CMOD, and GUI inspection / recording. Also provides shared resources (shared/tables/, shared/scripts/) used by all other sap-dev plugins. Install this plugin first.",
       "source": {
-        "source": "url",
+        "source": "git-subdir",
         "url": "https://github.com/sapdev-ai/sap-dev.git",
-        "sha": "415d82c9c0066b34958157f1c1f1e063ad82b18f"
+        "path": "plugins/sap-dev-core",
+        "ref": "main",
+        "sha": "ed622a03402f7d5a53cc33a2a3aa336ddc17205f"
       },
-      "homepage": "https://www.sapdev.ai"
+      "homepage": "https://sapdev.ai"
+    },
+    {
+      "name": "sap-gen-code",
+      "description": "ABAP code generation pipeline: convert design docs, extract structured data, validate process/DDIC, generate ABAP (incl. CDS views) and ABAP Unit tests, and run an AI semantic + security review. Companion to sap-dev-core (install that first — its shared scripts are required at runtime).",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/sapdev-ai/sap-dev.git",
+        "path": "plugins/sap-gen-code",
+        "ref": "main",
+        "sha": "ed622a03402f7d5a53cc33a2a3aa336ddc17205f"
+      },
+      "homepage": "https://sapdev.ai"
+    },
+    {
+      "name": "sap-migrate",
+      "description": "S/4HANA custom-code migration engine: run a brownfield conversion as a tracked campaign — inventory custom (Z/Y) objects, flag unused code for decommission, run the S/4HANA-readiness ATC, triage findings, and remediate mechanical changes at scale on a sandbox. Companion to sap-dev-core (install that first).",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/sapdev-ai/sap-dev.git",
+        "path": "plugins/sap-migrate",
+        "ref": "main",
+        "sha": "ed622a03402f7d5a53cc33a2a3aa336ddc17205f"
+      },
+      "homepage": "https://sapdev.ai"
+    },
+    {
+      "name": "sap-tcd",
+      "description": "SAP transaction automation for business processes: Business Partner (BP), Material Master (MM01), and Sales Order (VA01) management. Companion to sap-dev-core (install that first — its shared scripts are required at runtime).",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/sapdev-ai/sap-dev.git",
+        "path": "plugins/sap-tcd",
+        "ref": "main",
+        "sha": "ed622a03402f7d5a53cc33a2a3aa336ddc17205f"
+      },
+      "homepage": "https://sapdev.ai"
     },
     {
       "name": "ac-artifact-workflow",
@@ -122,7 +160,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/AccelByte/ai-plugins.git",
-        "sha": "46347a718d141354b7b59ffb0ef513c60a8ee818"
+        "sha": "de7141a577527b85d13b559a646bddda9df53344"
       },
       "homepage": "https://accelbyte.io/"
     },
@@ -250,7 +288,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/adaptlypost/claude-plugin.git",
-        "sha": "f201dcde6d6f560969c0fd039566972d6250a7ad"
+        "sha": "d2ea0e76d31508e45ae4a9b5b7f088999c67b027"
       },
       "homepage": "https://adaptlypost.com/features/agents"
     },
@@ -1273,7 +1311,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Anakin-Inc/anakin-claude-plugin.git",
-        "sha": "81335ac002a9246a1f1bd911ee89e568cdae5d3d"
+        "sha": "bd1cb3352a871576b077e717055eb56f940564ed"
       },
       "homepage": "https://github.com/Anakin-Inc/anakin-claude-plugin"
     },
@@ -1435,7 +1473,7 @@
         "url": "aomi-labs/skills",
         "path": "aomi-build",
         "ref": "main",
-        "sha": "74b90bc7b9fb3b5a31676bbbba5a1ca64886125d"
+        "sha": "ef9e5294d5121b768eaa0176d7871ea5a19b0a23"
       },
       "homepage": "https://aomi.dev"
     },
@@ -1447,7 +1485,7 @@
         "url": "https://github.com/aomi-labs/skills.git",
         "path": "aomi-transact",
         "ref": "main",
-        "sha": "74b90bc7b9fb3b5a31676bbbba5a1ca64886125d"
+        "sha": "ef9e5294d5121b768eaa0176d7871ea5a19b0a23"
       },
       "homepage": "https://aomi.dev"
     },
@@ -1537,7 +1575,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/apolloio/apollo-mcp-plugin.git",
-        "sha": "d0676ea9bba52b0f97d810dade775de059ccd2bd"
+        "sha": "2adde980e45f421b7e9383d92870455627936bce"
       },
       "homepage": "https://github.com/apolloio/apollo-mcp-plugin"
     },
@@ -5578,12 +5616,26 @@
       "homepage": "https://github.com/herrhelms/cognito-plugin"
     },
     {
-      "name": "coinpaprika-dexpaprika",
-      "description": "Bundles MCP servers, agents, and skills for working with crypto market data and DEX analytics in Claude Code. Includes a CoinPaprika MCP server (12,000 coins, 350 exchanges, OHLCV, historical prices), a DexPaprika MCP server (34 chains, pool data, real-time SSE streaming), two specialized agents (crypto-analyst, defi-data-analyst), and five skills covering API access, market search, and DEX security analysis.",
+      "name": "coinpaprika",
+      "description": "Access cryptocurrency market data from CoinPaprika: real-time prices, OHLCV, exchanges, contract lookups for 12,000+ cryptocurrencies and 350+ exchanges. Free tier, no API key needed.",
       "source": {
-        "source": "url",
+        "source": "git-subdir",
         "url": "https://github.com/coinpaprika/claude-marketplace.git",
-        "sha": "1e577a3ecfff7213cac9773310e78d8c14a781c7"
+        "path": "plugins/coinpaprika-claude-plugin",
+        "ref": "main",
+        "sha": "85db5a39aa56c46722df4869798547e074869d20"
+      },
+      "homepage": "https://coinpaprika.com"
+    },
+    {
+      "name": "dexpaprika",
+      "description": "Access comprehensive DeFi data from DexPaprika: DEXes, liquidity pools, tokens, and trading across 36 blockchains. Free, no API key needed.",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/coinpaprika/claude-marketplace.git",
+        "path": "plugins/dexpaprika-claude-plugin",
+        "ref": "main",
+        "sha": "85db5a39aa56c46722df4869798547e074869d20"
       },
       "homepage": "https://coinpaprika.com"
     },
@@ -23467,6 +23519,17 @@
       "description": "Matt Pocock's agent skills for real engineering — grilling, spec/ticket flows, TDD, code review, domain modelling and more. Plug-and-play, not vibe coding.",
       "category": "development",
       "homepage": "https://github.com/mattpocock/skills"
+    },
+    {
+      "name": "newrelic",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/newrelic/claude-code-plugin",
+        "sha": "f8e5f8b62139072a22153ec92de1c0cc1af2f56a"
+      },
+      "description": "New Relic observability intelligence for Claude Code. Investigate APM performance, analyze cloud costs, debug Kubernetes, write NRQL queries, and respond to alerts — all from your terminal using New Relic telemetry data.",
+      "category": "development",
+      "homepage": "https://github.com/newrelic/claude-code-plugin"
     },
     {
       "name": "review-all",
