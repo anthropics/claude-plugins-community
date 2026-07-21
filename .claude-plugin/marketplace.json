@@ -1246,7 +1246,8 @@
       "source": {
         "source": "url",
         "url": "https://github.com/haandol/alps-writer-mcp.git",
-        "sha": "01c7fda5bdce265b9b92eda32cfc30f0bddb0482"
+        "path": "plugins/alps-writer",
+        "sha": "89a22dba4b95960fe7c9c597a1fe5694ae9b8727"
       },
       "homepage": "https://github.com/haandol/alps-writer-mcp"
     },
@@ -1666,7 +1667,8 @@
       "source": {
         "source": "url",
         "url": "https://github.com/archcore-ai/archcore-plugin.git",
-        "sha": "10ee1fd546558afe2f4ae920f97318c4c2b0f3d7"
+        "path": "plugins/archcore",
+        "sha": "793bd8092c5c56e8989b9269be8257c1adb0ac95"
       },
       "homepage": "https://archcore.ai/"
     },
@@ -13404,9 +13406,11 @@
       "name": "mongodb",
       "description": "Official Claude plugin for MongoDB (MCP Server + Skills). Connect to databases, explore data, manage collections, optimize queries, generate reliable code, implement best practices, develop advanced features, and more.",
       "source": {
-        "source": "url",
+        "source": "git-subdir",
         "url": "https://github.com/mongodb/agent-skills.git",
-        "sha": "be846b4deb482c22a5fb4d133d6c1e6c4a32eb08"
+        "path": "plugins/mongodb",
+        "ref": "main",
+        "sha": "b4ea8150a020b9babaddc6c271c6dc177c06a83f"
       },
       "homepage": "https://www.mongodb.com/docs/claude/"
     },
@@ -15861,7 +15865,8 @@
       "source": {
         "source": "url",
         "url": "https://github.com/YuSec2021/product-review-expert.git",
-        "sha": "7a76712360b737de0b9c85a7a3fe19f84a3fc7ed"
+        "path": "plugins/product-review-expert",
+        "sha": "fea37bdcb07d7fd062c8cd881773819107f47a6f"
       },
       "homepage": "https://github.com/YuSec2021/product-review-expert"
     },
@@ -17420,7 +17425,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/scandit/scandit-sdk-skills.git",
-        "sha": "4246986f8e25d7b180997e1feab8c266fbebf209"
+        "sha": "49591895a92bbb98f88279f64456c1f6047265fb"
       },
       "homepage": "https://docs.scandit.com/"
     },
@@ -23544,6 +23549,17 @@
       "description": "Comprehensive, project-agnostic, multi-agent code review for Claude Code with verification to eliminate false positives.",
       "category": "development",
       "homepage": "https://github.com/ncoevoet/claude-review-all"
+    },
+    {
+      "name": "loop-and-gate-build-kit",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/slogsdon/loop-and-gate-build-kit",
+        "sha": "eca820328bc80a42d5df815615854155d4b92dfb"
+      },
+      "description": "A judgment layer for building software with an agentic loop — eleven human-decision gates plus the loop-and-gate operating skill.",
+      "category": "development",
+      "homepage": "https://github.com/slogsdon/loop-and-gate-build-kit"
     }
   ]
 }

@@ -15,8 +15,6 @@ agent-guardrails-template
 ai-operations-consultant
 ai-plugins
 akii-seo-ai-search-optimizer
-alps-writer
-archcore
 autocode
 axint
 bitfab
@@ -52,9 +50,7 @@ ololand-dd
 opendeploy
 orchestra
 outlook
-product-review-expert
 releases
-scandit-sdk
 sfagent-tools
 spec-to-code
 strands-sdk
