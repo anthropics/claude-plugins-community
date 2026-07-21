@@ -1273,7 +1273,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Anakin-Inc/anakin-claude-plugin.git",
-        "sha": "81335ac002a9246a1f1bd911ee89e568cdae5d3d"
+        "sha": "bd1cb3352a871576b077e717055eb56f940564ed"
       },
       "homepage": "https://github.com/Anakin-Inc/anakin-claude-plugin"
     },
