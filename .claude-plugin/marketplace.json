@@ -23554,6 +23554,76 @@
       "description": "Comprehensive, project-agnostic, multi-agent code review for Claude Code with verification to eliminate false positives.",
       "category": "development",
       "homepage": "https://github.com/ncoevoet/claude-review-all"
+    },
+    {
+      "name": "slidecast",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/alinaqi/slidecast",
+        "path": "plugins/slidecast",
+        "ref": "aa226b3ec23ff22d9f0885c1be82c2f53e6da446",
+        "sha": "aa226b3ec23ff22d9f0885c1be82c2f53e6da446"
+      },
+      "description": "Generate self-contained HTML presentations and convert them into voiced, slide-synced MP4 videos using ElevenLabs text-to-speech. Bring your own ElevenLabs API key.",
+      "category": "development",
+      "homepage": "https://github.com/alinaqi/slidecast"
+    },
+    {
+      "name": "autoresearch-ai-plugin",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/proyecto26/autoresearch-ai-plugin",
+        "sha": "65f6f60f5915515e0e940c9d50a063cb6a0b028f"
+      },
+      "description": "Autonomous experiment loop for Claude Code. Run an endless optimize-measure-keep/discard cycle on any optimization target: LLM training loss, test speed, bundle size, build time, and more.",
+      "category": "development",
+      "homepage": "https://github.com/proyecto26/autoresearch-ai-plugin"
+    },
+    {
+      "name": "loop-and-gate-foundation",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/slogsdon/loop-and-gate-foundation",
+        "sha": "2743d1dfba9c059c1e1bf56307b56a9e61ee1fc8"
+      },
+      "description": "A self-improving agent loop with plain-text Obsidian memory. Skills for capture, reflect, and improve; a SessionStart hook injects working memory each session. The teaching-tier Foundation of the Loop & Gate stack.",
+      "category": "development",
+      "homepage": "https://github.com/slogsdon/loop-and-gate-foundation"
+    },
+    {
+      "name": "composing-with-pytheory",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/kennethreitz/pytheory-skill",
+        "path": "plugins/composing-with-pytheory",
+        "ref": "47d53cba7393f06847dd359b977351fe36b255a1",
+        "sha": "47d53cba7393f06847dd359b977351fe36b255a1"
+      },
+      "description": "Compose music with PyTheory — progressions, melodies, drums, and full arrangements rendered to audio or MIDI from pure Python.",
+      "category": "development",
+      "homepage": "https://github.com/kennethreitz/pytheory-skill"
+    },
+    {
+      "name": "ponytail",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/DietrichGebert/ponytail",
+        "sha": "16f29800fd2681bdf24f3eb4ccffe38be3baec6b"
+      },
+      "description": "Lazy senior dev mode. Forces the simplest, shortest solution that actually works: YAGNI, stdlib first, no unrequested abstractions.",
+      "category": "development",
+      "homepage": "https://github.com/DietrichGebert/ponytail"
+    },
+    {
+      "name": "probabl-skills",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/probabl-ai/skills",
+        "sha": "61fff44151a6a52385a31df1184f0bd05ac39d2a"
+      },
+      "description": "Skills to support Machine Learning experimentation using the Python ecosystem.",
+      "category": "development",
+      "homepage": "https://github.com/probabl-ai/skills"
     }
   ]
 }
