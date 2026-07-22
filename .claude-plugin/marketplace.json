@@ -23632,6 +23632,19 @@
       "description": "Reco SaaS & AI security — query app risks, shadow IT, AI agents, user posture, and access events directly from Claude Code",
       "category": "development",
       "homepage": "https://github.com/RecoLabs/reco-mcp-plugins"
+    },
+    {
+      "name": "magpie",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/jezweb/magpie",
+        "path": "plugins/magpie",
+        "ref": "f2ae77b1fcb6869c2369c59a6686d8a9c3c0639b",
+        "sha": "f2ae77b1fcb6869c2369c59a6686d8a9c3c0639b"
+      },
+      "description": "Magpie website intelligence over a hosted MCP server. Free: a single-page audit covering overall score, Core Web Vitals, on-page SEO, security headers, robots/sitemap, and WordPress-aware findings. Pro: rank tracking (Google positions and movement over time) and competitor keyword-gap analysis.",
+      "category": "development",
+      "homepage": "https://github.com/jezweb/magpie"
     }
   ]
 }
