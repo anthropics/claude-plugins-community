@@ -126,7 +126,7 @@
         "url": "https://github.com/sapdev-ai/sap-dev.git",
         "path": "plugins/sap-migrate",
         "ref": "main",
-        "sha": "ed622a03402f7d5a53cc33a2a3aa336ddc17205f"
+        "sha": "f75aa49b592b1642a83b78a703a4f6378afb0146"
       },
       "homepage": "https://sapdev.ai"
     },
