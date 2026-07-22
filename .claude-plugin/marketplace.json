@@ -6,7 +6,9 @@
   "renames": {
     "qodo-skills": "qodo",
     "wordpress-com": "build-with-wordpress",
-    "auth0-sdks": "auth0"
+    "auth0-sdks": "auth0",
+    "twilio": "twilio-developer-kit",
+    "zoominfo-mcp-plugin": "zoominfo"
   },
   "plugins": [
     {
@@ -20892,7 +20894,7 @@
       "homepage": "https://docs.twelvelabs.io/docs/advanced/claude-code-plugin"
     },
     {
-      "name": "twilio",
+      "name": "twilio-developer-kit",
       "description": "Procedural knowledge for building with Twilio — guides Claude through product selection, architecture patterns, compliance, setup best practices, troubleshooting playbooks, and more.",
       "source": {
         "source": "url",
