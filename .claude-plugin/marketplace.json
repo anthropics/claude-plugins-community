@@ -5412,16 +5412,6 @@
       "homepage": "https://github.com/belugatempo-dot/codebase-visualizer"
     },
     {
-      "name": "codebloom",
-      "description": "A Claude Code plugin that teaches your AI agent structured workflows — explain before coding, verify before shipping, document before pushing.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/vendeesign/codebloom.git",
-        "sha": "70f7c1dd615b217b9271a066c5a0217f22559d7c"
-      },
-      "homepage": "https://github.com/vendeesign/codebloom"
-    },
-    {
       "name": "codedna",
       "description": "CodeDNA makes any codebase AI-navigable by embedding architectural context directly in source files. One command annotates every file with exports:,\nused_by:, and rules: — so Claude always knows what a file provides, who depends on it, and what constraints must never be violated.\n\nNo API key required. Uses your existing Claude subscription.\n\nSupports Python, TypeScript, JavaScript, Go, Rust, Java, and Ruby.",
       "source": {
@@ -23581,6 +23571,17 @@
       "description": "Descope authentication skills: integration, Auth0/Okta/WorkOS/Stytch migration, Terraform, FGA authorization schemas, security review, and BYOS custom UI",
       "category": "development",
       "homepage": "https://github.com/descope/skills"
+    },
+    {
+      "name": "mulmocast",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/receptron/mulmocast-claude-plugin",
+        "sha": "480628a00e767016ead0a44da864a0ed7f05158e"
+      },
+      "description": "MulmoCast skills for Claude Code — create, narrate, and extend video presentations from any input",
+      "category": "productivity",
+      "homepage": "https://github.com/receptron/mulmocast-claude-plugin"
     },
     {
       "name": "mise",
