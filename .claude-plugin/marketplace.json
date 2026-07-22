@@ -23572,6 +23572,17 @@
       "homepage": "https://github.com/slogsdon/loop-and-gate-build-kit"
     },
     {
+      "name": "descope-skills",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/descope/skills",
+        "sha": "7c67cef05e070dcd6c346ad5dadc3a6c9c6611e1"
+      },
+      "description": "Descope authentication skills: integration, Auth0/Okta/WorkOS/Stytch migration, Terraform, FGA authorization schemas, security review, and BYOS custom UI",
+      "category": "development",
+      "homepage": "https://github.com/descope/skills"
+    },
+    {
       "name": "mulmocast",
       "source": {
         "source": "url",
