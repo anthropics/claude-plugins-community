@@ -23570,6 +23570,56 @@
       "description": "A judgment layer for building software with an agentic loop — eleven human-decision gates plus the loop-and-gate operating skill.",
       "category": "development",
       "homepage": "https://github.com/slogsdon/loop-and-gate-build-kit"
+    },
+    {
+      "name": "waldo-fyi",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/waldo-fyi/waldo-claude-plugin.git",
+        "sha": "79cf2e063ac46473a7371241317688a5cbcf59d5"
+      },
+      "description": "Waldo strategy agent skills for ad intelligence, social listening, web research, data analysis, and archival knowledge — powered by the Waldo MCP connector",
+      "category": "development",
+      "homepage": "https://github.com/waldo-fyi/waldo-claude-plugin.git"
+    },
+    {
+      "name": "foundation",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/Unstructured-IO/unstructured-foundation-marketplace",
+        "path": "plugins/foundation",
+        "ref": "a632b2021dd277dd3fc75a2f6db570bad91d0ace",
+        "sha": "a632b2021dd277dd3fc75a2f6db570bad91d0ace"
+      },
+      "description": "Connect sources and search processed documents with Unstructured Foundation. Provides MCP access to source setup, processing status, document search, and document retrieval.",
+      "category": "productivity",
+      "homepage": "https://github.com/Unstructured-IO/unstructured-foundation-marketplace"
+    },
+    {
+      "name": "auth0",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/auth0/agent-skills",
+        "path": "plugins/auth0",
+        "ref": "main",
+        "sha": "de929462cae879bab1c880fc4b9ad3645bf8588b"
+      },
+      "description": "A single unified Auth0 skill that detects your framework, feature, and tooling, then loads the right reference guides for adding authentication — login, MFA, Organizations, ACUL, custom domains, branding, JWT validation, migration, and debugging — to any app.",
+      "category": "security",
+      "homepage": "https://github.com/auth0/agent-skills"
+    },
+    {
+      "name": "reco",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/RecoLabs/reco-mcp-plugins",
+        "path": "claude",
+        "ref": "dev",
+        "sha": "1945c02f11ea085e50b919b4f506e7c5cc2a2d27"
+      },
+      "description": "Reco SaaS & AI security — query app risks, shadow IT, AI agents, user posture, and access events directly from Claude Code",
+      "category": "development",
+      "homepage": "https://github.com/RecoLabs/reco-mcp-plugins"
     }
   ]
 }
