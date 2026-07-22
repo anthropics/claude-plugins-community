@@ -19015,9 +19015,11 @@
       "name": "specclaw",
       "description": "Spec-driven development framework for Claude Code. Manages the propose → plan → build → verify → pr lifecycle with structured proposals, specs, designs, task lists, and GitHub/Azure DevOps/Jira integrations.",
       "source": {
-        "source": "url",
+        "source": "git-subdir",
         "url": "https://github.com/chan4lk/specclaw.git",
-        "sha": "07629d5d01c7a2b92632172b96bdb0fcdbe8d137"
+        "path": "plugins/specclaw",
+        "ref": "main",
+        "sha": "fc19c08177a6dc8e4b482711eb41c350bf16ea46"
       },
       "homepage": "https://chan4lk.github.io/specclaw"
     },
