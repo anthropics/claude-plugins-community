@@ -18115,7 +18115,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/goshippo/shippo-claude-plugin.git",
-        "sha": "cad9519679415252dcdc974876210c7e7c3cdff3"
+        "sha": "08df696461086b9dfb918cfce01cbb6209903519"
       },
       "homepage": "https://docs.goshippo.com"
     },
