@@ -23645,6 +23645,71 @@
       "description": "Comprehensive mise skill for Claude Code covering the full mise ecosystem: task definition with usage spec arguments, dev tool management across 18 backends, environment configuration with profiles, hooks, and 100+ settings.",
       "category": "development",
       "homepage": "https://github.com/brentmitchell25/mise-plugin"
+    },
+    {
+      "name": "rudder-core",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/rudderlabs/rudder-agent-skills",
+        "path": "plugins/rudder-core",
+        "ref": "a01396401d7e9e03ed2ac7737c26f1bb76de5028",
+        "sha": "a01396401d7e9e03ed2ac7737c26f1bb76de5028"
+      },
+      "description": "Cross-tool RudderStack domain knowledge: data catalog, data graphs, tracking plans, instrumentation planning, instrumentation debugging, and destination delivery debugging.",
+      "category": "development",
+      "homepage": "https://github.com/rudderlabs/rudder-agent-skills"
+    },
+    {
+      "name": "rudder-cli",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/rudderlabs/rudder-agent-skills",
+        "path": "plugins/rudder-cli",
+        "ref": "a01396401d7e9e03ed2ac7737c26f1bb76de5028",
+        "sha": "a01396401d7e9e03ed2ac7737c26f1bb76de5028"
+      },
+      "description": "Workflows for driving the rudder-cli and rudder-typer CLIs: validate, dry-run, apply, import, transformations.",
+      "category": "development",
+      "homepage": "https://github.com/rudderlabs/rudder-agent-skills"
+    },
+    {
+      "name": "rudder-mcp",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/rudderlabs/rudder-agent-skills",
+        "path": "plugins/rudder-mcp",
+        "ref": "a01396401d7e9e03ed2ac7737c26f1bb76de5028",
+        "sha": "a01396401d7e9e03ed2ac7737c26f1bb76de5028"
+      },
+      "description": "Workflows for RudderStack's MCP server at mcp.rudderstack.com: connect AI/LLM agents to a RudderStack workspace and drive catalog, sources, destinations, transformations, RETL, tracking plans, and live events via MCP tool calls.",
+      "category": "development",
+      "homepage": "https://github.com/rudderlabs/rudder-agent-skills"
+    },
+    {
+      "name": "rudder-terraform",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/rudderlabs/rudder-agent-skills",
+        "path": "plugins/rudder-terraform",
+        "ref": "a01396401d7e9e03ed2ac7737c26f1bb76de5028",
+        "sha": "a01396401d7e9e03ed2ac7737c26f1bb76de5028"
+      },
+      "description": "Workflows for managing RudderStack workspaces with the Terraform provider: provider setup, resource and data-source usage, init/plan/apply cycles, module structure, and state management.",
+      "category": "development",
+      "homepage": "https://github.com/rudderlabs/rudder-agent-skills"
+    },
+    {
+      "name": "rudder-profiles",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/rudderlabs/rudder-agent-skills",
+        "path": "plugins/rudder-profiles",
+        "ref": "a01396401d7e9e03ed2ac7737c26f1bb76de5028",
+        "sha": "a01396401d7e9e03ed2ac7737c26f1bb76de5028"
+      },
+      "description": "Workflows for building and maintaining RudderStack Profiles projects: setup, project creation, analysis, updates, and debugging.",
+      "category": "development",
+      "homepage": "https://github.com/rudderlabs/rudder-agent-skills"
     }
   ]
 }
