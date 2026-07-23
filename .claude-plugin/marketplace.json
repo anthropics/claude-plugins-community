@@ -7,8 +7,7 @@
     "qodo-skills": "qodo",
     "wordpress-com": "build-with-wordpress",
     "auth0-sdks": "auth0",
-    "twilio": "twilio-developer-kit",
-    "zoominfo-mcp-plugin": "zoominfo"
+    "twilio": "twilio-developer-kit"
   },
   "plugins": [
     {
