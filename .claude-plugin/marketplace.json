@@ -7645,7 +7645,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/agent-sh/drift-detect.git",
-        "sha": "3bd50906c81ee95a38536cbab8f80de7e819f28f"
+        "sha": "03f90a46494c9b36c0d759a02652e8a726eac71b"
       },
       "homepage": "https://github.com/agent-sh/drift-detect"
     },
