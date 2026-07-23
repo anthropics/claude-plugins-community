@@ -3272,7 +3272,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/CellCog/cellcog-plugin.git",
-        "sha": "d88dc457b5a25fa188df02b5f28b7e39ed5494c0"
+        "sha": "18a7aa5795d032396e9b9a1978162216648c49e8"
       },
       "homepage": "https://cellcog.ai"
     },
