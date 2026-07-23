@@ -6802,7 +6802,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/agent-sh/debate.git",
-        "sha": "90d806cda4035ceeed952c3f3086979fbe96202f"
+        "sha": "a70bbcc134f032eff6c94c2cd892d6fc2f19adc5"
       },
       "homepage": "https://github.com/agent-sh/debate"
     },
