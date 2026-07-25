@@ -104,7 +104,7 @@
         "url": "https://github.com/sapdev-ai/sap-dev.git",
         "path": "plugins/sap-dev-core",
         "ref": "main",
-        "sha": "cc5c7ddcd0ac7bda4a5acdf91b7179301b6ad53d"
+        "sha": "c1cf4a0457f4450d16ad81ae6a0a433e54cc6f41"
       },
       "homepage": "https://sapdev.ai"
     },
