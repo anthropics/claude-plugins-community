@@ -1670,7 +1670,7 @@
         "source": "url",
         "url": "https://github.com/archcore-ai/archcore-plugin.git",
         "path": "plugins/archcore",
-        "sha": "793bd8092c5c56e8989b9269be8257c1adb0ac95"
+        "sha": "de986abc9de73f562abfcd478bc96612673cd3d3"
       },
       "homepage": "https://archcore.ai/"
     },
