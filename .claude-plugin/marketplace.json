@@ -3601,7 +3601,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/AgriciDaniel/claude-blog.git",
-        "sha": "49842ea9e7b9a1f6f8a3774a3fcfb082ab6a7d25"
+        "sha": "aec971ac511370c6216cd93776c9cf2fec97b32a"
       },
       "homepage": "https://claude-blog.md"
     },
