@@ -23720,6 +23720,78 @@
       "description": "Skills to support Machine Learning experimentation using the Python ecosystem.",
       "category": "development",
       "homepage": "https://github.com/probabl-ai/skills"
+    },
+    {
+      "name": "trust-st-lsp",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/johannesPettersson80/trust-claude-plugins.git",
+        "path": "plugins/trust-st-lsp",
+        "ref": "main",
+        "sha": "ef2d24dd7420888f770a058d81aa4ecde76ef28f"
+      },
+      "description": "IEC 61131-3 Structured Text language server for Claude Code. Wires the trust-lsp binary into Claude Code's LSP integration for diagnostics, go-to-definition, find references, hover, document and workspace symbols, and call hierarchy on .st files.",
+      "category": "development",
+      "homepage": "https://github.com/johannesPettersson80/trust-claude-plugins.git"
+    },
+    {
+      "name": "barista",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/wlenig/barista.git",
+        "path": "plugins/barista",
+        "ref": "main",
+        "sha": "1d685ffc072a5029bafd8ccca3083cf8e6315414"
+      },
+      "description": "barista caffeinates your claude",
+      "category": "development",
+      "homepage": "https://github.com/wlenig/barista.git"
+    },
+    {
+      "name": "shinobidata",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/dark-horse-stocks/shinobidata.git",
+        "path": "plugins/shinobidata",
+        "ref": "main",
+        "sha": "12188bd5bfee72ef410d6d8f8d7fab1e68c4d735"
+      },
+      "description": "Portfolio analytics and US-equity market research for Claude Code. 32 OAuth-protected tools spanning portfolio CRUD, performance, fundamentals, sectors, screening, and news.",
+      "category": "development",
+      "homepage": "https://github.com/dark-horse-stocks/shinobidata.git"
+    },
+    {
+      "name": "vitaecontext",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/agentkit-seo/agentkit-seo.git",
+        "sha": "37fc920b2bf7d4d1b6d196a2046d3ae16f08c0eb"
+      },
+      "description": "VitaeContext gives AI agents a private, reusable source of truth about a person's career, then provides focused skills for turning that context into grounded professional work.",
+      "category": "development",
+      "homepage": "https://github.com/agentkit-seo/agentkit-seo.git"
+    },
+    {
+      "name": "ads",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/adkit/adkit-plugin.git",
+        "sha": "bae39c61989e4f5bf0061d54a554a89ca4f98aeb"
+      },
+      "description": "Create and manage ad campaigns on Meta, Google, TikTok, and more. Spy on competitor ads across ad libraries. Generate ad creatives with AI. Use when you need to launch a campaign, find out why ROAS dropped, see what ads a competitor is running, create ad images, or pull a performance report. Manages campaigns, ad sets, ads, and keywords. Uploads media. Pulls performance metrics with date, placement, and demographic breakdowns. The ad library lets you browse any advertiser's active ads, creative formats, and landing pages. AI studio generates images and copy from a brief. Draft-first: every create starts as a draft, nothing publishes without explicit approval. Supports Facebook, Instagram, Google Search, TikTok, and Reddit. Multi-account for agencies.",
+      "category": "development",
+      "homepage": "https://github.com/adkit/adkit-plugin.git"
+    },
+    {
+      "name": "agent-community",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/mahmoudsheikh94/agent-community-plugin.git",
+        "sha": "c18fb8cd7dc1c28a0e8b64fb13ea168ba35c8b9a"
+      },
+      "description": "Auto-recover from known tool/API/workflow failures with a local knowledge base of fix cards",
+      "category": "development",
+      "homepage": "https://github.com/mahmoudsheikh94/agent-community-plugin.git"
     }
   ]
 }
