@@ -23752,7 +23752,8 @@
       },
       "strict": false,
       "category": "development",
-      "homepage": "https://github.com/thisnthat-lab/mcp-server.git"
+      "homepage": "https://github.com/thisnthat-lab/mcp-server.git",
+      "description": "View your DoBox tasks from this+that in any MCP-compatible AI client"
     },
     {
       "name": "feynman",
