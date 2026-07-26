@@ -23774,7 +23774,8 @@
       },
       "strict": false,
       "category": "development",
-      "homepage": "https://github.com/allut/claude-anvil.git"
+      "homepage": "https://github.com/allut/claude-anvil.git",
+      "description": "Evidence-first coding agent for Claude Code CLI. It verifies every change before you see it — builds, tests, lints, runs IDE diagnostics, then has other AI models (Claude, GPT, Gemini, Ollama) try to break it. Every check is INSERTed into a SQLite ledger; the final Evidence Bundle is a SELECT, not prose. If the INSERT didn't happen, the verification didn't happen."
     }
   ]
 }
