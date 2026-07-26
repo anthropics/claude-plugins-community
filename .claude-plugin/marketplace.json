@@ -7596,7 +7596,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/dotsecenv/dotsecenv.git",
-        "sha": "496f1900680ae3629082e7005cc1867b78ca99c8"
+        "sha": "cbbb0714778ac3977161fba4c2742d0b73aa3569"
       },
       "homepage": "https://dotsecenv.com/guides/claude-code/"
     },
