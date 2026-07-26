@@ -23720,6 +23720,93 @@
       "description": "Skills to support Machine Learning experimentation using the Python ecosystem.",
       "category": "development",
       "homepage": "https://github.com/probabl-ai/skills"
+    },
+    {
+      "name": "content-intelligence",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/adologyai/content-intelligence-plugin.git",
+        "sha": "126ab138291613338bdeccf448d7612bea74a78d"
+      },
+      "description": "Competitive ad intelligence inside Claude and other AI agents — discover brands, build knowledge sets, analyze content, coach creators, vet influencers, and run audience deep-dives powered by Adology's data platform.",
+      "category": "development",
+      "homepage": "https://github.com/adologyai/content-intelligence-plugin.git"
+    },
+    {
+      "name": "consistent-ui",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/thevrus/consistent-ui.git",
+        "sha": "fd69dd754b5076818749331df95f787f9469d6c1"
+      },
+      "description": "Enforce UI consistency across an entire codebase — detects drift in spacing, typography, colors, components, iconography, and interaction patterns across web, native mobile, and server-rendered templates. Generates a P0-P3 report and remediation plan.",
+      "category": "development",
+      "homepage": "https://github.com/thevrus/consistent-ui.git"
+    },
+    {
+      "name": "claude-webcache",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/theYahia/claude-webcache.git",
+        "sha": "244d8c908e05ddc95f425c9e80fe08232a8bb256"
+      },
+      "strict": false,
+      "description": "claude-webcache adds cross-session persistence to Claude Code's WebFetch tool. Claude Code's built-in WebFetch caches results for 15 minutes within a session, then evicts. claude-webcache extends that across sessions (TTL 7 days, configurable). Same URL + same prompt in any new session returns an instant cache hit instead of re-fetching. SQLite-backed (uses Node 22.5+ built-in node:sqlite, no native deps), 4 MCP tools (cached_fetch, cache_store cache_stats, cache_list), plus a SessionStart hook printing one-line cache stats. MIT licensed, ~200 lines of code.",
+      "category": "development",
+      "homepage": "https://github.com/theYahia/claude-webcache.git"
+    },
+    {
+      "name": "privacy-audit",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/bellu/privacy-audit.git",
+        "sha": "7c6b2f61cc8f4b5147566c9a48736ef25d03ff3a"
+      },
+      "strict": false,
+      "description": "Audits your app's Privacy Policy, ToS, Cookie Policy and DPA against its actual codebase. Scans your dependencies, DB schema, and API routes to find undisclosed data collection, missing subprocessors, and GDPR compliance gaps automatically.",
+      "category": "development",
+      "homepage": "https://github.com/bellu/privacy-audit.git",
+      "commands": {
+        "audit": {
+          "description": "Run a full privacy & legal compliance audit on your project."
+        }
+      }
+    },
+    {
+      "name": "promptcellar",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/dominiek/promptcellar-for-claude-code.git",
+        "sha": "f6297e30ab9db2f21fbe7bb35824c4f7a8ce33dd"
+      },
+      "strict": false,
+      "description": "Promptcellar logs every prompt into a structured, append-only, file-based standard for capturing prompts. JSON Lines on disk. Mergeable across branches. Secrets auto-redacted.",
+      "category": "development",
+      "homepage": "https://github.com/dominiek/promptcellar-for-claude-code.git"
+    },
+    {
+      "name": "content-ops",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/genaiunplugged14/claude-plugins",
+        "path": "content-ops",
+        "ref": "main",
+        "sha": "eaf16a96e5fccda155df78b6e33286a5275a6686"
+      },
+      "description": "Research → draft → review → repurpose pipeline for content creators. Four agents, five namespaced skills, three production hooks. Built from the GenAI Unplugged Claude Code Masterclass.",
+      "category": "development",
+      "homepage": "https://github.com/genaiunplugged14/claude-plugins"
+    },
+    {
+      "name": "orcool",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/orcool-org/agent-plugin.git",
+        "sha": "4c80cbafc87f5b6660e0b168ca67f6247cbbb878"
+      },
+      "description": "Brings Orcool MCP server and Skills for marketing workflows.",
+      "category": "development",
+      "homepage": "https://github.com/orcool-org/agent-plugin.git"
     }
   ]
 }
