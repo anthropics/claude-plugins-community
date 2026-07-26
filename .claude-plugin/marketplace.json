@@ -5937,7 +5937,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/mksglu/context-mode.git",
-        "sha": "609a31225825ffc8f61ff705aa1e8454560cdc20"
+        "sha": "ee3fdbb8b5ba1ad4ad78f571d413e1c3aa8fd0b1"
       },
       "homepage": "https://context-mode.mksg.lu/"
     },
