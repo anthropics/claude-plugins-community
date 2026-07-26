@@ -23720,6 +23720,61 @@
       "description": "Skills to support Machine Learning experimentation using the Python ecosystem.",
       "category": "development",
       "homepage": "https://github.com/probabl-ai/skills"
+    },
+    {
+      "name": "skipper",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/c-donnachie/skipper.git",
+        "sha": "ff6eeb35f751a7fbe95012f8888ab1fec4deb299"
+      },
+      "description": "Claude Code framework that scaffolds, documents, and maintains your project following Clean Code and SOLID. Detects the stack, generates an opinionated CLAUDE.md, keeps living docs (ADRs/PRDs/plans), and ships specialist subagents that refactor with stack-aware judgment. v1.4 adds Skipper Memory: an opt-in engine that turns your decisions into a queryable, cited graph and proactively surfaces the governing ones before edits.",
+      "category": "development",
+      "homepage": "https://github.com/c-donnachie/skipper.git"
+    },
+    {
+      "name": "contentstack-skills",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/contentstack/contentstack-agent-skills",
+        "sha": "77349195a227427f3ff7c3e0fc1a23fb1520918d"
+      },
+      "description": "Contentstack agent skills for Claude Code, Cursor, Codex, and Gemini.",
+      "category": "development",
+      "homepage": "https://github.com/contentstack/contentstack-agent-skills"
+    },
+    {
+      "name": "specix",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/devnomad-byte/specix.git",
+        "sha": "62cfc6c9dcfdcf919887b50c2346c404d7a4d81d"
+      },
+      "description": "Structured spec-driven development for Claude Code — workflow orchestration, execution discipline, and domain modules",
+      "category": "development",
+      "homepage": "https://github.com/devnomad-byte/specix.git"
+    },
+    {
+      "name": "lead411",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/lead411/lead411-mcp-plugin.git",
+        "sha": "3d0cef2593900f0eb0969710206929b66f5b2c12"
+      },
+      "description": "Search contacts and companies, enrich accounts, unlock contact details, and push records to CRM — one-click Lead411 MCP integration for Claude Code and Cowork.",
+      "category": "development",
+      "homepage": "https://github.com/lead411/lead411-mcp-plugin.git"
+    },
+    {
+      "name": "claude-anvil",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/allut/claude-anvil.git",
+        "sha": "5f711817d96afe62e1b288813e8b9d3e3260aef6"
+      },
+      "strict": false,
+      "category": "development",
+      "homepage": "https://github.com/allut/claude-anvil.git"
     }
   ]
 }
