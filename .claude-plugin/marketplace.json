@@ -23798,18 +23798,6 @@
       "homepage": "https://github.com/SolaSecurity/claude-code-sola"
     },
     {
-      "name": "dobox-cowork",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/thisnthat-lab/mcp-server.git",
-        "sha": "9e8818e9eca7872186d9d2c92cb6b3ae7fdd3f5d"
-      },
-      "strict": false,
-      "category": "development",
-      "homepage": "https://github.com/thisnthat-lab/mcp-server.git",
-      "description": "View your DoBox tasks from this+that in any MCP-compatible AI client"
-    },
-    {
       "name": "feynman",
       "source": {
         "source": "url",
@@ -23819,17 +23807,6 @@
       "description": "Auto-inject ASCII diagram rules into Claude Code prompts. Structure in your response gets a diagram without the developer asking.",
       "category": "development",
       "homepage": "https://github.com/apolenkov/feynman.git"
-    },
-    {
-      "name": "trendyol-integration-developer-tool",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/Trendyol/trendyol-integration-developer-tool",
-        "sha": "ded300be026ba6bf79c926f75c9e3754b766a1d2"
-      },
-      "description": "Developer tool for Trendyol Marketplace Product Integration APIs (TR, V2, International). Endpoint discovery, integration planning, payload validation, curl generation, test fixtures, and async batch tracking via MCP server.",
-      "category": "development",
-      "homepage": "https://github.com/Trendyol/trendyol-integration-developer-tool"
     }
   ]
 }
