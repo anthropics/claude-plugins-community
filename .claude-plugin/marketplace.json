@@ -23798,18 +23798,6 @@
       "homepage": "https://github.com/lcapossio/hdldiagZero"
     },
     {
-      "name": "mnemo",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/jmeiracorbal/mnemo.git",
-        "sha": "9e4b1166d4182a31869494421e40b02971704371"
-      },
-      "strict": false,
-      "description": "Persistent memory for AI coding agents. mnemo stores decisions, bugs, conventions, and discoveries across sessions in a local SQLite database. A one-command setup wires it into Claude Code or Cursor via hooks and MCP.",
-      "category": "development",
-      "homepage": "https://github.com/jmeiracorbal/mnemo"
-    },
-    {
       "name": "inflight",
       "source": {
         "source": "url",
