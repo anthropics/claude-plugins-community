@@ -23798,6 +23798,19 @@
       "description": "Connects Claude Code to the Synthflow AI voice-agent platform through its hosted MCP server. Lets Claude manage assistants, phone numbers, calls, and workflows.",
       "category": "development",
       "homepage": "https://github.com/SynthFlowAI/AnthropicPlugin"
+    },
+    {
+      "name": "tensorfeed",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/RipperMercs/tensorfeed.git",
+        "path": "claude-plugins/tensorfeed",
+        "ref": "main",
+        "sha": "09fe49d1851de1bbdeb2184331bdc61435371665"
+      },
+      "description": "Live, machine-readable AI ecosystem and regulated-domain data: AI news across 12+ sources, model pricing across providers, AI service status, security advisories (CVE/KEV/EPSS/OSV), SEC EDGAR filings, FDA regulatory data (FAERS, drug labels, recalls, MAUDE), and US energy indicators via EIA Open Data. 17 free MCP tools, no auth required.",
+      "category": "development",
+      "homepage": "https://github.com/RipperMercs/tensorfeed.git"
     }
   ]
 }
