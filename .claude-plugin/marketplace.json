@@ -23720,6 +23720,97 @@
       "description": "Skills to support Machine Learning experimentation using the Python ecosystem.",
       "category": "development",
       "homepage": "https://github.com/probabl-ai/skills"
+    },
+    {
+      "name": "hdldiagzero",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/lcapossio/hdldiagZero.git",
+        "sha": "8ff0820e1a2fd42922dc04c4e0b181cfe9927ee1"
+      },
+      "description": "Generate clean SVG block diagrams of HDL/RTL/SoC designs. Color-codes by clock domain, distinguishes AXI-MM/Lite/Stream, draws CDC blocks with split fill, omits clock/reset/JTAG/debug clutter, and validates output geometry.",
+      "category": "development",
+      "homepage": "https://github.com/lcapossio/hdldiagZero"
+    },
+    {
+      "name": "mnemo",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/jmeiracorbal/mnemo.git",
+        "sha": "9e4b1166d4182a31869494421e40b02971704371"
+      },
+      "strict": false,
+      "description": "Persistent memory for AI coding agents. mnemo stores decisions, bugs, conventions, and discoveries across sessions in a local SQLite database. A one-command setup wires it into Claude Code or Cursor via hooks and MCP.",
+      "category": "development",
+      "homepage": "https://github.com/jmeiracorbal/mnemo"
+    },
+    {
+      "name": "hyper-marketing",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/hyperfx-ai/marketing-skills.git",
+        "sha": "018b28213f852cd22389db34ee5ecc4478034aef"
+      },
+      "description": "Connect the Hyper MCP to run marketing end-to-end from Claude — Google, Meta, TikTok, Pinterest, Amazon & LinkedIn ads, organic social, SEO & AI-search research, competitor intel, ad creative, email, and analytics. 30 skills wrapping 100+ integrations and 500+ marketing tools.",
+      "category": "development",
+      "homepage": "https://github.com/hyperfx-ai/marketing-skills"
+    },
+    {
+      "name": "inflight",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/inflightsoftware/inflight-plugin.git",
+        "sha": "3b892e62765a63ca84b4e69669a9561490e271be"
+      },
+      "description": "Design feedback plugin for AI coding agents — share work for review, collect structured feedback, and implement changes.",
+      "category": "development",
+      "homepage": "https://github.com/inflightsoftware/inflight-plugin"
+    },
+    {
+      "name": "jambonz-skills",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/jambonz/skills.git",
+        "sha": "82ee0b69c88854ab7980b9042d78a3086e6b9176"
+      },
+      "description": "Skills for building voice applications on jambonz, the open-source CPaaS — voice AI agents, IVR menus, call routing, and MCP server setup.",
+      "category": "development",
+      "homepage": "https://github.com/jambonz/skills"
+    },
+    {
+      "name": "mutagent",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/mutagent-io/skills.git",
+        "sha": "e921b1ea0e5eaef37632511d0cfd2a0164c79974"
+      },
+      "description": "Official MutagenT skills bundle for AI coding agents — guides Claude Code through prompt upload, dataset curation, evaluation rubric creation, optimization, framework tracing, and (planned) multi-turn agent design.",
+      "category": "development",
+      "homepage": "https://github.com/mutagent-io/skills"
+    },
+    {
+      "name": "conjure",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/john-farina/claude-plugins.git",
+        "path": "plugins/conjure",
+        "ref": "main",
+        "sha": "d97d75d6912d38bf56a32538775799d05f45fca5"
+      },
+      "description": "Build Claude Code skills, agents, hooks, and MCP servers from plain-language descriptions. Generate, validate, and ship plugins without writing boilerplate.",
+      "category": "development",
+      "homepage": "https://github.com/john-farina/claude-plugins"
+    },
+    {
+      "name": "sokosumi",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/masumi-network/Sokosumi-MCP.git",
+        "sha": "6b710a0f5aa34dbd18275091c082ac15f5255bda"
+      },
+      "description": "Claude Code plugin for Sokosumi agents, coworkers, tasks, jobs, and marketplace workflows.",
+      "category": "development",
+      "homepage": "https://github.com/masumi-network/Sokosumi-MCP"
     }
   ]
 }
