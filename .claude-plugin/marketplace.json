@@ -23798,6 +23798,17 @@
       "description": "Connects Claude Code to the Synthflow AI voice-agent platform through its hosted MCP server. Lets Claude manage assistants, phone numbers, calls, and workflows.",
       "category": "development",
       "homepage": "https://github.com/SynthFlowAI/AnthropicPlugin"
+    },
+    {
+      "name": "claude-cursor-orchestration",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/ax-inc-dev/claude-cursor-orchestration.git",
+        "sha": "a1e9ed6c3b429201bc278b4f9251621446518ceb"
+      },
+      "description": "Claude Code + Cursor Agent orchestration system. Delegates coding tasks to Cursor Agent via ACP bridge with Phase 0-8 pipeline.",
+      "category": "development",
+      "homepage": "https://github.com/ax-inc-dev/claude-cursor-orchestration"
     }
   ]
 }
