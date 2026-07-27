@@ -23822,17 +23822,6 @@
       "description": "VitaeContext gives AI agents a private, reusable source of truth about a person's career, then provides focused skills for turning that context into grounded professional work.",
       "category": "development",
       "homepage": "https://github.com/agentkit-seo/agentkit-seo.git"
-    },
-    {
-      "name": "agent-community",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/mahmoudsheikh94/agent-community-plugin.git",
-        "sha": "c18fb8cd7dc1c28a0e8b64fb13ea168ba35c8b9a"
-      },
-      "description": "Auto-recover from known tool/API/workflow failures with a local knowledge base of fix cards",
-      "category": "development",
-      "homepage": "https://github.com/mahmoudsheikh94/agent-community-plugin.git"
     }
   ]
 }
