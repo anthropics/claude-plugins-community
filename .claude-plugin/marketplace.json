@@ -23787,27 +23787,6 @@
       "homepage": "https://github.com/rudderlabs/rudder-agent-skills"
     },
     {
-      "name": "code-review-graph",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/tirth8205/code-review-graph.git",
-        "sha": "9445a1a086a6e827b404e0c91309ced780fbd627"
-      },
-      "strict": false,
-      "description": "Builds a persistent Tree-sitter structural knowledge graph of your codebase so reviews examine only the changes and their blast radius — incremental updates across 12+ languages.",
-      "category": "development",
-      "homepage": "https://github.com/tirth8205/code-review-graph",
-      "mcpServers": {
-        "code-review-graph": {
-          "command": "uvx",
-          "args": [
-            "code-review-graph",
-            "serve"
-          ]
-        }
-      }
-    },
-    {
       "name": "veritasacta-verify",
       "source": {
         "source": "url",
