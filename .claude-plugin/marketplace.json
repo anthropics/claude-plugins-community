@@ -23720,6 +23720,17 @@
       "description": "Skills to support Machine Learning experimentation using the Python ecosystem.",
       "category": "development",
       "homepage": "https://github.com/probabl-ai/skills"
+    },
+    {
+      "name": "traderspy-mcp",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/target1m/traderspy-mcp.git",
+        "sha": "fa98de8c0df92a76a1234e15d12a2bad847b263a"
+      },
+      "description": "TraderSpy — Smart money tracking, AI trading signals, and elite trader leaderboard for crypto futures. Track whale positions across Binance, Hyperliquid, Bybit, and OKX.",
+      "category": "development",
+      "homepage": "https://github.com/target1m/traderspy-mcp"
     }
   ]
 }
