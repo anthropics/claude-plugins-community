@@ -23821,28 +23821,6 @@
       "description": "Audits your app's Privacy Policy, ToS, Cookie Policy and DPA against its actual codebase. Scans your dependencies, DB schema, and API routes to find undisclosed data collection, missing subprocessors, and GDPR compliance gaps automatically.",
       "category": "development",
       "homepage": "https://github.com/bellu/privacy-audit.git"
-    },
-    {
-      "name": "content-intelligence",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/adologyai/content-intelligence-plugin.git",
-        "sha": "126ab138291613338bdeccf448d7612bea74a78d"
-      },
-      "description": "Competitive ad intelligence inside Claude and other AI agents — discover brands, build knowledge sets, analyze content, coach creators, vet influencers, and run audience deep-dives powered by Adology's data platform.",
-      "category": "development",
-      "homepage": "https://github.com/adologyai/content-intelligence-plugin.git"
-    },
-    {
-      "name": "orcool",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/orcool-org/agent-plugin.git",
-        "sha": "4c80cbafc87f5b6660e0b168ca67f6247cbbb878"
-      },
-      "description": "Brings Orcool MCP server and Skills for marketing workflows.",
-      "category": "development",
-      "homepage": "https://github.com/orcool-org/agent-plugin.git"
     }
   ]
 }
