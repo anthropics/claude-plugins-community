@@ -23720,6 +23720,50 @@
       "description": "Skills to support Machine Learning experimentation using the Python ecosystem.",
       "category": "development",
       "homepage": "https://github.com/probabl-ai/skills"
+    },
+    {
+      "name": "code-review-graph",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/tirth8205/code-review-graph.git",
+        "sha": "9445a1a086a6e827b404e0c91309ced780fbd627"
+      },
+      "strict": false,
+      "description": "Builds a persistent Tree-sitter structural knowledge graph of your codebase so reviews examine only the changes and their blast radius — incremental updates across 12+ languages.",
+      "category": "development",
+      "homepage": "https://github.com/tirth8205/code-review-graph",
+      "mcpServers": {
+        "code-review-graph": {
+          "command": "uvx",
+          "args": [
+            "code-review-graph",
+            "serve"
+          ]
+        }
+      }
+    },
+    {
+      "name": "veritasacta-verify",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/VeritasActa/Acta.git",
+        "sha": "c801781ae02c10cbeefce1d8986cab2f249d194f"
+      },
+      "strict": false,
+      "description": "Offline Ed25519 receipt verifier — checks signed decision receipts, agent manifests, and audit bundles without contacting any server.",
+      "category": "development",
+      "homepage": "https://github.com/VeritasActa/Acta"
+    },
+    {
+      "name": "whimsical",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/WhimsicalCode/mcp-server-guide.git",
+        "sha": "f64a50aa1ec2ab65f047935ecdfbb842fd900f5e"
+      },
+      "description": "Create flowcharts, mind maps, wireframes, sequence diagrams, and sticky notes in Whimsical from your conversation. Iterate with follow-up prompts, open boards in Whimsical to edit and collaborate, or search your existing workspace.",
+      "category": "development",
+      "homepage": "https://github.com/WhimsicalCode/mcp-server-guide"
     }
   ]
 }
