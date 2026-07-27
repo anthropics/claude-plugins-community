@@ -23720,6 +23720,17 @@
       "description": "Skills to support Machine Learning experimentation using the Python ecosystem.",
       "category": "development",
       "homepage": "https://github.com/probabl-ai/skills"
+    },
+    {
+      "name": "saleshandy",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/saleshandy/saleshandy-plugin.git",
+        "sha": "f716dbb2256b768034be0a184d3fe80acd469e40"
+      },
+      "description": "Saleshandy prospecting and enrichment for Claude Code — natural-language ICP search and one-shot lead enrichment, wired through the Saleshandy MCP server.",
+      "category": "development",
+      "homepage": "https://github.com/saleshandy/saleshandy-plugin"
     }
   ]
 }
