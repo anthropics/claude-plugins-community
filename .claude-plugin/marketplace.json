@@ -23819,12 +23819,7 @@
       "strict": false,
       "description": "Audits your app's Privacy Policy, ToS, Cookie Policy and DPA against its actual codebase. Scans your dependencies, DB schema, and API routes to find undisclosed data collection, missing subprocessors, and GDPR compliance gaps automatically.",
       "category": "development",
-      "homepage": "https://github.com/bellu/privacy-audit.git",
-      "commands": {
-        "audit": {
-          "description": "Run a full privacy & legal compliance audit on your project."
-        }
-      }
+      "homepage": "https://github.com/bellu/privacy-audit.git"
     },
     {
       "name": "promptcellar",
