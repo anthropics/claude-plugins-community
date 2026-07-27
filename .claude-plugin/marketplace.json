@@ -23798,18 +23798,6 @@
       "homepage": "https://github.com/thevrus/consistent-ui.git"
     },
     {
-      "name": "claude-webcache",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/theYahia/claude-webcache.git",
-        "sha": "244d8c908e05ddc95f425c9e80fe08232a8bb256"
-      },
-      "strict": false,
-      "description": "claude-webcache adds cross-session persistence to Claude Code's WebFetch tool. Claude Code's built-in WebFetch caches results for 15 minutes within a session, then evicts. claude-webcache extends that across sessions (TTL 7 days, configurable). Same URL + same prompt in any new session returns an instant cache hit instead of re-fetching. SQLite-backed (uses Node 22.5+ built-in node:sqlite, no native deps), 4 MCP tools (cached_fetch, cache_store cache_stats, cache_list), plus a SessionStart hook printing one-line cache stats. MIT licensed, ~200 lines of code.",
-      "category": "development",
-      "homepage": "https://github.com/theYahia/claude-webcache.git"
-    },
-    {
       "name": "privacy-audit",
       "source": {
         "source": "url",
@@ -23820,31 +23808,6 @@
       "description": "Audits your app's Privacy Policy, ToS, Cookie Policy and DPA against its actual codebase. Scans your dependencies, DB schema, and API routes to find undisclosed data collection, missing subprocessors, and GDPR compliance gaps automatically.",
       "category": "development",
       "homepage": "https://github.com/bellu/privacy-audit.git"
-    },
-    {
-      "name": "promptcellar",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/dominiek/promptcellar-for-claude-code.git",
-        "sha": "f6297e30ab9db2f21fbe7bb35824c4f7a8ce33dd"
-      },
-      "strict": false,
-      "description": "Promptcellar logs every prompt into a structured, append-only, file-based standard for capturing prompts. JSON Lines on disk. Mergeable across branches. Secrets auto-redacted.",
-      "category": "development",
-      "homepage": "https://github.com/dominiek/promptcellar-for-claude-code.git"
-    },
-    {
-      "name": "content-ops",
-      "source": {
-        "source": "git-subdir",
-        "url": "https://github.com/genaiunplugged14/claude-plugins",
-        "path": "content-ops",
-        "ref": "main",
-        "sha": "eaf16a96e5fccda155df78b6e33286a5275a6686"
-      },
-      "description": "Research → draft → review → repurpose pipeline for content creators. Four agents, five namespaced skills, three production hooks. Built from the GenAI Unplugged Claude Code Masterclass.",
-      "category": "development",
-      "homepage": "https://github.com/genaiunplugged14/claude-plugins"
     }
   ]
 }
