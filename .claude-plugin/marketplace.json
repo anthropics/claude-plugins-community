@@ -23889,6 +23889,299 @@
       "description": "Connect the Hyper MCP to run marketing end-to-end from Claude — Google, Meta, TikTok, Pinterest, Amazon & LinkedIn ads, organic social, SEO & AI-search research, competitor intel, ad creative, email, and analytics. 30 skills wrapping 100+ integrations and 500+ marketing tools.",
       "category": "development",
       "homepage": "https://github.com/hyperfx-ai/marketing-skills.git"
+    },
+    {
+      "name": "ireview",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/ilang-ai/iReview.git",
+        "sha": "edbd574560f499c52435dde672b10aab5a5a71b7"
+      },
+      "description": "AI-to-AI code review router. Any OpenAI-compatible model reviews your code. No Codex CLI or Node.js required.",
+      "category": "development",
+      "homepage": "https://github.com/ilang-ai/iReview.git"
+    },
+    {
+      "name": "contentstack-skills",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/contentstack/contentstack-agent-skills",
+        "sha": "77349195a227427f3ff7c3e0fc1a23fb1520918d"
+      },
+      "description": "Contentstack agent skills for Claude Code, Cursor, Codex, and Gemini.",
+      "category": "development",
+      "homepage": "https://github.com/contentstack/contentstack-agent-skills"
+    },
+    {
+      "name": "lead411",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/lead411/lead411-mcp-plugin.git",
+        "sha": "3d0cef2593900f0eb0969710206929b66f5b2c12"
+      },
+      "description": "Search contacts and companies, enrich accounts, unlock contact details, and push records to CRM — one-click Lead411 MCP integration for Claude Code and Cowork.",
+      "category": "development",
+      "homepage": "https://github.com/lead411/lead411-mcp-plugin.git"
+    },
+    {
+      "name": "consistent-ui",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/thevrus/consistent-ui.git",
+        "sha": "fd69dd754b5076818749331df95f787f9469d6c1"
+      },
+      "description": "Enforce UI consistency across an entire codebase — detects drift in spacing, typography, colors, components, iconography, and interaction patterns across web, native mobile, and server-rendered templates. Generates a P0-P3 report and remediation plan.",
+      "category": "development",
+      "homepage": "https://github.com/thevrus/consistent-ui.git"
+    },
+    {
+      "name": "privacy-audit",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/bellu/privacy-audit.git",
+        "sha": "7c6b2f61cc8f4b5147566c9a48736ef25d03ff3a"
+      },
+      "strict": false,
+      "description": "Audits your app's Privacy Policy, ToS, Cookie Policy and DPA against its actual codebase. Scans your dependencies, DB schema, and API routes to find undisclosed data collection, missing subprocessors, and GDPR compliance gaps automatically.",
+      "category": "development",
+      "homepage": "https://github.com/bellu/privacy-audit.git"
+    },
+    {
+      "name": "sola",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/SolaSecurity/claude-code-sola",
+        "sha": "7efdd41c4a0ea9f511084deba636b95ff13ec20a"
+      },
+      "description": "AI-native security intelligence. Query your security posture, investigate threats, triage alerts, and run SQL against all your connected data sources — directly from Claude Code.",
+      "category": "development",
+      "homepage": "https://github.com/SolaSecurity/claude-code-sola"
+    },
+    {
+      "name": "feynman",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/apolenkov/feynman.git",
+        "sha": "dec50289e9dfeef6b910ed6d498d9222b4519f0f"
+      },
+      "description": "Auto-inject ASCII diagram rules into Claude Code prompts. Structure in your response gets a diagram without the developer asking.",
+      "category": "development",
+      "homepage": "https://github.com/apolenkov/feynman.git"
+    },
+    {
+      "name": "trust-st-lsp",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/johannesPettersson80/trust-claude-plugins.git",
+        "path": "plugins/trust-st-lsp",
+        "ref": "main",
+        "sha": "ef2d24dd7420888f770a058d81aa4ecde76ef28f"
+      },
+      "description": "IEC 61131-3 Structured Text language server for Claude Code. Wires the trust-lsp binary into Claude Code's LSP integration for diagnostics, go-to-definition, find references, hover, document and workspace symbols, and call hierarchy on .st files.",
+      "category": "development",
+      "homepage": "https://github.com/johannesPettersson80/trust-claude-plugins.git"
+    },
+    {
+      "name": "barista",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/wlenig/barista.git",
+        "path": "plugins/barista",
+        "ref": "main",
+        "sha": "1d685ffc072a5029bafd8ccca3083cf8e6315414"
+      },
+      "description": "barista caffeinates your claude",
+      "category": "development",
+      "homepage": "https://github.com/wlenig/barista.git"
+    },
+    {
+      "name": "vitaecontext",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/agentkit-seo/agentkit-seo.git",
+        "sha": "37fc920b2bf7d4d1b6d196a2046d3ae16f08c0eb"
+      },
+      "description": "VitaeContext gives AI agents a private, reusable source of truth about a person's career, then provides focused skills for turning that context into grounded professional work.",
+      "category": "development",
+      "homepage": "https://github.com/agentkit-seo/agentkit-seo.git"
+    },
+    {
+      "name": "claude-cursor-orchestration",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/ax-inc-dev/claude-cursor-orchestration.git",
+        "sha": "a1e9ed6c3b429201bc278b4f9251621446518ceb"
+      },
+      "description": "Claude Code + Cursor Agent orchestration system. Delegates coding tasks to Cursor Agent via ACP bridge with Phase 0-8 pipeline.",
+      "category": "development",
+      "homepage": "https://github.com/ax-inc-dev/claude-cursor-orchestration"
+    },
+    {
+      "name": "hdldiagzero",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/lcapossio/hdldiagZero.git",
+        "sha": "8ff0820e1a2fd42922dc04c4e0b181cfe9927ee1"
+      },
+      "description": "Generate clean SVG block diagrams of HDL/RTL/SoC designs. Color-codes by clock domain, distinguishes AXI-MM/Lite/Stream, draws CDC blocks with split fill, omits clock/reset/JTAG/debug clutter, and validates output geometry.",
+      "category": "development",
+      "homepage": "https://github.com/lcapossio/hdldiagZero"
+    },
+    {
+      "name": "inflight",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/inflightsoftware/inflight-plugin.git",
+        "sha": "3b892e62765a63ca84b4e69669a9561490e271be"
+      },
+      "description": "Design feedback plugin for AI coding agents — share work for review, collect structured feedback, and implement changes.",
+      "category": "development",
+      "homepage": "https://github.com/inflightsoftware/inflight-plugin"
+    },
+    {
+      "name": "jambonz-skills",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/jambonz/skills.git",
+        "sha": "82ee0b69c88854ab7980b9042d78a3086e6b9176"
+      },
+      "description": "Skills for building voice applications on jambonz, the open-source CPaaS — voice AI agents, IVR menus, call routing, and MCP server setup.",
+      "category": "development",
+      "homepage": "https://github.com/jambonz/skills"
+    },
+    {
+      "name": "mutagent",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/mutagent-io/skills.git",
+        "sha": "e921b1ea0e5eaef37632511d0cfd2a0164c79974"
+      },
+      "description": "Official MutagenT skills bundle for AI coding agents — guides Claude Code through prompt upload, dataset curation, evaluation rubric creation, optimization, framework tracing, and (planned) multi-turn agent design.",
+      "category": "development",
+      "homepage": "https://github.com/mutagent-io/skills"
+    },
+    {
+      "name": "conjure",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/john-farina/claude-plugins.git",
+        "path": "plugins/conjure",
+        "ref": "main",
+        "sha": "d97d75d6912d38bf56a32538775799d05f45fca5"
+      },
+      "description": "Build Claude Code skills, agents, hooks, and MCP servers from plain-language descriptions. Generate, validate, and ship plugins without writing boilerplate.",
+      "category": "development",
+      "homepage": "https://github.com/john-farina/claude-plugins"
+    },
+    {
+      "name": "sokosumi",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/masumi-network/Sokosumi-MCP.git",
+        "sha": "6b710a0f5aa34dbd18275091c082ac15f5255bda"
+      },
+      "description": "Claude Code plugin for Sokosumi agents, coworkers, tasks, jobs, and marketplace workflows.",
+      "category": "development",
+      "homepage": "https://github.com/masumi-network/Sokosumi-MCP"
+    },
+    {
+      "name": "neus-trust",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/neus/network.git",
+        "path": "plugins/neus-trust",
+        "ref": "main",
+        "sha": "204c84964547620f89c9377921f8534a3c19a3b2"
+      },
+      "description": "Verified identity, limited permissions, reusable trust receipts, and Vault secrets. One setup for Cursor, Claude Code, Codex, and VS Code.",
+      "category": "development",
+      "homepage": "https://github.com/neus/network"
+    },
+    {
+      "name": "angular-ssr",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/sonukapoor/angular-ssr.git",
+        "sha": "e61609e5e7783390b82167b2851d8dc30f1e2dc2"
+      },
+      "strict": false,
+      "description": "Guides AI coding assistants to correctly set up Angular SSR, diagnose NG05xx hydration errors, and apply SSR patterns in Angular v17+ applications.",
+      "category": "development",
+      "homepage": "https://github.com/sonukapoor/angular-ssr"
+    },
+    {
+      "name": "gograph",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/ozgurcd/gograph.git",
+        "sha": "5a9f44f757846fa8a92d91abddbc25ba4ad71377"
+      },
+      "description": "Local AST-aware Go repository analysis for coding agents. Provides 61 query, analysis, and workflow capabilities (65 MCP endpoints including session lifecycle) covering call graphs, impact, interfaces, type usage, security-flow candidates, architecture policies, diagrams, error flow, and local workflow telemetry.",
+      "category": "development",
+      "homepage": "https://github.com/ozgurcd/gograph"
+    },
+    {
+      "name": "jarvis-deep-interview",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/Ramsbaby/jarvis.git",
+        "path": "plugins/jarvis-deep-interview",
+        "ref": "47b4f13373eeeb6dc9a0ea1ef39ea389d62c1e46",
+        "sha": "47b4f13373eeeb6dc9a0ea1ef39ea389d62c1e46"
+      },
+      "description": "Convergent Socratic interview with mathematical ambiguity gating. 8-15 narrowing rounds + Contrarian/Simplifier Challenge Mode + JSONL decision log. Inspired by Sorbh/interview-me.",
+      "category": "development",
+      "homepage": "https://github.com/Ramsbaby/jarvis"
+    },
+    {
+      "name": "jarvis-goal",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/Ramsbaby/jarvis.git",
+        "path": "plugins/jarvis-goal",
+        "ref": "47b4f13373eeeb6dc9a0ea1ef39ea389d62c1e46",
+        "sha": "47b4f13373eeeb6dc9a0ea1ef39ea389d62c1e46"
+      },
+      "description": "Goal-driven autonomous execution with built-in irreversibility guard. Port of Anthropic /goal (Claude Code v2.1.139) that auto-pauses on git push, repo changes, payment, secret exposure, mass data deletion.",
+      "category": "development",
+      "homepage": "https://github.com/Ramsbaby/jarvis"
+    },
+    {
+      "name": "jarvis-plan-review",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/Ramsbaby/jarvis.git",
+        "path": "plugins/jarvis-plan-review",
+        "ref": "47b4f13373eeeb6dc9a0ea1ef39ea389d62c1e46",
+        "sha": "47b4f13373eeeb6dc9a0ea1ef39ea389d62c1e46"
+      },
+      "description": "11-section rigorous design plan review (problem, scope, architecture, security, observability, deployment, performance, reliability, testing, maintainability, migration). Adapted from gstack /plan-ceo-review for sole-developer + AI-pair-programming workflows.",
+      "category": "development",
+      "homepage": "https://github.com/Ramsbaby/jarvis"
+    },
+    {
+      "name": "saleshandy",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/saleshandy/saleshandy-plugin.git",
+        "sha": "f716dbb2256b768034be0a184d3fe80acd469e40"
+      },
+      "description": "Saleshandy prospecting and enrichment for Claude Code — natural-language ICP search and one-shot lead enrichment, wired through the Saleshandy MCP server.",
+      "category": "development",
+      "homepage": "https://github.com/saleshandy/saleshandy-plugin"
+    },
+    {
+      "name": "tensorfeed",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/RipperMercs/tensorfeed.git",
+        "path": "claude-plugins/tensorfeed",
+        "ref": "main",
+        "sha": "09fe49d1851de1bbdeb2184331bdc61435371665"
+      },
+      "description": "Live, machine-readable AI ecosystem and regulated-domain data: AI news across 12+ sources, model pricing across providers, AI service status, security advisories (CVE/KEV/EPSS/OSV), SEC EDGAR filings, FDA regulatory data (FAERS, drug labels, recalls, MAUDE), and US energy indicators via EIA Open Data. 17 free MCP tools, no auth required.",
+      "category": "development",
+      "homepage": "https://github.com/RipperMercs/tensorfeed.git"
     }
   ]
 }
