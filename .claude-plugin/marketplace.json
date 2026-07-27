@@ -9365,7 +9365,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Gomboc-AI/gomboc-community-skills.git",
-        "sha": "3b4be8f6f9bfb1cd0982737dbe44c913b6e9617c"
+        "sha": "8d6ff3a4a70f4c417a93ca3d934f3592e5144145"
       },
       "homepage": "https://docs.gomboc.ai/integrations/agent-plugins"
     },
