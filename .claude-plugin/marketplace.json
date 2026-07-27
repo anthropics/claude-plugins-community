@@ -6873,7 +6873,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/mootable/decimal-scaled.git",
-        "sha": "e96b899c376d17147ba810ec63dc46a596e2e37b"
+        "sha": "4195b788a6f90dc22e9d3745ef56758e4105a3d4"
       },
       "homepage": "https://github.com/mootable/decimal-scaled"
     },
@@ -7596,7 +7596,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/dotsecenv/dotsecenv.git",
-        "sha": "cbbb0714778ac3977161fba4c2742d0b73aa3569"
+        "sha": "6ae16156f32479f57ef0b9a897c0992b802288ad"
       },
       "homepage": "https://dotsecenv.com/guides/claude-code/"
     },
@@ -8186,7 +8186,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/hidai25/eval-view.git",
-        "sha": "761018a49bdaf4875c57bfb32082a40e2ed2f296"
+        "sha": "afbc7f6c715d7cd1ab1ea71aefd5e26a9bbcd767"
       },
       "homepage": "https://evalview.com"
     },
@@ -8625,7 +8625,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/followrabbit-ai/awesome-rabbit.git",
-        "sha": "5e05aaab81a3a8f374a10f2dd2acd028fbe0d0ab"
+        "sha": "e63edc39b794c9c7227771a6bd47ba463b58f87b"
       },
       "homepage": "https://subscriptions.agentic.followrabbit.ai/"
     },
@@ -9008,7 +9008,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/dekart-xyz/geosql.git",
-        "sha": "713c4e15b544198a8dd786684968f3a676789bf8"
+        "sha": "18853e2022b398f708462bf0d235c8331c11fdd6"
       },
       "homepage": "https://github.com/dekart-xyz/geosql"
     },
@@ -9189,7 +9189,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/githits-com/githits-cli.git",
-        "sha": "78f01dcf296bd4dabc993f8f4b00ddccb67db158"
+        "sha": "68f55f8c3babc6177bdcef3fe520c3af470b8d6a"
       },
       "homepage": "https://githits.com/"
     },
@@ -9211,7 +9211,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/adelaidasofia/github-mcp.git",
-        "sha": "1c4f256e245a188d66e048a83f23868ef3911e35"
+        "sha": "83c5d9cd40511aafe46ab923a1d7ebd525aee96d"
       },
       "homepage": "https://myceliumai.co/plugins/github-mcp"
     },
@@ -9365,7 +9365,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Gomboc-AI/gomboc-community-skills.git",
-        "sha": "3b4be8f6f9bfb1cd0982737dbe44c913b6e9617c"
+        "sha": "8d6ff3a4a70f4c417a93ca3d934f3592e5144145"
       },
       "homepage": "https://docs.gomboc.ai/integrations/agent-plugins"
     },
@@ -9397,7 +9397,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/stevegustafson32/google-multi-account.git",
-        "sha": "b0f0c4f7c475a5febecd6871c0e91841db272b72"
+        "sha": "b457032858f4a081938a44f62bbbe29c89aac8df"
       },
       "homepage": "https://github.com/stevegustafson32/google-multi-account"
     },
@@ -9427,7 +9427,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/gooseworks-ai/gooseworks.git",
-        "sha": "984b53ea2eddb863548946ede2ad5ade6947b4ba"
+        "sha": "dbade8365060e98d3ad36af3f960725623956f72"
       },
       "homepage": "https://github.com/gooseworks-ai/gooseworks"
     },
@@ -9597,7 +9597,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/jnuyens/gsd-plugin.git",
-        "sha": "950e2652cadae6ab4f8780ba48a33c6e282340d2"
+        "sha": "c2659066caa0b434451177a7eb2c31f873ee6f25"
       },
       "homepage": "https://github.com/jnuyens/gsd-plugin"
     },
@@ -9659,7 +9659,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/lookatitude/guild.git",
-        "sha": "c497a12572c222506b6d859e3ac335af8699e0c8"
+        "sha": "1eb30e38b7d456096460293a2a63bb649d773686"
       },
       "homepage": "https://lookatitude.github.io/guild/"
     },
@@ -9731,7 +9731,7 @@
         "url": "halyard-labs/claude-plugin-marketplace",
         "path": "plugins/halyard",
         "ref": "main",
-        "sha": "e0b99240dd34cd637892bad394c8f11c63e4e46c"
+        "sha": "b72a6de2dd86e99f147b7bc55049ab762b64f3d5"
       },
       "homepage": "https://mcp.usehalyard.ai/install"
     },
@@ -9821,7 +9821,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/romabeckman/harness-kit.git",
-        "sha": "062109cd15ad1bea9eaf44ae86750547194c2026"
+        "sha": "11738278b806ae36019aa1bf2466a8815c374c9a"
       },
       "homepage": "https://github.com/romabeckman/harness-kit"
     },
@@ -9883,7 +9883,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Darko893/haunt-mcp-server.git",
-        "sha": "8743e3ec1679f1158fbea863ed39f83320a7fd31"
+        "sha": "5d16b479b9274fa2a3eed87ef5a68dd1b7e67b24"
       },
       "homepage": "https://hauntapi.com/docs"
     },
@@ -23720,6 +23720,71 @@
       "description": "Skills to support Machine Learning experimentation using the Python ecosystem.",
       "category": "development",
       "homepage": "https://github.com/probabl-ai/skills"
+    },
+    {
+      "name": "rudder-core",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/rudderlabs/rudder-agent-skills",
+        "path": "plugins/rudder-core",
+        "ref": "a01396401d7e9e03ed2ac7737c26f1bb76de5028",
+        "sha": "a01396401d7e9e03ed2ac7737c26f1bb76de5028"
+      },
+      "description": "Cross-tool RudderStack domain knowledge: data catalog, data graphs, tracking plans, instrumentation planning, instrumentation debugging, and destination delivery debugging.",
+      "category": "development",
+      "homepage": "https://github.com/rudderlabs/rudder-agent-skills"
+    },
+    {
+      "name": "rudder-cli",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/rudderlabs/rudder-agent-skills",
+        "path": "plugins/rudder-cli",
+        "ref": "a01396401d7e9e03ed2ac7737c26f1bb76de5028",
+        "sha": "a01396401d7e9e03ed2ac7737c26f1bb76de5028"
+      },
+      "description": "Workflows for driving the rudder-cli and rudder-typer CLIs: validate, dry-run, apply, import, transformations.",
+      "category": "development",
+      "homepage": "https://github.com/rudderlabs/rudder-agent-skills"
+    },
+    {
+      "name": "rudder-mcp",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/rudderlabs/rudder-agent-skills",
+        "path": "plugins/rudder-mcp",
+        "ref": "a01396401d7e9e03ed2ac7737c26f1bb76de5028",
+        "sha": "a01396401d7e9e03ed2ac7737c26f1bb76de5028"
+      },
+      "description": "Workflows for RudderStack's MCP server at mcp.rudderstack.com: connect AI/LLM agents to a RudderStack workspace and drive catalog, sources, destinations, transformations, RETL, tracking plans, and live events via MCP tool calls.",
+      "category": "development",
+      "homepage": "https://github.com/rudderlabs/rudder-agent-skills"
+    },
+    {
+      "name": "rudder-terraform",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/rudderlabs/rudder-agent-skills",
+        "path": "plugins/rudder-terraform",
+        "ref": "a01396401d7e9e03ed2ac7737c26f1bb76de5028",
+        "sha": "a01396401d7e9e03ed2ac7737c26f1bb76de5028"
+      },
+      "description": "Workflows for managing RudderStack workspaces with the Terraform provider: provider setup, resource and data-source usage, init/plan/apply cycles, module structure, and state management.",
+      "category": "development",
+      "homepage": "https://github.com/rudderlabs/rudder-agent-skills"
+    },
+    {
+      "name": "rudder-profiles",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/rudderlabs/rudder-agent-skills",
+        "path": "plugins/rudder-profiles",
+        "ref": "a01396401d7e9e03ed2ac7737c26f1bb76de5028",
+        "sha": "a01396401d7e9e03ed2ac7737c26f1bb76de5028"
+      },
+      "description": "Workflows for building and maintaining RudderStack Profiles projects: setup, project creation, analysis, updates, and debugging.",
+      "category": "development",
+      "homepage": "https://github.com/rudderlabs/rudder-agent-skills"
     },
     {
       "name": "saleshandy",
