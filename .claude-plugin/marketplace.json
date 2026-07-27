@@ -23798,6 +23798,81 @@
       "description": "Connects Claude Code to the Synthflow AI voice-agent platform through its hosted MCP server. Lets Claude manage assistants, phone numbers, calls, and workflows.",
       "category": "development",
       "homepage": "https://github.com/SynthFlowAI/AnthropicPlugin"
+    },
+    {
+      "name": "neus-trust",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/neus/network.git",
+        "path": "plugins/neus-trust",
+        "ref": "main",
+        "sha": "204c84964547620f89c9377921f8534a3c19a3b2"
+      },
+      "description": "Verified identity, limited permissions, reusable trust receipts, and Vault secrets. One setup for Cursor, Claude Code, Codex, and VS Code.",
+      "category": "development",
+      "homepage": "https://github.com/neus/network"
+    },
+    {
+      "name": "angular-ssr",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/sonukapoor/angular-ssr.git",
+        "sha": "e61609e5e7783390b82167b2851d8dc30f1e2dc2"
+      },
+      "strict": false,
+      "description": "Guides AI coding assistants to correctly set up Angular SSR, diagnose NG05xx hydration errors, and apply SSR patterns in Angular v17+ applications.",
+      "category": "development",
+      "homepage": "https://github.com/sonukapoor/angular-ssr"
+    },
+    {
+      "name": "gograph",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/ozgurcd/gograph.git",
+        "sha": "5a9f44f757846fa8a92d91abddbc25ba4ad71377"
+      },
+      "description": "Local AST-aware Go repository analysis for coding agents. Provides 61 query, analysis, and workflow capabilities (65 MCP endpoints including session lifecycle) covering call graphs, impact, interfaces, type usage, security-flow candidates, architecture policies, diagrams, error flow, and local workflow telemetry.",
+      "category": "development",
+      "homepage": "https://github.com/ozgurcd/gograph"
+    },
+    {
+      "name": "jarvis-deep-interview",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/Ramsbaby/jarvis.git",
+        "path": "plugins/jarvis-deep-interview",
+        "ref": "47b4f13373eeeb6dc9a0ea1ef39ea389d62c1e46",
+        "sha": "47b4f13373eeeb6dc9a0ea1ef39ea389d62c1e46"
+      },
+      "description": "Convergent Socratic interview with mathematical ambiguity gating. 8-15 narrowing rounds + Contrarian/Simplifier Challenge Mode + JSONL decision log. Inspired by Sorbh/interview-me.",
+      "category": "development",
+      "homepage": "https://github.com/Ramsbaby/jarvis"
+    },
+    {
+      "name": "jarvis-goal",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/Ramsbaby/jarvis.git",
+        "path": "plugins/jarvis-goal",
+        "ref": "47b4f13373eeeb6dc9a0ea1ef39ea389d62c1e46",
+        "sha": "47b4f13373eeeb6dc9a0ea1ef39ea389d62c1e46"
+      },
+      "description": "Goal-driven autonomous execution with built-in irreversibility guard. Port of Anthropic /goal (Claude Code v2.1.139) that auto-pauses on git push, repo changes, payment, secret exposure, mass data deletion.",
+      "category": "development",
+      "homepage": "https://github.com/Ramsbaby/jarvis"
+    },
+    {
+      "name": "jarvis-plan-review",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/Ramsbaby/jarvis.git",
+        "path": "plugins/jarvis-plan-review",
+        "ref": "47b4f13373eeeb6dc9a0ea1ef39ea389d62c1e46",
+        "sha": "47b4f13373eeeb6dc9a0ea1ef39ea389d62c1e46"
+      },
+      "description": "11-section rigorous design plan review (problem, scope, architecture, security, observability, deployment, performance, reliability, testing, maintainability, migration). Adapted from gstack /plan-ceo-review for sole-developer + AI-pair-programming workflows.",
+      "category": "development",
+      "homepage": "https://github.com/Ramsbaby/jarvis"
     }
   ]
 }
