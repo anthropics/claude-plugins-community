@@ -23800,6 +23800,29 @@
       "homepage": "https://github.com/SynthFlowAI/AnthropicPlugin"
     },
     {
+      "name": "veritasacta-verify",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/VeritasActa/Acta.git",
+        "sha": "c801781ae02c10cbeefce1d8986cab2f249d194f"
+      },
+      "strict": false,
+      "description": "Offline Ed25519 receipt verifier — checks signed decision receipts, agent manifests, and audit bundles without contacting any server.",
+      "category": "development",
+      "homepage": "https://github.com/VeritasActa/Acta"
+    },
+    {
+      "name": "whimsical",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/WhimsicalCode/mcp-server-guide.git",
+        "sha": "f64a50aa1ec2ab65f047935ecdfbb842fd900f5e"
+      },
+      "description": "Create flowcharts, mind maps, wireframes, sequence diagrams, and sticky notes in Whimsical from your conversation. Iterate with follow-up prompts, open boards in Whimsical to edit and collaborate, or search your existing workspace.",
+      "category": "development",
+      "homepage": "https://github.com/WhimsicalCode/mcp-server-guide"
+    },
+    {
       "name": "ireview",
       "source": {
         "source": "url",
