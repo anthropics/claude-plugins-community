@@ -23821,6 +23821,74 @@
       "description": "Create flowcharts, mind maps, wireframes, sequence diagrams, and sticky notes in Whimsical from your conversation. Iterate with follow-up prompts, open boards in Whimsical to edit and collaborate, or search your existing workspace.",
       "category": "development",
       "homepage": "https://github.com/WhimsicalCode/mcp-server-guide"
+    },
+    {
+      "name": "content-intelligence",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/adologyai/content-intelligence-plugin.git",
+        "sha": "126ab138291613338bdeccf448d7612bea74a78d"
+      },
+      "description": "Competitive ad intelligence inside Claude and other AI agents — discover brands, build knowledge sets, analyze content, coach creators, vet influencers, and run audience deep-dives powered by Adology's data platform.",
+      "category": "development",
+      "homepage": "https://github.com/adologyai/content-intelligence-plugin.git"
+    },
+    {
+      "name": "orcool",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/orcool-org/agent-plugin.git",
+        "sha": "4c80cbafc87f5b6660e0b168ca67f6247cbbb878"
+      },
+      "description": "Brings Orcool MCP server and Skills for marketing workflows.",
+      "category": "development",
+      "homepage": "https://github.com/orcool-org/agent-plugin.git"
+    },
+    {
+      "name": "revelata",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/revelata/deepkpi-agents.git",
+        "sha": "ab9113b990130d5bcd89c7d1600fe524f0a9cedd"
+      },
+      "description": "Equity research and fundamental analysis skills powered by Revelata deepKPI.",
+      "category": "development",
+      "homepage": "https://github.com/revelata/deepkpi-agents.git"
+    },
+    {
+      "name": "shinobidata",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/dark-horse-stocks/shinobidata.git",
+        "path": "plugins/shinobidata",
+        "ref": "main",
+        "sha": "12188bd5bfee72ef410d6d8f8d7fab1e68c4d735"
+      },
+      "description": "Portfolio analytics and US-equity market research for Claude Code. 32 OAuth-protected tools spanning portfolio CRUD, performance, fundamentals, sectors, screening, and news.",
+      "category": "development",
+      "homepage": "https://github.com/dark-horse-stocks/shinobidata.git"
+    },
+    {
+      "name": "ads",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/adkit/adkit-plugin.git",
+        "sha": "bae39c61989e4f5bf0061d54a554a89ca4f98aeb"
+      },
+      "description": "Create and manage ad campaigns on Meta, Google, TikTok, and more. Spy on competitor ads across ad libraries. Generate ad creatives with AI. Use when you need to launch a campaign, find out why ROAS dropped, see what ads a competitor is running, create ad images, or pull a performance report. Manages campaigns, ad sets, ads, and keywords. Uploads media. Pulls performance metrics with date, placement, and demographic breakdowns. The ad library lets you browse any advertiser's active ads, creative formats, and landing pages. AI studio generates images and copy from a brief. Draft-first: every create starts as a draft, nothing publishes without explicit approval. Supports Facebook, Instagram, Google Search, TikTok, and Reddit. Multi-account for agencies.",
+      "category": "development",
+      "homepage": "https://github.com/adkit/adkit-plugin.git"
+    },
+    {
+      "name": "hyper-marketing",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/hyperfx-ai/marketing-skills.git",
+        "sha": "018b28213f852cd22389db34ee5ecc4478034aef"
+      },
+      "description": "Connect the Hyper MCP to run marketing end-to-end from Claude — Google, Meta, TikTok, Pinterest, Amazon & LinkedIn ads, organic social, SEO & AI-search research, competitor intel, ad creative, email, and analytics. 30 skills wrapping 100+ integrations and 500+ marketing tools.",
+      "category": "development",
+      "homepage": "https://github.com/hyperfx-ai/marketing-skills.git"
     }
   ]
 }
