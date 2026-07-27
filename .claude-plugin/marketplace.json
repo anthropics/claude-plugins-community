@@ -23798,6 +23798,19 @@
       "description": "Connects Claude Code to the Synthflow AI voice-agent platform through its hosted MCP server. Lets Claude manage assistants, phone numbers, calls, and workflows.",
       "category": "development",
       "homepage": "https://github.com/SynthFlowAI/AnthropicPlugin"
+    },
+    {
+      "name": "prismatic-skills",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/prismatic-io/prismatic-skills",
+        "path": "plugin",
+        "ref": "main",
+        "sha": "954ccb1b6bb2f9b1ec1d7605a5ea5325d93aeca6"
+      },
+      "description": "Build and deploy Prismatic custom components, Code Native Integrations, and embedded marketplace experiences",
+      "category": "development",
+      "homepage": "https://github.com/prismatic-io/prismatic-skills"
     }
   ]
 }
