@@ -23787,17 +23787,6 @@
       "homepage": "https://github.com/rudderlabs/rudder-agent-skills"
     },
     {
-      "name": "content-intelligence",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/adologyai/content-intelligence-plugin.git",
-        "sha": "126ab138291613338bdeccf448d7612bea74a78d"
-      },
-      "description": "Competitive ad intelligence inside Claude and other AI agents — discover brands, build knowledge sets, analyze content, coach creators, vet influencers, and run audience deep-dives powered by Adology's data platform.",
-      "category": "development",
-      "homepage": "https://github.com/adologyai/content-intelligence-plugin.git"
-    },
-    {
       "name": "consistent-ui",
       "source": {
         "source": "url",
@@ -23861,17 +23850,6 @@
       "description": "Research → draft → review → repurpose pipeline for content creators. Four agents, five namespaced skills, three production hooks. Built from the GenAI Unplugged Claude Code Masterclass.",
       "category": "development",
       "homepage": "https://github.com/genaiunplugged14/claude-plugins"
-    },
-    {
-      "name": "orcool",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/orcool-org/agent-plugin.git",
-        "sha": "4c80cbafc87f5b6660e0b168ca67f6247cbbb878"
-      },
-      "description": "Brings Orcool MCP server and Skills for marketing workflows.",
-      "category": "development",
-      "homepage": "https://github.com/orcool-org/agent-plugin.git"
     }
   ]
 }
