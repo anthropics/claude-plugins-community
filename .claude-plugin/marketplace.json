@@ -300,7 +300,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/adcontextprotocol/adcp-client.git",
-        "sha": "e0562580e6dc62bec3cb5eed78380109f3e43eb0"
+        "sha": "7debbe6bd4e3b45160c5749c91151390d65f4ca2"
       },
       "homepage": "https://github.com/adcontextprotocol/adcp-client"
     },
@@ -722,7 +722,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Clear-Capabilities/agentic-security.git",
-        "sha": "4ba51912c2783c7606124c27ea24baa2ad679289"
+        "sha": "28c11e9b86e022f96a44172b888c9939e03932af"
       },
       "homepage": "https://www.clearcapabilities.com/products/agentic-security"
     },
@@ -846,7 +846,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/adimango/ai-adoption-playbook.git",
-        "sha": "7f0ed1ee616a450a4c8c220c88048c2f5757f69b"
+        "sha": "bf2fef49d48f6c89f7dbc95743c1f6f7e4d68fa4"
       },
       "homepage": "https://github.com/adimango/ai-adoption-playbook"
     },
@@ -878,7 +878,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/BULDEE/ai-craftsman-superpowers.git",
-        "sha": "59675fdb982f084142ef98e44b4e5aa77fbec4b9"
+        "sha": "eca28c5aac8cba0917731a0992ff6190505d48ad"
       },
       "homepage": "https://github.com/BULDEE/ai-craftsman-superpowers/tree/main/docs"
     },
@@ -1680,7 +1680,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/AlpacaLabsLLC/skills-for-architects.git",
-        "sha": "29cd7ea74fbb6555e70ec1b25cea1fe7556cc640"
+        "sha": "54c6151f8b4f870269dbcfa50ca6cff540b2d8a9"
       },
       "homepage": "https://www.alpa.llc/plugins"
     },
@@ -1778,7 +1778,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/NicolasPrimeau/artel.git",
-        "sha": "623dbdc62c75b11680046205ef28184664c43a6f"
+        "sha": "64f9e07f95878bf7cd315dcf108545642451a62b"
       },
       "homepage": "https://github.com/NicolasPrimeau/artel"
     },
@@ -2306,7 +2306,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/YBSbarker/barker-stablecoin-skills.git",
-        "sha": "85ed9d79b8a87ecc5c1363595e26ca0972478b24"
+        "sha": "453f192a873e48b56a4dbc78d5ab2e2d4379328f"
       },
       "homepage": "https://github.com/YBSbarker/barker-stablecoin-skills"
     },
@@ -2722,7 +2722,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/brilliantdirectories/brilliant-directories-mcp.git",
-        "sha": "08241b5e9b52271345f593841942d95ca81ee936"
+        "sha": "ea69389425fc992e7ac3921dbd827fb36ca7e8c2"
       },
       "homepage": "https://www.brilliantdirectories.com"
     },
@@ -3091,7 +3091,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Cassiiopeia/SUH-DEVOPS-TEMPLATE.git",
-        "sha": "338809a729ff11fdb07926861bbf44114492471e"
+        "sha": "e9faecee3f1eea97af4ac0cae5719216349b734c"
       },
       "homepage": "https://github.com/Cassiiopeia/SUH-DEVOPS-TEMPLATE"
     },
@@ -4039,7 +4039,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/liatrio-labs/claude-deep-review.git",
-        "sha": "8c23613107d2e6cf3c5dbf193ee81b74df2585cf"
+        "sha": "24032c66b8af01b6eebf202b78a8faac8849a2ee"
       },
       "homepage": "https://github.com/liatrio-labs/claude-deep-review"
     },
@@ -4159,7 +4159,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Chachamaru127/claude-code-harness.git",
-        "sha": "baa94c5df1cd28b76c3affc5386720ffd5dac4f0"
+        "sha": "82cc6e575de08f94b03c3e0125645c6fa4c64d4c"
       },
       "homepage": "https://github.com/Chachamaru127/claude-code-harness"
     },
@@ -4943,7 +4943,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/crisandrews/ClawCode.git",
-        "sha": "87ce700a3fa4b0381fcb8384ac2593bff2a832cd"
+        "sha": "f222a00538035c5beae68d372e723f3dcab5762b"
       },
       "homepage": "https://github.com/crisandrews/ClawCode"
     },
@@ -5231,7 +5231,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/clover-security/clover-claude-plugin.git",
-        "sha": "b19904c5aea64621513a36d8edd36827f0fa6c42"
+        "sha": "16860c6dc16a9eff1f4cedace4c7640619b4c516"
       },
       "homepage": "https://github.com/clover-security/clover-claude-plugin"
     },
@@ -5937,7 +5937,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/mksglu/context-mode.git",
-        "sha": "ee3fdbb8b5ba1ad4ad78f571d413e1c3aa8fd0b1"
+        "sha": "388ee7cfcdfe62c360bdb65a9843802081561af8"
       },
       "homepage": "https://context-mode.mksg.lu/"
     },
@@ -5997,7 +5997,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/conversiontools/agent-skills.git",
-        "sha": "8eb96f7277f8d1e2d007c8ccbf646dc26077db99"
+        "sha": "b46fedcb80175b98753b8b4adbd2cbbcc3ca077e"
       },
       "homepage": "https://conversiontools.io/docs/claude-plugin"
     },
@@ -23785,6 +23785,19 @@
       "description": "Workflows for building and maintaining RudderStack Profiles projects: setup, project creation, analysis, updates, and debugging.",
       "category": "development",
       "homepage": "https://github.com/rudderlabs/rudder-agent-skills"
+    },
+    {
+      "name": "synthflow-mcp",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/SynthFlowAI/AnthropicPlugin",
+        "path": "plugins/synthflow-mcp",
+        "ref": "d41491a4103f24a455de345ce41ffe1d3946e108",
+        "sha": "d41491a4103f24a455de345ce41ffe1d3946e108"
+      },
+      "description": "Connects Claude Code to the Synthflow AI voice-agent platform through its hosted MCP server. Lets Claude manage assistants, phone numbers, calls, and workflows.",
+      "category": "development",
+      "homepage": "https://github.com/SynthFlowAI/AnthropicPlugin"
     },
     {
       "name": "saleshandy",
