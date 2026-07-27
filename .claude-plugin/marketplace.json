@@ -23820,6 +23820,17 @@
       "description": "Auto-inject ASCII diagram rules into Claude Code prompts. Structure in your response gets a diagram without the developer asking.",
       "category": "development",
       "homepage": "https://github.com/apolenkov/feynman.git"
+    },
+    {
+      "name": "revelata",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/revelata/deepkpi-agents.git",
+        "sha": "ab9113b990130d5bcd89c7d1600fe524f0a9cedd"
+      },
+      "description": "Equity research and fundamental analysis skills powered by Revelata deepKPI.",
+      "category": "development",
+      "homepage": "https://github.com/revelata/deepkpi-agents.git"
     }
   ]
 }
