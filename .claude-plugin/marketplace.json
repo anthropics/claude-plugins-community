@@ -6143,7 +6143,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/oggeh-dev/claude-cost-guard.git",
-        "sha": "b37fda20ff9f66485127e880086610d34979323f"
+        "sha": "e0396485e89062799e5b1df77880bfaa7c85193b"
       },
       "homepage": "https://github.com/oggeh-dev/claude-cost-guard"
     },
