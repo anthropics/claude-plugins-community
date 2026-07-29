@@ -2194,7 +2194,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/mohitkale/azure-devkit.git",
-        "sha": "788ce282ae3c5456863e7fb4483bc5928a76e40d"
+        "sha": "08e5969ceff9c90389900c4b39e446b8317b9f25"
       },
       "homepage": "https://github.com/mohitkale/azure-devkit"
     },
