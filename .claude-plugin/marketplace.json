@@ -4521,7 +4521,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/ramakay/claude-self-reflect.git",
-        "sha": "bd30f9ee1342d9ef7e5a95e848fe3e8a04f50b75"
+        "sha": "1e3a367a32115ffd35a520bef22bdb85c1f29085"
       },
       "homepage": "https://ramakay.github.io/claude-self-reflect/"
     },
