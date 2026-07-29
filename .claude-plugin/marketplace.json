@@ -5469,7 +5469,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/mlgraham/coderocket-plugin.git",
-        "sha": "f70fb4b85a47909710192b695729ea6aa8444b34"
+        "sha": "04abac35e6ee9c52bdfb4f8f73f7651d2cf60434"
       },
       "homepage": "https://deploy.coderocket.com"
     },
