@@ -1722,7 +1722,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/armoriq/armorClaude.git",
-        "sha": "688bbc3638f58e14d078a9b535358d81539bc225"
+        "sha": "d4cd8fd9cc5148064cf778937ba130df2532589e"
       },
       "homepage": "https://armorclaude-docs.armoriq.ai"
     },
