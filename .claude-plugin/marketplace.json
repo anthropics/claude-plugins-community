@@ -766,7 +766,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Agentiqa/agentiqa-plugin.git",
-        "sha": "fe46f765820700f87eea2922ef86b56c942f16a0"
+        "sha": "0c9ccd26daad8f6ee83e5d82d7d564b16cf46cd9"
       },
       "homepage": "https://agentiqa.com/en"
     },
