@@ -2049,7 +2049,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/oryband/claude-code-auto-approve.git",
-        "sha": "b9a20d11ed890b389d7ee5b848572ce2d75d04c2"
+        "sha": "13500751a18dca71cf46f490b3a415dfd6b56c5c"
       },
       "homepage": "https://github.com/oryband/claude-code-auto-approve"
     },
