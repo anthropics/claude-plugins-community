@@ -6935,7 +6935,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/activeloopai/deeplake-claude-code-plugins.git",
-        "sha": "a587b305cc6e3e1721ffda116fbf8b69d934f5ad"
+        "sha": "7d17a412e983d00d86e8146a311eff017eb9f4f4"
       },
       "homepage": "https://deeplake.ai/"
     },
