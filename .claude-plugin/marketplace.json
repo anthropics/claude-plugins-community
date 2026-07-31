@@ -7406,7 +7406,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/mohitkale/docker-kubernetes.git",
-        "sha": "9a0029a83c93f555de48042ede0b1cb43a58e1ce"
+        "sha": "5657528dda5254d2f99f6a22967a5b655d964cb0"
       },
       "homepage": "https://github.com/mohitkale/docker-kubernetes"
     },
