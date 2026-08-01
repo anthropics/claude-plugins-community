@@ -1249,7 +1249,7 @@
         "source": "url",
         "url": "https://github.com/haandol/alps-writer-mcp.git",
         "path": "plugins/alps-writer",
-        "sha": "79b7f203f201e53b576c4d0cac6db5238948e1e7"
+        "sha": "be8e36d86781ca70a6105ca295a3f4c38e43145a"
       },
       "homepage": "https://github.com/haandol/alps-writer-mcp"
     },
