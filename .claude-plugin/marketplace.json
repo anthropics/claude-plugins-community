@@ -17780,9 +17780,9 @@
       "source": {
         "source": "git-subdir",
         "url": "getsentry/cli",
-        "path": "plugins/sentry-cli",
+        "path": "packages/cli/plugins/sentry-cli",
         "ref": "main",
-        "sha": "160788c0305a0de933415d1e9e5692cb436bec2b"
+        "sha": "94a4ca5801784ee4fe55bcdf4a19258835fa5e8f"
       },
       "homepage": "https://cli.sentry.dev/"
     },
