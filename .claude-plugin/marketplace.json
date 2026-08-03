@@ -722,7 +722,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Clear-Capabilities/agentic-security.git",
-        "sha": "f21c72244983cdcbe147681c1714c1c1cb6cb8ee"
+        "sha": "14841dd33249d5a1c3d58bc2a9735673e8b3dc64"
       },
       "homepage": "https://www.clearcapabilities.com/products/agentic-security"
     },
@@ -898,7 +898,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/codeaholicguy/ai-devkit.git",
-        "sha": "15b09d2d3a982e58f8416b712057014b092df563"
+        "sha": "3811937c65c3007c2c3869c9f4b7790542a17628"
       },
       "homepage": "https://ai-devkit.com/docs/"
     },
@@ -1128,7 +1128,7 @@
         "url": "javiarmesto/ALDC-AL-Development-Collection-for-GitHub-Copilot",
         "path": "claude-plugin",
         "ref": "main",
-        "sha": "be900ee2102f07e6e0ff54e84a016bda363eedf9"
+        "sha": "484038a294897f95b7f4649ed1da45e496900eef"
       },
       "homepage": "https://github.com/javiarmesto/ALDC-AL-Development-Collection"
     },
@@ -1150,7 +1150,7 @@
         "url": "javiarmesto/ALDC-AL-Development-Collection-for-GitHub-Copilot",
         "path": "claude-plugin",
         "ref": "main",
-        "sha": "be900ee2102f07e6e0ff54e84a016bda363eedf9"
+        "sha": "484038a294897f95b7f4649ed1da45e496900eef"
       },
       "homepage": "https://github.com/javiarmesto/ALDC-AL-Development-Collection-for-GitHub-Copilot"
     },
@@ -1162,7 +1162,7 @@
         "url": "javiarmesto/ALDC-AL-Development-Collection",
         "path": "claude-plugin",
         "ref": "main",
-        "sha": "be900ee2102f07e6e0ff54e84a016bda363eedf9"
+        "sha": "484038a294897f95b7f4649ed1da45e496900eef"
       },
       "homepage": "https://github.com/javiarmesto/ALDC-AL-Development-Collection/tree/main/claude-plugin"
     },
@@ -1249,7 +1249,7 @@
         "source": "url",
         "url": "https://github.com/haandol/alps-writer-mcp.git",
         "path": "plugins/alps-writer",
-        "sha": "be8e36d86781ca70a6105ca295a3f4c38e43145a"
+        "sha": "53a42b39a51a0497ab7e06e93cb47a2edf67cb88"
       },
       "homepage": "https://github.com/haandol/alps-writer-mcp"
     },
@@ -1778,7 +1778,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/NicolasPrimeau/artel.git",
-        "sha": "efbb39d8dcab4659f4f39386255b2568bc0dca24"
+        "sha": "40f1d5db1ea85ff79803533acf430d57292b9eeb"
       },
       "homepage": "https://github.com/NicolasPrimeau/artel"
     },
@@ -2306,7 +2306,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/YBSbarker/barker-stablecoin-skills.git",
-        "sha": "453f192a873e48b56a4dbc78d5ab2e2d4379328f"
+        "sha": "ae772d0cbfaa59b641e872b4795c0ef4e22eb191"
       },
       "homepage": "https://github.com/YBSbarker/barker-stablecoin-skills"
     },
@@ -2392,7 +2392,7 @@
         "url": "https://github.com/fedec65/bettercallclaude.git",
         "path": "bettercallclaude",
         "ref": "main",
-        "sha": "017ad6b5acba0a175964f863f47d5cdfe13b403a"
+        "sha": "72164ec4e3bc10d93bcd2c095163ced5b5e26674"
       },
       "homepage": "https://bettercallclaude.ch"
     },
@@ -2548,7 +2548,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/dmd/claudecode-channels-bluebubbles.git",
-        "sha": "fb9e6bd462ef3b0b6f369e8f2b304aa5ba20ba9b"
+        "sha": "edd8026dcc046b3425e0ac17332d4f5e142311ca"
       },
       "homepage": "https://github.com/dmd/claudecode-channels-bluebubbles"
     },
@@ -2764,7 +2764,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/browser-use/browser-harness.git",
-        "sha": "dbe6f8f22ba65170e2d4b8f17754c704d008fe49"
+        "sha": "188383b9adf7dfa67fee07358381bb03f090e554"
       },
       "homepage": "https://browser-use.com"
     },
@@ -3191,7 +3191,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/xiaolai/cc-suite.git",
-        "sha": "f290642516333b3a122ef6fbed4d00ced99f9ff0"
+        "sha": "a03fbb4d175141f38a605698054191c834802d8a"
       },
       "homepage": "https://github.com/xiaolai/cc-suite"
     },
@@ -4039,7 +4039,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/liatrio-labs/claude-deep-review.git",
-        "sha": "5de2d14f8504130e8f0c65c84c355058c509ca20"
+        "sha": "f8881082dac500054b397802c406933d4a51a036"
       },
       "homepage": "https://github.com/liatrio-labs/claude-deep-review"
     },
@@ -4159,7 +4159,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Chachamaru127/claude-code-harness.git",
-        "sha": "56fd9ac6275ee5951ea2c4f8abe93716693bbcca"
+        "sha": "aecaf228a7704f2095035e427626e9fa6116ff89"
       },
       "homepage": "https://github.com/Chachamaru127/claude-code-harness"
     },
@@ -4311,7 +4311,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/thedotmack/claude-mem.git",
-        "sha": "a90066f9cf82cc936dd2d841319bb6b19658f7d4"
+        "sha": "b368abaeabfebb8d5cfe18836b779edda204664c"
       },
       "homepage": "https://github.com/thedotmack/claude-mem"
     },
@@ -4681,7 +4681,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/jeongph/claude-telemetry.git",
-        "sha": "fda18184a67c0201c8384e6cb9c6a6a5b3140e60"
+        "sha": "206a56b79d0d58aebccf24a4d867618d1b6a68db"
       },
       "homepage": "https://github.com/jeongph/claude-telemetry"
     },
@@ -4943,7 +4943,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/crisandrews/ClawCode.git",
-        "sha": "e834f447baa4018c40330d48fa42e957221a1908"
+        "sha": "73fe5b57075a49a217dcf83d37a710922144b87b"
       },
       "homepage": "https://github.com/crisandrews/ClawCode"
     },
@@ -5099,7 +5099,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/ClickHouse/clickhouse-claude-code-plugin.git",
-        "sha": "4c60200bf523342b68d5935b53f4dd0acb53e6b8"
+        "sha": "fcce1175a863f0833875ad696373ac9f2a408e6e"
       },
       "homepage": "https://github.com/ClickHouse/clickhouse-claude-code-plugin"
     },
@@ -5171,7 +5171,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/OptimNow/cloud-finops-skills.git",
-        "sha": "228cb4bcd58bd27281e56792dfe227524da0da51"
+        "sha": "af7f3fd75227012aca0d01247472f69af7d981d7"
       },
       "homepage": "https://github.com/OptimNow/cloud-finops-skills"
     },
@@ -5283,7 +5283,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/gwittebolle/claude-carbon.git",
-        "sha": "225446e8313fcea972bd293f6022f72fcac60355"
+        "sha": "e1002d2ea5ba43df4224740838bfd22afb6ebc26"
       },
       "homepage": "https://github.com/gwittebolle/claude-carbon"
     },
@@ -5937,7 +5937,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/mksglu/context-mode.git",
-        "sha": "066f0bf8e80cd618c5a0c3de5dfe9fe3004561df"
+        "sha": "d3127f862922d87b3356ae3f5d3ca956373c4122"
       },
       "homepage": "https://context-mode.mksg.lu/"
     },
@@ -6585,7 +6585,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/dash0hq/dash0-agent-plugin.git",
-        "sha": "5096fb5305dbc9ca4e43c14b543a142541ca6db0"
+        "sha": "2e5cec4ffb22e7d654b0a65f3906468302644d0a"
       },
       "homepage": "https://dash0.com"
     },
@@ -6965,7 +6965,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Eudaimonic-Inc/deepspace-skill.git",
-        "sha": "dc3929aa0ee41c275900ed8bb8efe6a4495d6a87"
+        "sha": "201d86aacf2f86f16961910fcc37d62fd910860b"
       },
       "homepage": "https://deep.space"
     },
@@ -7596,7 +7596,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/dotsecenv/dotsecenv.git",
-        "sha": "5e055c56192682fb7b9f9c6f61f127a44553d3d5"
+        "sha": "9381d5f4b7fb945ac61f9876ee8ae391a4b629a5"
       },
       "homepage": "https://dotsecenv.com/guides/claude-code/"
     },
@@ -7890,7 +7890,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/AgentBuildersApp/eight-eyes.git",
-        "sha": "e13ac412be8a3d95a4d55bec7be68f730b1ec615"
+        "sha": "12e0d60ea8007bce76100b9a43b0db3032266456"
       },
       "homepage": "https://github.com/AgentBuildersApp/eight-eyes"
     },
@@ -8300,7 +8300,7 @@
         "url": "expo/skills",
         "path": "plugins/expo",
         "ref": "main",
-        "sha": "b1ec56fc67ab61528f80652ae7cd5b8c94f88e2c"
+        "sha": "db6dcfa12a77ff7561455d8e1c690978f2a9e9cd"
       },
       "homepage": "https://github.com/expo/skills/blob/main/plugins/expo/README.md"
     },
@@ -8625,7 +8625,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/followrabbit-ai/awesome-rabbit.git",
-        "sha": "e5d7feac6ba363ab82bc0a323fce3ea4f08c6682"
+        "sha": "8a0ce0187206572441c2d1c464abb77db3ce3e8f"
       },
       "homepage": "https://subscriptions.agentic.followrabbit.ai/"
     },
@@ -9008,7 +9008,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/dekart-xyz/geosql.git",
-        "sha": "18853e2022b398f708462bf0d235c8331c11fdd6"
+        "sha": "57d74aa670a7bd6d323ea6282259c0d1ca2c1c3c"
       },
       "homepage": "https://github.com/dekart-xyz/geosql"
     },
@@ -9159,7 +9159,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/imsaif/gist.git",
-        "sha": "84a2aa1d44e2586f4b5961dc85f72ea3a788468e"
+        "sha": "ada7be03ebb24e068fdf6c84883a90144803b223"
       },
       "homepage": "https://www.gist.design"
     },
@@ -9189,7 +9189,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/githits-com/githits-cli.git",
-        "sha": "68f55f8c3babc6177bdcef3fe520c3af470b8d6a"
+        "sha": "479b276125f99bc33800c2c4165a46e39665879d"
       },
       "homepage": "https://githits.com/"
     },
@@ -9211,7 +9211,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/adelaidasofia/github-mcp.git",
-        "sha": "83c5d9cd40511aafe46ab923a1d7ebd525aee96d"
+        "sha": "82f10d5383c7a35f4a5f0fdd5b2bccac52c90f0c"
       },
       "homepage": "https://myceliumai.co/plugins/github-mcp"
     },
@@ -9331,7 +9331,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/jame581/GodotPrompter.git",
-        "sha": "7b3b5281738c66fc9191768d504cfe5ff9cce608"
+        "sha": "3dfd9425569f7a067f4a99e6d0bd74c1a2d90a8f"
       },
       "homepage": "https://github.com/jame581/GodotPrompter"
     },
@@ -9407,7 +9407,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/adelaidasofia/google-workspace-mcp.git",
-        "sha": "5994ffb93a2a25dba412f5a860327045e214ba39"
+        "sha": "b23dc5af477ea81770ff97b75ed7ef91005620e8"
       },
       "homepage": "https://myceliumai.co/plugins/google-workspace-mcp"
     },
@@ -9447,7 +9447,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/abexiong/govafy-unsolicited-proposal-kit.git",
-        "sha": "ad6e197ad2ecc90adde223a28a4ed31ca216b369"
+        "sha": "2daf74b169411b8b6183fc7a2e9f8964b399b2b1"
       },
       "homepage": "https://github.com/abexiong/govafy-unsolicited-proposal-kit/blob/main/README.md"
     },
@@ -9507,7 +9507,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/adelaidasofia/graph-query-mcp.git",
-        "sha": "b41bb4931a6ecda2f9cb688fccb63672fd376e45"
+        "sha": "e39e28e2153ce25363e539c45088a1d6ddfa25ed"
       },
       "homepage": "https://myceliumai.co/plugins/graph-query-mcp"
     },
@@ -9517,7 +9517,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/avelikiy/great_cto.git",
-        "sha": "9d8673c1c67ce233d7b194b0cf5fe44405fbfc0a"
+        "sha": "8fba4c7c47623bf686d187a086d4e615da37063e"
       },
       "homepage": "https://github.com/avelikiy/great_cto"
     },
@@ -9597,7 +9597,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/jnuyens/gsd-plugin.git",
-        "sha": "c2659066caa0b434451177a7eb2c31f873ee6f25"
+        "sha": "784ef6c4d7bc15ee338ffc13c7818cdaae1ae49d"
       },
       "homepage": "https://github.com/jnuyens/gsd-plugin"
     },
@@ -9659,7 +9659,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/lookatitude/guild.git",
-        "sha": "1eb30e38b7d456096460293a2a63bb649d773686"
+        "sha": "eb6fd972db794f37561b4443e1e0c21286a14ace"
       },
       "homepage": "https://lookatitude.github.io/guild/"
     },
@@ -9719,7 +9719,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/HallidayInc/HallidayClaudePlugin.git",
-        "sha": "67232135942a2f435f8ee0b27c4971a6ddac49b2"
+        "sha": "fbf5438031a3f7cdb69ef84f5971d509b19e3b8e"
       },
       "homepage": "https://docs.halliday.xyz/"
     },
@@ -9731,7 +9731,7 @@
         "url": "halyard-labs/claude-plugin-marketplace",
         "path": "plugins/halyard",
         "ref": "main",
-        "sha": "b72a6de2dd86e99f147b7bc55049ab762b64f3d5"
+        "sha": "19b5ca21109e481ea063ba128e9763d63729077f"
       },
       "homepage": "https://mcp.usehalyard.ai/install"
     },
@@ -9821,7 +9821,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/romabeckman/harness-kit.git",
-        "sha": "11738278b806ae36019aa1bf2466a8815c374c9a"
+        "sha": "9f453a440289120e2cdc7ce90bc71688c23befa8"
       },
       "homepage": "https://github.com/romabeckman/harness-kit"
     },
@@ -9873,7 +9873,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/deadsimple-xyz/hats.git",
-        "sha": "a44eab5787931668d3e7330b1d7c1844470e0b59"
+        "sha": "36581300812e60f290cc9c91efac682978119894"
       },
       "homepage": "https://github.com/deadsimple-xyz/hats"
     },
@@ -9883,7 +9883,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Darko893/haunt-mcp-server.git",
-        "sha": "5d16b479b9274fa2a3eed87ef5a68dd1b7e67b24"
+        "sha": "52e1ddc5691b73c4885fd4dafcbc3be8443d9a55"
       },
       "homepage": "https://hauntapi.com/docs"
     },
@@ -9893,7 +9893,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/arslan70/haytham.git",
-        "sha": "437ac96e5c35503e7566eff8e5c87c8ba26bf5f8"
+        "sha": "c00da8d583ec0e5fb2e9093120aeca1c9a92ce89"
       },
       "homepage": "https://github.com/arslan70/haytham"
     },
@@ -9923,7 +9923,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/aks129/HealthClawGuardrails.git",
-        "sha": "5b0c3756657b1e2e10a3dd674d6c2140693f653f"
+        "sha": "78eb3cb2eaf15532222c4b056adb3c1d16ca823c"
       },
       "homepage": "https://healthclaw.io"
     },
@@ -10005,7 +10005,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/CipherandRow/claude-hive-plugin.git",
-        "sha": "1ea8e4f7acc8a9595429d81501163b39a3438896"
+        "sha": "e9b665596ffb5604dc3b9362e288bf74fa00e2be"
       },
       "homepage": "https://github.com/CipherandRow/claude-hive-plugin"
     },
@@ -10015,7 +10015,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/activeloopai/hivemind.git",
-        "sha": "2611cd6c028fe1df7fcd22d2ee1f9e26b0d3d4ae"
+        "sha": "7d17a412e983d00d86e8146a311eff017eb9f4f4"
       },
       "homepage": "https://deeplake.ai/hivemind"
     },
@@ -10104,7 +10104,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/honeydew-ai/honeydew-ai-coding-agents-plugins.git",
-        "sha": "6a4338dcfdd26ecfb24baf65393d32d66ddb31c9"
+        "sha": "365819dadefc44a9e603058e66182a15cbb6e83e"
       },
       "homepage": "https://github.com/honeydew-ai/honeydew-ai-coding-agents-plugins"
     },
@@ -10114,7 +10114,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/honeydew-ai/honeydew-ai-coding-agents-plugins.git",
-        "sha": "6a4338dcfdd26ecfb24baf65393d32d66ddb31c9"
+        "sha": "365819dadefc44a9e603058e66182a15cbb6e83e"
       },
       "homepage": "https://honeydew-ai.github.io/honeydew-ai-coding-agents-plugins/"
     },
@@ -10154,7 +10154,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/AdhamHossamm/HotMarks-forClaudeCode.git",
-        "sha": "89eba14748a0f4d489f83e090b54e4d005965240"
+        "sha": "0a075de0d6792cd0a83176f87da854d8a167c1b8"
       },
       "homepage": "https://www.npmjs.com/package/hotmarks"
     },
@@ -10266,7 +10266,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Branded-Mayhem-Collective-LLC/humanize-kit.git",
-        "sha": "85894361cb7a7f951cbe63c275114d5a2b411afa"
+        "sha": "95e1c74793a950e50aa0b11df9f489ee52be017e"
       },
       "homepage": "https://contraband.brandedmayhem.com"
     },
@@ -10276,7 +10276,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/adelaidasofia/humanizer.git",
-        "sha": "6853744278bf8be9ea9c5506d1aa2877bc4bf670"
+        "sha": "918939719b20c732eb742f6f457f42e7523c672d"
       },
       "homepage": "https://github.com/adelaidasofia/humanizer"
     },
@@ -10306,7 +10306,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/hunter-io/claude-plugin.git",
-        "sha": "1055beb39db86a9d13f3826c56481547b450b524"
+        "sha": "c8b2d456a85ec0f5ad8f8fbf93e880fda04e7521"
       },
       "homepage": "https://hunter.io/"
     },
@@ -10336,7 +10336,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Mohammed-Abdelhady/hyperflow.git",
-        "sha": "e3913b0df41a9f7dad44cb2f2d0c58a463bfb066"
+        "sha": "d455db1dc8b8cd7d31999a219c47139b7f0d7aaf"
       },
       "homepage": "https://github.com/Mohammed-Abdelhady/hyperflow"
     },
@@ -13954,7 +13954,7 @@
         "url": "https://github.com/Noibu/ai-plugin.git",
         "path": "src",
         "ref": "main",
-        "sha": "cc32cf2e7b681209c82be306e18a216abb0874d4"
+        "sha": "bcf16c9762e54054902389d63a283837b0346c37"
       },
       "homepage": "https://help.noibu.com/articles/3918362002-overview-of-the-noibu-plugin-for-claude"
     },
@@ -16676,7 +16676,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/render-oss/render-plugin-claude-code.git",
-        "sha": "9ed7e5f44a711ebd3f0b159367bbb2b48abc22fc"
+        "sha": "b4139c813d7b931a2d8ac6c8e0c3787166f5d1fb"
       },
       "homepage": "https://github.com/render-oss/render-plugin-claude-code"
     },
