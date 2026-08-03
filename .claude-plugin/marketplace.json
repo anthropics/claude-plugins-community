@@ -3300,16 +3300,6 @@
       "homepage": "https://github.com/mslugga35/claude-plugin-cf-crawl"
     },
     {
-      "name": "chaingpt-developer-kit",
-      "description": "Web3 AI development toolkit — gives Claude complete knowledge of all 7 ChainGPT API products (LLM chatbot, NFT generator, smart contract generator, auditor, crypto news, AgenticOS, Solidity LLM) with 12 MCP tools for direct API access, 45+ audited Solidity contract patterns, 10 production-ready project templates, and a zero-credit mock server for testing. Describe what you want to build and Claude generates correct, production-ready Web3 code on the first try.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/ChainGPT-org/chaingpt-claude-skill.git",
-        "sha": "19118031fb44996fa9e4c510723e37c6fd036d80"
-      },
-      "homepage": "https://docs.chaingpt.org/dev-docs-b2b-saas-api-and-sdk/chaingpt-claude-skill-and-plugin"
-    },
-    {
       "name": "challenger",
       "description": "Multi-agent adversarial plugin that stress-tests code decisions, architecture plans, and reasoning through evidence-backed challenge rounds. Four specialized agents (Skeptic, Sentinel, Architect, Pragmatist) take turns poking holes in your conclusions using actual codebase evidence — reading code, searching patterns, and checking git history. Auto-scales intensity from quick sanity checks to brutal multi-round reviews based on stakes. Includes a passive advisory agent that suggests challenging during high-stakes moments, and a report generator for audit trails.",
       "source": {
@@ -3440,18 +3430,6 @@
         "sha": "170c5b4e3617564500b20d20646c85b95587d6d6"
       },
       "homepage": "https://github.com/johnericforte/claude-skill-cialdini-influence-audit"
-    },
-    {
-      "name": "circle",
-      "description": "Skills for building with stablecoins and onchain infrastructure. Covers USDC payments, crosschain transfers, wallets, and smart contracts, plus Circle's MCP server for real-time SDK and documentation context.",
-      "source": {
-        "source": "git-subdir",
-        "url": "https://github.com/circlefin/skills.git",
-        "path": "plugins/circle",
-        "ref": "master",
-        "sha": "c7d269a2025e26410e0e23fb5a73c769dc07d088"
-      },
-      "homepage": "https://developers.circle.com/ai/skills"
     },
     {
       "name": "circumpunct-ethics-virtues-plugin",
@@ -11813,16 +11791,6 @@
       "homepage": "https://lindo.ai"
     },
     {
-      "name": "line",
-      "description": "LINE Messaging API channel for Claude Code. Push LINE messages into your Claude Code session so Claude can receive and\nreply in real time. Features HMAC signature verification, pairing-based access control, and allowlist management.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/Moksa1123/claude-channel-line.git",
-        "sha": "f168244d556d5cdffca2e95686706f4e7eb7fe36"
-      },
-      "homepage": "https://github.com/Moksa1123/claude-channel-line"
-    },
-    {
       "name": "linear-claude-skill",
       "description": "Manage Linear issues, projects, and teams directly from Claude Code. Create issues, update statuses, link projects to initiatives, and sync completed work.",
       "source": {
@@ -12109,16 +12077,6 @@
       "homepage": "https://github.com/localstack/skills"
     },
     {
-      "name": "logblog",
-      "description": "Turn your Chrome browsing history into polished tech blog posts on Hugo/GitHub Pages. Automatically classifies URLs (YouTube, GitHub, docs, web pages), fetches enriched content (transcripts, repo metadata, full text), and uses Claude AI to write and publish deep-dive blog posts — all from a single /logblog:post command.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/ice-ice-bear/log-blog.git",
-        "sha": "e82ce1596b0f9294fe8aae1e8c32e90fd21aa984"
-      },
-      "homepage": "https://github.com/ice-ice-bear/log-blog#readme"
-    },
-    {
       "name": "logfire",
       "description": "Pydantic Logfire observability platform integration. Query traces, monitor application performance, analyze logs, and debug issues directly from Claude Code.",
       "source": {
@@ -12392,16 +12350,6 @@
         "sha": "6cf68b885a0475d6e49f6134d5f0314a4575a882"
       },
       "homepage": "https://github.com/anotb/management-consulting-plugin"
-    },
-    {
-      "name": "mangrovetrader",
-      "description": "Social trading leaderboard powered by x402 micropayments. Track trades via @MangroveTrader on Twitter, check your stats, performance, and trade history for free. Access full leaderboard rankings and trader search via x402 pay-per-query (USDC on Base). 13 slash commands, 9 MCP tools.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/MangroveTechnologies/mangrove-trader-plugin.git",
-        "sha": "2fd218f3ebf20c980f08b4f4ea0103065525e1b7"
-      },
-      "homepage": "https://mangrovetraders.com"
     },
     {
       "name": "mapbox",
@@ -12693,16 +12641,6 @@
         "sha": "b437ed22ce3a0ef9d4b138de58f1c80fae5c8c65"
       },
       "homepage": "https://github.com/Dev-Jahn/md-linker"
-    },
-    {
-      "name": "md2red",
-      "description": "Convert Markdown documents to Xiaohongshu (RED) style carousel image cards. Features LLM-powered content strategy (titles, summaries, tags, card layout), React SSR rendering at 1080x1440px, interactive preview with drag-sort and one-click copy, and export with XHS-native #tag# format. Supports Gemini, OpenAI, Anthropic, and SiliconFlow providers. Two skills: generate (Markdown to image cards) and preview (view/edit/export cards).",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/LLM-X-Factorer/md2red.git",
-        "sha": "f62cb3ca4f4f84dcaeb98c6e41b01cf896214583"
-      },
-      "homepage": "https://github.com/LLM-X-Factorer/md2red#readme"
     },
     {
       "name": "mdbrain",
@@ -14271,16 +14209,6 @@
       "homepage": "https://github.com/officecli/officecli-skills"
     },
     {
-      "name": "oh-my-forge",
-      "description": "oh-my-forge is a Claude Code workflow harness that prevents agent mistakes from repeating. Built on everything-claude-code, it adds an ontology-driven structural error\nprevention system: every agent failure is classified, routed, and converted into a permanent constraint so the same error cannot structurally happen again. It also includes a\nCodex delegation system where Claude uses an ontology index as a GPS — reading only a domain entry and a spec doc (~3K tokens) instead of the full source tree, then handing\na structured BRIEF to Codex for implementation. Includes 125+ skills, specialized agents, slash commands, and automated hooks for TDD, code review, security scanning, and\ncontinuous learning.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/rlagycks/oh-my-forge.git",
-        "sha": "a4ec5ce6dc77b52d5d96c17145ccc464fd0b199b"
-      },
-      "homepage": "https://github.com/rlagycks/oh-my-forge"
-    },
-    {
       "name": "oh-my-obsidian",
       "description": "Claude Code를 위한 영구적인 '두 번째 뇌(Second Brain)'입니다.\n\noh-my-obsidian은 로컬 Obsidian Vault와 Claude Code를 직접 연결하여 AI 에이전트의 가장 큰 취약점인 '문맥 단절(Amnesia)'을 해결합니다. 과거의 아키텍처 의사결정 내역을 자동으로 기록(session-save)하고, 유사한 이슈 발생 시 관련 컨텍스트를 즉시 인출(recall)하여 대화에 다시 통합합니다.\n\n소크라테스식 인터뷰를 기반으로 한 초기 폴더 설계(setup)부터 방대해진 문서 트리를 꼬임 없이 안전하게 재구조화하는 리팩토링(refactor) 기능까지, 내장된 특수 서브 에이전트(Vault Architect 등)들이 개발 팀의 완벽한 로컬 지식베이스 구축을 돕습니다. 자동 Git 동기화 스크립트 기능이 포함되어 새로운 팀원의 지식 온보딩도 단 몇 초 만에 완료됩니다.",
       "source": {
@@ -14535,16 +14463,6 @@
         "sha": "68ad1340ca12224e2d8f8b58c60f615086373a5e"
       },
       "homepage": "https://opentriangle.ai"
-    },
-    {
-      "name": "openweb",
-      "description": "Browser automation clicks buttons, reads pixels, and burns tokens.\nOpenWeb calls the same APIs the website calls.\n\n- Fast, cheap, and token-efficient — No screenshots, no vision API, no LLM-powered parsing. JSON in, JSON out.\n- Predictable, typed API — Typed params, response schemas, and examples for every operation.\n- Auth that just works — Cookies, JWT, CSRF, request signing, exchange chains — auto-resolved per request.\n- 90+ sites out of the box — social, commerce, content, travel, finance, and more.\n- Not listed? Add any site through the skill — OpenWeb is extensible by design.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/openweb-org/openweb.git",
-        "sha": "04c01578ff2ea7ca899bc09c0069926989b66f8a"
-      },
-      "homepage": "https://getopenweb.com/"
     },
     {
       "name": "openwebninja-universal-scraper",
@@ -14961,16 +14879,6 @@
         "sha": "fff8a3ee9278b116bc5ae52724834d38fff11c38"
       },
       "homepage": "https://github.com/reneemgagnon/Pearl_LLM_Memory"
-    },
-    {
-      "name": "peek",
-      "description": "Behavioral memory for Claude Code — automatically learns your preferences and injects relevant context to steer your coding agents.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/Project-White-Rabbit/peek-claude-plugin.git",
-        "sha": "ac644837f3eedc1e643f6b71123ad5de8feab9ce"
-      },
-      "homepage": "https://www.gopeek.ai/"
     },
     {
       "name": "peepshow",
@@ -18415,16 +18323,6 @@
       "homepage": "https://github.com/aliksir/skill-validator"
     },
     {
-      "name": "skillbase",
-      "description": "Manage and auto-update AI agent skills from Skillbase. Provides /base-pull to install and update skills, /base-call to use paid services,\nand automatic update checks on session start.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/darthjaja6/skillbase-plugin.git",
-        "sha": "67f67a1782130174f4da7d6bd88fd07d0ec1279e"
-      },
-      "homepage": "https://skillbase.work"
-    },
-    {
       "name": "skillcheck-free",
       "description": "SkillCheck Free validates Claude Code SKILL.md files against ~25 contract rules covering structure, naming, semantic consistency, and quality patterns. It catches missing frontmatter, weak or ambiguous descriptions, trigger collisions, anti-pattern formatting (prose where tables belong), naming smells, and contradictions before users encounter them.\n\nRuns locally — it's itself a SKILL.md the agent reads, with no API calls, binaries, or external services. MIT-licensed. Works in Claude Code, Claude Desktop/Web (Projects), and Cursor.\n\nThe Free tier covers structural, semantic, and naming checks plus quality-pattern recognition. SkillCheck Pro (separate product at getskillcheck.com) adds anti-slop detection, security scanning, token budget analysis, WCAG accessibility, and enterprise readiness checks.",
       "source": {
@@ -18676,16 +18574,6 @@
         "sha": "80f70fab59d3adbcbc66ee2646e2fb1b1d61086e"
       },
       "homepage": "https://github.com/alopez3006/snipara-claude"
-    },
-    {
-      "name": "so-many-lemons",
-      "description": "Make your human famous --\n\nTurn recordings and existing assets into branded video reels, LinkedIn posts, and image quotes. Upload a video or audio file, and the AI pipelinr transcribes it, extracts the best moments, renders captioned clips with your brand styling, writes LinkedIn posts, and scores them for engagement.\n\nOne command: /somanylemons:lemons. Describe what you want and it happens.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/NoMiddleInc/somanylemons-mcp.git",
-        "sha": "7a588b8252df0bee3a0e65b6e99e8395728fd003"
-      },
-      "homepage": "https://somanylemons.com"
     },
     {
       "name": "social-automation",
@@ -20777,16 +20665,6 @@
       "homepage": "https://github.com/chuckakung/trip-json"
     },
     {
-      "name": "trip1",
-      "description": "Trip1 is a hotel booking plugin for agents. It pairs the trivial-corp/agents skill with the Trip1 MCP server to search 3M+ hotels across 200+ countries, compare rates, and book rooms. Payment runs over x402 on Base (USDC) inside the same request, with a fallback URL for any client without an x402-capable wallet.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/trivial-corp/agents.git",
-        "sha": "7b7513c270f8cfd457a6e971ba83b264dccf1848"
-      },
-      "homepage": "https://trip1.com/en/agents"
-    },
-    {
       "name": "trove",
       "description": "Reference tools for underused public healthcare data. Two Claude skills: hcris-analyst looks up nonprofit U.S. hospital reporting (CMS S-10 vs. IRS 990 Schedule H, side by side) and fda-analyst looks up FDA novel drug approvals 2021–2024 with links to the approval-package PDFs.",
       "source": {
@@ -22100,26 +21978,6 @@
       "homepage": "https://github.com/iskysun96/whats-new"
     },
     {
-      "name": "whatsapp-channel",
-      "description": "WhatsApp channel for Claude Code. Message Claude from your phone, get replies back, and approve tool use remotely.\nBuilt on Baileys (WhatsApp Web multi-device). Features QR/pairing code linking, access control with allowlists, group chat support (mention-gated), media handling, and auto-reconnect.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/mgiovani/claude-whatsapp-channel.git",
-        "sha": "c610b5ce83f80b2920fedd604e534422d1a4321f"
-      },
-      "homepage": "https://github.com/mgiovani/claude-whatsapp-channel"
-    },
-    {
-      "name": "whatsapp-cloud-api",
-      "description": "WhatsApp channel for Claude Code. Bridges WhatsApp Business Cloud API\nmessages into Claude Code sessions via MCP. Includes reply and react tools,\nwebhook-based message delivery, full access control with pairing flow and\nallowlists, media upload/download support, and /whatsapp:access and\n/whatsapp:configure skills for managing access and credentials.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/Was85/claude-channel-whatsapp.git",
-        "sha": "7f2d89b4e575a20482f02ce8dfbb60b84e0116e6"
-      },
-      "homepage": "https://github.com/Was85/claude-channel-whatsapp"
-    },
-    {
       "name": "whatsapp-mcp",
       "description": "Connect Claude to WhatsApp — search messages, read conversations, send texts and media, and manage business outreach. Includes a conversation memory system that learns from every interaction. Gives Claude full access to your WhatsApp account through an MCP bridge.",
       "source": {
@@ -22310,16 +22168,6 @@
       "homepage": "https://github.com/johannesdwicahyo/wokku"
     },
     {
-      "name": "wonda",
-      "description": "AI-powered content generation and social media automation from the terminal. Generate images, videos, music, and speech with 20+ AI models (Sora, Seedance, Kling, NanoBanana, ElevenLabs, Suno). Edit videos with TikTok-style captions, overlays, merging, and audio mixing. Publish directly to Instagram, TikTok, LinkedIn, X/Twitter, and Reddit. Scrape\ncompetitors, track analytics, and run full content pipelines - all through the Wonda CLI. The skill teaches Claude model selection, prompt strategies, chaining patterns, and 24 content creation workflows.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/degausai/wonda.git",
-        "sha": "0ba29ca4ae7eb230f4ba3b25849165a111f2b443"
-      },
-      "homepage": "https://www.wonda.sh/"
-    },
-    {
       "name": "build-with-wordpress",
       "description": "Craft production-grade WordPress sites and applications. Everything from themes and plugins to commerce and deployment.",
       "source": {
@@ -22462,16 +22310,6 @@
         "sha": "97f98aa485a72adffc63e87434eaa3316cd03e21"
       },
       "homepage": "http://worldjen.com/"
-    },
-    {
-      "name": "wozcode",
-      "description": "A suite of smart coding tools that help you build better, cheaper, and faster.\n\nWozCode cuts Claude Code costs 25-55% through token optimization, speeds up common workflows, and improves output quality. Drop-in replacement for built-in tools -- install and start saving immediately.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/WithWoz/wozcode-plugin.git",
-        "sha": "60d0042ecd860a6afcb2596138158d27fd9ab76f"
-      },
-      "homepage": "https://wozcode.com"
     },
     {
       "name": "wrightward",
