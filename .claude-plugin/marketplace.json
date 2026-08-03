@@ -12330,16 +12330,6 @@
       "homepage": "https://github.com/anotb/management-consulting-plugin"
     },
     {
-      "name": "mangrovetrader",
-      "description": "Social trading leaderboard powered by x402 micropayments. Track trades via @MangroveTrader on Twitter, check your stats, performance, and trade history for free. Access full leaderboard rankings and trader search via x402 pay-per-query (USDC on Base). 13 slash commands, 9 MCP tools.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/MangroveTechnologies/mangrove-trader-plugin.git",
-        "sha": "2fd218f3ebf20c980f08b4f4ea0103065525e1b7"
-      },
-      "homepage": "https://mangrovetraders.com"
-    },
-    {
       "name": "mapbox",
       "description": "Comprehensive AI skills that teach Claude Code how to build fast, beautiful, and secure Mapbox applications. Specialized skills covering geospatial operations, cartographic design, web performance, search integration, framework patterns (React/Vue/Svelte/Angular/Next.js),   mobile development (iOS/Android), platform migration (MapLibre, Google Maps), token security, and MCP agent patterns. Includes MCP server integration for style management, geocoding, and map previews.",
       "source": {
