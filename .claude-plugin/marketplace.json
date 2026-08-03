@@ -8938,18 +8938,6 @@
       "homepage": "https://github.com/philipvanlewis/gemini-for-claude#readme"
     },
     {
-      "name": "gemini-plugin-cc",
-      "description": "Use gemini-plugin-cc from inside Claude Code for code reviews, task delegation, and multimodal analysis.\nLeverages Gemini's native vision capabilities for UI screenshot reviews, audio/video analysis, and large context window (1M+ tokens) for codebase-wide analysis. An unofficial community adaptation of codex-plugin-cc for Gemini CLI.",
-      "source": {
-        "source": "git-subdir",
-        "url": "https://github.com/shalomeir/gemini-plugin-cc.git",
-        "path": "plugins/gemini",
-        "ref": "main",
-        "sha": "7169adb4f5aa54b885bc77dd00eaa0a15122209a"
-      },
-      "homepage": "https://github.com/shalomeir/gemini-plugin-cc"
-    },
-    {
       "name": "genesis-governance-claude",
       "description": "Genesis Governance turns a Claude Code project into a governed project. Instead of dropping generic templates, it derives a constitution, governance config, CLAUDE.md, document registry, CI checks, first audit, and specialized agents from a structured 5-layer intake. It works for new projects and brownfield repos, supports checkpoint resume, and includes drift detection through /genesis-sync.",
       "source": {
@@ -9410,16 +9398,6 @@
         "sha": "b23dc5af477ea81770ff97b75ed7ef91005620e8"
       },
       "homepage": "https://myceliumai.co/plugins/google-workspace-mcp"
-    },
-    {
-      "name": "googlechat",
-      "description": "A channel plugin that connects Google Chat to Claude Code via Google Cloud Pub/Sub. Send messages from Google Chat and receive replies from Claude Code — all through a familiar chat interface. Features sender gating with allowlist and pairing flow for security. Supports Workspace Events API, Workspace Add-ons, and traditional Cloud Function message formats.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/AiRaise/claude-channel-googlechat.git",
-        "sha": "e2cf95042765caebca2e96949a46fbed94a1a9c7"
-      },
-      "homepage": "https://github.com/AiRaise/claude-channel-googlechat"
     },
     {
       "name": "gooseworks",
@@ -10751,16 +10729,6 @@
       "homepage": "https://github.com/adelaidasofia/claude-insights"
     },
     {
-      "name": "instagram",
-      "description": "Instagram channel for Claude Code — read and reply to comments via the official Meta Graph API. HTTP webhook receiver with HMAC-SHA256 signature validation, three MCP tools (reply_comment, list_comments, chat_messages), two skills (/instagram:configure, /instagram:access). Modular by design: optional extensions module via INSTAGRAM_EXTENSIONS_DIR adds CRM/automation hooks without polluting the public core. No Web reverse-engineering — uses Cloud API end-to-end. Apache 2.0.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/riasistemas/claude-channel-instagram.git",
-        "sha": "fd52e4e64e4b1ce8497e9579cc298b2d6973f728"
-      },
-      "homepage": "https://github.com/riasistemas/claude-channel-instagram"
-    },
-    {
       "name": "intention-driven-design",
       "description": "Intention-Driven Design (IDD) is a methodology for building software where every artifact traces back to a declared human intent. Code is a downstream consequence of intent, never the starting point. We allow change, but we do not allow drift.",
       "source": {
@@ -10940,18 +10908,6 @@
         "sha": "db95f255145984777bbb15f6a132fea88fe8cc41"
       },
       "homepage": "https://github.com/bngesp/jhipster-forge"
-    },
-    {
-      "name": "jira",
-      "description": "jira is a Claude Code plugin that brings full Jira issue management into your editor. It wraps the jira-commands CLI (written in\nRust) and exposes 9 skills covering the most common Jira workflows: listing and viewing issues, creating issues with dynamic custom\nfield prompts, transitioning statuses, logging time, uploading attachments, running bulk operations via JQL, and making raw REST\nAPI calls.\n\nThe plugin reads credentials from ~/.config/jira/config.toml (set up via `jira auth login`) — no extra configuration needed after\nthe CLI is installed.",
-      "source": {
-        "source": "git-subdir",
-        "url": "https://github.com/mulhamna/jira-commands.git",
-        "path": "plugin",
-        "ref": "main",
-        "sha": "9b0503aac13ebc8a04fafa16f9b663ceba93eec5"
-      },
-      "homepage": "https://github.com/mulhamna/jira-commands"
     },
     {
       "name": "joai",
@@ -11504,16 +11460,6 @@
       "homepage": "https://github.com/zhupanov/larch"
     },
     {
-      "name": "lark",
-      "description": "Chat with Claude Code in real time through Feishu (Lark) with pluggable memory backends",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/IS908/claude-lark-plugin.git",
-        "sha": "f21d37c187948ca98aae62565a94b610ee98c378"
-      },
-      "homepage": "https://github.com/IS908/claude-lark-plugin"
-    },
-    {
       "name": "lark-feishu-integration",
       "description": "Connect Claude to your Lark/Feishu workspace. Manage calendar, chat messages, documents, spreadsheets, bitable databases, tasks, email, and meeting transcripts — all from Claude Cowork.",
       "source": {
@@ -11811,16 +11757,6 @@
         "sha": "772431ca6bb51327f84d26e9cf9c596f938cd8c6"
       },
       "homepage": "https://lindo.ai"
-    },
-    {
-      "name": "line",
-      "description": "LINE Messaging API channel for Claude Code. Push LINE messages into your Claude Code session so Claude can receive and\nreply in real time. Features HMAC signature verification, pairing-based access control, and allowlist management.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/Moksa1123/claude-channel-line.git",
-        "sha": "f168244d556d5cdffca2e95686706f4e7eb7fe36"
-      },
-      "homepage": "https://github.com/Moksa1123/claude-channel-line"
     },
     {
       "name": "linear-claude-skill",
@@ -22098,26 +22034,6 @@
         "sha": "790bddaa8ffea98e128396077729c554be7efea1"
       },
       "homepage": "https://github.com/iskysun96/whats-new"
-    },
-    {
-      "name": "whatsapp-channel",
-      "description": "WhatsApp channel for Claude Code. Message Claude from your phone, get replies back, and approve tool use remotely.\nBuilt on Baileys (WhatsApp Web multi-device). Features QR/pairing code linking, access control with allowlists, group chat support (mention-gated), media handling, and auto-reconnect.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/mgiovani/claude-whatsapp-channel.git",
-        "sha": "c610b5ce83f80b2920fedd604e534422d1a4321f"
-      },
-      "homepage": "https://github.com/mgiovani/claude-whatsapp-channel"
-    },
-    {
-      "name": "whatsapp-cloud-api",
-      "description": "WhatsApp channel for Claude Code. Bridges WhatsApp Business Cloud API\nmessages into Claude Code sessions via MCP. Includes reply and react tools,\nwebhook-based message delivery, full access control with pairing flow and\nallowlists, media upload/download support, and /whatsapp:access and\n/whatsapp:configure skills for managing access and credentials.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/Was85/claude-channel-whatsapp.git",
-        "sha": "7f2d89b4e575a20482f02ce8dfbb60b84e0116e6"
-      },
-      "homepage": "https://github.com/Was85/claude-channel-whatsapp"
     },
     {
       "name": "whatsapp-mcp",
