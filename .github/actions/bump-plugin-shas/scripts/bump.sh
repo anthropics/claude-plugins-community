@@ -36,6 +36,35 @@ SHA_EXEMPT=" ${SHA_EXEMPT:-} "
 # Distinct from SHA_EXEMPT: a frozen entry keeps its sha; an exempt one has none.
 FREEZE_SHAS=" ${FREEZE_SHAS:-} "
 
+# Optional per-caller tracking-policy file (a path in the CALLER's checkout).
+# One key today: {"releases-only": [names…]} — entries whose bump target is the
+# latest published RELEASE's commit instead of upstream HEAD. Absent/empty
+# input → empty list → byte-identical behavior to a config-less run. A path
+# that is set but missing/unparseable is a hard die (NOT a warn): the caller
+# explicitly opted in, and silently falling back to HEAD-tracking would undo a
+# partner's releases-only expectation — the same silent-no-op failure mode the
+# freeze-shas reconcile warns about, but structural, so fail loudly.
+TRACKING_CONFIG="${TRACKING_CONFIG:-}"
+RELEASES_ONLY=" "
+if [[ -n "$TRACKING_CONFIG" ]]; then
+  [[ -f "$TRACKING_CONFIG" ]] || die "tracking-config not found at $TRACKING_CONFIG"
+  # Strict schema: unknown keys, a non-array value, non-string members, and
+  # whitespace-bearing names ALL die. `// []` alone would let a typo'd KEY
+  # ({"releases_only": …}) parse as an empty list and silently disable the
+  # whole policy — the exact silent-fallback the missing-file die exists to
+  # prevent; and a name with a space would word-split into two independent
+  # flags at match time.
+  releases_only_list="$(jq -r '
+      if type != "object" then error("root must be a JSON object")
+      elif ((keys - ["releases-only"]) | length) > 0 then error("unknown key(s): " + ((keys - ["releases-only"]) | join(", ")))
+      elif has("releases-only") and ((.["releases-only"] | type) != "array") then error("releases-only must be an array")
+      elif has("releases-only") and ((.["releases-only"] | map(select(type != "string")) | length) > 0) then error("releases-only must contain only strings")
+      elif has("releases-only") and ((.["releases-only"] | map(select(test("\\s"))) | length) > 0) then error("releases-only names must not contain whitespace")
+      else ((.["releases-only"] // []) | join(" ")) end' -- "$TRACKING_CONFIG" 2>&1)" \
+    || die "tracking-config is invalid ($TRACKING_CONFIG): $releases_only_list"
+  RELEASES_ONLY=" $releases_only_list "
+fi
+
 # Single-plugin target (operator workflow_dispatch). Empty = bump all stale
 # entries (default nightly behavior). Reject — never sanitize — a value with
 # whitespace or shell metacharacters (same has_unsafe_chars guard bump.sh already
@@ -114,6 +143,25 @@ if [[ -z "$ONLY" && -n "${FREEZE_SHAS// /}" ]]; then
   done
 fi
 
+# Reconcile releases-only names the same way (and for the same reason) as
+# freeze-shas above: a listed name that matches no pinned-source entry silently
+# HEAD-tracks nothing — but unlike a freeze typo it can also be a NOT-YET-LIVE
+# entry (config landed ahead of the marketplace add-PR), so the warning says so
+# rather than presuming a typo. Warning, not fatal; suppressed under `only`
+# (same noise-scoping rationale as the freeze reconcile).
+if [[ -z "$ONLY" && -n "${RELEASES_ONLY// /}" ]]; then
+  ro_external_names=" $(jq -r '.plugins[] | select(.source | type=="object") | .name' -- "$MARKETPLACE_PATH" | tr '\n' ' ')"
+  read -ra _ro_listed <<<"$RELEASES_ONLY"
+  for rname in "${_ro_listed[@]}"; do
+    [[ -n "$rname" ]] || continue
+    if [[ ! "$rname" =~ ^[a-z0-9][a-z0-9-]{1,63}$ ]]; then
+      warn "tracking-config releases-only: '$rname' is not a valid plugin name ([a-z0-9-], 2-64 chars) — it matches no entry; that name is NOT releases-only tracked."
+    elif [[ "$ro_external_names" != *" $rname "* ]]; then
+      warn "tracking-config releases-only: '$rname' matches no external (pinned-source) marketplace entry — typo, or the entry isn't live yet? It is NOT releases-only tracked until it exists (harmless if the add is still pending)."
+    fi
+  done
+fi
+
 group_start "Discover stale SHAs and validate at new HEAD"
 
 while IFS= read -r entry; do
@@ -174,10 +222,85 @@ while IFS= read -r entry; do
   [[ -n "$ok" ]] || { skip "$name" "host '$host' not in allowlist"; continue; }
   [[ -z "$subdir" ]] || { has_unsafe_chars "$subdir" && { skip "$name" "unsafe subdir"; continue; }; }
 
-  # || true masks SIGPIPE from head -1; the regex below catches partial reads.
-  new_sha="$(git ls-remote -- "$full_url" HEAD 2>/dev/null | awk '{print $1}' | head -1 || true)"
-  if [[ ! "$new_sha" =~ ^[0-9a-f]{40}$ ]]; then
-    skip "$name" "ls-remote failed or returned no HEAD"; continue
+  # Resolve the bump target. Default: upstream HEAD (ls-remote). Entries in
+  # tracking-config's releases-only list: the COMMIT of the latest published
+  # GitHub release instead — the partner ships from release tags, not main.
+  # No published release → hold the current pin (that IS releases-only
+  # semantics), recorded in skipped[] so the hold stays visible in the summary.
+  if [[ "$name" =~ ^[a-z0-9][a-z0-9-]{1,63}$ && "$RELEASES_ONLY" == *" $name "* ]]; then
+    # freeze-shas takes precedence: a frozen entry already `continue`d above
+    # and never reaches this branch.
+    if [[ "$host" != "github.com" ]]; then
+      skip "$name" "releases-only tracking requires a github.com source (host: $host)"; continue
+    fi
+    owner_repo="${full_url#https://github.com/}"; owner_repo="${owner_repo%/}"; owner_repo="${owner_repo%.git}"
+    if [[ ! "$owner_repo" =~ ^[A-Za-z0-9][A-Za-z0-9_.-]*/[A-Za-z0-9][A-Za-z0-9_.-]*$ ]]; then
+      skip "$name" "releases-only: could not derive owner/repo from $full_url"; continue
+    fi
+    # gh api on an HTTP error prints the JSON error BODY to stdout (the --jq
+    # filter is skipped), so "empty stdout" is NOT a no-releases signal.
+    # Discriminate on exit status + the body's .status: 404 = genuinely no
+    # published (non-draft, non-prerelease) release → the quiet policy hold
+    # that IS releases-only semantics; anything else (403 rate limit, 5xx,
+    # transport failure, empty body) = a LOUD skip with the real cause, never
+    # misreported as "the developer hasn't cut a release".
+    ro_rc=0
+    ro_resp="$(gh api "repos/$owner_repo/releases/latest" 2>/dev/null)" || ro_rc=$?
+    if [[ "$ro_rc" -ne 0 ]]; then
+      ro_status="$(jq -r '.status // empty' <<<"$ro_resp" 2>/dev/null || true)"
+      if [[ "$ro_status" == "404" ]]; then
+        log "$name: mode=releases-only — no published releases at $owner_repo; holding current pin"
+        skipped="$(jq -c --arg n "$name" --arg r "releases-only: no published releases (pin held)" '. + [{name:$n, reason:$r}]' <<<"$skipped")"
+      else
+        skip "$name" "releases-only: releases/latest lookup failed (HTTP ${ro_status:-unknown}) — pin held"
+      fi
+      continue
+    fi
+    latest_tag="$(jq -r '.tag_name // empty' <<<"$ro_resp" 2>/dev/null || true)"
+    if [[ -z "$latest_tag" ]]; then
+      skip "$name" "releases-only: releases/latest returned no tag_name"; continue
+    fi
+    # Positive charset allowlist (not has_unsafe_chars): the tag lands in an
+    # API path, where e.g. `?`/`#` — which has_unsafe_chars permits — would
+    # truncate the route. `/` is allowed (namespaced tags are valid refs) but
+    # a `..` segment is not — it could rewrite the API route.
+    if [[ ! "$latest_tag" =~ ^[A-Za-z0-9._/+-]+$ || "$latest_tag" == *..* ]]; then
+      skip "$name" "releases-only: release tag '$latest_tag' has characters outside [A-Za-z0-9._/+-] or a '..' segment"; continue
+    fi
+    # commits/<tag> dereferences an annotated tag server-side → always the
+    # COMMIT sha, never the tag-object sha (which clone/validate can't pin).
+    rc_rc=0
+    rc_resp="$(gh api "repos/$owner_repo/commits/$latest_tag" 2>/dev/null)" || rc_rc=$?
+    new_sha=""
+    if [[ "$rc_rc" -eq 0 ]]; then
+      new_sha="$(jq -r '.sha // empty' <<<"$rc_resp" 2>/dev/null || true)"
+    fi
+    if [[ ! "$new_sha" =~ ^[0-9a-f]{40}$ ]]; then
+      rc_status="$(jq -r '.status // empty' <<<"$rc_resp" 2>/dev/null || true)"
+      skip "$name" "releases-only: could not resolve release tag '$latest_tag' to a commit (HTTP ${rc_status:-unknown})"; continue
+    fi
+    # Forward-only guard: releases/latest is CHRONOLOGICAL (created_at), not
+    # semver — a back-patch release cut on an old line (or deleting the newest
+    # release) can point "latest" at a commit that is NOT a descendant of the
+    # current pin, and `claude plugin validate` would happily pass the older
+    # tree. An auto-bumper must never move a pin backward/sideways: require
+    # compare=ahead, hold loudly otherwise (a compare failure also holds —
+    # the conservative direction).
+    if [[ "$old_sha" =~ ^[0-9a-f]{40}$ && "$new_sha" != "$old_sha" ]]; then
+      cmp_status="$(gh api "repos/$owner_repo/compare/$old_sha...$new_sha" 2>/dev/null | jq -r '.status // empty' 2>/dev/null || true)"
+      case "$cmp_status" in
+        ahead) ;;
+        identical) continue ;;
+        *) skip "$name" "releases-only: latest release $latest_tag is not ahead of the current pin (compare=${cmp_status:-unknown}) — refusing a backward/divergent bump"; continue ;;
+      esac
+    fi
+    log "$name: mode=releases-only — releases/latest=$latest_tag → ${new_sha:0:8}"
+  else
+    # || true masks SIGPIPE from head -1; the regex below catches partial reads.
+    new_sha="$(git ls-remote -- "$full_url" HEAD 2>/dev/null | awk '{print $1}' | head -1 || true)"
+    if [[ ! "$new_sha" =~ ^[0-9a-f]{40}$ ]]; then
+      skip "$name" "ls-remote failed or returned no HEAD"; continue
+    fi
   fi
   if [[ "$new_sha" == "$old_sha" ]]; then
     continue
