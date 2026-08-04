@@ -12,6 +12,12 @@
 #                       per-PR isolation and downstream `/triage-bump-prs
 #                       --repo official` (see action.yml for details).
 #
+# Orthogonal to pr-mode, each entry has a TRACKING TARGET: upstream HEAD by
+# default (git ls-remote), or — for entries listed in the caller's
+# tracking-config `releases-only` array — the commit of the repo's latest
+# published release tag, holding the pin when no release (or no strictly-ahead
+# release) resolves.
+#
 # See action.yml for input/output documentation.
 
 source "$VALIDATE_LIB"
@@ -47,6 +53,38 @@ FREEZE_SHAS=" ${FREEZE_SHAS:-} "
 ONLY="${ONLY:-}"
 if [[ -n "$ONLY" ]] && has_unsafe_chars "$ONLY"; then
   die "only: '$ONLY' contains unsafe characters (whitespace/shell metacharacters)"
+fi
+
+# Releases-only tracking config (optional). TRACKING_CONFIG is a path in the
+# caller's checkout to a JSON file: {"releases-only": ["<plugin name>", ...]}.
+# Listed entries are bumped to the commit of their repo's LATEST published
+# release tag (releases/latest) instead of upstream HEAD; with no release
+# published the current pin is held. Empty input (default) → byte-identical
+# HEAD-tracking for every entry. A configured-but-unreadable file is a hard
+# die: silently degrading a releases-only entry back to HEAD-tracking is the
+# exact failure mode this input exists to prevent. Space-padded whole-word
+# matching, same convention (and same [a-z0-9-] charset caveat) as
+# SHA_EXEMPT/FREEZE_SHAS above.
+RELEASES_ONLY=" "
+if [[ -n "${TRACKING_CONFIG:-}" ]]; then
+  [[ -f "$TRACKING_CONFIG" ]] || die "tracking-config: file not found at $TRACKING_CONFIG"
+  # Shape-validated, not defaulted away: a typo'd key ({"release-only": ...}) or a
+  # null/array document yielding a silent empty list would silently HEAD-track every
+  # intended plugin — the same failure mode as a missing file, reached via the more
+  # likely operator error. The sanctioned placeholder is {"releases-only": []}.
+  # No 2>/dev/null: jq's error() message is the actionable diagnostic.
+  releases_only_list="$(jq -er '
+    if type != "object" then error("top-level value must be an object")
+    elif (has("releases-only") | not) then error("missing \"releases-only\" key")
+    elif ((.["releases-only"] | type) != "array") then error("\"releases-only\" must be an array")
+    elif ((.["releases-only"] | all(type == "string" and length > 0 and (test("[[:space:]]") | not))) | not) then
+      error("\"releases-only\" entries must be non-empty strings without whitespace")
+    else .["releases-only"] | join(" ") end
+  ' -- "$TRACKING_CONFIG")" \
+    || die "tracking-config: invalid config at $TRACKING_CONFIG (want {\"releases-only\": [\"<name>\", ...]}; jq error above)"
+  unknown_keys="$(jq -r 'keys - ["releases-only"] | join(", ")' -- "$TRACKING_CONFIG" 2>/dev/null || true)"
+  [[ -n "$unknown_keys" ]] && warn "tracking-config: unknown key(s) ignored: $unknown_keys"
+  RELEASES_ONLY=" $releases_only_list "
 fi
 
 PR_MODE="${PR_MODE:-batch}"
@@ -114,6 +152,23 @@ if [[ -z "$ONLY" && -n "${FREEZE_SHAS// /}" ]]; then
   done
 fi
 
+# Same reconciliation for releases-only names (tracking-config): a listed name
+# matching no external entry silently leaves the INTENDED plugin HEAD-tracking,
+# the exact behavior the config exists to prevent. (No charset branch: unlike the
+# freeze/exempt gates, the releases-only loop match below takes any name shape, so
+# membership is the only thing to reconcile.) Warning, not fatal; suppressed under
+# a single-plugin `only` run for the same reason as freeze-shas above.
+if [[ -z "$ONLY" && -n "${RELEASES_ONLY// /}" ]]; then
+  ro_external_names=" $(jq -r '.plugins[] | select(.source | type=="object") | .name' -- "$MARKETPLACE_PATH" | tr '\n' ' ')"
+  read -ra _ro_listed <<<"$RELEASES_ONLY"
+  for rname in "${_ro_listed[@]}"; do
+    [[ -n "$rname" ]] || continue
+    if [[ "$ro_external_names" != *" $rname "* ]]; then
+      warn "tracking-config releases-only: '$rname' matches no external marketplace entry — typo? That plugin still HEAD-tracks."
+    fi
+  done
+fi
+
 group_start "Discover stale SHAs and validate at new HEAD"
 
 while IFS= read -r entry; do
@@ -133,6 +188,8 @@ while IFS= read -r entry; do
   # `only` guard intentionally ALLOWS (e.g. @scope/plugin) would bypass those
   # gates even if listed there — a pre-existing freeze/exempt-charset limitation,
   # not a regression (the open-PR + validation gates still apply to such a name).
+  # The releases-only gate carries NO such charset pre-gate: a flagged name of
+  # any shape resolves-or-holds there, never silently HEAD-bumps.
   if [[ -n "$ONLY" && "$name" != "$ONLY" ]]; then continue; fi
 
   # Deliberately-unpinned entries: nothing to bump. Plain log, not skip() —
@@ -174,10 +231,79 @@ while IFS= read -r entry; do
   [[ -n "$ok" ]] || { skip "$name" "host '$host' not in allowlist"; continue; }
   [[ -z "$subdir" ]] || { has_unsafe_chars "$subdir" && { skip "$name" "unsafe subdir"; continue; }; }
 
-  # || true masks SIGPIPE from head -1; the regex below catches partial reads.
-  new_sha="$(git ls-remote -- "$full_url" HEAD 2>/dev/null | awk '{print $1}' | head -1 || true)"
-  if [[ ! "$new_sha" =~ ^[0-9a-f]{40}$ ]]; then
-    skip "$name" "ls-remote failed or returned no HEAD"; continue
+  # Resolve the bump target. releases-only entries (tracking-config) track the
+  # commit of the repo's LATEST published release tag; everything else tracks
+  # upstream HEAD (previous behavior, byte-identical when the config is empty).
+  # Whole-word match with NO charset pre-gate: a scoped/dotted/uppercase flagged
+  # name must be held-or-resolved here, never silently dropped into the HEAD
+  # branch (the -n guard keeps an empty name from matching the padded list).
+  release_tag=""
+  if [[ -n "$name" && "$RELEASES_ONLY" == *" $name "* ]]; then
+    # Release resolution is a GitHub REST call — github.com sources only, exact
+    # host on purpose (a www.github.com/subdomain source is held too). A flagged
+    # entry on another host is held, never silently HEAD-bumped.
+    if [[ "$host" != "github.com" ]]; then
+      skip "$name" "releases-only: host '$host' unsupported (github.com only); holding pin"; continue
+    fi
+    repo_path="${full_url#https://github.com/}"; repo_path="${repo_path%/}"; repo_path="${repo_path%.git}"
+    if [[ ! "$repo_path" =~ ^[A-Za-z0-9._-]+/[A-Za-z0-9._-]+$ ]]; then
+      skip "$name" "releases-only: '$full_url' is not an owner/repo GitHub URL; holding pin"; continue
+    fi
+    log "$name: mode=releases-only — resolving latest release on $repo_path"
+    # Gate on gh's EXIT STATUS, never on empty stdout: on an HTTP error gh
+    # copies the raw error body to STDOUT (bypassing --jq) and exits 1, so an
+    # `|| true` + empty-check would read a 404 body as a tag.
+    gh_err="$workroot/gh-$checked.err"
+    if ! latest_tag="$(timeout 60 gh api "repos/$repo_path/releases/latest" --jq '.tag_name' 2>"$gh_err")"; then
+      if grep -q 'HTTP 404' "$gh_err" 2>/dev/null; then
+        # No published (non-draft, non-prerelease) release — the benign steady
+        # state. Holding the pin IS releases-only semantics; never fall back to
+        # HEAD. Plain log + recorded, like sha-exempt.
+        log "$name: mode=releases-only — no published release; holding pin"
+        skipped="$(jq -c --arg n "$name" --arg r "releases-only: no published release; holding pin" '. + [{name:$n, reason:$r}]' <<<"$skipped")"
+      else
+        # Auth / rate-limit / network / server error — NOT "no release". Loud:
+        # a quiet hold here freezes every releases-only pin invisibly.
+        skip "$name" "releases-only: release lookup failed ($(head -1 "$gh_err" 2>/dev/null)); holding pin"
+      fi
+      release_tag=""; continue
+    fi
+    # Allowlist the tag shape (legal refname chars, bounded): rejects shell/REST
+    # metacharacters AND any residual error-body/null value in one check.
+    if [[ ! "$latest_tag" =~ ^[A-Za-z0-9._/+@-]{1,255}$ ]]; then
+      skip "$name" "releases-only: unusable tag name from releases/latest; holding pin"; continue
+    fi
+    # repos/<o>/<r>/commits/<tag> dereferences annotated tags to the COMMIT
+    # sha (a git/refs lookup would return the tag OBJECT sha — wrong pin).
+    # @uri-encode the tag so a `/` (legal in refnames) can't split the path.
+    new_sha="$(timeout 60 gh api "repos/$repo_path/commits/$(jq -rn --arg t "$latest_tag" '$t|@uri')" --jq '.sha' 2>/dev/null || true)"
+    if [[ ! "$new_sha" =~ ^[0-9a-f]{40}$ ]]; then
+      skip "$name" "releases-only: could not resolve tag '$latest_tag' to a commit; holding pin"; continue
+    fi
+    log "$name: mode=releases-only — latest release $latest_tag → ${new_sha:0:12}"
+    # Monotonicity guard: releases/latest orders by PUBLICATION TIME, not by
+    # version or ancestry — a back-patch release (or the first flip from
+    # HEAD-tracking) can resolve BEHIND the current pin. Never move a pin
+    # backward/sideways silently: hold loudly, leave the call to a human.
+    # Fail-safe: an unreadable compare answer holds too.
+    if [[ "$old_sha" =~ ^[0-9a-f]{40}$ && "$new_sha" != "$old_sha" ]]; then
+      # Exit-status gated like releases/latest above (an error's raw body lands
+      # on stdout); a failed compare is an empty status → "unavailable" → hold.
+      if ! cmp_status="$(timeout 60 gh api "repos/$repo_path/compare/$old_sha...$new_sha" --jq '.status' 2>/dev/null)"; then
+        cmp_status=""
+      fi
+      if [[ "$cmp_status" != "ahead" ]]; then
+        skip "$name" "releases-only: latest release $latest_tag (${new_sha:0:8}) is not strictly ahead of the pinned ${old_sha:0:8} (compare: ${cmp_status:-unavailable}); holding pin"
+        continue
+      fi
+    fi
+    release_tag="$latest_tag"
+  else
+    # || true masks SIGPIPE from head -1; the regex below catches partial reads.
+    new_sha="$(git ls-remote -- "$full_url" HEAD 2>/dev/null | awk '{print $1}' | head -1 || true)"
+    if [[ ! "$new_sha" =~ ^[0-9a-f]{40}$ ]]; then
+      skip "$name" "ls-remote failed or returned no HEAD"; continue
+    fi
   fi
   if [[ "$new_sha" == "$old_sha" ]]; then
     continue
@@ -278,8 +404,11 @@ while IFS= read -r entry; do
     -- "$MARKETPLACE_PATH" > "$MARKETPLACE_PATH.tmp"
   mv -- "$MARKETPLACE_PATH.tmp" "$MARKETPLACE_PATH"
 
-  bumped="$(jq -c --arg n "$name" --arg o "$old_sha" --arg s "$new_sha" \
-    '. + [{name:$n, old_sha:$o, new_sha:$s}]' <<<"$bumped")"
+  # release_tag rides along for releases-only bumps (additive field — per-entry
+  # consumers read name/branch/pr_url) so the commit/PR/summary can say WHICH
+  # release produced the SHA, not just that it moved.
+  bumped="$(jq -c --arg n "$name" --arg o "$old_sha" --arg s "$new_sha" --arg t "$release_tag" \
+    '. + [{name:$n, old_sha:$o, new_sha:$s} + (if $t != "" then {release_tag:$t} else {} end)]' <<<"$bumped")"
   applied=$((applied+1))
   log "  ✓ $name validated and bumped"
 done < <(jq -c '.plugins[] | select(.source | type=="object")' -- "$MARKETPLACE_PATH")
@@ -299,7 +428,7 @@ group_end
   if (( applied > 0 )); then
     echo "| Plugin | Old SHA | New SHA |"
     echo "|---|---|---|"
-    jq -r '.[] | "| \(.name) | `\(.old_sha[0:12] // "(none)")` | `\(.new_sha[0:12])` |"' <<<"$bumped"
+    jq -r '.[] | "| \(.name) | `\(.old_sha[0:12] // "(none)")` | `\(.new_sha[0:12])`\(if .release_tag then " (release \(.release_tag))" else "" end) |"' <<<"$bumped"
   fi
   if [[ "$(jq 'length' <<<"$skipped")" -gt 0 ]]; then
     echo
@@ -387,6 +516,7 @@ if [[ "$PR_MODE" == "per-entry" ]]; then
     name="$(jq -r '.name'    <<<"$b")"
     old_sha="$(jq -r '.old_sha' <<<"$b")"
     new_sha="$(jq -r '.new_sha' <<<"$b")"
+    entry_tag="$(jq -r '.release_tag // ""' <<<"$b")"
     branch="$(branch_for "$name")"
 
     # Build per-entry marketplace content: base + only this entry's bump.
@@ -398,7 +528,7 @@ if [[ "$PR_MODE" == "per-entry" ]]; then
 
     create_or_reset_branch "$branch" "$base_sha"
 
-    commit_msg="bump($name): ${old_sha:0:8} → ${new_sha:0:8}"
+    commit_msg="bump($name): ${old_sha:0:8} → ${new_sha:0:8}${entry_tag:+ (release $entry_tag)}"
     new_oid="$(create_signed_commit "$branch" "$base_sha" "$commit_msg" "$entry_file")" \
       || die "createCommitOnBranch failed for $name"
     [[ "$new_oid" =~ ^[0-9a-f]{40}$ ]] || die "createCommitOnBranch did not return an OID for $name (got: $new_oid)"
@@ -407,6 +537,7 @@ if [[ "$PR_MODE" == "per-entry" ]]; then
     body_file="$workroot/pr-body-$name.md"
     {
       echo "Automated SHA bump for **\`$name\`**. The new SHA was validated via \`claude plugin validate\` in [this workflow run]($RUN_URL) before this PR was opened."
+      [[ -n "$entry_tag" ]] && { echo; echo "Tracking mode: **releases-only** — this SHA is the commit of upstream release \`$entry_tag\`, not upstream HEAD."; }
       echo
       echo "| Old SHA | New SHA |"
       echo "|---|---|"
@@ -455,7 +586,8 @@ else
 
   create_or_reset_branch "$PR_BRANCH" "$base_sha"
 
-  commit_msg="Bump $applied plugin SHA pin(s) to upstream HEAD"
+  # Not "to upstream HEAD": a releases-only entry's SHA is a release-tag commit.
+  commit_msg="Bump $applied plugin SHA pin(s)"
   new_oid="$(create_signed_commit "$PR_BRANCH" "$base_sha" "$commit_msg" "$MARKETPLACE_PATH")" \
     || die "createCommitOnBranch failed"
   [[ "$new_oid" =~ ^[0-9a-f]{40}$ ]] || die "createCommitOnBranch did not return a commit OID (got: $new_oid)"
@@ -467,7 +599,7 @@ else
     echo
     echo "| Plugin | Old SHA | New SHA |"
     echo "|---|---|---|"
-    jq -r '.[] | "| \(.name) | `\(.old_sha[0:12] // "(none)")` | `\(.new_sha[0:12])` |"' <<<"$bumped"
+    jq -r '.[] | "| \(.name) | `\(.old_sha[0:12] // "(none)")` | `\(.new_sha[0:12])`\(if .release_tag then " (release \(.release_tag))" else "" end) |"' <<<"$bumped"
     if [[ "$(jq 'length' <<<"$skipped")" -gt 0 ]]; then
       echo
       echo "Skipped (not bumped — see run for details): $(jq -r 'map(.name) | join(", ")' <<<"$skipped")"

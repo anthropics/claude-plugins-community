@@ -31,7 +31,7 @@ jobs:
       - name: Static invariant tests
         run: bash .github/actions/validate-plugins/test-invariants.sh
 
-      - name: bump-plugin-shas skip/freeze tests
+      - name: bump-plugin-shas skip/freeze/releases-only tests
         run: bash .github/actions/bump-plugin-shas/test-bump.sh
 
       - name: bump-plugin-shas manifest-synthesis tests

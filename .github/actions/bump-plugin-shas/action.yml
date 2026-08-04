@@ -1,8 +1,10 @@
 name: Bump Plugin SHAs
 description: >
-  Discover external marketplace entries whose upstream HEAD has moved past the
-  pinned SHA, validate each at the new SHA with `claude plugin validate`, and
-  open a single PR with all passing bumps. Bot-free: uses the default
+  Discover external marketplace entries whose upstream tracking target — HEAD
+  by default, or the latest published release tag for entries listed in
+  `tracking-config` — has moved past the pinned SHA, validate each at the new
+  SHA with `claude plugin validate`, and open a single PR with all passing
+  bumps. Bot-free: uses the default
   GITHUB_TOKEN with contents:write + pull-requests:write. The bump commit is
   created via the GraphQL `createCommitOnBranch` mutation so it is signed
   server-side by GitHub and satisfies `required_signatures` rulesets without
@@ -40,7 +42,27 @@ inputs:
     description: >
       Bump ONLY this plugin name (exact marketplace entry name). Empty = all
       stale entries (default nightly behavior). Honors the same open-PR skip,
-      sha-exempt, and freeze-shas handling as a full run for the targeted name.
+      sha-exempt, freeze-shas, and releases-only (tracking-config) handling as
+      a full run for the targeted name.
+    default: ""
+  tracking-config:
+    description: >
+      Optional path (in the caller's checkout) to a JSON tracking-config file:
+      {"releases-only": ["<plugin name>", ...]}. Listed entries are bumped to
+      the commit of the release GitHub reports at releases/latest (the most
+      recent non-draft, non-prerelease by PUBLICATION time, not version order;
+      annotated tags are dereferenced to the commit) instead of upstream HEAD.
+      The current pin is HELD — never silently HEAD-bumped — whenever no
+      release is published, the resolved release is not strictly ahead of the
+      pin (the monotonicity guard), the source is not a github.com owner/repo
+      URL, or any API/resolution step fails; every hold is recorded in the
+      `skipped` output (API failures as loud warnings). sha-exempt and
+      freeze-shas take precedence over releases-only for a name listed in
+      both. The file must be an object with a "releases-only" array (the
+      placeholder for "none yet" is an empty array — a missing key or
+      malformed file is a hard error, so a typo cannot silently restore
+      HEAD-tracking). Empty input (default) = HEAD-tracking for every entry,
+      byte-identical to previous behavior.
     default: ""
   claude-cli-version:
     description: Version of @anthropic-ai/claude-code to install
@@ -65,15 +87,21 @@ inputs:
     description: Branch to open the PR against
     default: ${{ github.event.repository.default_branch || 'main' }}
   github-token:
-    description: Token with contents:write + pull-requests:write on this repo
+    description: >
+      Token with contents:write + pull-requests:write on this repo — plus, for
+      releases-only entries, read access to the external repos they reference
+      (release/commit/compare lookups; the default github.token reads public
+      repos).
     default: ${{ github.token }}
 
 outputs:
   bumped:
-    description: JSON array of {name, old_sha, new_sha} that were bumped
+    description: >
+      JSON array of {name, old_sha, new_sha} that were bumped; releases-only
+      entries additionally carry release_tag (the tag whose commit new_sha is).
     value: ${{ steps.bump.outputs.bumped }}
   skipped:
-    description: JSON array of {name, reason} that were skipped (validation failed / unreachable / open PR)
+    description: JSON array of {name, reason} that were skipped (validation failed / unreachable / open PR / releases-only hold — see the run summary for reason classes)
     value: ${{ steps.bump.outputs.skipped }}
   pr-url:
     description: URL of the bump PR in batch mode (empty in per-entry mode or when nothing to bump)
@@ -168,6 +196,7 @@ runs:
         SHA_EXEMPT: ${{ inputs.sha-exempt }}
         FREEZE_SHAS: ${{ inputs.freeze-shas }}
         ONLY: ${{ inputs.only }}
+        TRACKING_CONFIG: ${{ inputs.tracking-config }}
         PR_MODE: ${{ inputs.pr-mode }}
         PR_BRANCH: ${{ inputs.pr-branch }}
         BASE_BRANCH: ${{ inputs.base-branch }}

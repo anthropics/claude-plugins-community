@@ -7,7 +7,7 @@ metachar blocklist, quoting/`--` discipline).
 | Action | Role | Permissions | Secret |
 |---|---|---|---|
 | [`validate-plugins`](validate-plugins/) | **Gate** — invariants I1–I11 + `claude plugin validate` on the marketplace and changed plugins | `contents: read` | — |
-| [`bump-plugin-shas`](bump-plugin-shas/) | **Maintenance loop** — discover stale external SHAs, validate at new HEAD inline, open one PR | `contents: write`, `pull-requests: write` | — |
+| [`bump-plugin-shas`](bump-plugin-shas/) | **Maintenance loop** — discover stale external SHAs (vs HEAD, or vs the latest release tag via `tracking-config`), validate at the new SHA inline, open one PR | `contents: write`, `pull-requests: write` | — |
 | [`scan-plugins`](scan-plugins/) | **Policy layer** — Claude-based safety review of changed external plugins; non-blocking by default | `contents: read` | `ANTHROPIC_API_KEY` (graceful no-op if unset) |
 
 See each action's README for inputs/outputs and `validate-plugins/RELEASING.md`

@@ -5,8 +5,10 @@ Nightly bot-free SHA refresh for external marketplace entries. Companion to
 
 ## What it does
 
-1. For each external entry in `marketplace.json`, runs `git ls-remote <url> HEAD`
-   and compares against the pinned `sha`.
+1. For each external entry in `marketplace.json`, resolves its tracking target —
+   `git ls-remote <url> HEAD` by default, or the commit of the latest published
+   release tag for entries listed in a `tracking-config` file — and compares
+   against the pinned `sha`.
 2. For each stale entry (up to `max-bumps`): clones at the **new** SHA and runs
    `claude plugin validate` on it — the same check `validate-plugins` step 30
    would run.
@@ -60,6 +62,7 @@ jobs:
 | `allowed-hosts` | `github.com gitlab.com bitbucket.org` | same SSRF allowlist as validate-plugins |
 | `sha-exempt` | `""` | deliberately-unpinned plugin names to skip (else nightly re-pins them); same list as validate-plugins |
 | `freeze-shas` | `""` | PINNED plugin names to hold at their current `source.sha` (skip the bump) — e.g. a security freeze pending an upstream fix-forward. Distinct from `sha-exempt`: a frozen entry keeps its sha, an exempt one has none. Remove the name to resume bumping. A listed name that matches no pinned entry — or whose name is outside `[a-z0-9-]{2,64}` — is surfaced as a workflow `::warning` (the pin is **not** protected), so a typo'd freeze can't fail silently. |
+| `tracking-config` | `""` | optional path (in your checkout, conventionally `.github/bump-tracking.json`) to `{"releases-only": ["<name>", ...]}`. Listed entries bump to the commit of the release at `releases/latest` (most recent non-draft, non-prerelease by publication time; annotated tags dereferenced) instead of HEAD. The pin is HELD — never HEAD-bumped — on no published release, a not-strictly-ahead release (monotonicity guard), a non-github.com source, or any API failure (holds land in `skipped`; API failures warn loudly). `sha-exempt`/`freeze-shas` take precedence. `{"releases-only": []}` is the empty placeholder; a missing key or malformed file is a hard error so a typo can't silently restore HEAD-tracking. |
 | `claude-cli-version` | `latest` | **pin in your workflow** |
 | `npm-registry` | `""` | optional internal mirror |
 | `pr-branch` | `bump/plugin-shas` | |
@@ -70,7 +73,7 @@ jobs:
 
 | Output | |
 |---|---|
-| `bumped` | JSON array of `{name, old_sha, new_sha}` |
+| `bumped` | JSON array of `{name, old_sha, new_sha}` (+ `release_tag` on releases-only bumps) |
 | `skipped` | JSON array of `{name, reason}` |
 | `pr-url` | URL of the bump PR (empty if nothing to bump) |
 

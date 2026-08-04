@@ -5,9 +5,11 @@
 # entry with no manifest stays fail-closed ("no plugin manifest"), and a
 # default-strict entry WITH a manifest bumps unchanged (byte-identical default).
 #
-# Unlike test-bump.sh (which is network/gh/claude-free because every fixture
-# short-circuits before `git ls-remote`), this test must drive bump.sh THROUGH the
-# clone → resolve_external_manifest → validate → per-entry commit+PR path. It does
+# Unlike test-bump.sh (whose shims only ever serve short-circuit/hold paths —
+# every fixture there terminates before a bump), this test must drive bump.sh
+# THROUGH the clone → resolve_external_manifest → validate → per-entry commit+PR
+# path — including the releases-only POSITIVE bump (the write half test-bump.sh
+# deliberately leaves to this file). It does
 # so hermetically with PATH-shim `git`/`claude`/`gh`/`timeout` executables whose
 # DEFAULT case fails closed (exit 1, never the real binary) — so a missing case is
 # a loud test failure, never a live API call. It sources the REAL
@@ -101,6 +103,19 @@ case "$1" in
         if [ -n "${GQL_LOG:-}" ]; then cat >> "$GQL_LOG" || true; else cat >/dev/null 2>&1 || true; fi
         echo "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"; exit 0 ;;  # createCommitOnBranch oid
       -X)      exit 0 ;;                                        # POST/PATCH .../git/refs
+      # releases-only endpoints (driven by REL_* env; selector pinned so a
+      # wrong-field refactor fails closed). Empty REL_TAG/REL_SHA → a
+      # production-faithful 404: raw JSON body on STDOUT, HTTP 404 on stderr, exit 1.
+      */releases/latest)
+        case "$*" in *"--jq .tag_name"*) : ;; *) echo "gh shim: releases/latest without --jq .tag_name: $*" >&2; exit 1 ;; esac
+        if [ -n "${REL_TAG:-}" ]; then echo "$REL_TAG"; exit 0; fi
+        printf '{"message":"Not Found","status":"404"}'; echo "gh: Not Found (HTTP 404)" >&2; exit 1 ;;
+      */compare/*)
+        echo "${REL_CMP:-ahead}"; exit 0 ;;
+      */commits/*)
+        case "$*" in *"--jq .sha"*) : ;; *) echo "gh shim: commits without --jq .sha: $*" >&2; exit 1 ;; esac
+        if [ -n "${REL_SHA:-}" ]; then echo "$REL_SHA"; exit 0; fi
+        printf '{"message":"Not Found","status":"404"}'; echo "gh: Not Found (HTTP 404)" >&2; exit 1 ;;
       *)       echo "cccccccccccccccccccccccccccccccccccccccc"; exit 0 ;;  # repos/.../git/ref/heads/<base> .object.sha
     esac ;;
   *) echo "gh shim: unexpected invocation: $*" >&2; exit 1 ;;
@@ -133,6 +148,8 @@ run_bump() {
     PR_MODE="per-entry" PR_BRANCH="bump/plugin-shas" BASE_BRANCH="main" \
     GH_TOKEN="dummy" GITHUB_REPOSITORY="acme/repo" \
     ONLY="${ONLY_FIXTURE:-}" OPEN_PR_BRANCH="${OPEN_PR_BRANCH:-}" \
+    TRACKING_CONFIG="${TRACKING_CONFIG_FIXTURE:-}" \
+    REL_TAG="${REL_TAG_FIXTURE:-}" REL_SHA="${REL_SHA_FIXTURE:-}" REL_CMP="${REL_CMP_FIXTURE:-}" \
     RUN_URL="https://github.com/acme/repo/actions/runs/1" \
     GQL_LOG="$TMP/graphql.log" \
     GITHUB_OUTPUT="$TMP/out.txt" GITHUB_STEP_SUMMARY="$TMP/sum.md" \
@@ -363,6 +380,71 @@ run_bump "$f"
 assert_rc          0                                         "subdir-present run exits 0"
 assert_bumped      "withskills"                              "strict:false + present subdir + no manifest → synthesized + bumped (guard does not over-fire)"
 assert_not_skipped "withskills"                              "present-subdir entry NOT skipped"
+
+echo
+echo "--- releases-only (tracking-config): positive bump path ---"
+# The WRITE half of releases-only (test-bump.sh pins only the hold paths): a
+# flagged stale entry must advance to the RELEASE commit — provably NOT the
+# shim's ls-remote HEAD — carry release_tag through bumped[] and the signed
+# commit message, and leave an unflagged sibling on the HEAD path. The clone
+# shim serves a real manifest for .../charlie, so charlie is the flagged entry.
+REL_COMMIT="dddddddddddddddddddddddddddddddddddddddd"
+cfg_rel="$TMP/tracking-rel.json"
+cat > "$cfg_rel" <<'EOF'
+{"releases-only": ["charlie"]}
+EOF
+f=$(mk relbump <<'EOF'
+{"plugins":[
+  {"name":"alpha","strict":false,"source":{"url":"https://github.com/acme/alpha","sha":"1111111111111111111111111111111111111111"}},
+  {"name":"charlie","source":{"url":"https://github.com/acme/charlie","sha":"3333333333333333333333333333333333333333"}}
+]}
+EOF
+)
+TRACKING_CONFIG_FIXTURE="$cfg_rel"; REL_TAG_FIXTURE="v1.0.0"
+REL_SHA_FIXTURE="$REL_COMMIT"; REL_CMP_FIXTURE="ahead"
+run_bump "$f"
+assert_rc     0         "releases-only positive run exits 0"
+assert_out    "charlie: mode=releases-only" "flagged entry logs mode=releases-only through the full pipeline"
+assert_bumped "charlie" "flagged stale entry bumps"
+# THE distinguishing assertion of the whole feature: the release commit, not HEAD.
+total=$((total+1))
+_got="$(jq -r '.[]|select(.name=="charlie")|.new_sha' <<<"$BUMPED_JSON")"
+if [[ "$_got" == "$REL_COMMIT" ]]; then echo "  PASS charlie bumped to the RELEASE commit, not ls-remote HEAD"
+else echo "  FAIL charlie new_sha='$_got' (want release commit $REL_COMMIT, NOT HEAD $HEAD_SHA)"; failures=$((failures+1)); fi
+total=$((total+1))
+_tag="$(jq -r '.[]|select(.name=="charlie")|.release_tag // ""' <<<"$BUMPED_JSON")"
+if [[ "$_tag" == "v1.0.0" ]]; then echo "  PASS bumped[] carries release_tag=v1.0.0 (provenance)"
+else echo "  FAIL charlie release_tag='$_tag' (want v1.0.0)"; failures=$((failures+1)); fi
+assert_bumped "alpha" "unflagged sibling still bumps alongside the config"
+total=$((total+1))
+_agot="$(jq -r '.[]|select(.name=="alpha")|.new_sha' <<<"$BUMPED_JSON")"
+if [[ "$_agot" == "$HEAD_SHA" ]]; then echo "  PASS alpha bumped to ls-remote HEAD (HEAD path untouched)"
+else echo "  FAIL alpha new_sha='$_agot' (want HEAD $HEAD_SHA)"; failures=$((failures+1)); fi
+# The signed per-entry commit message carries the release tag (grep the raw
+# graphql payload run_bump tee'd — the headline is a JSON string in the log).
+total=$((total+1))
+if grep -qF "(release v1.0.0)" "$TMP/graphql.log"; then echo "  PASS per-entry commit message carries '(release v1.0.0)'"
+else echo "  FAIL per-entry commit message lacks '(release v1.0.0)'"; failures=$((failures+1)); fi
+# Committed marketplace content: charlie pinned at the RELEASE commit, sibling at base.
+assert_commit_isolates "bump/charlie" \
+  "charlie" "$REL_COMMIT" \
+  "alpha"   "1111111111111111111111111111111111111111" \
+  "alpha"   "1111111111111111111111111111111111111111" \
+  "charlie's commit pins the RELEASE commit; sibling at base"
+
+echo
+echo "--- releases-only: monotonicity hold in the full pipeline ---"
+# A behind release holds the flagged entry (no clone, no commit) while the
+# unflagged sibling still bumps — the hold is per-entry, never run-wide.
+TRACKING_CONFIG_FIXTURE="$cfg_rel"; REL_TAG_FIXTURE="v0.9.0"
+REL_SHA_FIXTURE="$REL_COMMIT"; REL_CMP_FIXTURE="behind"
+run_bump "$f"
+TRACKING_CONFIG_FIXTURE=""; REL_TAG_FIXTURE=""; REL_SHA_FIXTURE=""; REL_CMP_FIXTURE=""
+assert_rc          0         "behind-release run exits 0"
+assert_skip_reason "charlie" "not strictly ahead" "behind release → held through the full pipeline"
+assert_not_bumped  "charlie" "held entry not bumped"
+assert_no_commit   "bump/charlie" "held entry commits nothing"
+assert_bumped      "alpha"   "sibling unaffected by the per-entry hold"
 
 echo
 # Surface a non-zero SKIP count so a jq<1.6 run (where the isolation assertions SKIP) is
