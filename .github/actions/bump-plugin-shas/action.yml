@@ -1,8 +1,10 @@
 name: Bump Plugin SHAs
 description: >
-  Discover external marketplace entries whose upstream HEAD has moved past the
-  pinned SHA, validate each at the new SHA with `claude plugin validate`, and
-  open a single PR with all passing bumps. Bot-free: uses the default
+  Discover external marketplace entries whose upstream tracking target — HEAD
+  by default, or the latest published release for `tracking-config`
+  releases-only entries — has moved past the pinned SHA, validate each at the
+  new SHA with `claude plugin validate`, and open a single PR with all
+  passing bumps. Bot-free: uses the default
   GITHUB_TOKEN with contents:write + pull-requests:write. The bump commit is
   created via the GraphQL `createCommitOnBranch` mutation so it is signed
   server-side by GitHub and satisfies `required_signatures` rulesets without
@@ -40,7 +42,31 @@ inputs:
     description: >
       Bump ONLY this plugin name (exact marketplace entry name). Empty = all
       stale entries (default nightly behavior). Honors the same open-PR skip,
-      sha-exempt, and freeze-shas handling as a full run for the targeted name.
+      sha-exempt, freeze-shas, and tracking-config releases-only handling as a
+      full run for the targeted name (the freeze/releases-only reconciliation
+      warnings for OTHER names are suppressed).
+    default: ""
+  tracking-config:
+    description: >
+      Optional path to a JSON tracking-policy file in the caller's checkout,
+      resolved from the workspace root ($GITHUB_WORKSPACE), shape
+      {"releases-only": ["plugin-name", ...]}. Listed entries are bumped to
+      the commit the latest published GitHub release's tag currently points
+      at (releases/latest — non-draft, non-prerelease; annotated tags
+      dereferenced; github.com sources ONLY — a flagged entry on any other
+      host is skipped with a warning and its pin never advances). No
+      published release (HTTP 404 — which GitHub also returns, masked, for a
+      private or renamed repo, so those hold quietly too) holds the pin;
+      any other lookup failure (rate limit, transport) is a loud per-entry
+      skip. Bumps are forward-only: a latest release that is not ahead of
+      the current pin is refused. freeze-shas takes precedence — a name in
+      both lists stays frozen. A path that is SET but missing or
+      unparseable is a HARD FAILURE of the whole run, not a fallback to
+      HEAD-tracking (an explicit opt-in that silently degrades would undo
+      the releases-only expectation) — the blast radius is the entire
+      sweep, so land the config file and this input in the same PR. Empty
+      (default) = every entry HEAD-tracks, exactly as if this input did
+      not exist.
     default: ""
   claude-cli-version:
     description: Version of @anthropic-ai/claude-code to install
@@ -65,7 +91,12 @@ inputs:
     description: Branch to open the PR against
     default: ${{ github.event.repository.default_branch || 'main' }}
   github-token:
-    description: Token with contents:write + pull-requests:write on this repo
+    description: >
+      Token with contents:write + pull-requests:write on this repo. Also used
+      for read-only releases/commits/compare API calls against UPSTREAM repos
+      when tracking-config is set. Public repos only: a private/renamed
+      upstream returns a MASKED 404, indistinguishable from having no
+      releases, and is held as "no published releases".
     default: ${{ github.token }}
 
 outputs:
@@ -73,7 +104,10 @@ outputs:
     description: JSON array of {name, old_sha, new_sha} that were bumped
     value: ${{ steps.bump.outputs.bumped }}
   skipped:
-    description: JSON array of {name, reason} that were skipped (validation failed / unreachable / open PR)
+    description: >
+      JSON array of {name, reason} that were skipped or deliberately held
+      (validation failed / unreachable / open PR / policy hold: sha-exempt,
+      freeze-shas, releases-only pin-hold)
     value: ${{ steps.bump.outputs.skipped }}
   pr-url:
     description: URL of the bump PR in batch mode (empty in per-entry mode or when nothing to bump)
@@ -168,6 +202,7 @@ runs:
         SHA_EXEMPT: ${{ inputs.sha-exempt }}
         FREEZE_SHAS: ${{ inputs.freeze-shas }}
         ONLY: ${{ inputs.only }}
+        TRACKING_CONFIG: ${{ inputs.tracking-config }}
         PR_MODE: ${{ inputs.pr-mode }}
         PR_BRANCH: ${{ inputs.pr-branch }}
         BASE_BRANCH: ${{ inputs.base-branch }}
