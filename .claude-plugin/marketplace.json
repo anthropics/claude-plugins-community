@@ -5283,7 +5283,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/gwittebolle/claude-carbon.git",
-        "sha": "e1002d2ea5ba43df4224740838bfd22afb6ebc26"
+        "sha": "43fb883ac1989d962c8699afb0be37fbe69c4476"
       },
       "homepage": "https://github.com/gwittebolle/claude-carbon"
     },
