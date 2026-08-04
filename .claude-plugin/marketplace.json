@@ -722,7 +722,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Clear-Capabilities/agentic-security.git",
-        "sha": "14841dd33249d5a1c3d58bc2a9735673e8b3dc64"
+        "sha": "c13d473e4ef2f64b7276b05a5051601e99aa1ead"
       },
       "homepage": "https://www.clearcapabilities.com/products/agentic-security"
     },
