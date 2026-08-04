@@ -6502,7 +6502,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Eventual-Inc/Daft.git",
-        "sha": "3f5bdd175b7de3dcdf35765e1ba604b5c1cb8e15"
+        "sha": "b5d58ed9edb17ecec2bbe6879636b4416e976f1d"
       },
       "homepage": "https://daft.ai"
     },
