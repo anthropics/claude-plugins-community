@@ -1,0 +1,74 @@
+{
+  "suite_name": "json-structure-validation",
+  "description": "Validate that LLM-generated JSON responses have correct structure, types, and optionally values",
+  "default_comparator": "json_structure",
+  "default_threshold": 1.0,
+  "gate_threshold": 0.85,
+  "cases": [
+    {
+      "id": "json-001",
+      "input": "Return a JSON object with fields: name (string), age (number), active (boolean)",
+      "expected": "{\"name\": \"placeholder\", \"age\": 0, \"active\": true}",
+      "actual": "{\"name\": \"Alice\", \"age\": 30, \"active\": true}",
+      "config": { "check_types": true, "check_values": false, "ignore_extra_keys": true },
+      "tags": ["structure", "basic"]
+    },
+    {
+      "id": "json-002",
+      "input": "Return a JSON object representing an API error response",
+      "expected": "{\"error\": {\"code\": 0, \"message\": \"\"}, \"success\": false}",
+      "actual": "{\"error\": {\"code\": 404, \"message\": \"Not found\"}, \"success\": false}",
+      "config": { "check_types": true, "check_values": false },
+      "tags": ["structure", "nested"]
+    },
+    {
+      "id": "json-003",
+      "input": "Return a JSON array of three user objects",
+      "expected": "[{\"id\": 0, \"name\": \"\"}, {\"id\": 0, \"name\": \"\"}, {\"id\": 0, \"name\": \"\"}]",
+      "actual": "[{\"id\": 1, \"name\": \"Alice\"}, {\"id\": 2, \"name\": \"Bob\"}, {\"id\": 3, \"name\": \"Charlie\"}]",
+      "config": { "check_types": true, "check_values": false },
+      "tags": ["structure", "arrays"]
+    },
+    {
+      "id": "json-004",
+      "input": "Return a status response with exactly status: 'ok' and timestamp as a number",
+      "expected": "{\"status\": \"ok\", \"timestamp\": 0}",
+      "actual": "{\"status\": \"ok\", \"timestamp\": 1700000000}",
+      "config": { "check_types": true, "check_values": false },
+      "tags": ["structure", "values"]
+    },
+    {
+      "id": "json-005",
+      "input": "Return a config object matching the exact expected structure and values",
+      "expected": "{\"version\": \"2.0\", \"features\": {\"dark_mode\": true, \"notifications\": false}}",
+      "actual": "{\"version\": \"2.0\", \"features\": {\"dark_mode\": true, \"notifications\": false}}",
+      "config": { "check_types": true, "check_values": true },
+      "tags": ["exact-values"]
+    },
+    {
+      "id": "json-006",
+      "input": "Return a user profile with required and optional fields",
+      "expected": "{\"id\": 0, \"name\": \"\", \"email\": \"\"}",
+      "actual": "{\"id\": 42, \"name\": \"Dana\", \"email\": \"dana@example.com\", \"avatar\": \"https://cdn.example.com/dana.jpg\", \"role\": \"admin\"}",
+      "config": { "check_types": true, "check_values": false, "ignore_extra_keys": true },
+      "tags": ["structure", "extra-keys"]
+    },
+    {
+      "id": "json-007",
+      "input": "Return a valid JSON response (any structure)",
+      "expected": "{}",
+      "actual": "This is not valid JSON at all",
+      "config": { "check_types": false, "check_values": false },
+      "tags": ["structure", "invalid"]
+    },
+    {
+      "id": "json-008",
+      "input": "Return a list of exactly 2 items with value matching",
+      "expected": "{\"items\": [{\"type\": \"book\", \"count\": 3}, {\"type\": \"pen\", \"count\": 5}]}",
+      "actual": "{\"items\": [{\"type\": \"book\", \"count\": 3}, {\"type\": \"pen\", \"count\": 7}]}",
+      "config": { "check_types": true, "check_values": true },
+      "threshold": 0.75,
+      "tags": ["nested", "partial-match"]
+    }
+  ]
+}

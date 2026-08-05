@@ -1,0 +1,83 @@
+{
+  "suite_name": "text-qa-basic",
+  "description": "Basic text QA evaluation using exact, fuzzy, and contains comparators",
+  "default_comparator": "fuzzy",
+  "default_threshold": 0.80,
+  "gate_threshold": 0.75,
+  "cases": [
+    {
+      "id": "qa-001",
+      "input": "What is the capital of France?",
+      "expected": "Paris",
+      "actual": "The capital of France is Paris.",
+      "comparator": "contains",
+      "threshold": 1.0,
+      "tags": ["geography", "factual"]
+    },
+    {
+      "id": "qa-002",
+      "input": "Who wrote Romeo and Juliet?",
+      "expected": "William Shakespeare",
+      "actual": "William Shakespeare wrote Romeo and Juliet.",
+      "comparator": "contains",
+      "threshold": 1.0,
+      "tags": ["literature", "factual"]
+    },
+    {
+      "id": "qa-003",
+      "input": "What is the chemical symbol for water?",
+      "expected": "H2O",
+      "actual": "H2O",
+      "comparator": "exact",
+      "threshold": 1.0,
+      "tags": ["chemistry", "factual"]
+    },
+    {
+      "id": "qa-004",
+      "input": "Explain photosynthesis in one sentence.",
+      "expected": "Photosynthesis is the process by which plants convert sunlight, water, and carbon dioxide into glucose and oxygen.",
+      "actual": "Plants use photosynthesis to convert sunlight, CO2, and water into glucose and oxygen.",
+      "comparator": "fuzzy",
+      "threshold": 0.65,
+      "tags": ["biology", "explanation"]
+    },
+    {
+      "id": "qa-005",
+      "input": "What is the speed of light in m/s?",
+      "expected": "299792458",
+      "actual": "The speed of light is approximately 3 x 10^8 m/s, or more precisely 299,792,458 m/s.",
+      "comparator": "contains",
+      "threshold": 1.0,
+      "tags": ["physics", "factual"]
+    },
+    {
+      "id": "qa-006",
+      "input": "Name the largest planet in our solar system.",
+      "expected": "Jupiter",
+      "actual": "Saturn is the largest planet.",
+      "comparator": "contains",
+      "threshold": 1.0,
+      "tags": ["astronomy", "factual"],
+      "config": { "case_insensitive": true }
+    },
+    {
+      "id": "qa-007",
+      "input": "What does DNA stand for?",
+      "expected": "deoxyribonucleic acid",
+      "actual": "DNA stands for Deoxyribonucleic Acid.",
+      "comparator": "contains",
+      "threshold": 1.0,
+      "tags": ["biology", "factual"],
+      "config": { "case_insensitive": true }
+    },
+    {
+      "id": "qa-008",
+      "input": "Summarize the concept of gravity.",
+      "expected": "Gravity is the force of attraction between objects with mass, described by Newton's law of universal gravitation and Einstein's general theory of relativity.",
+      "actual": "Gravity is a fundamental force that attracts objects with mass toward each other. It was described by Newton and later refined by Einstein's general relativity.",
+      "comparator": "semantic",
+      "threshold": 0.60,
+      "tags": ["physics", "explanation"]
+    }
+  ]
+}

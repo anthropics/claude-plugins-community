@@ -1,0 +1,81 @@
+{
+  "suite_name": "regex-pattern-validation",
+  "description": "Validate LLM outputs against regex patterns for format compliance",
+  "default_comparator": "regex",
+  "default_threshold": 1.0,
+  "gate_threshold": 0.90,
+  "cases": [
+    {
+      "id": "regex-001",
+      "input": "Generate a valid email address",
+      "expected": "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}",
+      "actual": "user@example.com",
+      "tags": ["format", "email"]
+    },
+    {
+      "id": "regex-002",
+      "input": "Generate a valid IPv4 address",
+      "expected": "\\b\\d{1,3}(\\.\\d{1,3}){3}\\b",
+      "actual": "The server is running at 192.168.1.100",
+      "tags": ["format", "network"]
+    },
+    {
+      "id": "regex-003",
+      "input": "Output a date in YYYY-MM-DD format",
+      "expected": "\\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\\d|3[01])",
+      "actual": "The meeting is on 2024-03-15.",
+      "tags": ["format", "date"]
+    },
+    {
+      "id": "regex-004",
+      "input": "Generate a UUID",
+      "expected": "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}",
+      "actual": "550e8400-e29b-41d4-a716-446655440000",
+      "config": { "case_insensitive": true },
+      "tags": ["format", "uuid"]
+    },
+    {
+      "id": "regex-005",
+      "input": "Output a US phone number",
+      "expected": "\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}",
+      "actual": "Call us at (555) 123-4567 for support.",
+      "tags": ["format", "phone"]
+    },
+    {
+      "id": "regex-006",
+      "input": "Generate a hex color code",
+      "expected": "#[0-9a-fA-F]{6}\\b",
+      "actual": "The primary color is #3A7BDF.",
+      "tags": ["format", "color"]
+    },
+    {
+      "id": "regex-007",
+      "input": "Output a semantic version number",
+      "expected": "\\bv?\\d+\\.\\d+\\.\\d+\\b",
+      "actual": "Current version: v2.14.3",
+      "tags": ["format", "version"]
+    },
+    {
+      "id": "regex-008",
+      "input": "Generate a URL",
+      "expected": "https?://[\\w.-]+(?:\\.[a-zA-Z]{2,})(?:/[\\w./-]*)?",
+      "actual": "Visit https://docs.example.com/api/v2/users for the API documentation.",
+      "tags": ["format", "url"]
+    },
+    {
+      "id": "regex-009",
+      "input": "Output a response starting with 'Error:' followed by a message",
+      "expected": "^Error:\\s+.+",
+      "actual": "Success: operation completed",
+      "config": { "multiline": false },
+      "tags": ["format", "error-format"]
+    },
+    {
+      "id": "regex-010",
+      "input": "Generate a JSON-like key-value pair",
+      "expected": "\"\\w+\"\\s*:\\s*\".+\"",
+      "actual": "Here is the pair: \"name\": \"Alice\"",
+      "tags": ["format", "json-like"]
+    }
+  ]
+}

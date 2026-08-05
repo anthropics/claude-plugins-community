@@ -1,0 +1,73 @@
+{
+  "suite_name": "numeric-extraction",
+  "description": "Evaluate numeric value extraction with various tolerance levels",
+  "default_comparator": "numeric",
+  "default_threshold": 1.0,
+  "gate_threshold": 0.80,
+  "cases": [
+    {
+      "id": "num-001",
+      "input": "What is the value of pi to 4 decimal places?",
+      "expected": "3.1416",
+      "actual": "Pi is approximately 3.1416.",
+      "config": { "tolerance": 0.0001, "tolerance_type": "absolute" },
+      "tags": ["math", "constants"]
+    },
+    {
+      "id": "num-002",
+      "input": "What is the boiling point of water in Fahrenheit?",
+      "expected": "212",
+      "actual": "Water boils at 212 degrees Fahrenheit at standard atmospheric pressure.",
+      "config": { "tolerance": 0.5, "tolerance_type": "absolute" },
+      "tags": ["physics", "temperature"]
+    },
+    {
+      "id": "num-003",
+      "input": "What is the approximate distance from Earth to the Moon in miles?",
+      "expected": "238900",
+      "actual": "The Moon is about 240,000 miles from Earth.",
+      "config": { "tolerance": 0.02, "tolerance_type": "relative" },
+      "tags": ["astronomy", "distance"]
+    },
+    {
+      "id": "num-004",
+      "input": "What is the melting point of iron in Celsius?",
+      "expected": "1538",
+      "actual": "Iron melts at approximately 1,540 degrees Celsius.",
+      "config": { "tolerance": 5, "tolerance_type": "absolute" },
+      "tags": ["chemistry", "temperature"]
+    },
+    {
+      "id": "num-005",
+      "input": "How many bones are in the adult human body?",
+      "expected": "206",
+      "actual": "An adult human has 206 bones.",
+      "config": { "tolerance": 0, "tolerance_type": "absolute" },
+      "tags": ["biology", "anatomy"]
+    },
+    {
+      "id": "num-006",
+      "input": "What is the current US national debt in trillions?",
+      "expected": "34.5",
+      "actual": "The US national debt is approximately $35 trillion.",
+      "config": { "tolerance": 0.05, "tolerance_type": "relative" },
+      "tags": ["economics", "approximate"]
+    },
+    {
+      "id": "num-007",
+      "input": "What is Avogadro's number?",
+      "expected": "6.022e23",
+      "actual": "Avogadro's number is 6.022 x 10^23 molecules per mole.",
+      "config": { "tolerance": 0.001e23, "tolerance_type": "absolute" },
+      "tags": ["chemistry", "constants"]
+    },
+    {
+      "id": "num-008",
+      "input": "Convert 100 km to miles.",
+      "expected": "62.137",
+      "actual": "100 kilometers is about 62.14 miles.",
+      "config": { "tolerance": 0.01, "tolerance_type": "absolute" },
+      "tags": ["math", "conversion"]
+    }
+  ]
+}

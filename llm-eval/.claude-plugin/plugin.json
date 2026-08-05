@@ -1,0 +1,37 @@
+{
+  "name": "llm-eval",
+  "description": "Evaluate LLM outputs against golden examples with tolerance-based scoring. Supports exact match, fuzzy match, numeric tolerance, regex patterns, and JSON structure comparison with configurable pass/fail thresholds.",
+  "version": "1.0.0",
+  "author": {
+    "name": "llm-eval contributors"
+  },
+  "homepage": "https://github.com/anthropics/claude-plugins-community/tree/main/llm-eval",
+  "repository": "https://github.com/anthropics/claude-plugins-community",
+  "license": "MIT",
+  "keywords": [
+    "llm",
+    "evaluation",
+    "testing",
+    "golden-tests",
+    "scoring",
+    "benchmarking",
+    "quality-assurance"
+  ],
+  "userConfig": {
+    "LLM_EVAL_DEFAULT_THRESHOLD": {
+      "title": "Default Pass Threshold",
+      "description": "Default minimum score (0.0-1.0) for a test case to pass. Overridden by per-suite or per-case thresholds.",
+      "type": "string"
+    },
+    "LLM_EVAL_FUZZY_RATIO": {
+      "title": "Default Fuzzy Match Ratio",
+      "description": "Default minimum similarity ratio (0-100) for fuzzy string matching. Uses Levenshtein-based comparison.",
+      "type": "string"
+    },
+    "LLM_EVAL_NUMERIC_TOLERANCE": {
+      "title": "Default Numeric Tolerance",
+      "description": "Default tolerance for numeric comparisons, as an absolute value or percentage (e.g., '0.01' or '5%').",
+      "type": "string"
+    }
+  }
+}

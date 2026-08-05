@@ -1,0 +1,13 @@
+{
+  "name": "llm-eval-plugins",
+  "owner": {
+    "name": "Community"
+  },
+  "plugins": [
+    {
+      "name": "llm-eval",
+      "source": "./",
+      "strict": false
+    }
+  ]
+}
