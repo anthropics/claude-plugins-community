@@ -2296,7 +2296,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/publicala/bake-claude-md-files.git",
-        "sha": "781f68b961f2a3e7f31656c48042881215aa2236"
+        "sha": "67d4cfe68dd73be804ba65f2d1443af8eb8c0bb2"
       },
       "homepage": "https://github.com/publicala/bake-claude-md-files"
     },
