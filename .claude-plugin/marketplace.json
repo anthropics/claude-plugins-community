@@ -97,6 +97,20 @@
       "homepage": "https://github.com/barnburner121/claude-plugin-marketplace"
     },
     {
+      "name": "meticulous",
+      "description": "Agent skills for Meticulous visual regression testing — review test runs, investigate replays, debug diffs. Also connects the hosted Meticulous MCP server.",
+      "author": {
+        "name": "Meticulous"
+      },
+      "category": "testing",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/alwaysmeticulous/skills.git",
+        "sha": "59788561ed2b53f0fc56c54048c09f47f35b61af"
+      },
+      "homepage": "https://www.meticulous.ai/"
+    },
+    {
       "name": "sap-dev-core",
       "description": "Core SAP development utilities and ABAP Workbench automation: login, connection management, credential storage, BDC execution, add-on table maintenance, and SAP GUI Scripting for SE38, SE37, SE24, SE11, SE19, SE41, SE51, SE54, SE91, CMOD, and GUI inspection / recording. Also provides shared resources (shared/tables/, shared/scripts/) used by all other sap-dev plugins. Install this plugin first.",
       "source": {
