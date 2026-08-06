@@ -116,7 +116,7 @@
         "url": "https://github.com/sapdev-ai/sap-dev.git",
         "path": "plugins/sap-gen-code",
         "ref": "main",
-        "sha": "f75aa49b592b1642a83b78a703a4f6378afb0146"
+        "sha": "2283c60151fab9e4dbbb9c92d931ffabd2cda9f8"
       },
       "homepage": "https://sapdev.ai"
     },
