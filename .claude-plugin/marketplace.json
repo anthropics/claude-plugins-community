@@ -22356,6 +22356,20 @@
       "homepage": "https://github.com/XPOZpublic/xpoz-claude-code-plugins"
     },
     {
+      "name": "xsolla-ai-kit",
+      "description": "Xsolla agent skills toolkit — guided, end-to-end workflows for merchant setup, catalog design, Login/NewID, Pay Station, webhooks, storefront build, and shop branding, calling Xsolla REST APIs directly.",
+      "author": {
+        "name": "Xsolla"
+      },
+      "category": "development",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/xsolla/xsolla-ai-kit.git",
+        "sha": "3ab3778256363ecfbae60c042a28cf7f4d02cd02"
+      },
+      "homepage": "https://github.com/xsolla/xsolla-ai-kit"
+    },
+    {
       "name": "youdotcom-agent-skills",
       "description": "Skills-only plugin: 8 integration skills for AI SDK, Claude Agent SDK, OpenAI, crewAI, LangChain, Teams.ai, direct API, and CLI. No MCP servers declared. Excellent security posture (W011 defense throughout). Fix PR #24 merged — .claude-plugin/plugin.json added.",
       "source": {
