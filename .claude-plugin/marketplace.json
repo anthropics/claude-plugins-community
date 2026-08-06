@@ -1304,7 +1304,7 @@
         "url": "https://github.com/amplitude/mcp-marketplace.git",
         "path": "plugins/amplitude",
         "ref": "main",
-        "sha": "f7ab391021b3a4edf1c81e6ac249a3c9afbf9fec"
+        "sha": "90c0a8e658db547ab63a2210e84be07c23ce4cd0"
       },
       "homepage": "https://github.com/amplitude/mcp-marketplace/"
     },
