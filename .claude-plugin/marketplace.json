@@ -97,6 +97,20 @@
       "homepage": "https://github.com/barnburner121/claude-plugin-marketplace"
     },
     {
+      "name": "cala",
+      "description": "Cala pre-processes the world's public information and serves it as structured data for AI agents. Query any real-world entity — companies, people, investors, founders, executives, funding rounds, acquisitions, industries, laws, regulations, countries, products, events, awards, financial metrics — and get typed, sourced JSON back instead of web pages to scrape.",
+      "author": {
+        "name": "Cala"
+      },
+      "category": "productivity",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/cala-ai/cala-claude-plugin.git",
+        "sha": "8017b4eeb13d51c8a3b80efb0427445b39daf6f2"
+      },
+      "homepage": "https://docs.cala.ai"
+    },
+    {
       "name": "sap-dev-core",
       "description": "Core SAP development utilities and ABAP Workbench automation: login, connection management, credential storage, BDC execution, add-on table maintenance, and SAP GUI Scripting for SE38, SE37, SE24, SE11, SE19, SE41, SE51, SE54, SE91, CMOD, and GUI inspection / recording. Also provides shared resources (shared/tables/, shared/scripts/) used by all other sap-dev plugins. Install this plugin first.",
       "source": {
