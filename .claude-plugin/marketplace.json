@@ -97,6 +97,20 @@
       "homepage": "https://github.com/barnburner121/claude-plugin-marketplace"
     },
     {
+      "name": "credible",
+      "description": "Credible analysis tools (Malloy semantic model search, query execution, and analysis skills) for your Credible workspaces.",
+      "author": {
+        "name": "Credible Data"
+      },
+      "category": "database",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/credibledata/credible-plugin.git",
+        "sha": "47ef29a4751a8782607cd4d90ccb602ffd5b4638"
+      },
+      "homepage": "https://credibledata.com"
+    },
+    {
       "name": "sap-dev-core",
       "description": "Core SAP development utilities and ABAP Workbench automation: login, connection management, credential storage, BDC execution, add-on table maintenance, and SAP GUI Scripting for SE38, SE37, SE24, SE11, SE19, SE41, SE51, SE54, SE91, CMOD, and GUI inspection / recording. Also provides shared resources (shared/tables/, shared/scripts/) used by all other sap-dev plugins. Install this plugin first.",
       "source": {
