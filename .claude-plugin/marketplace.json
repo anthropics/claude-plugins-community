@@ -4769,7 +4769,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/jordanrendric/claude-video-vision.git",
-        "sha": "5c8bc7ba32b727c7f97e9a7b336a775e0c6cd911"
+        "sha": "ac47d1f4dfbaa7006b34252ecc792f861a2f4058"
       },
       "homepage": "https://github.com/jordanrendric/claude-video-vision"
     },
