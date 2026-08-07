@@ -10674,7 +10674,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/inkbox-ai/inkbox.git",
-        "sha": "b7e28084787e43bf8f79bd333ff38e0205d8fb00"
+        "sha": "eb5d1643d81c7dd7b60fa7471e76612745d6fb5f"
       },
       "homepage": "https://inkbox.ai/docs/plugins/claude-code"
     },
