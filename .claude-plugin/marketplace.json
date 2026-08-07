@@ -5823,7 +5823,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/PeterMalmkjaer/content-analysis-plugin.git",
-        "sha": "8427978e02fd3d3c904debac28a7d63bf449fdd8"
+        "sha": "ecd49e75ab00db77df0a0cd521f8b8a3f567ea53"
       },
       "homepage": "https://github.com/PeterMalmkjaer/content-analysis-plugin"
     },
