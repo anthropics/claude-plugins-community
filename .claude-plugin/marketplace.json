@@ -97,18 +97,18 @@
       "homepage": "https://github.com/barnburner121/claude-plugin-marketplace"
     },
     {
-      "name": "credible",
-      "description": "Credible analysis tools (Malloy semantic model search, query execution, and analysis skills) for your Credible workspaces.",
+      "name": "meticulous",
+      "description": "Agent skills for Meticulous visual regression testing — review test runs, investigate replays, debug diffs. Also connects the hosted Meticulous MCP server.",
       "author": {
-        "name": "Credible Data"
+        "name": "Meticulous"
       },
-      "category": "database",
+      "category": "testing",
       "source": {
         "source": "url",
-        "url": "https://github.com/credibledata/credible-plugin.git",
-        "sha": "47ef29a4751a8782607cd4d90ccb602ffd5b4638"
+        "url": "https://github.com/alwaysmeticulous/skills.git",
+        "sha": "59788561ed2b53f0fc56c54048c09f47f35b61af"
       },
-      "homepage": "https://credibledata.com"
+      "homepage": "https://www.meticulous.ai/"
     },
     {
       "name": "sap-dev-core",
@@ -22370,6 +22370,20 @@
       "homepage": "https://github.com/XPOZpublic/xpoz-claude-code-plugins"
     },
     {
+      "name": "xsolla-ai-kit",
+      "description": "Xsolla agent skills toolkit — guided, end-to-end workflows for merchant setup, catalog design, Login/NewID, Pay Station, webhooks, storefront build, and shop branding, calling Xsolla REST APIs directly.",
+      "author": {
+        "name": "Xsolla"
+      },
+      "category": "development",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/xsolla/xsolla-ai-kit.git",
+        "sha": "3ab3778256363ecfbae60c042a28cf7f4d02cd02"
+      },
+      "homepage": "https://github.com/xsolla/xsolla-ai-kit"
+    },
+    {
       "name": "youdotcom-agent-skills",
       "description": "Skills-only plugin: 8 integration skills for AI SDK, Claude Agent SDK, OpenAI, crewAI, LangChain, Teams.ai, direct API, and CLI. No MCP servers declared. Excellent security posture (W011 defense throughout). Fix PR #24 merged — .claude-plugin/plugin.json added.",
       "source": {
@@ -23980,6 +23994,20 @@
       "description": "Build and deploy Prismatic custom components, Code Native Integrations, and embedded marketplace experiences",
       "category": "development",
       "homepage": "https://github.com/prismatic-io/prismatic-skills"
+    },
+    {
+      "name": "credible",
+      "description": "Credible analysis tools (Malloy semantic model search, query execution, and analysis skills) for your Credible workspaces.",
+      "author": {
+        "name": "Credible Data"
+      },
+      "category": "database",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/credibledata/credible-plugin.git",
+        "sha": "47ef29a4751a8782607cd4d90ccb602ffd5b4638"
+      },
+      "homepage": "https://credibledata.com"
     }
   ]
 }
