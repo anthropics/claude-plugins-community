@@ -14600,7 +14600,7 @@
         "url": "https://github.com/growthxai/output.git",
         "path": "coding_assistants/claude/plugins/outputai",
         "ref": "main",
-        "sha": "ca5a2f97796d7c8ae41adea3cbeb564032ce17cd"
+        "sha": "10709494626015790edfdba7193c3ea1d5f16e71"
       },
       "homepage": "https://output.ai",
       "category": "development"
