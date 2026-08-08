@@ -8361,10 +8361,10 @@
       "description": "FDEOS makes Claude operate like an experienced Forward Deployed Engineer.                                                                                                        It brings the judgment FDEs need that generic AI lacks: when to challenge\nthe brief, how to earn trust before touching code, how to build safely in\na codebase you did not create, and how to hand over clean when the\nengagement ends. 13 skills covering the full FDE lifecycle from first\nmeeting to final handoff. Enterprise overlays for healthcare (HIPAA),\nfintech (PCI-DSS), and government (FedRAMP) activate when the context\nis detected",
       "source": {
         "source": "url",
-        "url": "https://github.com/suboss87/fde-os.git",
-        "sha": "5dc4c7daf1eaed9a0a048e2b8294b8e924b709f3"
+        "url": "https://github.com/suboss87/FDEOps",
+        "sha": "88f64df0fe9d2d3cf75393ff190d1cfb0cba452a"
       },
-      "homepage": "https://github.com/suboss87/fde-os"
+      "homepage": "https://github.com/suboss87/FDEOps"
     },
     {
       "name": "featuredrop",
