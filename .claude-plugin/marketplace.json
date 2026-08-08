@@ -16430,7 +16430,7 @@
         "url": "https://github.com/redis/agent-skills.git",
         "path": "plugins/redis-development",
         "ref": "main",
-        "sha": "5ca2e1a2d82a768221e8f71a02e3ca095a37d38e"
+        "sha": "0e44ff02b07d5185800c05318ebfd8118345c822"
       },
       "homepage": "https://github.com/redis/agent-skills"
     },
