@@ -19013,7 +19013,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/stackhawk/claude-skills.git",
-        "sha": "89a89fabee722b79707eca9ea8d8f2e81fd5d9f9"
+        "sha": "2afbfaebe5f3c9c93c81347cf2826e05f1331826"
       },
       "homepage": "https://github.com/stackhawk/claude-skills"
     },
