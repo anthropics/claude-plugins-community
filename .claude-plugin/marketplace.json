@@ -14494,7 +14494,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/gemini-cli-extensions/oracledb.git",
-        "sha": "23c7de3e75419f4e5de8d0f939a8176c4eebb8c7"
+        "sha": "74ab5c82e0211f4a0266d1f663051a2ae990b93b"
       },
       "homepage": "https://github.com/gemini-cli-extensions/oracledb"
     },
