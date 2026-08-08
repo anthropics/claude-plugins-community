@@ -14218,7 +14218,7 @@
         "url": "https://github.com/ololand-ai/ololand-plugins.git",
         "path": "plugins/ololand-forensic-qoe",
         "ref": "main",
-        "sha": "24cb23aa2658b937284365d46cdb250caed18503"
+        "sha": "cccbf13b8b932c27a5b1f399c30fd6d4e4ae8261"
       },
       "homepage": "https://ololand.ai/qoe"
     },
