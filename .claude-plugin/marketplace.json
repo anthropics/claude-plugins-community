@@ -11466,10 +11466,10 @@
       "description": "last-30-days is a Claude Code skill that searches the web and delivers a structured 30-day digest on any topic you choose. Simply ask Claude about a subject and it will run targeted searches, filter for the most recent content, and summarize findings into four sections: Top Highlights, Key Trends, Notable Sources (with links), and a Quick Takeaway. Ideal for staying current on fast-moving topics like AI, tech releases, regulations, or industry news — without manually browsing dozens of sites.",
       "source": {
         "source": "url",
-        "url": "https://github.com/ren365/last-30-days-skill.git",
-        "sha": "1009bde1bdc204c1a03e6516864ce34cc0535029"
+        "url": "https://github.com/mvanhorn/last30days-skill",
+        "sha": "1004324ad35a3ba656e6df0faabd54749e398455"
       },
-      "homepage": "https://github.com/ren365/last-30-days-skill"
+      "homepage": "https://github.com/mvanhorn/last30days-skill"
     },
     {
       "name": "latio-secure-supply-chain-skills",
