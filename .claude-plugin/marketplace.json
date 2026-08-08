@@ -21237,7 +21237,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/versori/cli.git",
-        "sha": "5b22e3c26b70e05cd98cfff3517d5400baebe236"
+        "sha": "e8acb6fcf1c6503affb8ff487ce9cb61aca2750a"
       },
       "homepage": "https://docs.versori.com/latest/ai-tooling/overview"
     },
