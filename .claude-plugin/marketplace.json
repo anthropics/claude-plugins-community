@@ -17720,7 +17720,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/serpapi/serpapi-claude-plugin.git",
-        "sha": "45d2731aa2f5afa7a2b1492aad45595868cae57c"
+        "sha": "ed28f4fcd2e14677dde123c11a7fe2f9e3fdac19"
       },
       "homepage": "https://github.com/serpapi/serpapi-claude-plugin"
     },
