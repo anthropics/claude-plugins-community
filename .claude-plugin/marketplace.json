@@ -19934,7 +19934,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/temporalio/claude-temporal-plugin.git",
-        "sha": "775b9190c15f9309a7883ad457951effb133745c"
+        "sha": "828730315b2aca3d592b1f886bdd3107a898d49c"
       },
       "homepage": "https://github.com/temporalio/claude-temporal-plugin"
     },
