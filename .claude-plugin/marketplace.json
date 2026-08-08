@@ -1684,7 +1684,7 @@
         "source": "url",
         "url": "https://github.com/archcore-ai/archcore-plugin.git",
         "path": "plugins/archcore",
-        "sha": "c29c87c138cc59296c602bea783d331bec6e25df"
+        "sha": "eae2342e09a70677a70ebf797dc0ddbe26adb34f"
       },
       "homepage": "https://archcore.ai/"
     },
