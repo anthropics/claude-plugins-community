@@ -20046,7 +20046,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/kobiton/automate.git",
-        "sha": "79e56d297c620f412d327d097014655cb496de55"
+        "sha": "9d62a8be1b7e45e24b93bfa3637b53dc7d82b384"
       },
       "homepage": "https://docs.kobiton.com/ai/mcp/claude-code"
     },
