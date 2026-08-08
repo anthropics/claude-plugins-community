@@ -13033,7 +13033,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/meta-quest/agentic-tools.git",
-        "sha": "39f7643c770f40f10cf5613dfc84d5143261aac7"
+        "sha": "8cb3ef460d2f60bb85dddba22797f5dd1d4adcbe"
       },
       "homepage": "https://developers.meta.com/horizon/discover/ai-tools/"
     },
