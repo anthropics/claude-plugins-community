@@ -10692,11 +10692,9 @@
       "name": "insight-badger",
       "description": "Drop a CSV and get meaningful, actionable data insights — no formulas or coding required, even no questions needed. Autonomous exploratory analysis and guided investigation, delivered as polished interactive reports.",
       "source": {
-        "source": "git-subdir",
-        "url": "ozturkumut/contextro",
-        "path": "insight-badger",
-        "ref": "main",
-        "sha": "4f5b5f446c7602b6b876f32b8a8e52193a6b3862"
+        "source": "url",
+        "url": "https://github.com/ozturkumut/insightbadger-plugin",
+        "sha": "594e01a69fe65effe22b720511bf49ddb6ff2abe"
       },
       "homepage": "https://www.insightbadger.com"
     },
