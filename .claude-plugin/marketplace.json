@@ -14653,7 +14653,7 @@
         "url": "https://github.com/PaddleHQ/paddle-agent-skills.git",
         "path": "providers/claude/plugin",
         "ref": "main",
-        "sha": "72e6fdf6ec313ea773595e5bb1fbb665fa89bbc8"
+        "sha": "de7fcd3f6cc43bf87a65d6b2e65067611b47353c"
       },
       "homepage": "https://developer.paddle.com/get-started/ai/claude-code/"
     },
