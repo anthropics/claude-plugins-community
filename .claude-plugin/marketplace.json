@@ -14400,7 +14400,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/opensearch-project/opensearch-agent-skills.git",
-        "sha": "d8b8c00d6cc2928361db64b292230a9469bbf801"
+        "sha": "8ebe59430c52543cccbbf0b65c0960bf04eb1c2d"
       },
       "homepage": "https://docs.aws.amazon.com/opensearch-service/latest/developerguide/opensearch-agent-skills.html"
     },
