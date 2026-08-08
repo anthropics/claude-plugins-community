@@ -10877,7 +10877,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/jettyio/jettyio-skills.git",
-        "sha": "65acd132497aedbcc72faa0fccfa85d4b1c0cfd5"
+        "sha": "773b168e53ff9681a2f5adcd89dd0ca819a213bd"
       },
       "homepage": "https://www.jetty.io"
     },
@@ -22820,7 +22820,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/firecrawl/firecrawl-claude-plugin.git",
-        "sha": "b1bd4442f4c935069ad83835c8eb69d7fe684db4"
+        "sha": "cf966ed24ff371434dc8f74e23b603b06ddad007"
       },
       "homepage": "https://github.com/firecrawl/firecrawl-claude-plugin.git"
     },
