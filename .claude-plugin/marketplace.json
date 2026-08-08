@@ -14270,7 +14270,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/onecli/onecli-plugin.git",
-        "sha": "b99f83d3687b10fd2b0b3087212efabe5e665684"
+        "sha": "1de2e1c42b917272b7a295fce1ecc13eed7cf8e5"
       },
       "homepage": "https://www.onecli.sh"
     },
