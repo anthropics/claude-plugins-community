@@ -23383,7 +23383,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/receptron/mulmocast-claude-plugin",
-        "sha": "480628a00e767016ead0a44da864a0ed7f05158e"
+        "sha": "a6f81b597842e1c783972e2be143e967ae41c0dd"
       },
       "description": "MulmoCast skills for Claude Code — create, narrate, and extend video presentations from any input",
       "category": "productivity",
