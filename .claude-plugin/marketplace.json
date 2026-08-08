@@ -20740,7 +20740,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/twilio/ai.git",
-        "sha": "7d15b215240df28e86a0b7305520524a2c005005"
+        "sha": "d7b0f231468cd9a6a0bab9ebcde8c1a5c9220bba"
       },
       "homepage": "https://www.twilio.com/docs/ai/skills"
     },
