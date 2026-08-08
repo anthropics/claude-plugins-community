@@ -13320,7 +13320,7 @@
         "url": "https://github.com/monte-carlo-data/mc-agent-toolkit.git",
         "path": "plugins/claude-code",
         "ref": "main",
-        "sha": "dfdcdc190eaa4b3484fb27d610b4777d9a2878be"
+        "sha": "3c88d016801b7a47be580d559cb3183ea3916cda"
       },
       "homepage": "https://docs.getmontecarlo.com/docs/agent-toolkit"
     },
