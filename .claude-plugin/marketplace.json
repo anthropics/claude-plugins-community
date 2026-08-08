@@ -9169,7 +9169,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/githits-com/githits-cli.git",
-        "sha": "4b5d25ad1153002b8120e0fcb874aa453418175f"
+        "sha": "479b276125f99bc33800c2c4165a46e39665879d"
       },
       "homepage": "https://githits.com/"
     },
@@ -10480,7 +10480,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/drolosoft/immich-photo-manager.git",
-        "sha": "d28482f0132da4bef336c8cd306821db9ecb6a73"
+        "sha": "0f5819c9490f0041558c629dd998e7c21ef6ed4f"
       },
       "homepage": "https://drolosoft.com/immich-photo-manager.html"
     },
