@@ -12684,7 +12684,7 @@
         "url": "https://github.com/aristoapp/claude-membase.git",
         "path": "plugin",
         "ref": "main",
-        "sha": "e53548615b94ccf21218f27045aa13f3510285e1"
+        "sha": "510e4dc187a94e936a54e7559e29d13dcfa26006"
       },
       "homepage": "https://membase.so/"
     },
