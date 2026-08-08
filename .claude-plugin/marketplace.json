@@ -16480,7 +16480,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/basegraphhq/relay-plugin.git",
-        "sha": "b2a9f07623fd32e7ad616498534e2ad48e2facf0"
+        "sha": "75097362147a8517418a1606e5c5e7bf6e21183d"
       },
       "homepage": "https://basegraph.co/plugin"
     },
