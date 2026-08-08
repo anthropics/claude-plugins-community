@@ -19717,7 +19717,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/agent-sh/sync-docs.git",
-        "sha": "ec7744f44f7e7c5074287fb9597e30882e45fefa"
+        "sha": "2f50e25c0d50ac2734937635413afd1ca13b8cb9"
       },
       "homepage": "https://github.com/agent-sh/sync-docs"
     },
