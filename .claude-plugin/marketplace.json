@@ -8793,7 +8793,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/jeffallan/claude-skills.git",
-        "sha": "e8be415bc94d8d6ebddc2fb50e5d03c6e27d4319"
+        "sha": "882ef55e377dbf9a4dbe496bb41ac6ccd0e555cf"
       },
       "homepage": "https://jeffallan.github.io/claude-skills/"
     },
