@@ -17283,7 +17283,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/scandit/scandit-sdk-skills.git",
-        "sha": "49591895a92bbb98f88279f64456c1f6047265fb"
+        "sha": "6b37b86aef34be4598edb8f0d51d769775f0cd07"
       },
       "homepage": "https://docs.scandit.com/"
     },
