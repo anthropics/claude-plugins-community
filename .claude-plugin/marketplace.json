@@ -13896,7 +13896,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/norman-finance/norman-mcp-server.git",
-        "sha": "36b1b929e2f5351aabdd8a62ef7681fa21fc4fe8"
+        "sha": "4ff7060e20fce89861bbffa89129d96dc9a6329c"
       },
       "homepage": "https://norman.finance/mcp"
     },
