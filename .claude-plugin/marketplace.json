@@ -17397,7 +17397,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/scylladb/agent-skills.git",
-        "sha": "d1bb3ad94c58bf87e04d8d3ee8da12f6209e1d76"
+        "sha": "89d2aeaa89f51f885edd227f5350cea8ea7070c8"
       },
       "homepage": "https://github.com/scylladb/agent-skills"
     },
