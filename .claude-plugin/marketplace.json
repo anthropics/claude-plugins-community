@@ -21689,7 +21689,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Ellipsis-Labs/vulcan-cli.git",
-        "sha": "6cbe3f61e485df0d04d6d6692ba60bf5d0afab55"
+        "sha": "b11ee5ec5f9f0f57dfde40fe6bf5d355f49197ae"
       },
       "homepage": "https://docs.phoenix.trade/cli"
     },
