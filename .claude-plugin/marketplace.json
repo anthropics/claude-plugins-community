@@ -8352,7 +8352,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/fastly/fastly-agent-toolkit.git",
-        "sha": "3502e4baee50ad5e9ab1a482ce154642d2e8e9b5"
+        "sha": "172b2fd572f08fb4957bbe6d74cab3aba1e43fcf"
       },
       "homepage": "https://github.com/fastly/fastly-agent-toolkit/blob/main/README.md"
     },
@@ -10907,7 +10907,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/joai-plugins/joai.git",
-        "sha": "eab57eb54e0d576e45e73f926a1dc5542f8ff4f4"
+        "sha": "c235ba3041d4a4ec9394149f5af7d7e92314ec45"
       },
       "homepage": "https://joai.ai/en/apps/joai/"
     },
