@@ -15401,7 +15401,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/post-bridge-hq/agent-mode.git",
-        "sha": "1fb2ec9096d9cc4d6fd2493ee7f24de4911a3679"
+        "sha": "4ecce3120c33da05ce916b8eefbdf255147e6afc"
       },
       "homepage": "https://www.post-bridge.com/agents"
     },
