@@ -22992,7 +22992,7 @@
         "url": "https://github.com/NVIDIA/skills.git",
         "path": "plugins/nvidia-skills",
         "ref": "main",
-        "sha": "55f8f7a5a4d77ed14f57e74c786fa04d193b6541"
+        "sha": "a9ea6f987f3a2e5efbd6f94ad394dc0b64265719"
       },
       "homepage": "https://github.com/NVIDIA/skills"
     },
