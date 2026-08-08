@@ -12652,7 +12652,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/meetstream-ai/claude-plugin.git",
-        "sha": "dabe67f1bf67b9f5f401adeaf7eb706d7a8559a5"
+        "sha": "b4fb6b01b7a3a71242068d6d6f6fa08f5acd4c61"
       },
       "homepage": "https://docs.meetstream.ai/build-with-ai/ai-integrations"
     },
