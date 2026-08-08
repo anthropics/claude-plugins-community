@@ -12329,7 +12329,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/immersa-co/marcopolo-plugin.git",
-        "sha": "e0645772b5148b1bcb9c6e72b1d486c9370dda32"
+        "sha": "113b842f35c875a2d8ab5b31eb00675e65cd307c"
       },
       "homepage": "https://docs.marcopolo.dev/getting-started/claude-plugin"
     },
