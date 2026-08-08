@@ -19473,7 +19473,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/superglue-ai/cli.git",
-        "sha": "62c497c72dc58e35b1c810a6e54724c23186546c"
+        "sha": "4c54fc9788de4cbd6d988d4a8cb3c601cc8f01aa"
       },
       "homepage": "https://docs.superglue.cloud/getting-started/introduction"
     },
