@@ -22754,7 +22754,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/circlebackai/claude-code-plugin.git",
-        "sha": "6369dec7da4059dd0a12cf1b62ba749799ee15ef"
+        "sha": "a610634c95ab310accf20a0cabdf0fa7ab784fa3"
       },
       "homepage": "https://github.com/circlebackai/claude-code-plugin.git"
     },
