@@ -14888,7 +14888,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/agent-sh/perf.git",
-        "sha": "9ade4925ff608c69119775e238f33427316297f2"
+        "sha": "18416de01e88814b26a6dc5ee1de3bb6c278736c"
       },
       "homepage": "https://github.com/agent-sh/perf"
     },
