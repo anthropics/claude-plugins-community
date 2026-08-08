@@ -9833,7 +9833,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/HasData/hasdata-claude-plugin.git",
-        "sha": "e7bdbff0deb9baddf84f36fbe13d6c044317533a"
+        "sha": "d5a9da07695a545d8c6337d905788e0cebed77ee"
       },
       "homepage": "https://github.com/HasData/hasdata-claude-plugin"
     },
@@ -10276,7 +10276,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/hunter-io/claude-plugin.git",
-        "sha": "c8b2d456a85ec0f5ad8f8fbf93e880fda04e7521"
+        "sha": "0b23e12e68e3f7f12b4ff59458451c05ce7e912e"
       },
       "homepage": "https://hunter.io/"
     },
