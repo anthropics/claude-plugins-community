@@ -13796,7 +13796,7 @@
         "url": "https://github.com/nitrographtech/claude-plugins.git",
         "path": "plugins/nitrograph",
         "ref": "main",
-        "sha": "0f1fa0753860fc3e67ceef6f94d97ef97931491c"
+        "sha": "84530a403ab72a7d4590d6085f365ee4f10620a4"
       },
       "homepage": "https://www.nitrograph.com"
     },
