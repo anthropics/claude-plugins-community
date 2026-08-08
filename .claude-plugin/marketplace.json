@@ -18385,7 +18385,7 @@
         "url": "https://github.com/Global-Slice/claude-plugin.git",
         "path": "plugins/slice-global",
         "ref": "main",
-        "sha": "bffe6bd6294d603850b336d8b0ecd035a169534d"
+        "sha": "27910616d6d08d0c1c322f110e20edf277114588"
       },
       "homepage": "https://github.com/Global-Slice/claude-plugin"
     },
