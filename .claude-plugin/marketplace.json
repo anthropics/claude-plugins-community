@@ -3039,7 +3039,7 @@
         "url": "carta/plugins",
         "path": "plugins/carta-cap-table",
         "ref": "main",
-        "sha": "874158e8f1b2c58378ec150faa7773a0d24f5187"
+        "sha": "d65129bf40559d9b68641fe9f34203f644a4831c"
       },
       "homepage": "https://docs.carta.com/api-platform/docs/carta-cap-table"
     },
