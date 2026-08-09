@@ -23315,7 +23315,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/mattpocock/skills",
-        "sha": "ed37663cc5fbef691ddfecd080dff42f7e7e350d"
+        "sha": "84fdeffd12f2ee307994d1eb6feb48173b6e0502"
       },
       "description": "Matt Pocock's agent skills for real engineering — grilling, spec/ticket flows, TDD, code review, domain modelling and more. Plug-and-play, not vibe coding.",
       "category": "development",
