@@ -23718,7 +23718,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/contentstack/contentstack-agent-skills",
-        "sha": "77349195a227427f3ff7c3e0fc1a23fb1520918d"
+        "sha": "183a51050850f0c4d3f67424b7149946de95593a"
       },
       "description": "Contentstack agent skills for Claude Code, Cursor, Codex, and Gemini.",
       "category": "development",
