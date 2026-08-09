@@ -21831,7 +21831,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/mohitkale/web-vitals-auditor.git",
-        "sha": "26eda57c91bc1f206841ea640e7d5ad9518aa1b1"
+        "sha": "5a4bee94b8f5f5493fefb14d78c5eaefcdc073ef"
       },
       "homepage": "https://github.com/mohitkale/web-vitals-auditor"
     },
