@@ -16831,7 +16831,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/ripplo/claude-plugin.git",
-        "sha": "aff4bcfbac13ba71de7481ce4aec85bb2fde0cd4"
+        "sha": "63c2d45031a3002d5bb0c99cada42ac23ac431ed"
       },
       "homepage": "https://ripplo.ai/docs"
     },
