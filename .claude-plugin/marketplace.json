@@ -12114,7 +12114,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/labyrinth-analytics/loredocs.git",
-        "sha": "175ee9362c1da3a68d5cee9d2bea38627e9a71ab"
+        "sha": "3f3aa0c5d8ac38c57f1b3047250f788f3c85b2e2"
       },
       "homepage": "https://pypi.org/project/loredocs/"
     },
