@@ -23866,7 +23866,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/mutagent-io/skills.git",
-        "sha": "e921b1ea0e5eaef37632511d0cfd2a0164c79974"
+        "sha": "195c6b6d550845e04fede3f707dabe87820328da"
       },
       "description": "Official MutagenT skills bundle for AI coding agents — guides Claude Code through prompt upload, dataset curation, evaluation rubric creation, optimization, framework tracing, and (planned) multi-turn agent design.",
       "category": "development",
