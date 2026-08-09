@@ -21903,7 +21903,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/weilliptic-public/claude-code-hooks.git",
-        "sha": "ed652cde9d202e771db2a00cc9e78f32ba47a014"
+        "sha": "771d969e4bc4bd1a3e0051efc2cfe2b4bdf65e58"
       },
       "homepage": "https://docs.weilliptic.ai/docs/explainers/receipts-4-claude-code-plugin"
     },
