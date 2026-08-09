@@ -19697,7 +19697,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/sym-bot/sym-mesh-channel.git",
-        "sha": "9e60ab8ff65dea2408ec709d1d41b178734dd322"
+        "sha": "038623e80d912e4ff92e4e38b572836f49d8f40a"
       },
       "homepage": "https://sym.bot/spec/mmp"
     },
