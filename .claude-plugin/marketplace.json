@@ -19589,7 +19589,7 @@
         "url": "pactflow/pactflow-agent-skills",
         "path": "plugins/swagger-contract-testing",
         "ref": "main",
-        "sha": "a023485752f1978ccc26fd366b868ba33325f886"
+        "sha": "566f81d4ec1bbfac666c98c1ba8e421f0dd35b63"
       },
       "homepage": "https://pactflow.github.io/drift-docs/docs/how-to/generating-tests"
     },
