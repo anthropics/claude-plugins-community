@@ -23339,7 +23339,7 @@
         "url": "https://github.com/windmill-dev/windmill-plugin",
         "path": "plugins/windmill",
         "ref": "main",
-        "sha": "7b2b010a54cf0bb48b84726fdf3fd0ba350a29d6"
+        "sha": "5c57d5d59fb3a423a975f5b8b04b5be6a96ed398"
       },
       "description": "Connect Claude Code to Windmill for performance reviews, feedback, 1:1s, pulse surveys, and more.",
       "category": "development",
