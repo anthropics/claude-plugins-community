@@ -20630,7 +20630,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/cbetz/trove.git",
-        "sha": "c19145e9a99cdbb1c62e86a88105c319e5ac1270"
+        "sha": "75b5dfe391e4af41fc7a13a9a12cdeeaa9353dfa"
       },
       "homepage": "https://troveproject.com"
     },
