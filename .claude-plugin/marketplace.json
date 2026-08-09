@@ -23661,7 +23661,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/revelata/deepkpi-agents.git",
-        "sha": "ab9113b990130d5bcd89c7d1600fe524f0a9cedd"
+        "sha": "7a232dd02808a3ee93c4fef1b5165b544ef8010e"
       },
       "description": "Equity research and fundamental analysis skills powered by Revelata deepKPI.",
       "category": "development",
