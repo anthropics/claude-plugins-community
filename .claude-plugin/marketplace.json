@@ -10622,7 +10622,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/simons-plugins/indigo-claude-plugin.git",
-        "sha": "05c66789cceaa4f23c00e442be7a4eae4d874e55"
+        "sha": "3602f988bc0d5093f90298bfdcbbcde558013f35"
       },
       "homepage": "https://github.com/simons-plugins/indigo-claude-plugin/wiki"
     },
