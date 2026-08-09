@@ -23696,7 +23696,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/hyperfx-ai/marketing-skills.git",
-        "sha": "018b28213f852cd22389db34ee5ecc4478034aef"
+        "sha": "8b5012e4811ad04def471076c4fa378251cb8e86"
       },
       "description": "Connect the Hyper MCP to run marketing end-to-end from Claude — Google, Meta, TikTok, Pinterest, Amazon & LinkedIn ads, organic social, SEO & AI-search research, competitor intel, ad creative, email, and analytics. 30 skills wrapping 100+ integrations and 500+ marketing tools.",
       "category": "development",
