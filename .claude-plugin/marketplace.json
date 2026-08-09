@@ -15734,7 +15734,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/nagisanzenin/claude-code-production-grade-plugin.git",
-        "sha": "64795da2f91aa7b1c57b55e3b0fb1980cb2076b2"
+        "sha": "d8551cf943b32eea60e092b2b5048124b2a46301"
       },
       "homepage": "https://github.com/nagisanzenin/claude-code-production-grade-plugin"
     },
