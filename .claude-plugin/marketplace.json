@@ -23361,7 +23361,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/slogsdon/loop-and-gate-build-kit",
-        "sha": "eca820328bc80a42d5df815615854155d4b92dfb"
+        "sha": "42325f0de12792a758973c1d979c24f927d18664"
       },
       "description": "A judgment layer for building software with an agentic loop — eleven human-decision gates plus the loop-and-gate operating skill.",
       "category": "development",
