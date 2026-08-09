@@ -23707,7 +23707,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/ilang-ai/iReview.git",
-        "sha": "edbd574560f499c52435dde672b10aab5a5a71b7"
+        "sha": "bfb1cb9f71cd7f9755f9b5dd65a3e023ed2981b3"
       },
       "description": "AI-to-AI code review router. Any OpenAI-compatible model reviews your code. No Codex CLI or Node.js required.",
       "category": "development",
