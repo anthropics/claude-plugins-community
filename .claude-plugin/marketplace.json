@@ -12104,7 +12104,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/labyrinth-analytics/loreconvo.git",
-        "sha": "09767258bf867c1245b89a2e056fed1d9a9739f8"
+        "sha": "2cd4d5b987fa389c434c753afd3eaf3dbcd137c9"
       },
       "homepage": "https://pypi.org/project/loreconvo/"
     },
