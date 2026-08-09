@@ -17650,7 +17650,7 @@
         "url": "getsentry/cli",
         "path": "packages/cli/plugins/sentry-cli",
         "ref": "main",
-        "sha": "94a4ca5801784ee4fe55bcdf4a19258835fa5e8f"
+        "sha": "fa3b3e2a79c0158b302c2843eefd0a8cc65358f3"
       },
       "homepage": "https://cli.sentry.dev/"
     },
