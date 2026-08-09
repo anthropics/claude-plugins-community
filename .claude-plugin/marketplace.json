@@ -15878,7 +15878,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/maxencemeloni/claude-code-prompt-smith.git",
-        "sha": "e1ea709b0b2c7d5048503b55dfd0f5c851ba95cd"
+        "sha": "b35c295c5cd878da65044663fa5013d6e9564e83"
       },
       "homepage": "https://prompt-smith.mmapi.fr/"
     },
