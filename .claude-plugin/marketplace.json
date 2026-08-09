@@ -16374,7 +16374,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/bledden/claude-recall-plugin.git",
-        "sha": "b4c65c2dc874f0da113c74d815ae47ea66c537d8"
+        "sha": "761a38d7d057c0855e10bf9968e5dcaf0e3ebfa8"
       },
       "homepage": "https://github.com/bledden/claude-recall-plugin"
     },
