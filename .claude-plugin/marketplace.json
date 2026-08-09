@@ -12632,7 +12632,7 @@
         "url": "medusajs/medusa-claude-plugins",
         "path": "plugins/medusa-dev",
         "ref": "main",
-        "sha": "60125bbad5abff8ec1e0154df71db78f32faa54a"
+        "sha": "f923b9537cdebfc960779f2f036d1f0425297a78"
       },
       "homepage": "https://medusajs.com/"
     },
