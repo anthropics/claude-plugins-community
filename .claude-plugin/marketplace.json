@@ -14142,7 +14142,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/nyldn/claude-octopus.git",
-        "sha": "1b6affbe317a3f1b9b351b7624a42091b50927a4"
+        "sha": "b449bebb3f787a1a9342b7dd0155063a854c6fb1"
       },
       "homepage": "https://github.com/nyldn/claude-octopus"
     },
