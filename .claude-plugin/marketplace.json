@@ -13444,7 +13444,7 @@
         "url": "3d-era/munin-for-agents",
         "path": "plugins/munin-claude-code",
         "ref": "main",
-        "sha": "7bed3abd152ee5b21ccdade83d4542bf30885c32"
+        "sha": "b4366744828e5c51fd6b7d788aea13d261a8f35f"
       },
       "homepage": "https://munin.kalera.app"
     },
