@@ -4031,7 +4031,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/liatrio-labs/claude-deep-review.git",
-        "sha": "c5f45f2d68015a20fb578cb59fa640471881f361"
+        "sha": "7c130b85c0b30c1ea13245807f5c2eb0323aed17"
       },
       "homepage": "https://github.com/liatrio-labs/claude-deep-review"
     },
