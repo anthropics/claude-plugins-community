@@ -8361,10 +8361,10 @@
       "description": "FDEOS makes Claude operate like an experienced Forward Deployed Engineer.                                                                                                        It brings the judgment FDEs need that generic AI lacks: when to challenge\nthe brief, how to earn trust before touching code, how to build safely in\na codebase you did not create, and how to hand over clean when the\nengagement ends. 13 skills covering the full FDE lifecycle from first\nmeeting to final handoff. Enterprise overlays for healthcare (HIPAA),\nfintech (PCI-DSS), and government (FedRAMP) activate when the context\nis detected",
       "source": {
         "source": "url",
-        "url": "https://github.com/suboss87/fde-os.git",
-        "sha": "5dc4c7daf1eaed9a0a048e2b8294b8e924b709f3"
+        "url": "https://github.com/suboss87/FDEOps",
+        "sha": "88f64df0fe9d2d3cf75393ff190d1cfb0cba452a"
       },
-      "homepage": "https://github.com/suboss87/fde-os"
+      "homepage": "https://github.com/suboss87/FDEOps"
     },
     {
       "name": "featuredrop",
@@ -10692,11 +10692,9 @@
       "name": "insight-badger",
       "description": "Drop a CSV and get meaningful, actionable data insights — no formulas or coding required, even no questions needed. Autonomous exploratory analysis and guided investigation, delivered as polished interactive reports.",
       "source": {
-        "source": "git-subdir",
-        "url": "ozturkumut/contextro",
-        "path": "insight-badger",
-        "ref": "main",
-        "sha": "4f5b5f446c7602b6b876f32b8a8e52193a6b3862"
+        "source": "url",
+        "url": "https://github.com/ozturkumut/insightbadger-plugin",
+        "sha": "594e01a69fe65effe22b720511bf49ddb6ff2abe"
       },
       "homepage": "https://www.insightbadger.com"
     },
@@ -11466,10 +11464,10 @@
       "description": "last-30-days is a Claude Code skill that searches the web and delivers a structured 30-day digest on any topic you choose. Simply ask Claude about a subject and it will run targeted searches, filter for the most recent content, and summarize findings into four sections: Top Highlights, Key Trends, Notable Sources (with links), and a Quick Takeaway. Ideal for staying current on fast-moving topics like AI, tech releases, regulations, or industry news — without manually browsing dozens of sites.",
       "source": {
         "source": "url",
-        "url": "https://github.com/ren365/last-30-days-skill.git",
-        "sha": "1009bde1bdc204c1a03e6516864ce34cc0535029"
+        "url": "https://github.com/mvanhorn/last30days-skill",
+        "sha": "1004324ad35a3ba656e6df0faabd54749e398455"
       },
-      "homepage": "https://github.com/ren365/last-30-days-skill"
+      "homepage": "https://github.com/mvanhorn/last30days-skill"
     },
     {
       "name": "latio-secure-supply-chain-skills",
@@ -23603,9 +23601,9 @@
       "source": {
         "source": "git-subdir",
         "url": "https://github.com/SynthFlowAI/AnthropicPlugin",
-        "path": "plugins/synthflow-mcp",
-        "ref": "d41491a4103f24a455de345ce41ffe1d3946e108",
-        "sha": "d41491a4103f24a455de345ce41ffe1d3946e108"
+        "path": "plugins/synthflow",
+        "ref": "main",
+        "sha": "205871ee83508502d2c982ee1bb7e65a2a29190b"
       },
       "description": "Connects Claude Code to the Synthflow AI voice-agent platform through its hosted MCP server. Lets Claude manage assistants, phone numbers, calls, and workflows.",
       "category": "development",
