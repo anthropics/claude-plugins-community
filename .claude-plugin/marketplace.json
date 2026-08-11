@@ -2188,7 +2188,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/microsoft/azure-skills.git",
-        "sha": "18ad18c6b62c40334368d6413e6bbd8f7c86298f"
+        "sha": "66cd9273ed146a311699898596bc916711494481"
       },
       "homepage": "https://github.com/microsoft/azure-skills"
     },
@@ -2634,7 +2634,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/box/box-for-ai.git",
-        "sha": "172a8273f5d532c13ef6a3057e50c30e5368a2aa"
+        "sha": "20374501fc7323c359bc67779520fbd75c36fc82"
       },
       "homepage": "https://github.com/box/box-for-ai/"
     },
@@ -2736,7 +2736,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/brilliantdirectories/brilliant-directories-mcp.git",
-        "sha": "42b43271497afd4f377cb80ad5087e4a96bf1516"
+        "sha": "3fd936f153fefe759dcc6f29a12561ec250f87e3"
       },
       "homepage": "https://www.brilliantdirectories.com"
     },
@@ -3039,7 +3039,7 @@
         "url": "carta/plugins",
         "path": "plugins/carta-cap-table",
         "ref": "main",
-        "sha": "d65129bf40559d9b68641fe9f34203f644a4831c"
+        "sha": "c71893f60124d03cc9abf14f7c160d3553362257"
       },
       "homepage": "https://docs.carta.com/api-platform/docs/carta-cap-table"
     },
@@ -3051,7 +3051,7 @@
         "url": "carta/plugins",
         "path": "plugins/carta-investors",
         "ref": "main",
-        "sha": "d65129bf40559d9b68641fe9f34203f644a4831c"
+        "sha": "c71893f60124d03cc9abf14f7c160d3553362257"
       },
       "homepage": "https://docs.carta.com/api-platform/docs/carta-fund-admin"
     },
@@ -3125,7 +3125,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/JuliusBrussee/caveman.git",
-        "sha": "11ddc0c9813c8f75365cd5be2f753df08712f154"
+        "sha": "309834233183478e6fd7800d26e1fbaa6210274e"
       },
       "homepage": "https://getcaveman.dev/"
     },
@@ -3185,7 +3185,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/GarySonyak/cc-native.git",
-        "sha": "c9151748d5ad446fd5fb272d0a145fc0a4caa752"
+        "sha": "58667aaac6feebdb7558d394b8d43e8bad2f9626"
       },
       "homepage": "https://claudecode.sonyak.investments/feature-guide/"
     },
@@ -4021,7 +4021,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/adelaidasofia/claude-deconstruct.git",
-        "sha": "7dac5c35c071a09b39defddcfcf2bb552b0425fc"
+        "sha": "84913013d7df7d4165ddd31cf14d6c51097c14fd"
       },
       "homepage": "https://github.com/adelaidasofia/claude-deconstruct"
     },
@@ -4031,7 +4031,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/liatrio-labs/claude-deep-review.git",
-        "sha": "c5f45f2d68015a20fb578cb59fa640471881f361"
+        "sha": "7c130b85c0b30c1ea13245807f5c2eb0323aed17"
       },
       "homepage": "https://github.com/liatrio-labs/claude-deep-review"
     },
@@ -4061,7 +4061,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/GarethManning/claude-education-skills.git",
-        "sha": "34702c1c1465389192e760e5faa4476d234f9122"
+        "sha": "4be2795b574e91bdcbb6bda01ab235a05cfadbcc"
       },
       "homepage": "https://github.com/GarethManning/claude-education-skills"
     },
@@ -4191,7 +4191,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/adelaidasofia/claude-insights.git",
-        "sha": "e11a42e46d69f3b8cb112cea7af2f4ad93ed5f48"
+        "sha": "826920dde76bb1bbffdad444f89f81a35bf7d7bb"
       },
       "homepage": "https://github.com/adelaidasofia/claude-insights"
     },
@@ -4241,7 +4241,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/tabers77/claude_experiments.git",
-        "sha": "c21d3d3e54031969a02ec377aa8a73650120b1a2"
+        "sha": "692ec24c0ff43c4f5a9cdec276856dc9ef32f1eb"
       },
       "homepage": "https://github.com/tabers77/claude_experiments"
     },
