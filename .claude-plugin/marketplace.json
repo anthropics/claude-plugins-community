@@ -4281,7 +4281,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/adelaidasofia/claude-meeting-todos.git",
-        "sha": "b4032041dba94c71880a4759bc00b0b2581102ef"
+        "sha": "ede255c42c43d076da7cfbe4580a7f160a015499"
       },
       "homepage": "https://github.com/adelaidasofia/claude-meeting-todos"
     },
@@ -4303,7 +4303,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/thedotmack/claude-mem.git",
-        "sha": "4702c337d85aa12e8ab7f845264a78885676261f"
+        "sha": "d768ba364302d12b76e69e4f021f0bb1d2d50ed6"
       },
       "homepage": "https://github.com/thedotmack/claude-mem"
     },
@@ -4403,7 +4403,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/adelaidasofia/claude-patterns.git",
-        "sha": "ffb3677a4bde7ee4cf3f3c9b555ad7a1f5c1870b"
+        "sha": "d62425038cdfda70a8823e4b7b3e4a0d7e89fc9b"
       },
       "homepage": "https://github.com/adelaidasofia/claude-patterns"
     },
@@ -5651,7 +5651,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/comment-io/claude-code-plugin.git",
-        "sha": "091d8b3153b8d24e17418f4944e61cc40be57080"
+        "sha": "c2596e708e7b9ab51a984efb40aec4b089da0c5f"
       },
       "homepage": "https://comment.io"
     },
