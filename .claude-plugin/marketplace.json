@@ -379,7 +379,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Ad-Up-VC/adup-claude-plugin.git",
-        "sha": "bc8dd6c1e72f08a5ac70cafb59f285adff79e0b5"
+        "sha": "5ac4e325f14cb2446328ab89cba890411cfae3e0"
       },
       "homepage": "https://www.adup.io"
     },
@@ -511,7 +511,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/haoranc/agent-estimate.git",
-        "sha": "8d84869c3f46e099e9fd26c44dbda77a8ce24684"
+        "sha": "7b30943bac5648cf183f3d050baa6fea5485b8a9"
       },
       "homepage": "https://github.com/haoranc/agent-estimate"
     },
@@ -736,7 +736,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Clear-Capabilities/agentic-security.git",
-        "sha": "54011c7e217a0858da99eb1431bd237009cbeb4a"
+        "sha": "cda40a57f09a442702503d26c2d3b6cb9802b873"
       },
       "homepage": "https://www.clearcapabilities.com/products/agentic-security"
     },
@@ -892,7 +892,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/BULDEE/ai-craftsman-superpowers.git",
-        "sha": "c0b7edabe5a4de15b690c7dd2feb6d368f11f15d"
+        "sha": "72c1069ff925864fc3cc6cf8ae9a24795b8a3934"
       },
       "homepage": "https://github.com/BULDEE/ai-craftsman-superpowers/tree/main/docs"
     },
@@ -1582,7 +1582,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/adelaidasofia/apollo-mcp.git",
-        "sha": "331ac89e2e30482934464cbf3ae0c4fa31178f5f"
+        "sha": "5bbc2b24ddd0ca51923d95b7494cdf313e6c489d"
       },
       "homepage": "https://myceliumai.co/plugins/apollo-mcp"
     },
