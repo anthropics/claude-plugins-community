@@ -24022,6 +24022,17 @@
         "sha": "47ef29a4751a8782607cd4d90ccb602ffd5b4638"
       },
       "homepage": "https://credibledata.com"
+    },
+    {
+      "name": "refero",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/referodesign/refero_skill.git",
+        "sha": "1d324d5be0492352e2c8702f70a4f9c386c2345f"
+      },
+      "description": "Research real product interfaces and design with evidence from Refero.",
+      "category": "design",
+      "homepage": "https://github.com/referodesign/refero_skill"
     }
   ]
 }
