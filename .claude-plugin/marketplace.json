@@ -4303,7 +4303,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/thedotmack/claude-mem.git",
-        "sha": "4702c337d85aa12e8ab7f845264a78885676261f"
+        "sha": "d768ba364302d12b76e69e4f021f0bb1d2d50ed6"
       },
       "homepage": "https://github.com/thedotmack/claude-mem"
     },
