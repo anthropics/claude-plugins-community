@@ -182,7 +182,19 @@ jq -n \
       findings: {
         identity_changed: [ $o[] | select(.live and ($b[.key] != null) and ($b[.key].id != .id))
           | {owner: .login, recorded_id: $b[.key].id, live_id: .id, entries} ],
-        owner_missing:    [ $o[] | select(.live | not) | {owner: .login, entries} ],
+        owner_missing:    [ $o[] | select(.live | not) | .key as $k
+          # Disposition split: a missing owner whose repos still RESOLVE at a
+          # canonical successor location is typically a publisher rebrand or
+          # transfer — verify the successor and refresh/re-pin the listing. A
+          # missing owner with NO resolving repo left needs review of the
+          # entries themselves. Derived from data already collected (the repo
+          # resolution pass) — no extra lookups.
+          | ([ $r[] | select(.owner_lc == $k and .resolved
+                and ((.name_with_owner | split("/")[0] | ascii_downcase) != $k))
+               | .name_with_owner ] | unique) as $succ
+          | {owner: .login, entries,
+             successors: $succ,
+             disposition: (if ($succ | length) > 0 then "verify-successor" else "review" end)} ],
         repo_moved:       [ $r[] | select(.resolved and ((.name_with_owner | split("/")[0] | ascii_downcase) != .owner_lc))
           | {listed: (.owner + "/" + .repo), canonical: .name_with_owner, entries} ],
         repo_missing:     [ $r[] | select(.resolved | not) | {listed: (.owner + "/" + .repo), entries} ],
@@ -211,8 +223,8 @@ summarize() {
       case "$sec" in
         identity_changed) echo "| Owner | Recorded id | Live id | Entries |"; echo "|---|---|---|---|"
           jq -r '.findings.identity_changed[] | "| \(.owner) | \(.recorded_id) | \(.live_id) | \(.entries | join(", ")) |"' "$f" ;;
-        owner_missing) echo "| Owner | Entries |"; echo "|---|---|"
-          jq -r '.findings.owner_missing[] | "| \(.owner) | \(.entries | join(", ")) |"' "$f" ;;
+        owner_missing) echo "| Owner | Entries | Successor | Disposition |"; echo "|---|---|---|---|"
+          jq -r '.findings.owner_missing[] | "| \(.owner) | \(.entries | join(", ")) | \(.successors | join(", ") | if . == "" then "—" else . end) | \(.disposition) |"' "$f" ;;
         repo_moved) echo "| Listed | Canonical | Entries |"; echo "|---|---|---|"
           jq -r '.findings.repo_moved[] | "| \(.listed) | \(.canonical) | \(.entries | join(", ")) |"' "$f" ;;
         repo_missing) echo "| Listed | Entries |"; echo "|---|---|"

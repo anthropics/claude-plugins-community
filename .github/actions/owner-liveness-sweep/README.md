@@ -10,7 +10,7 @@ never removes an entry.
 | Class | Meaning | Severity |
 |---|---|---|
 | `identity_changed` | A recorded owner login now resolves to a **different GitHub account id** than the committed baseline records. Account ids are stable for the life of an account, so this means the login was released and re-registered — every entry under it needs review before any further bumps. | Fails the run |
-| `owner_missing` | An owner login that no longer resolves (deleted or renamed away). Its entries are reachable only through repo-move redirects. | Reported |
+| `owner_missing` | An owner login that no longer resolves (deleted or renamed away). Split by disposition: `verify-successor` when the owner's repos still resolve at a canonical successor location (typically a publisher rebrand/transfer — verify the successor and refresh/re-pin the listing), `review` when no repo resolves either (review the entries themselves). | Reported |
 | `repo_moved` | A repository whose canonical `nameWithOwner` no longer matches the listed owner (rename/transfer redirect). The listed URL should be reviewed/refreshed. | Reported |
 | `repo_missing` | A repository that no longer resolves (deleted or made private). | Reported |
 | `unbaselined` | A live owner not yet in the baseline (normal after new entries merge) — fold in via `refresh`. | Info |

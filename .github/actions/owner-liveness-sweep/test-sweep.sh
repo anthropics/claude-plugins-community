@@ -181,6 +181,24 @@ assert_eq "$(count owner_missing)" 1 "owner_missing == 1"
 assert_eq "$(jq -r '.findings.owner_missing[0].owner' "$FIND")" "OtherOrg" "owner_missing names the login"
 assert_eq "$(count repo_moved)" 1 "repo_moved == 1"
 assert_eq "$(jq -r '.findings.repo_moved[0].canonical' "$FIND")" "NewHome/gamma" "repo_moved carries the canonical location"
+# Disposition split — this is the publisher-rebrand shape (owner login gone but
+# the repo resolves at a canonical successor): must carry the successor and the
+# verify-successor disposition, NOT the review-the-entries one.
+assert_eq "$(jq -r '.findings.owner_missing[0].disposition' "$FIND")" "verify-successor" "missing owner WITH a resolving successor → verify-successor disposition"
+assert_eq "$(jq -rc '.findings.owner_missing[0].successors' "$FIND")" '["NewHome/gamma"]' "successor location carried on the finding"
+
+echo "=== report: owner missing with NO resolving repo → review disposition ==="
+cat > "$TMP/repos.resp" <<'EOF'
+{"data":{"rateLimit":{"cost":1,"remaining":4998},
+ "r0":{"nameWithOwner":"Acme/alpha"},
+ "r1":{"nameWithOwner":"Acme/beta"},
+ "r2":null}}
+EOF
+run_sweep report "$B"
+assert_eq "$(count owner_missing)" 1 "owner_missing == 1"
+assert_eq "$(jq -r '.findings.owner_missing[0].disposition' "$FIND")" "review" "missing owner with NO resolving repo → review disposition"
+assert_eq "$(jq -r '.findings.owner_missing[0].successors | length' "$FIND")" 0 "no successor recorded"
+assert_eq "$(count repo_missing)" 1 "the vanished repo also lands in repo_missing"
 
 echo "=== report: repo missing ==="
 owners_live
