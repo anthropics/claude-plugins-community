@@ -11256,6 +11256,16 @@
       "homepage": "https://kindex.tools/"
     },
     {
+      "name": "klarity",
+      "description": "Explore your org's processes and drive AI transformation",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/Within-AI/within-mcp.git",
+        "sha": "8e0e4f3375e0da07ab69eb03b05f8777bd8343b5"
+      },
+      "homepage": "https://github.com/Klarity-AI/klarity-mcp/blob/main/skills/klarity-architect/SKILL.md"
+    },
+    {
       "name": "knowledge-catalog",
       "description": "Connect to Knowledge Catalog to discover, manage, monitor, and govern data and AI artifacts across your data platform",
       "source": {
