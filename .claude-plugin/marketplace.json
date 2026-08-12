@@ -546,16 +546,6 @@
       "homepage": "https://github.com/keshrath/agent-knowledge"
     },
     {
-      "name": "agent-link",
-      "description": "Equips Claude with skills to build full-stack apps on Supabase. Covers schema development, migrations, RPC-first data access, edge functions, auth with RLS, and multi-tenancy — with an app developer agent that enforces architecture and handles prerequisites automatically.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/agentlinksh/agent.git",
-        "sha": "58c0958aefe977db0402cd35eeb815c009d8ed65"
-      },
-      "homepage": "https://agentlink.sh/"
-    },
-    {
       "name": "agent-manager",
       "description": "Spawn and manage autonomous background agents with persistent state across sessions",
       "source": {
@@ -1829,18 +1819,6 @@
         "sha": "473c4867e9be818033f654bacf82615bc8eed694"
       },
       "homepage": "https://github.com/andonimichael/arxitect"
-    },
-    {
-      "name": "asdd",
-      "description": "Agentic Specification-Driven Development (ASDD) is a framework for building software using AI-assisted specifications, autonomous agents, and production learning loops. It transforms the traditional development lifecycle into a structured pipeline where specifications are the central artifact coordinating both humans and AI agents.\nASDD enables engineering teams to achieve dramatically higher output while maintaining architectural quality, security, and system observability by moving from human-centric agile processes to AI-native engineering.",
-      "source": {
-        "source": "git-subdir",
-        "url": "https://github.com/ffactory-inc/asdd.git",
-        "path": "claude-plugins/asdd",
-        "ref": "main",
-        "sha": "aaae256486a85b5acf2c82ede0832b11732c6a09"
-      },
-      "homepage": "https://ffactory-inc.github.io/asdd"
     },
     {
       "name": "asodev",
@@ -4856,16 +4834,6 @@
         "sha": "248a55e29159232d41ce38cd4e267b30c1f3ddd3"
       },
       "homepage": "https://github.com/samiralibabic/claudecode-rexd-target"
-    },
-    {
-      "name": "claudeflow",
-      "description": "A collection of reusable workflows for software development and architecting based on the Elephant/Goldfish pattern.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/omniprag/claudeflows.git",
-        "sha": "f3ebade2feaeb303c1aaba4dc717ceb8ab2ead5b"
-      },
-      "homepage": "https://omniprag.github.io/claudeflows/"
     },
     {
       "name": "claudescrumskill",
@@ -10159,16 +10127,6 @@
       "homepage": "https://github.com/ironyjk/howtotalk"
     },
     {
-      "name": "hrevn-for-claude-code",
-      "description": "HREVN for Claude Code adds verifiable workflow state to consequential AI workflows through skills, a local runner, and an MCP path. It supports baseline diagnostics, resumable execution from trusted checkpoints, tamper-evident receipts, and structured evidence that audit, governance, and compliance processes can use.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/ai-human-andalusia/hrevn-surface-anthropic.git",
-        "sha": "38e642d148b4b743858bd742803ebd189de9701d"
-      },
-      "homepage": "https://hrevn.com"
-    },
-    {
       "name": "hs",
       "description": "Pre-execution safety layer that blocks dangerous shell commands and credential file reads using pattern matching + LLM analysis. Fail-closed design.",
       "source": {
@@ -11260,7 +11218,7 @@
       "description": "Explore your org's processes and drive AI transformation",
       "source": {
         "source": "url",
-        "url": "https://github.com/Klarity-AI/klarity-mcp.git",
+        "url": "https://github.com/Within-AI/within-mcp.git",
         "sha": "8e0e4f3375e0da07ab69eb03b05f8777bd8343b5"
       },
       "homepage": "https://github.com/Klarity-AI/klarity-mcp/blob/main/skills/klarity-architect/SKILL.md"
@@ -11757,16 +11715,6 @@
         "sha": "d61cd9ad05f1863a421d891d9319ec2405904488"
       },
       "homepage": "https://skillsmith.app"
-    },
-    {
-      "name": "link",
-      "description": "Build apps with Supabase as the backend. Equips AI agents with schema-driven workflows, RPC-first data access, edge functions, auth, RLS, and multi-tenancy.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/agentlinksh/agent.git",
-        "sha": "5b76a8ae745fa0ff54dea50b6a8b95e658bca75c"
-      },
-      "homepage": "https://agentlink.sh/"
     },
     {
       "name": "linkedin-poster",
@@ -13415,16 +13363,6 @@
       "homepage": "https://joai.ai/en/apps/multiversx"
     },
     {
-      "name": "mumei",
-      "description": "Quality Enforcement Layer for Claude Code. Uses Hooks to physically gate spec phases, Wave commits, and reviews at the OS boundary — not via prompt-level instructions the agent can ignore.\n\nKey features:\n- 4-phase workflow (brainstorm → plan → implement → review → done) with hook-gated phase entry. The agent cannot edit `src/` while requirements are still drafted, cannot commit a Wave with incomplete tasks, cannot push while the latest review verdict is MAJOR_ISSUES.\n- 3 spec reviewers (requirements / design / tasks) on fresh contexts, auto-iterating up to 3 times before a single user approval gate. Catches missing requirements and hallucinated acceptance criteria before any code is written.\n- Wave-based implementation: 1 Wave = 1 commit. Hooks cross-check the diff against each task's `_Files:_` meta to block phantom completion (marking `[x]` without an actual implementation).\n- 4-stage implementation review (spec-compliance / code-quality / security / adversarial) + per-issue validator on fresh contexts (memory: local, read-only) to filter false positives before findings reach the user.\n- Deterministic security detectors (semgrep SAST + osv-scanner CVE + npm registry hallucinated-package-check) injected as ground truth before LLM reviewers run. HIGH findings pin the verdict to MAJOR_ISSUES so the LLM cannot downgrade a real CVE.\n- Kuroko (黒衣) stance: zero side effects on projects that have not opted in (no `.mumei/current` = every Hook is a no-op). No telemetry, no writes outside `.mumei/`, no auto-commit, no auto-fix.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/hir4ta/mumei.git",
-        "sha": "a882324fdca40359fe8add10cc60d3d50a3a093c"
-      },
-      "homepage": "https://github.com/hir4ta/mumei"
-    },
-    {
       "name": "mumo",
       "description": "Multi-model deliberation as MCP tools, with an auto-triggering skill. Consult a panel of models (Claude, GPT, Gemini, Grok, Qwen, GLM, Kimi) on contested decisions where a single model might be confidently wrong, e.g. architecture choices, plan reviews, pricing tradeoffs. Each round returns per-model prose plus a cross-model claim map showing where the panel agrees and where it splits.",
       "source": {
@@ -13485,16 +13423,6 @@
         "sha": "9c3b932bdddb3cd14ddec1e53b33b0017b21fdf3"
       },
       "homepage": "https://github.com/Zhang-Yiqian/MVPify"
-    },
-    {
-      "name": "my-claude-lang",
-      "description": "Until now, the best AI coding tools required you to speak English. Not anymore.\n\nmy-claude-lang is a plugin for Claude Code that lets you build software in your native language — with zero English knowledge required. No configuration. No language settings. Just start talking. It understands.\n\nThis is not a translator. Translators convert words. my-claude-lang converts meaning.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/umiteknoloji/my-claude-lang.git",
-        "sha": "3815efe40166328e93cc24db8521841b139a164c"
-      },
-      "homepage": "https://github.com/umiteknoloji/my-claude-lang/blob/main/README.md"
     },
     {
       "name": "mygigsters-super",
@@ -17116,16 +17044,6 @@
         "sha": "35bbdb37c1b6eab65741a60941c79378dfd4948b"
       },
       "homepage": "https://github.com/eriknewton/sanctuary-framework"
-    },
-    {
-      "name": "sandbox-yfinance",
-      "description": "Fetch Yahoo Finance historical price data (stocks, ETFs, crypto, futures, indices) from inside Claude Code Cowork sandboxes or any network-restricted container. Uses git push/pull as a relay to GitHub Actions — no infrastructure required beyond a GitHub account.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/FUCKUWURST/sandbox-yfinance-skill.git",
-        "sha": "73c0ba12d8aaa444629a9d4bf9fb53269ba75006"
-      },
-      "homepage": "https://github.com/FUCKUWURST/sandbox-yfinance-skill"
     },
     {
       "name": "sandstorm",
@@ -20795,16 +20713,6 @@
       "homepage": "ttps://github.com/GunjanGrunge/tylor"
     },
     {
-      "name": "typedeck",
-      "description": "Generate professional presentations from natural language. Describe what you want to present and get a complete slide deck with charts, code blocks, diagrams, tables, quotes, speaker notes, and more. Output opens directly in Typedeck, the native macOS presentation app.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/testifyprep/typedeck-claude-plugin.git",
-        "sha": "726bddce63f6564fad5c1643787367a3d41cdc53"
-      },
-      "homepage": "https://typedeck.app/help/#claude-plugin"
-    },
-    {
       "name": "ui-kit",
       "description": "147 zero-dependency React components with Aurora Fluid design. 5 skills for component discovery, code generation, design   \n  system reference, tier selection, and accessibility auditing. 2 agents for architecture and a11y review. Auto-connects to hosted MCP  server.",
       "source": {
@@ -21326,16 +21234,6 @@
         "sha": "804bab5e0500d7a0f8613a83a3cfe5b79e6a31c3"
       },
       "homepage": "https://www.vibeprospecting.ai/product/claude-plugin"
-    },
-    {
-      "name": "vibe-radar",
-      "description": "VibeRadar turns Claude Code conversation history into a structured analysis of how a developer collaborates with AI. It classifies each user message by conversational position — opening, directing, correcting, confirming, or continuing — extracts countable signals, and scores six distinct collaboration dimensions using a deterministic formula baseline plus a bounded qualitative adjustment (maximum ±15) that must cite evidence.\nThe result is a self-contained, single-file HTML report that includes an overall grade (S/A/B/C/D), a radar chart, a behavioral MBTI collaboration archetype derived from reasoning patterns and directive style rather than simple keyword matching, and 3-7 actionable suggestions grounded in real session data.\nVibeRadar is privacy-first by design: everything runs locally, session files are accessed read-only from ~/.claude/projects/, and there are no network calls, API keys, or telemetry. Zero dependencies, under 200KB.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/LeifDiao/vibe-radar.git",
-        "sha": "7bfcd770041b54cfeaae847379667dd4c7e9431e"
-      },
-      "homepage": "https://leifdiao.github.io/vibe-radar/"
     },
     {
       "name": "vibe-replay",

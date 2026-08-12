@@ -1,0 +1,57 @@
+name: Owner Liveness Sweep
+description: >
+  Corpus-wide source-availability / owner-verification sweep over the
+  marketplace's external github.com entries. Resolves every distinct source
+  owner and owner/repo pair via batched GraphQL and classifies drift against
+  the committed owner baseline (login → account id): identity-changed (a
+  recorded login now resolving to a different account id — the only class
+  that fails the run), owner-missing, repo-moved (rename/transfer redirect),
+  repo-missing, unbaselined, baseline orphans. Report-only — it never edits
+  the marketplace and never removes an entry. See scripts/sweep.sh for the
+  full model and the seed/refresh baseline-maintenance modes.
+
+inputs:
+  marketplace-path:
+    description: Path to marketplace.json
+    default: .claude-plugin/marketplace.json
+  baseline-path:
+    description: >
+      Path to the committed owner baseline (login → account id). Required to
+      exist for report/refresh; written by seed.
+    default: .github/owner-baseline.json
+  mode:
+    description: "report (default) | seed | refresh — see scripts/sweep.sh"
+    default: report
+  fail-on-identity-change:
+    description: >
+      In report mode, exit 1 when any recorded owner login resolves to a
+      different account id than the baseline records ("true"/"false").
+    default: "true"
+  chunk-size:
+    description: Logins/repos per batched GraphQL query
+    default: "50"
+  github-token:
+    description: Token for the read-only GraphQL lookups
+    default: ${{ github.token }}
+
+outputs:
+  findings-path:
+    description: Path to the findings JSON written by the sweep
+    value: ${{ steps.sweep.outputs.findings-path }}
+  counts:
+    description: "JSON object: findings count per class"
+    value: ${{ steps.sweep.outputs.counts }}
+
+runs:
+  using: composite
+  steps:
+    - id: sweep
+      shell: bash
+      env:
+        MARKETPLACE_PATH: ${{ inputs.marketplace-path }}
+        BASELINE_PATH: ${{ inputs.baseline-path }}
+        MODE: ${{ inputs.mode }}
+        FAIL_ON_IDENTITY_CHANGE: ${{ inputs.fail-on-identity-change }}
+        CHUNK: ${{ inputs.chunk-size }}
+        GH_TOKEN: ${{ inputs.github-token }}
+      run: bash "${{ github.action_path }}/scripts/sweep.sh"

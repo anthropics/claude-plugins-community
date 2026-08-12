@@ -220,7 +220,11 @@ while IFS= read -r entry; do
     [[ "$host" == "$h" || "$host" == *".$h" ]] && { ok=1; break; }
   done
   [[ -n "$ok" ]] || { skip "$name" "host '$host' not in allowlist"; continue; }
-  [[ -z "$subdir" ]] || { has_unsafe_chars "$subdir" && { skip "$name" "unsafe subdir"; continue; }; }
+  # subdir must be relative and traversal-free: has_unsafe_chars blocks shell
+  # metacharacters but not `..`/absolute paths, and target="$dest/$subdir"
+  # below must not escape the throwaway clone. Mirrors scan.sh's subdir guard
+  # and validate-plugins' assert_safe_path.
+  [[ -z "$subdir" ]] || { { has_unsafe_chars "$subdir" || [[ "$subdir" == *".."* || "$subdir" == /* ]]; } && { skip "$name" "unsafe subdir"; continue; }; }
 
   # Resolve the bump target. Default: upstream HEAD (ls-remote). Entries in
   # tracking-config's releases-only list: the COMMIT of the latest published
@@ -304,6 +308,90 @@ while IFS= read -r entry; do
   fi
   if [[ "$new_sha" == "$old_sha" ]]; then
     continue
+  fi
+
+  # ── Source-owner verification gate (github.com sources) ────────────────────
+  # git ls-remote / clone silently follow GitHub's repo-move redirects, so a
+  # SHA can resolve cleanly from a repository that is no longer where the
+  # marketplace entry says it is. An auto-bumper must never advance a pin
+  # through such a redirect: when the canonical owner differs from the listed
+  # owner, the content at HEAD is no longer published under the namespace the
+  # entry was accepted from, and the listed source URL needs a human review /
+  # refresh before any further bumps. Resolve the LISTED owner/repo via the
+  # API and require the canonical full_name to still match:
+  #   · HTTP 404                     → source unavailable        → hold the pin
+  #   · canonical owner ≠ listed     → owner changed (redirect)  → hold the pin
+  #   · any other lookup failure     → cannot verify             → hold the pin
+  # Fail-closed PER ENTRY (the run continues); every hold is a visible skip.
+  # A repo renamed WITHIN the same owner is logged but not held — same
+  # namespace, same publisher; the listing should still be refreshed.
+  # Placed AFTER the staleness check so only entries actually about to be
+  # bumped cost an API call (at-pin entries — the vast majority — never do).
+  if [[ "$host" == "github.com" ]]; then
+    sv_or="${full_url#https://github.com/}"; sv_or="${sv_or%/}"; sv_or="${sv_or%.git}"
+    if [[ ! "$sv_or" =~ ^[A-Za-z0-9][A-Za-z0-9_.-]*/[A-Za-z0-9][A-Za-z0-9_.-]*$ ]]; then
+      skip "$name" "source verification: could not derive owner/repo from $full_url — cannot verify source; pin held"; continue
+    fi
+    sv_rc=0
+    sv_resp="$(gh api "repos/$sv_or" 2>/dev/null)" || sv_rc=$?
+    if [[ "$sv_rc" -ne 0 ]]; then
+      # gh api prints the JSON error body to stdout on an HTTP error (the same
+      # convention the releases-only branch handles above): discriminate a
+      # definitive 404 from a transient failure, hold the pin either way.
+      sv_status="$(jq -r '.status // empty' <<<"$sv_resp" 2>/dev/null || true)"
+      if [[ "$sv_status" == "404" ]]; then
+        skip "$name" "source repo $sv_or not found (HTTP 404) — source unavailable; pin held"
+      else
+        skip "$name" "source repo $sv_or lookup failed (HTTP ${sv_status:-unknown}) — cannot verify source; pin held"
+      fi
+      continue
+    fi
+    sv_full="$(jq -r '.full_name // empty' <<<"$sv_resp" 2>/dev/null || true)"
+    if [[ ! "$sv_full" =~ ^[A-Za-z0-9][A-Za-z0-9_.-]*/[A-Za-z0-9][A-Za-z0-9_.-]*$ ]]; then
+      skip "$name" "source repo $sv_or lookup returned no usable full_name — cannot verify source; pin held"; continue
+    fi
+    sv_listed_owner_lc="$(tr '[:upper:]' '[:lower:]' <<<"${sv_or%%/*}")"
+    sv_live_owner_lc="$(tr '[:upper:]' '[:lower:]' <<<"${sv_full%%/*}")"
+    if [[ "$sv_live_owner_lc" != "$sv_listed_owner_lc" ]]; then
+      skip "$name" "source now resolves to $sv_full (listed: $sv_or) — owner changed upstream; pin held pending a source-URL review"
+      continue
+    fi
+    if [[ "$(tr '[:upper:]' '[:lower:]' <<<"${sv_full#*/}")" != "$(tr '[:upper:]' '[:lower:]' <<<"${sv_or#*/}")" ]]; then
+      warn "$name: source repo renamed within the same owner ($sv_or → $sv_full) — bump proceeds; the listed source URL should be refreshed"
+    fi
+    # ── Identity leg (owner-baseline, when committed) ─────────────────────────
+    # full_name alone cannot see a RE-REGISTERED owner: the login is freed and
+    # re-taken, a repo is created at the listed path, and the lookup above
+    # returns a matching full_name with no redirect. The account ID is the
+    # discriminator — ids are stable for the life of an account, so the same
+    # login resolving to a different id than the committed baseline records
+    # means the login changed hands since the entry was recorded. Compare from
+    # the SAME repos/ response (zero extra API cost):
+    #   · recorded id present, live id differs   → hold the pin (loud skip)
+    #   · recorded id present, live id missing   → hold (cannot verify identity)
+    #   · owner not in the baseline              → warn-and-proceed — the entry
+    #     was human-reviewed when it was added and holding would false-hold
+    #     every new entry until the next baseline refresh merges; the warning
+    #     keeps the not-yet-pinned state observable (fold in via the
+    #     owner-liveness-sweep refresh mode).
+    # No baseline file → the identity leg is inactive (location checks stand);
+    # callers that haven't adopted a baseline keep today's behavior.
+    if [[ -n "${OWNER_BASELINE:-}" && -f "$OWNER_BASELINE" ]]; then
+      sv_recorded_id="$(jq -r --arg k "$sv_listed_owner_lc" '.owners[$k].id // empty' -- "$OWNER_BASELINE" 2>/dev/null || true)"
+      if [[ "$sv_recorded_id" =~ ^[0-9]+$ ]]; then
+        sv_live_id="$(jq -r 'if (.owner.id | type) == "number" then .owner.id else empty end' <<<"$sv_resp" 2>/dev/null || true)"
+        if [[ -z "$sv_live_id" ]]; then
+          skip "$name" "source owner '${sv_or%%/*}' identity could not be verified (no account id in the lookup; recorded $sv_recorded_id) — pin held"
+          continue
+        fi
+        if [[ "$sv_live_id" != "$sv_recorded_id" ]]; then
+          skip "$name" "source owner '${sv_or%%/*}' now resolves to a different account id (recorded $sv_recorded_id, live $sv_live_id) — the login no longer belongs to the account on record; pin held pending review"
+          continue
+        fi
+      else
+        warn "$name: source owner '${sv_or%%/*}' is not in the owner baseline ($OWNER_BASELINE) — identity pinning is not yet active for this entry; fold it in via the owner-liveness-sweep refresh"
+      fi
+    fi
   fi
 
   # No-op subtree suppression (git-subdir entries only): the repo HEAD moving
@@ -527,7 +615,10 @@ if [[ "$PR_MODE" == "per-entry" ]]; then
     [[ "$new_oid" =~ ^[0-9a-f]{40}$ ]] || die "createCommitOnBranch did not return an OID for $name (got: $new_oid)"
     log "Created signed commit $new_oid on $branch ($name)"
 
-    body_file="$workroot/pr-body-$name.md"
+    # Derive the filename from the sanitized branch suffix, never raw $name —
+    # the marketplace allows `/` in names (@scope/plugin), and a raw
+    # interpolation would steer this write outside $workroot.
+    body_file="$workroot/pr-body-${branch#bump/}.md"
     {
       echo "Automated SHA bump for **\`$name\`**. The new SHA was validated via \`claude plugin validate\` in [this workflow run]($RUN_URL) before this PR was opened."
       echo
