@@ -101,7 +101,14 @@ case "$1" in
         if [ -n "${GQL_LOG:-}" ]; then cat >> "$GQL_LOG" || true; else cat >/dev/null 2>&1 || true; fi
         echo "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"; exit 0 ;;  # createCommitOnBranch oid
       -X)      exit 0 ;;                                        # POST/PATCH .../git/refs
-      *)       echo "cccccccccccccccccccccccccccccccccccccccc"; exit 0 ;;  # repos/.../git/ref/heads/<base> .object.sha
+      repos/*/git/ref/heads/*)
+               echo "cccccccccccccccccccccccccccccccccccccccc"; exit 0 ;;  # base-branch .object.sha
+      repos/*)
+        # Source-owner verification lookup (plain repos/<owner>/<repo>): answer
+        # with a canonical full_name MATCHING the listed one, so every fixture
+        # entry passes the gate and this suite keeps testing the manifest paths.
+        _or="${2#repos/}"; printf '{"full_name":"%s"}\n' "$_or"; exit 0 ;;
+      *)       echo "cccccccccccccccccccccccccccccccccccccccc"; exit 0 ;;  # any other ref lookup
     esac ;;
   *) echo "gh shim: unexpected invocation: $*" >&2; exit 1 ;;
 esac

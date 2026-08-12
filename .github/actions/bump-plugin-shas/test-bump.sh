@@ -353,6 +353,15 @@ case "$*" in
     # The WRONG answer, deliberately available: a tag-object implementation
     # would consume this dddd… sha — assertions prove it is never used.
     printf '{"object":{"type":"tag","sha":"dddddddddddddddddddddddddddddddddddddddd"}}\n' ;;
+  "api repos/"*)
+    # Plain repos/<owner>/<repo> — the source-owner verification gate. Must
+    # stay BELOW the more specific repos/ routes above (case is first-match).
+    need STUB_SOURCE_HTTP
+    case "$STUB_SOURCE_HTTP" in
+      200) need STUB_SOURCE_FULL_NAME; printf '{"full_name":"%s"}\n' "$STUB_SOURCE_FULL_NAME" ;;
+      404) printf '{"message":"Not Found","status":"404"}\n'; exit 1 ;;
+      *)   printf '{"message":"API rate limit exceeded","status":"%s"}\n' "$STUB_SOURCE_HTTP"; exit 1 ;;
+    esac ;;
   "pr list --head "*)
     printf '%s\n' "${STUB_OPEN_PR_URL:-}" ;;
   *) echo "STUB-UNEXPECTED gh $*" >> "${STUB_CALL_LOG:-/dev/null}"; echo "gh-stub: unexpected call: $*" >&2; exit 12 ;;
@@ -395,7 +404,8 @@ export STUB_CALL_LOG="$TMP/stub-calls.log"
 run_bump_shimmed() {
   local oldpath="$PATH" rc=0
   : > "$STUB_CALL_LOG"
-  export STUB_HEAD_SHA STUB_LATEST_TAG STUB_TAG_COMMIT_SHA STUB_RELEASES_HTTP STUB_COMPARE_STATUS STUB_OPEN_PR_URL
+  export STUB_HEAD_SHA STUB_LATEST_TAG STUB_TAG_COMMIT_SHA STUB_RELEASES_HTTP STUB_COMPARE_STATUS STUB_OPEN_PR_URL \
+    STUB_SOURCE_HTTP STUB_SOURCE_FULL_NAME
   PATH="$TMP/bin:$PATH"
   run_bump "$1" || rc=$?
   PATH="$oldpath"
@@ -405,7 +415,8 @@ run_bump_shimmed() {
   else
     echo "  PASS stub-drift guard (no unexpected/misconfigured stub calls)"
   fi
-  unset STUB_HEAD_SHA STUB_LATEST_TAG STUB_TAG_COMMIT_SHA STUB_RELEASES_HTTP STUB_COMPARE_STATUS STUB_OPEN_PR_URL
+  unset STUB_HEAD_SHA STUB_LATEST_TAG STUB_TAG_COMMIT_SHA STUB_RELEASES_HTTP STUB_COMPARE_STATUS STUB_OPEN_PR_URL \
+    STUB_SOURCE_HTTP STUB_SOURCE_FULL_NAME
   return "$rc"
 }
 
@@ -486,6 +497,7 @@ STUB_RELEASES_HTTP=200 STUB_LATEST_TAG="v3.1.0"
 STUB_TAG_COMMIT_SHA="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 STUB_HEAD_SHA="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
 STUB_COMPARE_STATUS="ahead"
+STUB_SOURCE_HTTP=200 STUB_SOURCE_FULL_NAME="acme/rel-plugin"
 run_bump_shimmed "$stale_fix"
 assert_warn "rel-plugin: 9999999999999999999999999999999999999999 -> aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" "stale flagged entry ADOPTS the release commit as the bump target"
 assert_call "compare/9999999999999999999999999999999999999999...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" "forward-only guard consulted compare before bumping"
@@ -568,6 +580,7 @@ STUB_RELEASES_HTTP=200 STUB_LATEST_TAG="v3.1.0"
 STUB_TAG_COMMIT_SHA="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 STUB_COMPARE_STATUS="ahead"
 STUB_OPEN_PR_URL="https://github.com/acme/marketplace/pull/1"
+STUB_SOURCE_HTTP=200 STUB_SOURCE_FULL_NAME="acme/rel-plugin"
 run_bump_shimmed "$stale_fix"
 assert_reason "rel-plugin" "open bump PR already exists at bump/rel-plugin" "per-entry: open-PR skip still applies to a releases-only bump"
 assert_call "pr list --head bump/rel-plugin" "per-entry: open-PR probe ran"
@@ -741,6 +754,92 @@ assert_no_warn "mode=releases-only" "no config → no releases-only mode line"
 assert_pin_held "$anno_fix" "no config → pin held at HEAD"
 
 TRACKING_CONFIG_FIXTURE=""  # reset
+
+echo
+echo "=== bump-plugin-shas source-owner verification tests ==="
+
+# The verification gate sits AFTER the staleness check and BEFORE any bump
+# work (subtree probe / open-PR probe / clone): a stale github.com entry's
+# listed owner/repo is resolved via `gh api repos/<owner>/<repo>` and the
+# canonical full_name must still match the listed owner (case-insensitive).
+# 404 / owner-change / lookup-failure all hold the pin as a visible skip.
+# SHA roles: 9999…=stale pin · bbbb…=upstream HEAD (stale trigger).
+sv_fix=$(mk svfix <<'EOF'
+{"plugins":[{"name":"sv-plugin","source":{"url":"https://github.com/acme/sv-plugin","sha":"9999999999999999999999999999999999999999"}}]}
+EOF
+)
+
+# 31. Verified source (canonical owner matches, case-insensitively): the gate
+#     passes through to the normal bump path (clone — refused by the git stub,
+#     so the case stays network-free). Canonical case differs (Acme vs acme):
+#     a case-SENSITIVE comparison would wrongly hold this pin.
+STUB_HEAD_SHA="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+STUB_SOURCE_HTTP=200 STUB_SOURCE_FULL_NAME="Acme/sv-plugin"
+run_bump_shimmed "$sv_fix"
+assert_call "gh api repos/acme/sv-plugin" "stale entry consulted the source-verification lookup"
+assert_reason "sv-plugin" "clone failed" "verified source passes the gate (reached the clone path)"
+assert_no_warn "owner changed" "case-only difference is NOT an owner change"
+assert_pin_held "$sv_fix" "verified-source case: pin unchanged (clone refused)"
+
+# 32. Source repo 404: definitive unavailability — visible hold, no clone.
+STUB_HEAD_SHA="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+STUB_SOURCE_HTTP=404
+run_bump_shimmed "$sv_fix"
+assert_rc 0 "404 source: run exits 0 (per-entry hold, not a run failure)"
+assert_reason "sv-plugin" "not found (HTTP 404) — source unavailable; pin held" "404 → visible source-unavailable hold"
+assert_no_call "git clone" "404 → no clone attempted"
+assert_pin_held "$sv_fix" "404 → pin held"
+
+# 33. Owner changed upstream (the redirect case): canonical full_name resolves
+#     under a DIFFERENT owner → the pin must hold, naming both sides.
+STUB_HEAD_SHA="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+STUB_SOURCE_HTTP=200 STUB_SOURCE_FULL_NAME="newowner/sv-plugin"
+run_bump_shimmed "$sv_fix"
+assert_reason "sv-plugin" "owner changed upstream" "owner change → pin held"
+assert_reason "sv-plugin" "newowner/sv-plugin" "hold reason names the canonical location"
+assert_no_call "git clone" "owner change → no clone attempted"
+assert_pin_held "$sv_fix" "owner change → pin held"
+
+# 34. Transient lookup failure (403 rate limit): FAIL CLOSED — cannot verify,
+#     do not advance; the reason names the real cause (never misreported as
+#     an unavailable source).
+STUB_HEAD_SHA="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+STUB_SOURCE_HTTP=403
+run_bump_shimmed "$sv_fix"
+assert_reason "sv-plugin" "lookup failed (HTTP 403) — cannot verify source; pin held" "transient failure → fail-closed hold with the HTTP status"
+assert_no_warn "source unavailable" "403 is never misreported as an unavailable source"
+assert_no_call "git clone" "unverifiable source → no clone"
+assert_pin_held "$sv_fix" "unverifiable source → pin held"
+
+# 35. Repo renamed WITHIN the same owner: same namespace, same publisher —
+#     the bump PROCEEDS (reaches clone) with a loud refresh-the-URL warning.
+STUB_HEAD_SHA="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+STUB_SOURCE_HTTP=200 STUB_SOURCE_FULL_NAME="acme/sv-plugin-renamed"
+run_bump_shimmed "$sv_fix"
+assert_warn "renamed within the same owner" "same-owner rename warns (URL refresh nudge)"
+assert_reason "sv-plugin" "clone failed" "same-owner rename does NOT hold the pin (reached the clone path)"
+assert_pin_held "$sv_fix" "same-owner rename: pin unchanged (clone refused)"
+
+# 36. Non-github host: the gate is github.com-scoped — a stale gitlab entry
+#     goes straight to the normal bump path with NO repos/ lookup. STUB_SOURCE_*
+#     stay deliberately unset: a lookup would trip the stub's need-guard and
+#     the drift check would fail this case loudly.
+gl_sv_fix=$(mk glsvfix <<'EOF'
+{"plugins":[{"name":"gl-plugin","source":{"url":"https://gitlab.com/acme/gl-plugin","sha":"9999999999999999999999999999999999999999"}}]}
+EOF
+)
+STUB_HEAD_SHA="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+run_bump_shimmed "$gl_sv_fix"
+assert_no_call "gh api repos/" "non-github host → verification lookup not consulted"
+assert_reason "gl-plugin" "clone failed" "non-github entry proceeds on the normal path"
+
+# 37. At-pin entry: the gate costs ZERO api calls when there is nothing to
+#     bump (placement after the staleness check is the api-budget bound).
+STUB_HEAD_SHA="9999999999999999999999999999999999999999"
+run_bump_shimmed "$sv_fix"
+assert_rc 0 "at-pin: exits 0 (Nothing to bump)"
+assert_no_call "gh api repos/" "at-pin → no verification lookup (post-staleness placement)"
+assert_skipped_count 0 "at-pin → no skips"
 
 echo
 echo "=== $((total-failures))/$total passed ==="

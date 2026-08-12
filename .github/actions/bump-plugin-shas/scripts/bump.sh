@@ -306,6 +306,57 @@ while IFS= read -r entry; do
     continue
   fi
 
+  # ── Source-owner verification gate (github.com sources) ────────────────────
+  # git ls-remote / clone silently follow GitHub's repo-move redirects, so a
+  # SHA can resolve cleanly from a repository that is no longer where the
+  # marketplace entry says it is. An auto-bumper must never advance a pin
+  # through such a redirect: when the canonical owner differs from the listed
+  # owner, the content at HEAD is no longer published under the namespace the
+  # entry was accepted from, and the listed source URL needs a human review /
+  # refresh before any further bumps. Resolve the LISTED owner/repo via the
+  # API and require the canonical full_name to still match:
+  #   · HTTP 404                     → source unavailable        → hold the pin
+  #   · canonical owner ≠ listed     → owner changed (redirect)  → hold the pin
+  #   · any other lookup failure     → cannot verify             → hold the pin
+  # Fail-closed PER ENTRY (the run continues); every hold is a visible skip.
+  # A repo renamed WITHIN the same owner is logged but not held — same
+  # namespace, same publisher; the listing should still be refreshed.
+  # Placed AFTER the staleness check so only entries actually about to be
+  # bumped cost an API call (at-pin entries — the vast majority — never do).
+  if [[ "$host" == "github.com" ]]; then
+    sv_or="${full_url#https://github.com/}"; sv_or="${sv_or%/}"; sv_or="${sv_or%.git}"
+    if [[ ! "$sv_or" =~ ^[A-Za-z0-9][A-Za-z0-9_.-]*/[A-Za-z0-9][A-Za-z0-9_.-]*$ ]]; then
+      skip "$name" "source verification: could not derive owner/repo from $full_url — cannot verify source; pin held"; continue
+    fi
+    sv_rc=0
+    sv_resp="$(gh api "repos/$sv_or" 2>/dev/null)" || sv_rc=$?
+    if [[ "$sv_rc" -ne 0 ]]; then
+      # gh api prints the JSON error body to stdout on an HTTP error (the same
+      # convention the releases-only branch handles above): discriminate a
+      # definitive 404 from a transient failure, hold the pin either way.
+      sv_status="$(jq -r '.status // empty' <<<"$sv_resp" 2>/dev/null || true)"
+      if [[ "$sv_status" == "404" ]]; then
+        skip "$name" "source repo $sv_or not found (HTTP 404) — source unavailable; pin held"
+      else
+        skip "$name" "source repo $sv_or lookup failed (HTTP ${sv_status:-unknown}) — cannot verify source; pin held"
+      fi
+      continue
+    fi
+    sv_full="$(jq -r '.full_name // empty' <<<"$sv_resp" 2>/dev/null || true)"
+    if [[ ! "$sv_full" =~ ^[A-Za-z0-9][A-Za-z0-9_.-]*/[A-Za-z0-9][A-Za-z0-9_.-]*$ ]]; then
+      skip "$name" "source repo $sv_or lookup returned no usable full_name — cannot verify source; pin held"; continue
+    fi
+    sv_listed_owner_lc="$(tr '[:upper:]' '[:lower:]' <<<"${sv_or%%/*}")"
+    sv_live_owner_lc="$(tr '[:upper:]' '[:lower:]' <<<"${sv_full%%/*}")"
+    if [[ "$sv_live_owner_lc" != "$sv_listed_owner_lc" ]]; then
+      skip "$name" "source now resolves to $sv_full (listed: $sv_or) — owner changed upstream; pin held pending a source-URL review"
+      continue
+    fi
+    if [[ "$(tr '[:upper:]' '[:lower:]' <<<"${sv_full#*/}")" != "$(tr '[:upper:]' '[:lower:]' <<<"${sv_or#*/}")" ]]; then
+      warn "$name: source repo renamed within the same owner ($sv_or → $sv_full) — bump proceeds; the listed source URL should be refreshed"
+    fi
+  fi
+
   # No-op subtree suppression (git-subdir entries only): the repo HEAD moving
   # does NOT mean THIS plugin's subtree changed. If the tree object at $subdir
   # is byte-identical between old_sha and new_sha, the plugin content is
