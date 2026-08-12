@@ -11256,16 +11256,6 @@
       "homepage": "https://kindex.tools/"
     },
     {
-      "name": "klarity",
-      "description": "Explore your org's processes and drive AI transformation",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/Klarity-AI/klarity-mcp.git",
-        "sha": "8e0e4f3375e0da07ab69eb03b05f8777bd8343b5"
-      },
-      "homepage": "https://github.com/Klarity-AI/klarity-mcp/blob/main/skills/klarity-architect/SKILL.md"
-    },
-    {
       "name": "knowledge-catalog",
       "description": "Connect to Knowledge Catalog to discover, manage, monitor, and govern data and AI artifacts across your data platform",
       "source": {
@@ -13485,16 +13475,6 @@
         "sha": "9c3b932bdddb3cd14ddec1e53b33b0017b21fdf3"
       },
       "homepage": "https://github.com/Zhang-Yiqian/MVPify"
-    },
-    {
-      "name": "my-claude-lang",
-      "description": "Until now, the best AI coding tools required you to speak English. Not anymore.\n\nmy-claude-lang is a plugin for Claude Code that lets you build software in your native language — with zero English knowledge required. No configuration. No language settings. Just start talking. It understands.\n\nThis is not a translator. Translators convert words. my-claude-lang converts meaning.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/umiteknoloji/my-claude-lang.git",
-        "sha": "3815efe40166328e93cc24db8521841b139a164c"
-      },
-      "homepage": "https://github.com/umiteknoloji/my-claude-lang/blob/main/README.md"
     },
     {
       "name": "mygigsters-super",
@@ -21326,16 +21306,6 @@
         "sha": "804bab5e0500d7a0f8613a83a3cfe5b79e6a31c3"
       },
       "homepage": "https://www.vibeprospecting.ai/product/claude-plugin"
-    },
-    {
-      "name": "vibe-radar",
-      "description": "VibeRadar turns Claude Code conversation history into a structured analysis of how a developer collaborates with AI. It classifies each user message by conversational position — opening, directing, correcting, confirming, or continuing — extracts countable signals, and scores six distinct collaboration dimensions using a deterministic formula baseline plus a bounded qualitative adjustment (maximum ±15) that must cite evidence.\nThe result is a self-contained, single-file HTML report that includes an overall grade (S/A/B/C/D), a radar chart, a behavioral MBTI collaboration archetype derived from reasoning patterns and directive style rather than simple keyword matching, and 3-7 actionable suggestions grounded in real session data.\nVibeRadar is privacy-first by design: everything runs locally, session files are accessed read-only from ~/.claude/projects/, and there are no network calls, API keys, or telemetry. Zero dependencies, under 200KB.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/LeifDiao/vibe-radar.git",
-        "sha": "7bfcd770041b54cfeaae847379667dd4c7e9431e"
-      },
-      "homepage": "https://leifdiao.github.io/vibe-radar/"
     },
     {
       "name": "vibe-replay",
