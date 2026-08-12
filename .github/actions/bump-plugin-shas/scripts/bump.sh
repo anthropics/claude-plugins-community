@@ -355,6 +355,39 @@ while IFS= read -r entry; do
     if [[ "$(tr '[:upper:]' '[:lower:]' <<<"${sv_full#*/}")" != "$(tr '[:upper:]' '[:lower:]' <<<"${sv_or#*/}")" ]]; then
       warn "$name: source repo renamed within the same owner ($sv_or → $sv_full) — bump proceeds; the listed source URL should be refreshed"
     fi
+    # ── Identity leg (owner-baseline, when committed) ─────────────────────────
+    # full_name alone cannot see a RE-REGISTERED owner: the login is freed and
+    # re-taken, a repo is created at the listed path, and the lookup above
+    # returns a matching full_name with no redirect. The account ID is the
+    # discriminator — ids are stable for the life of an account, so the same
+    # login resolving to a different id than the committed baseline records
+    # means the login changed hands since the entry was recorded. Compare from
+    # the SAME repos/ response (zero extra API cost):
+    #   · recorded id present, live id differs   → hold the pin (loud skip)
+    #   · recorded id present, live id missing   → hold (cannot verify identity)
+    #   · owner not in the baseline              → warn-and-proceed — the entry
+    #     was human-reviewed when it was added and holding would false-hold
+    #     every new entry until the next baseline refresh merges; the warning
+    #     keeps the not-yet-pinned state observable (fold in via the
+    #     owner-liveness-sweep refresh mode).
+    # No baseline file → the identity leg is inactive (location checks stand);
+    # callers that haven't adopted a baseline keep today's behavior.
+    if [[ -n "${OWNER_BASELINE:-}" && -f "$OWNER_BASELINE" ]]; then
+      sv_recorded_id="$(jq -r --arg k "$sv_listed_owner_lc" '.owners[$k].id // empty' -- "$OWNER_BASELINE" 2>/dev/null || true)"
+      if [[ "$sv_recorded_id" =~ ^[0-9]+$ ]]; then
+        sv_live_id="$(jq -r 'if (.owner.id | type) == "number" then .owner.id else empty end' <<<"$sv_resp" 2>/dev/null || true)"
+        if [[ -z "$sv_live_id" ]]; then
+          skip "$name" "source owner '${sv_or%%/*}' identity could not be verified (no account id in the lookup; recorded $sv_recorded_id) — pin held"
+          continue
+        fi
+        if [[ "$sv_live_id" != "$sv_recorded_id" ]]; then
+          skip "$name" "source owner '${sv_or%%/*}' now resolves to a different account id (recorded $sv_recorded_id, live $sv_live_id) — the login no longer belongs to the account on record; pin held pending review"
+          continue
+        fi
+      else
+        warn "$name: source owner '${sv_or%%/*}' is not in the owner baseline ($OWNER_BASELINE) — identity pinning is not yet active for this entry; fold it in via the owner-liveness-sweep refresh"
+      fi
+    fi
   fi
 
   # No-op subtree suppression (git-subdir entries only): the repo HEAD moving

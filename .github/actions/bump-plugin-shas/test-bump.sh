@@ -55,6 +55,7 @@ run_bump() {
     PR_BRANCH="bump/plugin-shas" BASE_BRANCH="main" GH_TOKEN="dummy" \
     SHA_EXEMPT="${SHA_EXEMPT_FIXTURE:-}" FREEZE_SHAS="${FREEZE_SHAS_FIXTURE:-}" \
     ONLY="${ONLY_FIXTURE:-}" TRACKING_CONFIG="${TRACKING_CONFIG_FIXTURE:-}" \
+    OWNER_BASELINE="${OWNER_BASELINE_FIXTURE:-}" \
     PR_MODE="${PR_MODE_FIXTURE:-batch}" \
     GITHUB_OUTPUT="$TMP/out.txt" GITHUB_STEP_SUMMARY="$TMP/sum.md"
   : > "$TMP/out.txt"; : > "$TMP/sum.md"
@@ -358,7 +359,16 @@ case "$*" in
     # stay BELOW the more specific repos/ routes above (case is first-match).
     need STUB_SOURCE_HTTP
     case "$STUB_SOURCE_HTTP" in
-      200) need STUB_SOURCE_FULL_NAME; printf '{"full_name":"%s"}\n' "$STUB_SOURCE_FULL_NAME" ;;
+      200)
+        # STUB_SOURCE_OWNER_ID: numeric → owner.id in the body (identity-leg
+        # cases); "none" or unset → full_name only (the leg is inactive without
+        # a baseline, or the cannot-verify case when one is present).
+        need STUB_SOURCE_FULL_NAME
+        if [[ -n "${STUB_SOURCE_OWNER_ID:-}" && "$STUB_SOURCE_OWNER_ID" != "none" ]]; then
+          printf '{"full_name":"%s","owner":{"id":%s}}\n' "$STUB_SOURCE_FULL_NAME" "$STUB_SOURCE_OWNER_ID"
+        else
+          printf '{"full_name":"%s"}\n' "$STUB_SOURCE_FULL_NAME"
+        fi ;;
       404) printf '{"message":"Not Found","status":"404"}\n'; exit 1 ;;
       *)   printf '{"message":"API rate limit exceeded","status":"%s"}\n' "$STUB_SOURCE_HTTP"; exit 1 ;;
     esac ;;
@@ -405,7 +415,7 @@ run_bump_shimmed() {
   local oldpath="$PATH" rc=0
   : > "$STUB_CALL_LOG"
   export STUB_HEAD_SHA STUB_LATEST_TAG STUB_TAG_COMMIT_SHA STUB_RELEASES_HTTP STUB_COMPARE_STATUS STUB_OPEN_PR_URL \
-    STUB_SOURCE_HTTP STUB_SOURCE_FULL_NAME
+    STUB_SOURCE_HTTP STUB_SOURCE_FULL_NAME STUB_SOURCE_OWNER_ID
   PATH="$TMP/bin:$PATH"
   run_bump "$1" || rc=$?
   PATH="$oldpath"
@@ -416,7 +426,7 @@ run_bump_shimmed() {
     echo "  PASS stub-drift guard (no unexpected/misconfigured stub calls)"
   fi
   unset STUB_HEAD_SHA STUB_LATEST_TAG STUB_TAG_COMMIT_SHA STUB_RELEASES_HTTP STUB_COMPARE_STATUS STUB_OPEN_PR_URL \
-    STUB_SOURCE_HTTP STUB_SOURCE_FULL_NAME
+    STUB_SOURCE_HTTP STUB_SOURCE_FULL_NAME STUB_SOURCE_OWNER_ID
   return "$rc"
 }
 
@@ -840,6 +850,68 @@ run_bump_shimmed "$sv_fix"
 assert_rc 0 "at-pin: exits 0 (Nothing to bump)"
 assert_no_call "gh api repos/" "at-pin → no verification lookup (post-staleness placement)"
 assert_skipped_count 0 "at-pin → no skips"
+
+echo
+echo "=== bump-plugin-shas owner-identity (baseline) tests ==="
+
+# The identity leg: with an owner baseline committed, the gate ALSO compares the
+# live owner's account id (from the same repos/ response) against the recorded
+# one. full_name alone cannot see a RE-REGISTERED owner — the login is freed and
+# re-taken and a repo is created at the listed path, so the location checks all
+# pass; the account id is the discriminator. No baseline file (cases 31-37 above)
+# → the leg is inactive, pinning the callers-without-a-baseline default.
+sv_baseline=$(mk_tc owner-baseline.json <<'EOF'
+{"schema": 1, "owners": {"acme": {"id": 1010, "type": "Organization"}}}
+EOF
+)
+
+# 38. Identity verified (recorded id == live id) → the gate passes through to
+#     the normal bump path (clone, refused by the git stub), no baseline noise.
+OWNER_BASELINE_FIXTURE="$sv_baseline"
+STUB_HEAD_SHA="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+STUB_SOURCE_HTTP=200 STUB_SOURCE_FULL_NAME="acme/sv-plugin" STUB_SOURCE_OWNER_ID=1010
+run_bump_shimmed "$sv_fix"
+assert_reason "sv-plugin" "clone failed" "matching account id passes the identity leg (reached the clone path)"
+assert_no_warn "not in the owner baseline" "baselined owner → no unbaselined warning"
+assert_pin_held "$sv_fix" "identity-verified case: pin unchanged (clone refused)"
+
+# 39. Identity CHANGED (recorded 1010, live 2020 — the re-registered-owner
+#     class): hold the pin loudly, no clone. This is the race the location
+#     checks cannot see (no redirect; the repo genuinely sits at the listed path).
+OWNER_BASELINE_FIXTURE="$sv_baseline"
+STUB_HEAD_SHA="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+STUB_SOURCE_HTTP=200 STUB_SOURCE_FULL_NAME="acme/sv-plugin" STUB_SOURCE_OWNER_ID=2020
+run_bump_shimmed "$sv_fix"
+assert_reason "sv-plugin" "different account id (recorded 1010, live 2020)" "id mismatch → identity hold naming both ids"
+assert_no_call "git clone" "id mismatch → no clone attempted"
+assert_pin_held "$sv_fix" "id mismatch → pin held"
+
+# 40. Owner ABSENT from the baseline → warn-and-proceed: the entry was
+#     human-reviewed when added; holding would false-hold every new entry until
+#     the next baseline refresh merges. The warning keeps the not-yet-pinned
+#     state observable.
+sv_baseline_other=$(mk_tc owner-baseline-other.json <<'EOF'
+{"schema": 1, "owners": {"otherorg": {"id": 42, "type": "User"}}}
+EOF
+)
+OWNER_BASELINE_FIXTURE="$sv_baseline_other"
+STUB_HEAD_SHA="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+STUB_SOURCE_HTTP=200 STUB_SOURCE_FULL_NAME="acme/sv-plugin" STUB_SOURCE_OWNER_ID=1010
+run_bump_shimmed "$sv_fix"
+assert_warn "not in the owner baseline" "unbaselined owner warns (identity pin not yet active)"
+assert_reason "sv-plugin" "clone failed" "unbaselined owner still proceeds (reached the clone path)"
+
+# 41. Recorded id present but the response carries NO usable owner id →
+#     FAIL CLOSED (cannot verify the identity the baseline pins).
+OWNER_BASELINE_FIXTURE="$sv_baseline"
+STUB_HEAD_SHA="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+STUB_SOURCE_HTTP=200 STUB_SOURCE_FULL_NAME="acme/sv-plugin" STUB_SOURCE_OWNER_ID=none
+run_bump_shimmed "$sv_fix"
+assert_reason "sv-plugin" "identity could not be verified" "recorded id + missing live id → fail-closed hold"
+assert_no_call "git clone" "unverifiable identity → no clone"
+assert_pin_held "$sv_fix" "unverifiable identity → pin held"
+
+OWNER_BASELINE_FIXTURE=""  # reset
 
 echo
 echo "=== $((total-failures))/$total passed ==="
