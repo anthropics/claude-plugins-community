@@ -7,6 +7,11 @@ description: >
   policy violations fail the job. Bot-free: needs only Anthropic API auth —
   either an ANTHROPIC_API_KEY secret or Workload Identity Federation inputs
   (the latter requires `permissions: id-token: write` on the calling job).
+  Also runs a deterministic, auth-free static pin check on each entry's
+  declared .mcp.json MCP servers (floating npx/uvx/bunx/pipx specs — code
+  resolved from a package registry at session start that the pinned source
+  SHA does not fix); always annotates, hard-fails only when the consumer
+  sets fail-on-unpinned-autoexec.
 
 inputs:
   anthropic-api-key:
@@ -37,6 +42,26 @@ inputs:
   fail-on-findings:
     description: If true, a `passes:false` verdict fails the job. Default false (annotate-only).
     default: "false"
+  fail-on-unpinned-autoexec:
+    description: >
+      If true, any non-waived floating-tag/range/unversioned npx/uvx/bunx/pipx
+      launcher declared in a scanned entry's .mcp.json (an auto-exec MCP server
+      whose executed code is registry-resolved at session start, not fixed by
+      the pinned source SHA) fails the job. Default false = detect + annotate
+      only. Detection itself always runs (auth-free) and always emits the
+      unpinned_autoexec_* fields; this input only arms the hard-fail —
+      per-repo severity is set here by each consumer.
+    default: "false"
+  launch-shape-waivers:
+    description: >
+      Path (in the calling repo's checkout) to a package-grained waivers file
+      for adjudicated exceptions to the pin check. Line format:
+      `<entry-name> <package-prefix> [<package-prefix>…]  # rationale`; a
+      prefix ending in `/` waives a scope, anything else must equal the
+      package name exactly, and EVERY floating spec of the entry must match a
+      prefix for the waiver to apply. Empty (default) = no waivers. A set but
+      missing path is a hard error (never a silent no-waiver run).
+    default: ""
   scan-all-external:
     description: Scan EVERY external entry, not just changed ones. For nightly full sweeps.
     default: "false"
@@ -58,14 +83,35 @@ inputs:
 
 outputs:
   scanned:
-    description: JSON array of {name, passes, summary, violations, may_make_external_network_calls, may_download_additional_software}
+    description: >
+      JSON array of {name, passes, summary, violations,
+      may_make_external_network_calls, may_download_additional_software,
+      unpinned_autoexec_runtime, unpinned_autoexec_specs}. The
+      unpinned_autoexec_* pair is action-emitted by the deterministic static
+      pin check (never model-produced): unpinned_autoexec_runtime=true means
+      the entry declares at least one non-waived floating auto-exec launcher;
+      unpinned_autoexec_specs carries
+      [{server, launcher, class, spec, waived}].
     value: ${{ steps.scan.outputs.scanned }}
   failed:
     description: JSON array of plugin names that failed policy
     value: ${{ steps.scan.outputs.failed }}
+  pin-scanned:
+    description: >
+      JSON array from the static pin check, one element per target:
+      {name, assessed, unpinned_autoexec_runtime, unpinned_autoexec_specs}.
+      Emitted even when the AI review is skipped (no Anthropic auth); gate on
+      `assessed` — an unclonable target records assessed=false.
+    value: ${{ steps.pin.outputs.pin-scanned }}
+  pin-failed:
+    description: JSON array of plugin names with a non-waived floating auto-exec launcher
+    value: ${{ steps.pin.outputs.pin-failed }}
   result:
-    description: pass | fail | skipped
-    value: ${{ steps.scan.outputs.result }}
+    description: >
+      pass | fail. The AI review's verdict when it ran; otherwise the static
+      pin check's (so an auth-less run still reports pass, or fail when
+      fail-on-unpinned-autoexec armed a pin failure).
+    value: ${{ steps.scan.outputs.result || steps.pin.outputs.result }}
 
 runs:
   using: composite
@@ -93,10 +139,29 @@ runs:
         echo "::notice::scan-plugins: no Anthropic auth (anthropic-api-key or anthropic-federation-rule-id) configured; skipping policy scan."
         echo "result=skipped" >> "$GITHUB_OUTPUT"
 
+    # jq is needed by the (unconditional) static pin check, not just the
+    # auth-gated AI review — install it regardless of auth.
     - name: Install jq
-      if: env.SCAN_HAS_AUTH == 'true'
       shell: bash
       run: command -v jq >/dev/null || sudo apt-get install -y jq
+
+    # Deterministic, auth-free: clones each changed external entry at its
+    # pinned SHA and classifies declared .mcp.json launcher specs. Always
+    # detects + annotates; hard-fails only when fail-on-unpinned-autoexec is
+    # true. Runs BEFORE the AI review so a pin failure (fail mode) skips the
+    # expensive review, and exports PIN_RESULTS_FILE so scan.sh can join the
+    # unpinned_autoexec_* fields into its scanned[] output.
+    - name: Static pin check
+      id: pin
+      shell: bash
+      env:
+        MARKETPLACE_PATH: ${{ inputs.marketplace-path }}
+        BASE_REF: ${{ inputs.base-ref }}
+        SCAN_ALL_EXTERNAL: ${{ inputs.scan-all-external }}
+        ALLOWED_HOSTS: ${{ inputs.allowed-hosts }}
+        FAIL_ON_UNPINNED_AUTOEXEC: ${{ inputs.fail-on-unpinned-autoexec }}
+        LAUNCH_SHAPE_WAIVERS: ${{ inputs.launch-shape-waivers }}
+      run: "$ACTION_PATH/scripts/static-pin-check.sh"
 
     - name: Mint GitHub OIDC token (Workload Identity Federation)
       if: inputs.anthropic-federation-rule-id != ''

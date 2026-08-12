@@ -40,6 +40,9 @@ jobs:
       - name: External manifest resolution tests
         run: bash .github/actions/validate-plugins/test-external-manifest.sh
 
+      - name: scan-plugins pin-check golden vectors
+        run: bash .github/actions/scan-plugins/test-pin-check.sh
+
       # Dogfood: this repo uses its own local copy of the action.
       # External consumers MUST pin a SHA — see the action README.
       - uses: ./.github/actions/validate-plugins
