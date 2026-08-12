@@ -1,0 +1,41 @@
+name: Owner Liveness Sweep
+
+# Daily source-availability / owner-verification sweep: resolve every distinct
+# external source owner + repo and classify drift against the committed owner
+# baseline (.github/owner-baseline.json). Report-only — findings land in the
+# step summary; nothing is edited or removed. The run fails ONLY when a
+# recorded owner login resolves to a different account id than the baseline
+# records (identity change), so a red run is a review-the-entries signal, not
+# routine noise. Runs ahead of the 07:23 bump sweep so the day's drift report
+# is available before any pins move (the bump action independently verifies
+# each entry it touches — this sweep covers the corpus that ISN'T being
+# bumped, which a per-bump gate never sees).
+#
+# Baseline maintenance: the summary lists unbaselined owners; fold them in by
+# running the action's `refresh` mode locally and opening a PR with the
+# updated baseline (see .github/actions/owner-liveness-sweep/README.md).
+# Refresh is additive-only and never rewrites an existing recorded id.
+
+on:
+  schedule:
+    - cron: '47 5 * * *'  # Daily 05:47 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: owner-liveness-sweep
+
+jobs:
+  sweep:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ./.github/actions/owner-liveness-sweep
+        with:
+          marketplace-path: .claude-plugin/marketplace.json
+          baseline-path: .github/owner-baseline.json
+          mode: report

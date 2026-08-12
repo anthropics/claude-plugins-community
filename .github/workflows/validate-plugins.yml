@@ -37,6 +37,9 @@ jobs:
       - name: bump-plugin-shas manifest-synthesis tests
         run: bash .github/actions/bump-plugin-shas/test-bump-manifest.sh
 
+      - name: owner-liveness-sweep tests
+        run: bash .github/actions/owner-liveness-sweep/test-sweep.sh
+
       - name: External manifest resolution tests
         run: bash .github/actions/validate-plugins/test-external-manifest.sh
 
