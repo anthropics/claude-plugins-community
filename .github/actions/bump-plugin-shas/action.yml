@@ -46,6 +46,18 @@ inputs:
       full run for the targeted name (the freeze/releases-only reconciliation
       warnings for OTHER names are suppressed).
     default: ""
+  owner-baseline:
+    description: >
+      Optional path (in the caller's checkout) to the committed owner baseline
+      maintained by the owner-liveness-sweep action — a login → account-id map.
+      When the file exists, the source-owner verification gate ALSO compares
+      the live owner's account id against the recorded one and holds the pin
+      on a mismatch (the same login now belongs to a different account —
+      full_name alone cannot see this, because a re-registered owner's repo
+      genuinely lives at the listed path with no redirect). A missing file
+      disables only this identity leg (callers without a baseline keep the
+      location checks).
+    default: .github/owner-baseline.json
   tracking-config:
     description: >
       Optional path to a JSON tracking-policy file in the caller's checkout,
@@ -203,6 +215,7 @@ runs:
         FREEZE_SHAS: ${{ inputs.freeze-shas }}
         ONLY: ${{ inputs.only }}
         TRACKING_CONFIG: ${{ inputs.tracking-config }}
+        OWNER_BASELINE: ${{ inputs.owner-baseline }}
         PR_MODE: ${{ inputs.pr-mode }}
         PR_BRANCH: ${{ inputs.pr-branch }}
         BASE_BRANCH: ${{ inputs.base-branch }}

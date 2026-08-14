@@ -88,7 +88,11 @@ case "$1" in
         if [ -n "${OPEN_PR_BRANCH:-}" ] && [ "$_head" = "$OPEN_PR_BRANCH" ]; then
           echo "https://github.com/acme/repo/pull/99"
         else echo ""; fi ;;
-      create) echo "https://github.com/acme/repo/pull/1" ;;
+      create)
+        # Tee the full argv to $PRCREATE_LOG (set by run_bump) so a test can
+        # assert the --body-file PATH the script actually passed.
+        if [ -n "${PRCREATE_LOG:-}" ]; then printf '%s\n' "$*" >> "$PRCREATE_LOG"; fi
+        echo "https://github.com/acme/repo/pull/1" ;;
       edit)   : ;;
       *) echo "gh shim: unexpected pr subcommand: $*" >&2; exit 1 ;;
     esac
@@ -101,7 +105,14 @@ case "$1" in
         if [ -n "${GQL_LOG:-}" ]; then cat >> "$GQL_LOG" || true; else cat >/dev/null 2>&1 || true; fi
         echo "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"; exit 0 ;;  # createCommitOnBranch oid
       -X)      exit 0 ;;                                        # POST/PATCH .../git/refs
-      *)       echo "cccccccccccccccccccccccccccccccccccccccc"; exit 0 ;;  # repos/.../git/ref/heads/<base> .object.sha
+      repos/*/git/ref/heads/*)
+               echo "cccccccccccccccccccccccccccccccccccccccc"; exit 0 ;;  # base-branch .object.sha
+      repos/*)
+        # Source-owner verification lookup (plain repos/<owner>/<repo>): answer
+        # with a canonical full_name MATCHING the listed one, so every fixture
+        # entry passes the gate and this suite keeps testing the manifest paths.
+        _or="${2#repos/}"; printf '{"full_name":"%s"}\n' "$_or"; exit 0 ;;
+      *)       echo "cccccccccccccccccccccccccccccccccccccccc"; exit 0 ;;  # any other ref lookup
     esac ;;
   *) echo "gh shim: unexpected invocation: $*" >&2; exit 1 ;;
 esac
@@ -123,7 +134,7 @@ mk() { local f="$TMP/$1.json"; cat > "$f"; printf '%s' "$f"; }
 work=""
 run_bump() {
   work="$TMP/work.json"; cp "$1" "$work"
-  : > "$TMP/out.txt"; : > "$TMP/sum.md"; : > "$TMP/graphql.log"
+  : > "$TMP/out.txt"; : > "$TMP/sum.md"; : > "$TMP/graphql.log"; : > "$TMP/prcreate.log"
   set +e
   OUT="$(
     PATH="$TMP/bin:$PATH" \
@@ -134,7 +145,7 @@ run_bump() {
     GH_TOKEN="dummy" GITHUB_REPOSITORY="acme/repo" \
     ONLY="${ONLY_FIXTURE:-}" OPEN_PR_BRANCH="${OPEN_PR_BRANCH:-}" \
     RUN_URL="https://github.com/acme/repo/actions/runs/1" \
-    GQL_LOG="$TMP/graphql.log" \
+    GQL_LOG="$TMP/graphql.log" PRCREATE_LOG="$TMP/prcreate.log" \
     GITHUB_OUTPUT="$TMP/out.txt" GITHUB_STEP_SUMMARY="$TMP/sum.md" \
     bash "$ACTION_PATH/scripts/bump.sh" 2>&1
   )"
@@ -363,6 +374,36 @@ run_bump "$f"
 assert_rc          0                                         "subdir-present run exits 0"
 assert_bumped      "withskills"                              "strict:false + present subdir + no manifest → synthesized + bumped (guard does not over-fire)"
 assert_not_skipped "withskills"                              "present-subdir entry NOT skipped"
+
+echo
+echo "--- hostile plugin name: PR-body path stays inside the workroot ---"
+# The marketplace allows `/` in names (@scope/plugin), so treat the field as
+# path-hostile: a name carrying `/` + `..` must not steer the per-entry
+# PR-body write to a traversed path. body_file derives from the SANITIZED
+# branch suffix ([A-Za-z0-9_.-], no `/`), never raw $name. Against the
+# pre-fix code (body_file="$workroot/pr-body-$name.md") this section FAILS:
+# the redirect target "$workroot/pr-body-evil/../../pwn.md" walks through a
+# nonexistent pr-body-evil dir → the write errors, the run dies, no PR is
+# recorded.
+f=$(mk hostile_name <<'EOF'
+{"plugins":[
+  {"name":"evil/../../pwn","strict":false,"source":{"url":"https://github.com/acme/evilname","sha":"6666666666666666666666666666666666666666"}}
+]}
+EOF
+)
+run_bump "$f"
+assert_rc        0                                     "hostile-name run exits 0"
+assert_bumped    "evil/../../pwn"                      "hostile-name entry still bumps (sanitized, not rejected)"
+assert_pr_opened "evil/../../pwn" "bump/evil-..-..-pwn" "PR opened on the sanitized branch"
+# The body-file path the script passed to `gh pr create` must be a single
+# slash-free basename under the workroot — no `..` path segment anywhere.
+total=$((total+1))
+_bf="$(sed -n 's/.*--body-file \(.*\)$/\1/p' "$TMP/prcreate.log" | tail -1)"
+if [[ -n "$_bf" && "$_bf" != *"/../"* && "$(basename "$_bf")" == "pr-body-evil-..-..-pwn.md" ]]; then
+  echo "  PASS body-file derives from the sanitized branch suffix ($_bf)"
+else
+  echo "  FAIL body-file path unsafe or missing — got '$_bf'"; failures=$((failures+1))
+fi
 
 echo
 # Surface a non-zero SKIP count so a jq<1.6 run (where the isolation assertions SKIP) is

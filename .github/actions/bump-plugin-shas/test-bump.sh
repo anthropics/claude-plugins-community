@@ -55,6 +55,7 @@ run_bump() {
     PR_BRANCH="bump/plugin-shas" BASE_BRANCH="main" GH_TOKEN="dummy" \
     SHA_EXEMPT="${SHA_EXEMPT_FIXTURE:-}" FREEZE_SHAS="${FREEZE_SHAS_FIXTURE:-}" \
     ONLY="${ONLY_FIXTURE:-}" TRACKING_CONFIG="${TRACKING_CONFIG_FIXTURE:-}" \
+    OWNER_BASELINE="${OWNER_BASELINE_FIXTURE:-}" \
     PR_MODE="${PR_MODE_FIXTURE:-batch}" \
     GITHUB_OUTPUT="$TMP/out.txt" GITHUB_STEP_SUMMARY="$TMP/sum.md"
   : > "$TMP/out.txt"; : > "$TMP/sum.md"
@@ -228,6 +229,27 @@ FREEZE_SHAS_FIXTURE=""; SHA_EXEMPT_FIXTURE=""
 run_bump "$f"
 assert_no_warn "freeze-shas:" "empty freeze list → no freeze-shas warning"
 
+# 8b. Traversal-shaped source.path (subdir) is rejected up front: `..` and
+#     absolute paths could otherwise escape the throwaway clone at
+#     target="$dest/$subdir", so they must skip BEFORE any ls-remote/clone
+#     (network-free — the guard sits ahead of resolution), matching scan.sh's
+#     subdir guard and validate-plugins' assert_safe_path. Three shapes:
+#     leading ../, embedded /../, absolute /. The safe-subdir counterparts
+#     (guard must NOT over-fire) are case 24b below and test-bump-manifest.sh's
+#     subdir-present case.
+f=$(mk travsub <<'EOF'
+{"plugins":[{"name":"trav-up","source":{"url":"https://github.com/acme/trav-up","sha":"1111111111111111111111111111111111111111","path":"../../../../tmp/x"}},{"name":"trav-embed","source":{"url":"https://github.com/acme/trav-embed","sha":"2222222222222222222222222222222222222222","path":"docs/../../x"}},{"name":"trav-abs","source":{"url":"https://github.com/acme/trav-abs","sha":"3333333333333333333333333333333333333333","path":"/tmp/x"}}]}
+EOF
+)
+FREEZE_SHAS_FIXTURE=""; SHA_EXEMPT_FIXTURE=""
+run_bump "$f"
+assert_reason "trav-up"    "unsafe subdir" "leading ../ subdir rejected"
+assert_reason "trav-embed" "unsafe subdir" "embedded .. subdir rejected"
+assert_reason "trav-abs"   "unsafe subdir" "absolute subdir rejected"
+assert_skipped_count 3     "all three traversal-shaped subdirs skipped"
+assert_pin_held "$f"       "traversal subdirs → pins held, nothing bumped"
+assert_rc 0                "traversal-subdir run exits 0 (skip, not die)"
+
 echo
 echo "=== bump-plugin-shas single-plugin (only) target tests ==="
 
@@ -353,6 +375,24 @@ case "$*" in
     # The WRONG answer, deliberately available: a tag-object implementation
     # would consume this dddd… sha — assertions prove it is never used.
     printf '{"object":{"type":"tag","sha":"dddddddddddddddddddddddddddddddddddddddd"}}\n' ;;
+  "api repos/"*)
+    # Plain repos/<owner>/<repo> — the source-owner verification gate. Must
+    # stay BELOW the more specific repos/ routes above (case is first-match).
+    need STUB_SOURCE_HTTP
+    case "$STUB_SOURCE_HTTP" in
+      200)
+        # STUB_SOURCE_OWNER_ID: numeric → owner.id in the body (identity-leg
+        # cases); "none" or unset → full_name only (the leg is inactive without
+        # a baseline, or the cannot-verify case when one is present).
+        need STUB_SOURCE_FULL_NAME
+        if [[ -n "${STUB_SOURCE_OWNER_ID:-}" && "$STUB_SOURCE_OWNER_ID" != "none" ]]; then
+          printf '{"full_name":"%s","owner":{"id":%s}}\n' "$STUB_SOURCE_FULL_NAME" "$STUB_SOURCE_OWNER_ID"
+        else
+          printf '{"full_name":"%s"}\n' "$STUB_SOURCE_FULL_NAME"
+        fi ;;
+      404) printf '{"message":"Not Found","status":"404"}\n'; exit 1 ;;
+      *)   printf '{"message":"API rate limit exceeded","status":"%s"}\n' "$STUB_SOURCE_HTTP"; exit 1 ;;
+    esac ;;
   "pr list --head "*)
     printf '%s\n' "${STUB_OPEN_PR_URL:-}" ;;
   *) echo "STUB-UNEXPECTED gh $*" >> "${STUB_CALL_LOG:-/dev/null}"; echo "gh-stub: unexpected call: $*" >&2; exit 12 ;;
@@ -395,7 +435,8 @@ export STUB_CALL_LOG="$TMP/stub-calls.log"
 run_bump_shimmed() {
   local oldpath="$PATH" rc=0
   : > "$STUB_CALL_LOG"
-  export STUB_HEAD_SHA STUB_LATEST_TAG STUB_TAG_COMMIT_SHA STUB_RELEASES_HTTP STUB_COMPARE_STATUS STUB_OPEN_PR_URL
+  export STUB_HEAD_SHA STUB_LATEST_TAG STUB_TAG_COMMIT_SHA STUB_RELEASES_HTTP STUB_COMPARE_STATUS STUB_OPEN_PR_URL \
+    STUB_SOURCE_HTTP STUB_SOURCE_FULL_NAME STUB_SOURCE_OWNER_ID
   PATH="$TMP/bin:$PATH"
   run_bump "$1" || rc=$?
   PATH="$oldpath"
@@ -405,7 +446,8 @@ run_bump_shimmed() {
   else
     echo "  PASS stub-drift guard (no unexpected/misconfigured stub calls)"
   fi
-  unset STUB_HEAD_SHA STUB_LATEST_TAG STUB_TAG_COMMIT_SHA STUB_RELEASES_HTTP STUB_COMPARE_STATUS STUB_OPEN_PR_URL
+  unset STUB_HEAD_SHA STUB_LATEST_TAG STUB_TAG_COMMIT_SHA STUB_RELEASES_HTTP STUB_COMPARE_STATUS STUB_OPEN_PR_URL \
+    STUB_SOURCE_HTTP STUB_SOURCE_FULL_NAME STUB_SOURCE_OWNER_ID
   return "$rc"
 }
 
@@ -486,6 +528,7 @@ STUB_RELEASES_HTTP=200 STUB_LATEST_TAG="v3.1.0"
 STUB_TAG_COMMIT_SHA="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 STUB_HEAD_SHA="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
 STUB_COMPARE_STATUS="ahead"
+STUB_SOURCE_HTTP=200 STUB_SOURCE_FULL_NAME="acme/rel-plugin"
 run_bump_shimmed "$stale_fix"
 assert_warn "rel-plugin: 9999999999999999999999999999999999999999 -> aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" "stale flagged entry ADOPTS the release commit as the bump target"
 assert_call "compare/9999999999999999999999999999999999999999...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" "forward-only guard consulted compare before bumping"
@@ -568,6 +611,7 @@ STUB_RELEASES_HTTP=200 STUB_LATEST_TAG="v3.1.0"
 STUB_TAG_COMMIT_SHA="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 STUB_COMPARE_STATUS="ahead"
 STUB_OPEN_PR_URL="https://github.com/acme/marketplace/pull/1"
+STUB_SOURCE_HTTP=200 STUB_SOURCE_FULL_NAME="acme/rel-plugin"
 run_bump_shimmed "$stale_fix"
 assert_reason "rel-plugin" "open bump PR already exists at bump/rel-plugin" "per-entry: open-PR skip still applies to a releases-only bump"
 assert_call "pr list --head bump/rel-plugin" "per-entry: open-PR probe ran"
@@ -587,6 +631,23 @@ STUB_RELEASES_HTTP=200 STUB_LATEST_TAG='../../../repos/evil/evil'
 run_bump_shimmed "$anno_fix"
 assert_reason "rel-plugin" "has characters outside" "traversal-shaped tag → visible skip"
 assert_no_call "repos/evil" "'..' tag can never rewrite the API route"
+
+# 24b. Safe MULTI-SEGMENT subdir stays allowed: the traversal guard (case 8b)
+#      rejects `..`/absolute but must keep interior `/` legal — git-subdir
+#      entries declare paths like plugins/foo. At-pin (stub HEAD == pinned sha)
+#      so the run stays network-free and stops before the subtree probe; the
+#      ls-remote call proves the entry PASSED the subdir guard.
+subdir_ok_fix=$(mk subdirok <<'EOF'
+{"plugins":[{"name":"subdir-ok","source":{"url":"https://github.com/acme/subdir-ok","sha":"cccccccccccccccccccccccccccccccccccccccc","path":"plugins/foo"}}]}
+EOF
+)
+TRACKING_CONFIG_FIXTURE=""
+STUB_HEAD_SHA="cccccccccccccccccccccccccccccccccccccccc"
+run_bump_shimmed "$subdir_ok_fix"
+assert_rc 0 "multi-segment subdir: run exits 0"
+assert_call "git ls-remote -- https://github.com/acme/subdir-ok HEAD" "safe multi-segment subdir passes the guard (reaches resolution)"
+assert_skipped_count 0 "safe subdir not skipped (guard does not over-fire on interior /)"
+assert_pin_held "$subdir_ok_fix" "at-pin multi-segment entry → pin held"
 
 # 25. Reconcile warning: a flagged name matching no marketplace entry warns
 #     (typo or not-yet-live add-PR) when ONLY is empty, suppressed under a
@@ -741,6 +802,154 @@ assert_no_warn "mode=releases-only" "no config → no releases-only mode line"
 assert_pin_held "$anno_fix" "no config → pin held at HEAD"
 
 TRACKING_CONFIG_FIXTURE=""  # reset
+
+echo
+echo "=== bump-plugin-shas source-owner verification tests ==="
+
+# The verification gate sits AFTER the staleness check and BEFORE any bump
+# work (subtree probe / open-PR probe / clone): a stale github.com entry's
+# listed owner/repo is resolved via `gh api repos/<owner>/<repo>` and the
+# canonical full_name must still match the listed owner (case-insensitive).
+# 404 / owner-change / lookup-failure all hold the pin as a visible skip.
+# SHA roles: 9999…=stale pin · bbbb…=upstream HEAD (stale trigger).
+sv_fix=$(mk svfix <<'EOF'
+{"plugins":[{"name":"sv-plugin","source":{"url":"https://github.com/acme/sv-plugin","sha":"9999999999999999999999999999999999999999"}}]}
+EOF
+)
+
+# 31. Verified source (canonical owner matches, case-insensitively): the gate
+#     passes through to the normal bump path (clone — refused by the git stub,
+#     so the case stays network-free). Canonical case differs (Acme vs acme):
+#     a case-SENSITIVE comparison would wrongly hold this pin.
+STUB_HEAD_SHA="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+STUB_SOURCE_HTTP=200 STUB_SOURCE_FULL_NAME="Acme/sv-plugin"
+run_bump_shimmed "$sv_fix"
+assert_call "gh api repos/acme/sv-plugin" "stale entry consulted the source-verification lookup"
+assert_reason "sv-plugin" "clone failed" "verified source passes the gate (reached the clone path)"
+assert_no_warn "owner changed" "case-only difference is NOT an owner change"
+assert_pin_held "$sv_fix" "verified-source case: pin unchanged (clone refused)"
+
+# 32. Source repo 404: definitive unavailability — visible hold, no clone.
+STUB_HEAD_SHA="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+STUB_SOURCE_HTTP=404
+run_bump_shimmed "$sv_fix"
+assert_rc 0 "404 source: run exits 0 (per-entry hold, not a run failure)"
+assert_reason "sv-plugin" "not found (HTTP 404) — source unavailable; pin held" "404 → visible source-unavailable hold"
+assert_no_call "git clone" "404 → no clone attempted"
+assert_pin_held "$sv_fix" "404 → pin held"
+
+# 33. Owner changed upstream (the redirect case): canonical full_name resolves
+#     under a DIFFERENT owner → the pin must hold, naming both sides.
+STUB_HEAD_SHA="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+STUB_SOURCE_HTTP=200 STUB_SOURCE_FULL_NAME="newowner/sv-plugin"
+run_bump_shimmed "$sv_fix"
+assert_reason "sv-plugin" "owner changed upstream" "owner change → pin held"
+assert_reason "sv-plugin" "newowner/sv-plugin" "hold reason names the canonical location"
+assert_no_call "git clone" "owner change → no clone attempted"
+assert_pin_held "$sv_fix" "owner change → pin held"
+
+# 34. Transient lookup failure (403 rate limit): FAIL CLOSED — cannot verify,
+#     do not advance; the reason names the real cause (never misreported as
+#     an unavailable source).
+STUB_HEAD_SHA="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+STUB_SOURCE_HTTP=403
+run_bump_shimmed "$sv_fix"
+assert_reason "sv-plugin" "lookup failed (HTTP 403) — cannot verify source; pin held" "transient failure → fail-closed hold with the HTTP status"
+assert_no_warn "source unavailable" "403 is never misreported as an unavailable source"
+assert_no_call "git clone" "unverifiable source → no clone"
+assert_pin_held "$sv_fix" "unverifiable source → pin held"
+
+# 35. Repo renamed WITHIN the same owner: same namespace, same publisher —
+#     the bump PROCEEDS (reaches clone) with a loud refresh-the-URL warning.
+STUB_HEAD_SHA="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+STUB_SOURCE_HTTP=200 STUB_SOURCE_FULL_NAME="acme/sv-plugin-renamed"
+run_bump_shimmed "$sv_fix"
+assert_warn "renamed within the same owner" "same-owner rename warns (URL refresh nudge)"
+assert_reason "sv-plugin" "clone failed" "same-owner rename does NOT hold the pin (reached the clone path)"
+assert_pin_held "$sv_fix" "same-owner rename: pin unchanged (clone refused)"
+
+# 36. Non-github host: the gate is github.com-scoped — a stale gitlab entry
+#     goes straight to the normal bump path with NO repos/ lookup. STUB_SOURCE_*
+#     stay deliberately unset: a lookup would trip the stub's need-guard and
+#     the drift check would fail this case loudly.
+gl_sv_fix=$(mk glsvfix <<'EOF'
+{"plugins":[{"name":"gl-plugin","source":{"url":"https://gitlab.com/acme/gl-plugin","sha":"9999999999999999999999999999999999999999"}}]}
+EOF
+)
+STUB_HEAD_SHA="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+run_bump_shimmed "$gl_sv_fix"
+assert_no_call "gh api repos/" "non-github host → verification lookup not consulted"
+assert_reason "gl-plugin" "clone failed" "non-github entry proceeds on the normal path"
+
+# 37. At-pin entry: the gate costs ZERO api calls when there is nothing to
+#     bump (placement after the staleness check is the api-budget bound).
+STUB_HEAD_SHA="9999999999999999999999999999999999999999"
+run_bump_shimmed "$sv_fix"
+assert_rc 0 "at-pin: exits 0 (Nothing to bump)"
+assert_no_call "gh api repos/" "at-pin → no verification lookup (post-staleness placement)"
+assert_skipped_count 0 "at-pin → no skips"
+
+echo
+echo "=== bump-plugin-shas owner-identity (baseline) tests ==="
+
+# The identity leg: with an owner baseline committed, the gate ALSO compares the
+# live owner's account id (from the same repos/ response) against the recorded
+# one. full_name alone cannot see a RE-REGISTERED owner — the login is freed and
+# re-taken and a repo is created at the listed path, so the location checks all
+# pass; the account id is the discriminator. No baseline file (cases 31-37 above)
+# → the leg is inactive, pinning the callers-without-a-baseline default.
+sv_baseline=$(mk_tc owner-baseline.json <<'EOF'
+{"schema": 1, "owners": {"acme": {"id": 1010, "type": "Organization"}}}
+EOF
+)
+
+# 38. Identity verified (recorded id == live id) → the gate passes through to
+#     the normal bump path (clone, refused by the git stub), no baseline noise.
+OWNER_BASELINE_FIXTURE="$sv_baseline"
+STUB_HEAD_SHA="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+STUB_SOURCE_HTTP=200 STUB_SOURCE_FULL_NAME="acme/sv-plugin" STUB_SOURCE_OWNER_ID=1010
+run_bump_shimmed "$sv_fix"
+assert_reason "sv-plugin" "clone failed" "matching account id passes the identity leg (reached the clone path)"
+assert_no_warn "not in the owner baseline" "baselined owner → no unbaselined warning"
+assert_pin_held "$sv_fix" "identity-verified case: pin unchanged (clone refused)"
+
+# 39. Identity CHANGED (recorded 1010, live 2020 — the re-registered-owner
+#     class): hold the pin loudly, no clone. This is the race the location
+#     checks cannot see (no redirect; the repo genuinely sits at the listed path).
+OWNER_BASELINE_FIXTURE="$sv_baseline"
+STUB_HEAD_SHA="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+STUB_SOURCE_HTTP=200 STUB_SOURCE_FULL_NAME="acme/sv-plugin" STUB_SOURCE_OWNER_ID=2020
+run_bump_shimmed "$sv_fix"
+assert_reason "sv-plugin" "different account id (recorded 1010, live 2020)" "id mismatch → identity hold naming both ids"
+assert_no_call "git clone" "id mismatch → no clone attempted"
+assert_pin_held "$sv_fix" "id mismatch → pin held"
+
+# 40. Owner ABSENT from the baseline → warn-and-proceed: the entry was
+#     human-reviewed when added; holding would false-hold every new entry until
+#     the next baseline refresh merges. The warning keeps the not-yet-pinned
+#     state observable.
+sv_baseline_other=$(mk_tc owner-baseline-other.json <<'EOF'
+{"schema": 1, "owners": {"otherorg": {"id": 42, "type": "User"}}}
+EOF
+)
+OWNER_BASELINE_FIXTURE="$sv_baseline_other"
+STUB_HEAD_SHA="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+STUB_SOURCE_HTTP=200 STUB_SOURCE_FULL_NAME="acme/sv-plugin" STUB_SOURCE_OWNER_ID=1010
+run_bump_shimmed "$sv_fix"
+assert_warn "not in the owner baseline" "unbaselined owner warns (identity pin not yet active)"
+assert_reason "sv-plugin" "clone failed" "unbaselined owner still proceeds (reached the clone path)"
+
+# 41. Recorded id present but the response carries NO usable owner id →
+#     FAIL CLOSED (cannot verify the identity the baseline pins).
+OWNER_BASELINE_FIXTURE="$sv_baseline"
+STUB_HEAD_SHA="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+STUB_SOURCE_HTTP=200 STUB_SOURCE_FULL_NAME="acme/sv-plugin" STUB_SOURCE_OWNER_ID=none
+run_bump_shimmed "$sv_fix"
+assert_reason "sv-plugin" "identity could not be verified" "recorded id + missing live id → fail-closed hold"
+assert_no_call "git clone" "unverifiable identity → no clone"
+assert_pin_held "$sv_fix" "unverifiable identity → pin held"
+
+OWNER_BASELINE_FIXTURE=""  # reset
 
 echo
 echo "=== $((total-failures))/$total passed ==="
