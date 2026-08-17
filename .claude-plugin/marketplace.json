@@ -23918,6 +23918,19 @@
         "sha": "47ef29a4751a8782607cd4d90ccb602ffd5b4638"
       },
       "homepage": "https://credibledata.com"
+    },
+    {
+      "name": "ramp",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/ramp-public/skills.git",
+        "path": "plugins/ramp",
+        "ref": "6015ad329e1076d4055c4843ce9ea14f127a9825",
+        "sha": "6015ad329e1076d4055c4843ce9ea14f127a9825"
+      },
+      "description": "Connect Claude to Ramp for spend analysis, approvals, transaction cleanup, and vendor workflows.",
+      "category": "development",
+      "homepage": "https://github.com/ramp-public/skills"
     }
   ]
 }
