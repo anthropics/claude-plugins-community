@@ -231,6 +231,27 @@ FREEZE_SHAS_FIXTURE=""; SHA_EXEMPT_FIXTURE=""
 run_bump "$f"
 assert_no_warn "freeze-shas:" "empty freeze list → no freeze-shas warning"
 
+# 8b. Traversal-shaped source.path (subdir) is rejected up front: `..` and
+#     absolute paths could otherwise escape the throwaway clone at
+#     target="$dest/$subdir", so they must skip BEFORE any ls-remote/clone
+#     (network-free — the guard sits ahead of resolution), matching scan.sh's
+#     subdir guard and validate-plugins' assert_safe_path. Three shapes:
+#     leading ../, embedded /../, absolute /. The safe-subdir counterparts
+#     (guard must NOT over-fire) are case 24b below and test-bump-manifest.sh's
+#     subdir-present case.
+f=$(mk travsub <<'EOF'
+{"plugins":[{"name":"trav-up","source":{"url":"https://github.com/acme/trav-up","sha":"1111111111111111111111111111111111111111","path":"../../../../tmp/x"}},{"name":"trav-embed","source":{"url":"https://github.com/acme/trav-embed","sha":"2222222222222222222222222222222222222222","path":"docs/../../x"}},{"name":"trav-abs","source":{"url":"https://github.com/acme/trav-abs","sha":"3333333333333333333333333333333333333333","path":"/tmp/x"}}]}
+EOF
+)
+FREEZE_SHAS_FIXTURE=""; SHA_EXEMPT_FIXTURE=""
+run_bump "$f"
+assert_reason "trav-up"    "unsafe subdir" "leading ../ subdir rejected"
+assert_reason "trav-embed" "unsafe subdir" "embedded .. subdir rejected"
+assert_reason "trav-abs"   "unsafe subdir" "absolute subdir rejected"
+assert_skipped_count 3     "all three traversal-shaped subdirs skipped"
+assert_pin_held "$f"       "traversal subdirs → pins held, nothing bumped"
+assert_rc 0                "traversal-subdir run exits 0 (skip, not die)"
+
 echo
 echo "=== bump-plugin-shas single-plugin (only) target tests ==="
 
@@ -634,6 +655,23 @@ STUB_RELEASES_HTTP=200 STUB_LATEST_TAG='../../../repos/evil/evil'
 run_bump_shimmed "$anno_fix"
 assert_reason "rel-plugin" "has characters outside" "traversal-shaped tag → visible skip"
 assert_no_call "repos/evil" "'..' tag can never rewrite the API route"
+
+# 24b. Safe MULTI-SEGMENT subdir stays allowed: the traversal guard (case 8b)
+#      rejects `..`/absolute but must keep interior `/` legal — git-subdir
+#      entries declare paths like plugins/foo. At-pin (stub HEAD == pinned sha)
+#      so the run stays network-free and stops before the subtree probe; the
+#      ls-remote call proves the entry PASSED the subdir guard.
+subdir_ok_fix=$(mk subdirok <<'EOF'
+{"plugins":[{"name":"subdir-ok","source":{"url":"https://github.com/acme/subdir-ok","sha":"cccccccccccccccccccccccccccccccccccccccc","path":"plugins/foo"}}]}
+EOF
+)
+TRACKING_CONFIG_FIXTURE=""
+STUB_HEAD_SHA="cccccccccccccccccccccccccccccccccccccccc"
+run_bump_shimmed "$subdir_ok_fix"
+assert_rc 0 "multi-segment subdir: run exits 0"
+assert_call "git ls-remote -- https://github.com/acme/subdir-ok HEAD" "safe multi-segment subdir passes the guard (reaches resolution)"
+assert_skipped_count 0 "safe subdir not skipped (guard does not over-fire on interior /)"
+assert_pin_held "$subdir_ok_fix" "at-pin multi-segment entry → pin held"
 
 # 25. Reconcile warning: a flagged name matching no marketplace entry warns
 #     (typo or not-yet-live add-PR) when ONLY is empty, suppressed under a

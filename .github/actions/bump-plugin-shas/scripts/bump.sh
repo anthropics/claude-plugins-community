@@ -238,7 +238,11 @@ while IFS= read -r entry; do
     [[ "$host" == "$h" || "$host" == *".$h" ]] && { ok=1; break; }
   done
   [[ -n "$ok" ]] || { skip "$name" "host '$host' not in allowlist"; continue; }
-  [[ -z "$subdir" ]] || { has_unsafe_chars "$subdir" && { skip "$name" "unsafe subdir"; continue; }; }
+  # subdir must be relative and traversal-free: has_unsafe_chars blocks shell
+  # metacharacters but not `..`/absolute paths, and target="$dest/$subdir"
+  # below must not escape the throwaway clone. Mirrors scan.sh's subdir guard
+  # and validate-plugins' assert_safe_path.
+  [[ -z "$subdir" ]] || { { has_unsafe_chars "$subdir" || [[ "$subdir" == *".."* || "$subdir" == /* ]]; } && { skip "$name" "unsafe subdir"; continue; }; }
 
   # Resolve the bump target. Default: upstream HEAD (ls-remote). Entries in
   # tracking-config's releases-only list: the COMMIT of the latest published
@@ -650,7 +654,10 @@ if [[ "$PR_MODE" == "per-entry" ]]; then
     [[ "$new_oid" =~ ^[0-9a-f]{40}$ ]] || die "createCommitOnBranch did not return an OID for $name (got: $new_oid)"
     log "Created signed commit $new_oid on $branch ($name)"
 
-    body_file="$workroot/pr-body-$name.md"
+    # Derive the filename from the sanitized branch suffix, never raw $name —
+    # the marketplace allows `/` in names (@scope/plugin), and a raw
+    # interpolation would steer this write outside $workroot.
+    body_file="$workroot/pr-body-${branch#bump/}.md"
     {
       echo "Automated SHA bump for **\`$name\`**. The new SHA was validated via \`claude plugin validate\` in [this workflow run]($RUN_URL) before this PR was opened."
       echo

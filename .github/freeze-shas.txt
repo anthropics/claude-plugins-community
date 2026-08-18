@@ -44,12 +44,12 @@ local-rag
 mempenny
 mumo
 music-catalog-diligence
-my-claude-lang
 neo-skills
 ololand-dd
 opendeploy
 orchestra
 outlook
+productivity-pro
 releases
 sfagent-tools
 spec-to-code
