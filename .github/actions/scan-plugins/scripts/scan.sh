@@ -27,24 +27,13 @@ trap 'rm -rf "$workroot"' EXIT
 
 # ---- determine targets ----------------------------------------------------
 
+# Shared with static-pin-check.sh (lib/targets.sh) so the AI review and the
+# static pin check resolve the identical target set.
+source "$ACTION_PATH/lib/targets.sh"
+
 group_start "Determine scan targets"
 
-if [[ "${SCAN_ALL_EXTERNAL:-false}" == "true" ]]; then
-  jq -c '[.plugins[] | select(.source|type=="object") | {name, source}]' -- "$MARKETPLACE_PATH" > "$workroot/targets.json"
-else
-  if git cat-file -e "$BASE_REF:$MARKETPLACE_PATH" 2>/dev/null; then
-    git show "$BASE_REF:$MARKETPLACE_PATH" > "$workroot/base.json"
-  else
-    echo '{"plugins":[]}' > "$workroot/base.json"
-  fi
-  jq -c -s \
-    '(.[0].plugins | map({(.name): .}) | add // {}) as $b
-     | [.[1].plugins[]
-        | select(.source|type=="object")
-        | select(($b[.name] // null) != .)
-        | {name, source}]' \
-    "$workroot/base.json" "$MARKETPLACE_PATH" > "$workroot/targets.json"
-fi
+resolve_scan_targets "$MARKETPLACE_PATH" "$BASE_REF" "${SCAN_ALL_EXTERNAL:-false}" "$workroot/targets.json"
 
 count="$(jq 'length' -- "$workroot/targets.json")"
 log "Scan targets: $count"
@@ -145,7 +134,19 @@ while IFS= read -r ext; do
   summary="$(jq -r '.summary' <<<"$verdict")"
   violations="$(jq -r '.violations' <<<"$verdict")"
 
-  scanned="$(jq -c --arg n "$name" --argjson v "$verdict" '. + [($v + {name:$n})]' <<<"$scanned")"
+  # Join the static pin check's action-emitted fields (never model-produced —
+  # the model's verdict cannot set them). PIN_RESULTS_FILE is exported by the
+  # static-pin-check step; absent (e.g. standalone scan.sh use) → false/[].
+  pin_extra='{"unpinned_autoexec_runtime":false,"unpinned_autoexec_specs":[]}'
+  if [[ -n "${PIN_RESULTS_FILE:-}" && -f "${PIN_RESULTS_FILE:-}" ]]; then
+    pin_extra="$(jq -c --arg n "$name" \
+      '[.[] | select(.name==$n)][0] // {}
+       | {unpinned_autoexec_runtime: (.unpinned_autoexec_runtime // false),
+          unpinned_autoexec_specs:   (.unpinned_autoexec_specs   // [])}' \
+      -- "$PIN_RESULTS_FILE" 2>/dev/null || echo '{"unpinned_autoexec_runtime":false,"unpinned_autoexec_specs":[]}')"
+  fi
+
+  scanned="$(jq -c --arg n "$name" --argjson v "$verdict" --argjson p "$pin_extra" '. + [($v + $p + {name:$n})]' <<<"$scanned")"
 
   log "  verdict:"
   jq '.' <<<"$verdict" | sed 's/^/    /'
@@ -174,9 +175,9 @@ fcount="$(jq 'length' <<<"$failed")"
   echo "Scanned $(jq 'length' <<<"$scanned") plugin(s). Policy failures: $fcount."
   echo
   if [[ "$(jq 'length' <<<"$scanned")" -gt 0 ]]; then
-    echo "| Plugin | Passes | Net calls | Installs sw | Summary |"
-    echo "|---|---|---|---|---|"
-    jq -r '.[] | "| \(.name) | \(if .passes then "✅" else "❌" end) | \(if .may_make_external_network_calls then "yes" else "no" end) | \(if .may_download_additional_software then "yes" else "no" end) | \(.summary | .[0:120]) |"' <<<"$scanned"
+    echo "| Plugin | Passes | Unpinned auto-exec | Net calls | Installs sw | Summary |"
+    echo "|---|---|---|---|---|---|"
+    jq -r '.[] | "| \(.name) | \(if .passes then "✅" else "❌" end) | \(if .unpinned_autoexec_runtime then "⚠️ yes" else "no" end) | \(if .may_make_external_network_calls then "yes" else "no" end) | \(if .may_download_additional_software then "yes" else "no" end) | \(.summary | .[0:120]) |"' <<<"$scanned"
   fi
   if [[ "$fcount" -gt 0 ]]; then
     echo
