@@ -12,8 +12,37 @@ the job.
 secret, or [Workload Identity Federation](https://github.com/anthropics/claude-code-action/blob/main/docs/setup.md)
 inputs (`anthropic-federation-rule-id` etc.) which exchange the calling job's
 GitHub OIDC token for a short-lived access token (no static key). If neither
-is set, the action skips gracefully — so you can add the workflow everywhere
-and roll auth out incrementally.
+is set, the AI review skips gracefully — so you can add the workflow
+everywhere and roll auth out incrementally.
+
+## Static pin check (deterministic, auth-free)
+
+Independent of the AI review — and it runs even when Anthropic auth is absent
+— the action statically classifies every MCP server declared in each target's
+`.mcp.json` (and `plugin.json` `mcpServers`). A server whose `command` is a
+package-manager runner (`npx`/`bunx`/`uvx`/`pipx`) with a **floating** spec —
+a dist-tag like `@latest`, a version range, or a bare unversioned name that
+isn't locally vendored — launches registry-resolved code at session start,
+which the entry's pinned source SHA does not fix.
+
+- Detection is **always on**: `::warning` per floating server, an
+  `Unpinned auto-exec` column in the summary, and
+  `unpinned_autoexec_runtime`/`unpinned_autoexec_specs` fields on the
+  `scanned`/`pin-scanned` outputs.
+- **Severity is per-consumer**: `fail-on-unpinned-autoexec: true` makes any
+  non-waived floating launcher fail the job; the default only annotates.
+- **Exceptions** are package-grained waivers in a repo-local file passed via
+  `launch-shape-waivers` (see `action.yml` for the line format). Every
+  floating spec of an entry must match an adjudicated prefix or the finding
+  stands.
+
+Package invocations inside `skills/`, `commands/`, or `agents/` markdown are
+deliberately out of scope: those run agent-invoked and permission-gated, a
+different trust shape from a session-start auto-launch.
+
+Classifier logic lives in [`lib/pin-check.sh`](lib/pin-check.sh) (see its
+provenance header) with golden vectors in
+[`test-pin-check.sh`](test-pin-check.sh).
 
 ## The policy prompt
 
