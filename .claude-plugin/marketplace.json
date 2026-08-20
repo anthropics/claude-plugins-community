@@ -7,7 +7,8 @@
     "qodo-skills": "qodo",
     "wordpress-com": "build-with-wordpress",
     "auth0-sdks": "auth0",
-    "twilio": "twilio-developer-kit"
+    "twilio": "twilio-developer-kit",
+    "architecture-studio": "as"
   },
   "plugins": [
     {
@@ -1679,14 +1680,15 @@
       "homepage": "https://archcore.ai/"
     },
     {
-      "name": "architecture-studio",
-      "description": "Description:\n\nArchitecture Studio is a Claude plugin system for architects, designers, and AEC professionals. It includes 7 autonomous agents, 36 skills, 6 rules, and 3 hooks organized into 9 installable plugins — covering site research, NYC property due diligence, zoning envelope analysis, workplace programming, CSI specifications, sustainability (EPD parsing and comparison), FF&E product research, and presentation generation.\n\nA single entry point (`/studio`) routes users to the right agent or skill based on natural language. Agents orchestrate multiple skills, exercise judgment, and hand off to each other across the project lifecycle. Skills ship with bundled reference data — NYC Zoning Resolution chapters, IBC occupancy load factors, workplace benchmarks, and Uruguay zoning regulations.\n\nKey features:\n\n- `/studio` smart router — describe your task, get routed automatically\n- 7 agents with handoff logic (site planner → zoning expert → workplace strategist → materials researcher → FF&E designer → sustainability specialist → brand manager)\n- Modular install — users pick the plugins they need\n- 6 always-on rules governing units, code citations, disclaimers, CSI formatting, terminology, and output structure\n- MIT licensed, open source",
+      "name": "as",
+      "displayName": "Architecture Studio",
+      "description": "Architecture Studio is a single cross-harness AEC workflow plugin for Claude Code and Codex, with governed skills, Claude-native agents and hooks, and portable studio/project records spanning due diligence, site planning, zoning, programming, specifications, sustainability, FF&E, research, and presentations.",
       "source": {
         "source": "url",
         "url": "https://github.com/AlpacaLabsLLC/skills-for-architects.git",
-        "sha": "44765760ae04c40d8db1e6af7882d83ae5ed5493"
+        "sha": "09cfa58998a17ca525b8f596b25fdaea1d2d05fd"
       },
-      "homepage": "https://www.alpa.llc/plugins"
+      "homepage": "https://alpa.llc/skills"
     },
     {
       "name": "aria",
