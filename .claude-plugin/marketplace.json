@@ -17198,7 +17198,7 @@
       "description": "AI agent skills for integrating the Scandit Data Capture SDK.\n\nEach skill teaches your coding assistant how to integrate a specific Scandit SDK correctly. Instead of pasting docs snippets into your AI editor, install a skill once and your agent follows Scandit's recommended patterns whenever you ask it to add a Scandit feature.",
       "source": {
         "source": "url",
-        "url": "https://github.com/scandit/scandit-sdk-skills.git",
+        "url": "https://github.com/Scandit/skills.git",
         "sha": "6b37b86aef34be4598edb8f0d51d769775f0cd07"
       },
       "homepage": "https://docs.scandit.com/"
