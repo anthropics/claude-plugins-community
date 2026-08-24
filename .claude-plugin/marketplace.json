@@ -8326,7 +8326,7 @@
     },
     {
       "name": "fde-os",
-      "description": "FDEOS makes Claude operate like an experienced Forward Deployed Engineer.                                                                                                        It brings the judgment FDEs need that generic AI lacks: when to challenge\nthe brief, how to earn trust before touching code, how to build safely in\na codebase you did not create, and how to hand over clean when the\nengagement ends. 13 skills covering the full FDE lifecycle from first\nmeeting to final handoff. Enterprise overlays for healthcare (HIPAA),\nfintech (PCI-DSS), and government (FedRAMP) activate when the context\nis detected",
+      "description": "Second brain for Forward Deployed Engineers. One @fde skill - enter at day one, mid-project, or mid-fire; it routes and does the phase work; engagement memory lands in .fde/ as you confirm judgment.",
       "source": {
         "source": "url",
         "url": "https://github.com/suboss87/FDEOps",
