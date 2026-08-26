@@ -25,6 +25,24 @@ claude plugin install <plugin-name>@claude-community
 
 Submit via **[clau.de/plugin-directory-submission](https://clau.de/plugin-directory-submission)**. Pull requests opened directly against this repo are closed automatically — all changes flow from the internal review pipeline.
 
+## Maintaining an approved plugin
+
+This repository is a mirror, so approved plugin authors cannot update
+`.claude-plugin/marketplace.json` by opening a pull request here. Until the
+submission flow exposes a self-service update path, use a GitHub issue for
+maintenance requests that need Anthropic review:
+
+- **SHA bump**: include the plugin name, source repository, current pinned SHA,
+  requested 40-character SHA, and a short summary of what changed.
+- **Listing update**: include the plugin name, requested description or homepage
+  change, and confirmation that the source repository is still controlled by the
+  approved author or organization.
+- **Deprecation or replacement**: include the plugin name, whether it should be
+  marked deprecated, and the replacement plugin name if users should migrate.
+
+Requests that change `source.url`, transfer ownership, or replace a repository
+may require the full submission review path again.
+
 ## Related
 
 - [anthropics/claude-plugins-official](https://github.com/anthropics/claude-plugins-official) — Anthropic-maintained plugins

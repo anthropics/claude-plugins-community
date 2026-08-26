@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Static test suite for invariants I1-I11. No API key, no network — pure
+# Static test suite for invariants I1-I12. No API key, no network — pure
 # bash/jq against synthetic marketplace.json fixtures. Run locally or in CI
 # on every PR touching validate-plugins/.
 #
@@ -129,6 +129,26 @@ f=$(mk i11 <<'EOF'
 {"plugins":[{"name":"Bad_Name","description":"ten chars ok","source":"./x"}]}
 EOF
 ); assert_fires "I11 bad name format" I11 "$f"
+
+f=$(mk i12-good <<'EOF'
+{"plugins":[{"name":"abc","description":"ten chars ok","deprecated":true,"replacedBy":"abc-next","source":"./x"},{"name":"abc-next","description":"ten chars ok","source":"./y"}]}
+EOF
+); assert_clean "I12 valid deprecation metadata" "$f"
+
+f=$(mk i12-bad-deprecated <<'EOF'
+{"plugins":[{"name":"abc","description":"ten chars ok","deprecated":"yes","source":"./x"}]}
+EOF
+); assert_fires "I12 deprecated must be boolean" I12 "$f"
+
+f=$(mk i12-replaced-without-deprecated <<'EOF'
+{"plugins":[{"name":"abc","description":"ten chars ok","replacedBy":"abc-next","source":"./x"},{"name":"abc-next","description":"ten chars ok","source":"./y"}]}
+EOF
+); assert_fires "I12 replacedBy requires deprecated true" I12 "$f"
+
+f=$(mk i12-self <<'EOF'
+{"plugins":[{"name":"abc","description":"ten chars ok","deprecated":true,"replacedBy":"abc","source":"./x"}]}
+EOF
+); assert_fires "I12 replacedBy cannot point to self" I12 "$f"
 
 # --- Mechanism A: diff-scoping (SCOPE_ERRORS_TO_CHANGED) ---------------------
 # A per-entry violation on an entry NOT in changes.json's .entries downgrades

@@ -17,6 +17,7 @@
 # I9  url/path/sha contain no shell metacharacters
 # I10 name/description contain no hidden-Unicode (zero-width / bidi controls)
 # I11 name matches ^[a-z0-9][a-z0-9-]{1,63}$
+# I12 deprecation metadata is well-formed when present
 
 source "$ACTION_PATH/lib/common.sh"
 
@@ -86,7 +87,7 @@ flag() {
   fi
 }
 
-group_start "Custom invariants I1-I11"
+group_start "Custom invariants I1-I12"
 
 # I1 sort (case-insensitive, matching upstream assembler convention)
 sorted="$(jq -r '[.plugins[].name | ascii_downcase] | . == (.|sort)' -- "$MP")"
@@ -116,6 +117,33 @@ while IFS= read -r entry; do
   fi
   if [[ "$desc" != "$(printf '%s' "$desc" | sed -E 's/^[[:space:]]+|[[:space:]]+$//g')" ]]; then
     flag "I3" "$name: description has leading/trailing whitespace" "$name"
+  fi
+done < <(jq -c '.plugins[]' -- "$MP")
+
+# I12 - optional deprecation metadata, used by the intake pipeline once the
+# canonical marketplace schema accepts it. Keep this policy check static and
+# shape-small: consumers can trust that deprecation is explicit and replacements
+# point at another marketplace-shaped plugin name.
+while IFS= read -r entry; do
+  name="$(jq -r '.name' <<<"$entry")"
+  deprecated_type="$(jq -r 'if has("deprecated") then (.deprecated | type) else "absent" end' <<<"$entry")"
+  replaced_by_type="$(jq -r 'if has("replacedBy") then (.replacedBy | type) else "absent" end' <<<"$entry")"
+  replaced_by="$(jq -r '.replacedBy // empty' <<<"$entry")"
+
+  if [[ "$deprecated_type" != "absent" && "$deprecated_type" != "boolean" ]]; then
+    flag "I12" "$name: deprecated must be a boolean when present" "$name"
+  fi
+  if [[ "$replaced_by_type" != "absent" ]]; then
+    if [[ "$replaced_by_type" != "string" ]]; then
+      flag "I12" "$name: replacedBy must be a plugin name string when present" "$name"
+    elif [[ ! "$replaced_by" =~ ^[a-z0-9][a-z0-9-]{1,63}$ ]]; then
+      flag "I12" "$name: replacedBy does not match ^[a-z0-9][a-z0-9-]{1,63}\$: $replaced_by" "$name"
+    elif [[ "$replaced_by" == "$name" ]]; then
+      flag "I12" "$name: replacedBy must not point to the same plugin" "$name"
+    fi
+    if [[ "$(jq -r '.deprecated == true' <<<"$entry")" != "true" ]]; then
+      flag "I12" "$name: replacedBy requires deprecated: true" "$name"
+    fi
   fi
 done < <(jq -c '.plugins[]' -- "$MP")
 
