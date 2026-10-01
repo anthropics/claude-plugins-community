@@ -1,0 +1,10 @@
+{
+  "name": "html-plan",
+  "version": "1.0.0",
+  "description": "Write an implementation plan as one interactive HTML page: a tree of claims, each proved by a mockup, state machine, call stack, schema or code, with the decisions you need to make placed where they matter. Use /html-plan <what to build>.",
+  "author": {
+    "name": "Thariq Shihipar"
+  },
+  "license": "MIT",
+  "keywords": ["plan", "planning", "rfc", "design", "html", "mockup", "review"]
+}

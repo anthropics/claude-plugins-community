@@ -23925,6 +23925,13 @@
       "strict": false,
       "description": "Explain any topic like I'm 5: a dead-simple HTML picture explainer with big visuals and few words. Use /eli5 <topic>.",
       "category": "learning"
+    },
+    {
+      "name": "html-plan",
+      "source": "./html-plan",
+      "strict": false,
+      "description": "Write an implementation plan as one interactive HTML page: a tree of claims, each proved by a mockup, state machine, call stack, schema or code, with the decisions you need to make placed where they matter. Use /html-plan <what to build>.",
+      "category": "development"
     }
   ]
 }

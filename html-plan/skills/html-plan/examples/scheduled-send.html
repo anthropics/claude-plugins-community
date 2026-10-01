@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Scheduled Send Plan</title>
+<link rel="stylesheet" href="../runtime/htmlplan.css">
+<script src="../runtime/htmlplan.js" defer></script>
+<style data-mock-shared>
+  .ui { font: 14px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #1c1b19; background: #fff; border: 1px solid #ddd8cc; border-radius: 10px; overflow: hidden; }
+  .ui .hd { padding: 9px 14px; border-bottom: 1px solid #eee9dd; font-weight: 650; display: flex; gap: 8px; align-items: baseline; } .ui .hd small { color: #8a8578; font-weight: 400; }
+  .ui .ln { padding: 7px 14px; border-bottom: 1px solid #f3efe6; color: #5f5a4f; } .ui .ln b { color: #1c1b19; font-weight: 600; }
+  .ui .body { padding: 12px 14px; color: #5f5a4f; min-height: 46px; }
+  .ui .ft { display: flex; gap: 8px; align-items: center; padding: 10px 14px; border-top: 1px solid #eee9dd; background: #faf8f3; }
+  .ui .btn { font-weight: 600; font-size: 13px; padding: 7px 12px; border-radius: 7px; border: 1px solid #ddd8cc; background: #fff; } .ui .btn.pri { background: #1c1b19; color: #fff; border-color: #1c1b19; }
+  .ui .menu { margin: 0 14px 12px auto; width: 230px; border: 1px solid #ddd8cc; border-radius: 8px; box-shadow: 0 6px 18px rgba(0,0,0,.12); background: #fff; } .ui .menu div { padding: 7px 12px; } .ui .menu div + div { border-top: 1px solid #f3efe6; } .ui .menu .on { background: #f6ede9; }
+  .ui .row { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; padding: 9px 14px; border-bottom: 1px solid #f3efe6; } .ui .row small { color: #8a8578; } .ui .row .t { color: #b4541f; font-weight: 600; font-size: 13px; } .ui .row .acts { grid-column: 1 / -1; color: #8a8578; font-size: 12.5px; }
+  .ui .ok { color: #1f7a52; font-weight: 650; } .ui .bad { color: #b42318; font-weight: 650; } .ui .dim { color: #8a8578; }
+</style>
+<body>
+
+<header>
+  <p class="kicker">Plan · postbox (a made-up mail app)</p>
+  <h1>A user can schedule a message. Nothing is sent before its time, and it can be cancelled until then.</h1>
+  <p class="meta"><span>5 new files</span><span>4 changed</span><span>1 migration</span><span>4 decisions</span></p>
+  <details class="thread"><summary>Why · 2 requests</summary>
+    <doc-quote via="prompt" from="the user">add send later to the composer. I need to be able to cancel it, and it must never go out early</doc-quote>
+    <doc-quote via="doc" from="support notes">people write replies at night and do not want them to arrive at night</doc-quote>
+  </details>
+</header>
+
+<main>
+<doc-plan>
+
+<!-- ═════ 1 ═════ -->
+<doc-claim>
+  <p>The user can pick a time in the composer.</p>
+  <doc-mock frame="none" w="440"><template>
+<div class="ui">
+  <div class="ln">To <b>dana@example.com</b></div>
+  <div class="ln">Subject <b>Notes from today</b></div>
+  <div class="body">Here is what we agreed…</div>
+  <div class="menu" data-ref="menu"><div>Tomorrow morning <span class="dim">· 8:00</span></div><div class="on">Monday morning <span class="dim">· 8:00</span></div><div>Pick a date and time…</div></div>
+  <div class="ft"><span class="btn pri">Send</span><span class="btn" data-ref="later">Send later ▾</span></div>
+</div></template>
+    <doc-pin ref="later" title="New button">Send is unchanged.</doc-pin>
+  </doc-mock>
+
+  <doc-claim>
+    <p>“Send later” saves the message with a time. It does not send.</p>
+    <doc-calls title="Scheduling" caption="Tap the second call to open its code.">
+<script type="text/plain">
+~ <Composer/>                                  @ web/src/composer/Composer.tsx:41
++   <**SendLaterMenu**/>                       @ web/src/composer/SendLaterMenu.tsx:12
++     POST /api/scheduled                      @ web/src/api/scheduled.ts:9
++ **createScheduled**(req)                     @ server/src/scheduled/routes.ts:18
++   **assertUnderLimit**(userId)               @ server/src/scheduled/limits.ts:6
++   **buildScheduled**(body, session)          @ server/src/scheduled/build.ts:10
++   insert into scheduled_messages             @ server/src/scheduled/store.ts:22
+</script>
+    </doc-calls>
+    <doc-claim at="server/src/scheduled/routes.ts:18">
+      <p><b>routes.ts:18</b> · createScheduled()</p>
+      <doc-code title="routes.ts · sketch" lang="ts">
+<script type="text/plain">
+export async function createScheduled(req: Request) {
+  const session = requireSession(req)
+  await assertUnderLimit(session.userId)        // throws at 50
+  const row = buildScheduled(await req.json(), session)
+  await store.insert(row)
+  return json({ id: row.id, sendAt: row.sendAt }, 201)
+}
+</script>
+      </doc-code>
+    </doc-claim>
+  </doc-claim>
+
+  <doc-claim>
+    <p>The server sets the owner and the status. The client cannot.</p>
+    <doc-code title="build.ts · sketch" lang="ts" hl="4-5">
+<script type="text/plain">
+export function buildScheduled(body: Body, session: Session): Scheduled {
+  return {
+    id: randomUUID(),
+    userId: session.userId,
+    status: 'scheduled',
+    sendAt: toUtc(body.sendAt, session.timeZone),
+    message: pick(body, ['to', 'subject', 'html']),
+    attempts: 0,
+  }
+}
+</script>
+      <doc-pin line="5" title="From the session, never from the body"></doc-pin>
+    </doc-code>
+  </doc-claim>
+
+  <doc-claim>
+    <p>A user can hold 50 scheduled messages at most.</p>
+    <doc-code title="limits.ts · sketch" lang="ts">
+<script type="text/plain">
+export async function assertUnderLimit(userId: string) {
+  if (await store.countScheduled(userId) >= 50) throw new LimitError(50)
+}
+</script>
+    </doc-code>
+    <doc-ask id="limit">
+      <p>How many scheduled messages per user?</p>
+      <div class="opts-row">
+        <label><input type="radio" name="limit" value="50" checked> 50</label>
+        <label><input type="radio" name="limit" value="500"> 500</label>
+        <label><input type="radio" name="limit" value="none"> No limit</label>
+      </div>
+    </doc-ask>
+  </doc-claim>
+</doc-claim>
+
+<!-- ═════ 2 ═════ -->
+<doc-claim>
+  <p>The user sees and changes scheduled messages in one list.</p>
+  <doc-mock frame="none" w="440"><template>
+<div class="ui">
+  <div class="hd">Scheduled <small>2</small></div>
+  <div class="row"><b>Notes from today</b><span class="t">Mon 8:00</span><small>to dana@example.com</small><span></span><span class="acts" data-ref="acts">Edit · Send now · Cancel</span></div>
+  <div class="row"><b>Invoice for March</b><span class="t">Apr 1, 9:30</span><small>to billing@example.com</small></div>
+</div></template>
+    <doc-pin ref="acts" anchor="r" offset="14,0" title="Three actions">See 2.2.</doc-pin>
+  </doc-mock>
+
+  <doc-claim>
+    <p>A new folder lists them, soonest first.</p>
+    <doc-calls title="The list" caption="One query. It reads only this user's rows.">
+<script type="text/plain">
+~ <Sidebar/>                                   @ web/src/nav/Sidebar.tsx:30
++   <**ScheduledFolder**/>                     @ web/src/scheduled/ScheduledFolder.tsx:14
++     GET /api/scheduled                       @ web/src/api/scheduled.ts:21
++ **listScheduled**(req)                       @ server/src/scheduled/routes.ts:34
++   select … where user_id = $1 order by send_at   @ server/src/scheduled/store.ts:40
+</script>
+    </doc-calls>
+  </doc-claim>
+
+  <doc-claim>
+    <p>Three actions work on a message until it starts to send.</p>
+    <doc-calls title="Actions" caption="Each one checks the status first.">
+<script type="text/plain">
++ <**ScheduledRow**/>                          @ web/src/scheduled/ScheduledRow.tsx:9
++   Edit → PATCH /api/scheduled/:id            @ server/src/scheduled/routes.ts:48
++   Send now → **sendNow**(id)                 @ server/src/scheduled/routes.ts:66
++   Cancel → **cancelScheduled**(id)           @ server/src/scheduled/routes.ts:80
+</script>
+    </doc-calls>
+  </doc-claim>
+</doc-claim>
+
+<!-- ═════ 3 ═════ -->
+<doc-claim>
+  <p>A message is sent only at its time. A failed send is kept.</p>
+  <doc-machine name="msg" caption="Dashed green is proposed.">
+<script type="text/plain">
+machine msg initial scheduled
+state scheduled   # Saved. Waiting for its time.
+state sending     # The worker holds it.
+state sent      final   # Moved to Sent.
+state failed      # Kept, with the error.
+state cancelled final   # Back in Drafts.
+
+| scheduled | sending | sent |
+| cancelled | failed  | .    |
+
+scheduled -due->    sending   : at send_at
+sending   -ok->     sent      : 250
+sending   -fail->   failed    : error
+scheduled -cancel-> cancelled : Cancel
+failed    -cancel-> cancelled : Cancel
++ failed  -retry->  sending   : retry ×3
+</script>
+    <div data-state="scheduled"><doc-mock frame="none" w="400"><template><div class="ui"><div class="row"><b>Notes from today</b><span class="t">Mon 8:00</span><small>to dana@example.com</small><span></span><span class="acts">Edit · Send now · Cancel</span></div></div></template></doc-mock></div>
+    <div data-state="sending"><doc-mock frame="none" w="400"><template><div class="ui"><div class="row"><b>Notes from today</b><span class="dim">Sending…</span><small>to dana@example.com</small></div></div></template></doc-mock></div>
+    <div data-state="sent"><doc-mock frame="none" w="400"><template><div class="ui"><div class="hd">Sent</div><div class="row"><b>Notes from today</b><span class="ok">Mon 8:00</span><small>to dana@example.com</small></div></div></template></doc-mock></div>
+    <div data-state="failed"><doc-mock frame="none" w="400"><template><div class="ui"><div class="row"><b>Notes from today</b><span class="bad">Not sent</span><small>The mail server refused it.</small><span></span><span class="acts">Try again · Cancel</span></div></div></template></doc-mock></div>
+    <div data-state="cancelled"><doc-mock frame="none" w="400"><template><div class="ui"><div class="hd">Drafts</div><div class="row"><b>Notes from today</b><span class="dim">draft</span><small>to dana@example.com</small></div></div></template></doc-mock></div>
+  </doc-machine>
+
+  <doc-claim>
+    <p>A worker claims due messages once a minute.</p>
+    <doc-calls title="The worker" caption="The existing send function is called, not changed.">
+<script type="text/plain">
++ **runScheduledSends**()                      @ server/src/scheduled/worker.ts:12
++   **claimDue**(now, 100)                     @ server/src/scheduled/store.ts:58
++   sendMessage(message)                       @ server/src/mail/send.ts:20
++   if ok → markSent(id)                       @ server/src/scheduled/store.ts:74
++   else markFailed(id, error)                 @ server/src/scheduled/store.ts:82
+</script>
+    </doc-calls>
+    <doc-claim at="server/src/scheduled/store.ts:58">
+      <p><b>store.ts:58</b> · claimDue()</p>
+      <doc-code title="store.ts · sketch" lang="sql">
+<script type="text/plain">
+UPDATE scheduled_messages SET status = 'sending'
+WHERE id IN (
+  SELECT id FROM scheduled_messages
+  WHERE status = 'scheduled' AND send_at <= $1
+  ORDER BY send_at LIMIT $2
+  FOR UPDATE SKIP LOCKED
+)
+RETURNING *;
+</script>
+        <doc-pin line="6" title="Two workers never claim the same row"></doc-pin>
+      </doc-code>
+    </doc-claim>
+  </doc-claim>
+
+  <doc-claim>
+    <p>Cancel wins if it lands before the worker's claim.</p>
+    <doc-code title="store.ts · sketch" lang="sql">
+<script type="text/plain">
+UPDATE scheduled_messages SET status = 'cancelled'
+WHERE id = $1 AND user_id = $2 AND status IN ('scheduled', 'failed')
+RETURNING id;   -- no row back: too late, tell the user
+</script>
+    </doc-code>
+  </doc-claim>
+
+  <doc-claim>
+    <p>A failed send is tried again, then left for the user.</p>
+    <doc-calls title="Retry" caption="The same worker picks it up.">
+<script type="text/plain">
+~ runScheduledSends()                          @ server/src/scheduled/worker.ts:12
+?   claimRetries(now)                          @ server/src/scheduled/store.ts:96   -- attempts < 3, 5 minutes apart
+</script>
+    </doc-calls>
+    <doc-ask id="retry">
+      <p>Should a failed send retry on its own?</p>
+      <label><input type="radio" name="retry" value="3" checked> Yes, 3 times, 5 minutes apart</label>
+      <label><input type="radio" name="retry" value="no"> No <small>the user presses “Try again”</small></label>
+    </doc-ask>
+  </doc-claim>
+</doc-claim>
+
+<!-- ═════ 4 ═════ -->
+<doc-claim>
+  <p>The user is told when a scheduled message fails.</p>
+  <doc-mock frame="none" w="400"><template>
+<div class="ui"><div class="row"><span><span class="bad">Not sent</span> · Notes from today</span><span class="dim">8:16</span><small>We tried 3 times. It is in Scheduled.</small></div></div></template>
+  </doc-mock>
+  <doc-ask id="notify">
+    <p>How is the user told?</p>
+    <label><input type="radio" name="notify" value="app" checked> In the app only</label>
+    <label><input type="radio" name="notify" value="both"> In the app and by email <small>adds one template</small></label>
+    <label><input type="radio" name="notify" value="none"> Not at all <small>claim 4 goes</small></label>
+  </doc-ask>
+  <doc-claim>
+    <p>The last failed try adds one notification.</p>
+    <doc-calls title="Notify" caption="Uses the notifications that exist today.">
+<script type="text/plain">
+~ markFailed(id, error)                        @ server/src/scheduled/store.ts:82
++   if (attempts >= 3) notify(userId, …)       @ server/src/notify/notify.ts:15
+</script>
+    </doc-calls>
+  </doc-claim>
+</doc-claim>
+
+<!-- ═════ shared · not changing ═════ -->
+<doc-claim aux="shared">
+  <p>Shared: one new table.</p>
+  <doc-schema id="table" lang="sql" title="migrations/0042_scheduled_messages.sql" caption="Times are stored in UTC.">
+<script type="text/plain">
+CREATE TABLE scheduled_messages (
+  id          uuid PRIMARY KEY,
+  user_id     uuid NOT NULL REFERENCES users(id),
+  status      text NOT NULL CHECK (status IN
+                ('scheduled','sending','sent','failed','cancelled')),
+  send_at     timestamptz NOT NULL,
+  message     jsonb NOT NULL,          -- to, subject, html
+  attempts    int  NOT NULL DEFAULT 0,
+  last_error  text,
+  created_at  timestamptz NOT NULL DEFAULT now()
+);
+CREATE INDEX scheduled_due ON scheduled_messages (status, send_at);
+</script>
+  </doc-schema>
+  <doc-ask id="keep">
+    <p>How long do sent and cancelled rows stay?</p>
+    <label><input type="radio" name="keep" value="30" checked> 30 days, then deleted</label>
+    <label><input type="radio" name="keep" value="forever"> Forever</label>
+  </doc-ask>
+</doc-claim>
+
+<doc-claim aux="scope">
+  <p>Not changing: normal send, drafts, the mail provider.</p>
+  <ul>
+    <li><code>sendMessage()</code> is called as it is.</li>
+    <li>Drafts keep their own table.</li>
+    <li>No recurring sends. One message, one time.</li>
+  </ul>
+</doc-claim>
+
+</doc-plan>
+</main>
+</body>
+</html>
