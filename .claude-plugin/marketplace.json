@@ -304,7 +304,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/adaptlypost/claude-plugin.git",
-        "sha": "d2ea0e76d31508e45ae4a9b5b7f088999c67b027"
+        "sha": "0829676596e874a51092eb3c8565466277f8a29d"
       },
       "homepage": "https://adaptlypost.com/features/agents"
     },
