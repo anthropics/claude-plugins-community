@@ -1070,7 +1070,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/mfy-apl/claude-plugin-airport-pickups-london.git",
-        "sha": "5d56132ca735e61cc3b69c3fc3d5a5ba78e67dda"
+        "sha": "d5ad4f9a5811dd8430af78acc66b1ae3a53865fd"
       },
       "homepage": "https://www.airport-pickups-london.com"
     },
