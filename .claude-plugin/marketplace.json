@@ -716,7 +716,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/l-filice89/agentic-guardrails.git",
-        "sha": "8313dcfa9cd58fd39161b36a7059af5ed2cf7e4a"
+        "sha": "301a201b6e7dfaefd35f77abc560f858e34910eb"
       },
       "homepage": "https://github.com/l-filice89/agentic-guardrails"
     },
