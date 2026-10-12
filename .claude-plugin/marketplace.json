@@ -1939,7 +1939,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/attentiontech/attention.git",
-        "sha": "b8d644326977703b8efbea47c4fb66c32d16bb79"
+        "sha": "95681231bef3e4ed0538fafae6dc92fcbc8a0099"
       },
       "homepage": "https://docs.attention.com/attention-mcp-server"
     },
