@@ -1979,7 +1979,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/agent-sh/audit-project.git",
-        "sha": "787d4043f6610601b2f72d04abed027670bf69cc"
+        "sha": "28a1fa5c1cfafd59c5fc0e422aec14913f911509"
       },
       "homepage": "https://github.com/agent-sh/audit-project"
     },
