@@ -1836,7 +1836,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Blueprint-Studio-AI/claude-code-asset-generator.git",
-        "sha": "ef3c1555ba0b8277ed60e86a3adb0614badc94ea"
+        "sha": "47fd698e070056f143d7be8d6baeff2099388a99"
       },
       "homepage": "https://tools.blueprintstudio.ai"
     },
