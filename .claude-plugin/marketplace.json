@@ -2486,7 +2486,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/blaxel-ai/agent-skills.git",
-        "sha": "6d2ae71cb0aea481d69172bacd00d8cc59991423"
+        "sha": "db9c89bc1926477efa15364743c2253524aca02d"
       },
       "homepage": "https://docs.blaxel.ai"
     },
