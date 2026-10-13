@@ -3005,7 +3005,7 @@
         "url": "https://github.com/carsxe/carsxe-claude-plugin.git",
         "path": "carsxe",
         "ref": "main",
-        "sha": "68b5858d1cb4b1b06f9cd292ef6b29a16e33f508"
+        "sha": "814912f9e09f5ea1d6d40fd46fcd121503cc6975"
       },
       "homepage": "https://api.carsxe.com/docs/integrations/claude-quickstart"
     },
