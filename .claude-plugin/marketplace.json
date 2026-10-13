@@ -2830,7 +2830,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/buildkite/skills.git",
-        "sha": "5bbd53d496b9dd5cd7b3e0a2d8345daa333c3f4e"
+        "sha": "50c85f20d409485b1445888983116b2f130e1630"
       },
       "homepage": "https://buildkite.com/docs"
     },
