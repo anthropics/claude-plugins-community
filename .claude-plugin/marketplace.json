@@ -2756,7 +2756,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/browser-use/browser-harness.git",
-        "sha": "f5eaf904b221dde0118eba1496961c3dc20fda88"
+        "sha": "dbf0e4f3a37ebc31aaeaf9d378ab1760b5776c15"
       },
       "homepage": "https://browser-use.com"
     },
