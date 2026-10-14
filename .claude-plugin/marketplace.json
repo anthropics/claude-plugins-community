@@ -4779,7 +4779,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/AxGord/claude-workflow.git",
-        "sha": "ea7a7e60f4452a9c8e1f1689b67a6d0d00fb2a27"
+        "sha": "e7e94b000fa011226ddfdd28e5cd27a0fc69cab2"
       },
       "homepage": "https://github.com/AxGord/claude-workflow"
     },
