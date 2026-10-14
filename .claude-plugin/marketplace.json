@@ -5057,7 +5057,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/ClickHouse/agent-skills.git",
-        "sha": "5aec3114379671f33b1c502a51d420a0729c8172"
+        "sha": "356a8c1b9a7392adb389a132f5ad3fec38532a03"
       },
       "homepage": "https://clickhouse.com"
     },
