@@ -4087,7 +4087,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/simonediroma/claude-ghost-writer.git",
-        "sha": "7e59bee0793e5d1a9ba10399a2a4c7ca46a6ea52"
+        "sha": "dc48d0dd81cde619f2c7af4ab2c2685b72de80e1"
       },
       "homepage": "https://github.com/simonediroma/claude-ghost-writer"
     },
