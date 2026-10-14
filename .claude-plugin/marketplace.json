@@ -3619,7 +3619,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/hayan89/claude-channel-mattermost.git",
-        "sha": "7325749db6ccd82a560295cdc782473316bc6cac"
+        "sha": "8929227206fd34c25114d1b0356b9850beb81c06"
       },
       "homepage": "https://github.com/hayan89/claude-channel-mattermost"
     },
