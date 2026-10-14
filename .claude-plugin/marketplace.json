@@ -3397,7 +3397,7 @@
         "url": "https://github.com/chucks-ai/claude.git",
         "path": "plugins/chucks",
         "ref": "main",
-        "sha": "bbb019bd12577fab518283105c2bcda5ba55605b"
+        "sha": "e22c39e8b38bbc2c412579851f8b52b79877fd86"
       },
       "homepage": "https://www.chucks.ai/"
     },
