@@ -6430,7 +6430,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/cypress-io/ai-toolkit.git",
-        "sha": "9c9038ee1faf12e058c92f2f20e268fc0add978e"
+        "sha": "da6ea17dfa674a2b68908d823e37f5797d5be238"
       },
       "homepage": "https://www.cypress.io"
     },
