@@ -5565,7 +5565,7 @@
         "url": "https://github.com/coinpaprika/claude-marketplace.git",
         "path": "plugins/dexpaprika-claude-plugin",
         "ref": "main",
-        "sha": "02c59f13b2eebea867f1f656726173e93dc432d8"
+        "sha": "f3e0b8bc84488c4b0a88c047f8c39f7212191cb4"
       },
       "homepage": "https://coinpaprika.com"
     },
