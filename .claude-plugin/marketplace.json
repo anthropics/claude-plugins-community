@@ -5875,7 +5875,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Context-Link/context-link-plugin.git",
-        "sha": "d25f140718eff601f52f29c6a5bb2bdb5491dd68"
+        "sha": "2cc57fd5876b0f3e4c07edfc77d8569a6542f976"
       },
       "homepage": "https://www.context-link.ai/docs"
     },
