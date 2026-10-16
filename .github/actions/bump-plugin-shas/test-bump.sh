@@ -56,6 +56,8 @@ run_bump() {
     SHA_EXEMPT="${SHA_EXEMPT_FIXTURE:-}" FREEZE_SHAS="${FREEZE_SHAS_FIXTURE:-}" \
     ONLY="${ONLY_FIXTURE:-}" TRACKING_CONFIG="${TRACKING_CONFIG_FIXTURE:-}" \
     OWNER_BASELINE="${OWNER_BASELINE_FIXTURE:-}" \
+    FAIL_ON_UNPINNED_AUTOEXEC="${PIN_GATE_FIXTURE:-false}" \
+    LAUNCH_SHAPE_WAIVERS="${PIN_WAIVERS_FIXTURE:-}" \
     PR_MODE="${PR_MODE_FIXTURE:-batch}" \
     GITHUB_OUTPUT="$TMP/out.txt" GITHUB_STEP_SUMMARY="$TMP/sum.md"
   : > "$TMP/out.txt"; : > "$TMP/sum.md"
@@ -404,7 +406,22 @@ echo "git $*" >> "${STUB_CALL_LOG:-/dev/null}"
 need() { if [[ -z "${!1+x}" ]]; then echo "STUB-MISCONFIGURED $1 unset" >> "${STUB_CALL_LOG:-/dev/null}"; exit 9; fi; }
 case "$*" in
   "ls-remote -- "*" HEAD") need STUB_HEAD_SHA; printf '%s\tHEAD\n' "$STUB_HEAD_SHA" ;;
-  "clone "*) echo "git-stub: clone refused (network-free suite)" >&2; exit 1 ;;
+  "clone "*)
+    # Default: refuse (network-free suite). With STUB_CLONE_SRC set (the pin-
+    # gate cases), materialize the fixture tree at the clone dest (last arg)
+    # so the post-clone path (validate → pin gate) runs against real files.
+    if [[ -n "${STUB_CLONE_SRC:-}" ]]; then
+      dest=""; for a in "$@"; do dest="$a"; done
+      mkdir -p "$dest" && cp -R "$STUB_CLONE_SRC/." "$dest/"
+    else
+      echo "git-stub: clone refused (network-free suite)" >&2; exit 1
+    fi ;;
+  "-C "*" fetch "*|"-C "*" checkout "*)
+    # Post-clone fetch/checkout of the new sha: no-op success in the
+    # materialized-tree regime; unexpected otherwise.
+    if [[ -z "${STUB_CLONE_SRC:-}" ]]; then
+      echo "STUB-UNEXPECTED git $*" >> "${STUB_CALL_LOG:-/dev/null}"; exit 12
+    fi ;;
   *) echo "STUB-UNEXPECTED git $*" >> "${STUB_CALL_LOG:-/dev/null}"; echo "git-stub: unexpected call: $*" >&2; exit 12 ;;
 esac
 EOF
@@ -423,6 +440,11 @@ EOF
 cat > "$TMP/bin/claude" <<'EOF'
 #!/usr/bin/env bash
 echo "claude $*" >> "${STUB_CALL_LOG:-/dev/null}"
+# Pin-gate cases opt into a passing validate so the run reaches the gate;
+# any other claude call remains fail-closed (never legitimately reachable).
+if [[ "${STUB_CLAUDE_VALIDATE_OK:-}" == "1" && "$1" == "plugin" && "$2" == "validate" ]]; then
+  exit 0
+fi
 echo "STUB-UNEXPECTED claude $*" >> "${STUB_CALL_LOG:-/dev/null}"
 exit 1
 EOF
@@ -436,7 +458,8 @@ run_bump_shimmed() {
   local oldpath="$PATH" rc=0
   : > "$STUB_CALL_LOG"
   export STUB_HEAD_SHA STUB_LATEST_TAG STUB_TAG_COMMIT_SHA STUB_RELEASES_HTTP STUB_COMPARE_STATUS STUB_OPEN_PR_URL \
-    STUB_SOURCE_HTTP STUB_SOURCE_FULL_NAME STUB_SOURCE_OWNER_ID
+    STUB_SOURCE_HTTP STUB_SOURCE_FULL_NAME STUB_SOURCE_OWNER_ID \
+    STUB_CLONE_SRC STUB_CLAUDE_VALIDATE_OK
   PATH="$TMP/bin:$PATH"
   run_bump "$1" || rc=$?
   PATH="$oldpath"
@@ -447,7 +470,8 @@ run_bump_shimmed() {
     echo "  PASS stub-drift guard (no unexpected/misconfigured stub calls)"
   fi
   unset STUB_HEAD_SHA STUB_LATEST_TAG STUB_TAG_COMMIT_SHA STUB_RELEASES_HTTP STUB_COMPARE_STATUS STUB_OPEN_PR_URL \
-    STUB_SOURCE_HTTP STUB_SOURCE_FULL_NAME STUB_SOURCE_OWNER_ID
+    STUB_SOURCE_HTTP STUB_SOURCE_FULL_NAME STUB_SOURCE_OWNER_ID \
+    STUB_CLONE_SRC STUB_CLAUDE_VALIDATE_OK
   return "$rc"
 }
 
@@ -950,6 +974,131 @@ assert_no_call "git clone" "unverifiable identity → no clone"
 assert_pin_held "$sv_fix" "unverifiable identity → pin held"
 
 OWNER_BASELINE_FIXTURE=""  # reset
+
+# ─── Static launcher pin gate (fail-on-unpinned-autoexec) ────────────────────
+# Regime: materialized-clone (STUB_CLONE_SRC) + passing validate
+# (STUB_CLAUDE_VALIDATE_OK) so the run reaches the gate. Entries are
+# strict:false (synthesized manifest) so no plugin.json fixture is needed.
+# Successful-bump cases END at the commit/PR phase with a nonzero rc
+# (GITHUB_REPOSITORY is deliberately unset in this suite; set -u aborts there
+# AFTER the loop wrote its outputs) — those cases assert on outputs and the
+# work-file sha, not rc.
+
+pin_fix=$(mk pinfix <<'EOF'
+{"plugins":[{"name":"pin-plugin","strict":false,"source":{"url":"https://github.com/acme/pin-plugin","sha":"9999999999999999999999999999999999999999"}}]}
+EOF
+)
+
+mkdir -p "$TMP/tree-float"
+cat > "$TMP/tree-float/.mcp.json" <<'EOF'
+{"mcpServers":{"s":{"command":"npx","args":["-y","@acme/mcp@latest"]}}}
+EOF
+mkdir -p "$TMP/tree-two-float"
+cat > "$TMP/tree-two-float/.mcp.json" <<'EOF'
+{"mcpServers":{"a":{"command":"npx","args":["@acme/mcp@latest"]},"b":{"command":"uvx","args":["other-mcp"]}}}
+EOF
+mkdir -p "$TMP/tree-pinned"
+cat > "$TMP/tree-pinned/.mcp.json" <<'EOF'
+{"mcpServers":{"s":{"command":"npx","args":["-y","@acme/mcp@1.2.3"]}}}
+EOF
+mkdir -p "$TMP/tree-vend/node_modules/acme-mcp"
+echo '{}' > "$TMP/tree-vend/node_modules/acme-mcp/package.json"
+cat > "$TMP/tree-vend/.mcp.json" <<'EOF'
+{"mcpServers":{"s":{"command":"npx","args":["acme-mcp"]}}}
+EOF
+pin_wv="$TMP/pin-waivers.txt"
+cat > "$pin_wv" <<'EOF'
+pin-plugin @acme/  # test grant: acme scope
+EOF
+
+# assert_work_sha SHA LABEL — the work marketplace's entry sha advanced to SHA.
+assert_work_sha() {
+  total=$((total+1))
+  local got; got="$(jq -r '.plugins[0].source.sha' "$work")"
+  if [[ "$got" == "$1" ]]; then echo "  PASS $2"
+  else echo "  FAIL $2 — work sha='$got', expected '$1'"; failures=$((failures+1)); fi
+}
+
+# 42. Gate ARMED + floating spec → per-entry hold, pin held, run exits 0.
+echo "Case 42: pin gate armed — floating auto-exec launcher is held"
+PIN_GATE_FIXTURE=true
+STUB_HEAD_SHA="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+STUB_SOURCE_HTTP=200 STUB_SOURCE_FULL_NAME="acme/pin-plugin" STUB_SOURCE_OWNER_ID=none
+STUB_CLONE_SRC="$TMP/tree-float" STUB_CLAUDE_VALIDATE_OK=1
+run_bump_shimmed "$pin_fix"
+assert_rc 0 "held entry → applied=0 → clean exit"
+assert_reason "pin-plugin" "unpinned auto-exec MCP launcher" "floating spec → skip reason names the gate"
+assert_reason "pin-plugin" "@acme/mcp@latest" "skip reason names the floating spec"
+assert_pin_held "$pin_fix" "gate hold → pin unchanged"
+assert_summary "unpinned auto-exec MCP launcher" "hold is visible in the step summary"
+
+# 43. Gate DISARMED (default) + floating spec → warn-only, bump proceeds.
+echo "Case 43: pin gate disarmed — floating spec warns, bump proceeds"
+PIN_GATE_FIXTURE=false
+STUB_HEAD_SHA="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+STUB_SOURCE_HTTP=200 STUB_SOURCE_FULL_NAME="acme/pin-plugin" STUB_SOURCE_OWNER_ID=none
+STUB_CLONE_SRC="$TMP/tree-float" STUB_CLAUDE_VALIDATE_OK=1
+run_bump_shimmed "$pin_fix"
+assert_warn "not held (fail-on-unpinned-autoexec=false)" "detection still annotates when disarmed"
+assert_not_skipped "pin-plugin" "disarmed gate records no skip"
+assert_work_sha "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" "bump applied (loop completed before the PR-phase abort)"
+
+# 44. Gate ARMED + exact pin → no gate output, bump proceeds.
+echo "Case 44: pin gate armed — exact pin passes"
+PIN_GATE_FIXTURE=true
+STUB_HEAD_SHA="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+STUB_SOURCE_HTTP=200 STUB_SOURCE_FULL_NAME="acme/pin-plugin" STUB_SOURCE_OWNER_ID=none
+STUB_CLONE_SRC="$TMP/tree-pinned" STUB_CLAUDE_VALIDATE_OK=1
+run_bump_shimmed "$pin_fix"
+assert_no_warn "unpinned auto-exec" "pinned spec → no gate finding"
+assert_not_skipped "pin-plugin" "pinned spec → not held"
+assert_work_sha "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" "pinned spec → bump applied"
+
+# 45. Gate ARMED + bare name vendored at node_modules → exemption holds, bump
+#     proceeds (the filesystem-dependent leg — the gate must run pre-cleanup).
+echo "Case 45: pin gate armed — vendored bare name passes"
+PIN_GATE_FIXTURE=true
+STUB_HEAD_SHA="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+STUB_SOURCE_HTTP=200 STUB_SOURCE_FULL_NAME="acme/pin-plugin" STUB_SOURCE_OWNER_ID=none
+STUB_CLONE_SRC="$TMP/tree-vend" STUB_CLAUDE_VALIDATE_OK=1
+run_bump_shimmed "$pin_fix"
+assert_no_warn "unpinned auto-exec" "vendored bare name → no gate finding"
+assert_work_sha "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" "vendored bare name → bump applied"
+
+# 46. Gate ARMED + waiver fully covering the floating set → bump proceeds.
+echo "Case 46: pin gate armed — fully-covered waiver releases the hold"
+PIN_GATE_FIXTURE=true PIN_WAIVERS_FIXTURE="$pin_wv"
+STUB_HEAD_SHA="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+STUB_SOURCE_HTTP=200 STUB_SOURCE_FULL_NAME="acme/pin-plugin" STUB_SOURCE_OWNER_ID=none
+STUB_CLONE_SRC="$TMP/tree-float" STUB_CLAUDE_VALIDATE_OK=1
+run_bump_shimmed "$pin_fix"
+assert_warn "covered by waiver" "waiver application is logged"
+assert_not_skipped "pin-plugin" "waived entry not held"
+assert_work_sha "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" "waived entry → bump applied"
+
+# 47. Gate ARMED + waiver covering only PART of the floating set → held (every
+#     floating spec must match a granted prefix).
+echo "Case 47: pin gate armed — partially-covered waiver still holds"
+PIN_GATE_FIXTURE=true PIN_WAIVERS_FIXTURE="$pin_wv"
+STUB_HEAD_SHA="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+STUB_SOURCE_HTTP=200 STUB_SOURCE_FULL_NAME="acme/pin-plugin" STUB_SOURCE_OWNER_ID=none
+STUB_CLONE_SRC="$TMP/tree-two-float" STUB_CLAUDE_VALIDATE_OK=1
+run_bump_shimmed "$pin_fix"
+assert_reason "pin-plugin" "unpinned auto-exec MCP launcher" "uncovered spec → held"
+assert_reason "pin-plugin" "other-mcp" "hold reason names the uncovered spec"
+assert_pin_held "$pin_fix" "partial waiver → pin unchanged"
+
+# 48. Waivers path SET but MISSING → hard die before any entry work.
+echo "Case 48: set-but-missing waivers file is a hard failure"
+PIN_GATE_FIXTURE=true PIN_WAIVERS_FIXTURE="$TMP/no-such-waivers.txt"
+STUB_HEAD_SHA="bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+run_bump_shimmed "$pin_fix"
+assert_rc 1 "missing waivers file → rc 1"
+assert_warn "launch-shape-waivers not found" "die names the missing path"
+assert_no_call "clone" "die precedes any clone"
+assert_pin_held "$pin_fix" "die → pin unchanged"
+
+PIN_GATE_FIXTURE="" PIN_WAIVERS_FIXTURE=""  # reset
 
 echo
 echo "=== $((total-failures))/$total passed ==="

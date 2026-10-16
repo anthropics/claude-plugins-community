@@ -85,6 +85,11 @@ jobs:
           freeze-shas: ${{ steps.freeze.outputs.list }}
           only: ${{ inputs.plugin }}
           pr-mode: per-entry
+          # HARD gate on this marketplace: a bump candidate whose tree at the
+          # new SHA declares a floating npx/uvx/bunx/pipx MCP launcher is
+          # held (per-entry skip — no bump PR) until upstream pins an exact
+          # version. No waivers file on this surface.
+          fail-on-unpinned-autoexec: "true"
           claude-cli-version: latest
 
       # Per-entry fan-out: dispatch the required validate check against EACH per-entry

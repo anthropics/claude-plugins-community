@@ -80,6 +80,30 @@ inputs:
       (default) = every entry HEAD-tracks, exactly as if this input did
       not exist.
     default: ""
+  fail-on-unpinned-autoexec:
+    description: >
+      If true, a bump is refused (per-entry skip; the pin does not advance)
+      when the plugin tree AT THE NEW SHA declares an MCP server launched via
+      npx/bunx/uvx/pipx with a floating package spec (@latest/dist-tag, a
+      version range, or a bare unversioned name that is not locally
+      vendored). Such a server auto-launches registry-resolved code at
+      session start, which the marketplace source.sha pin does not fix — so
+      an auto-bumper advancing the pin would keep re-blessing content it
+      cannot actually freeze. Default false: detect + warn only, the bump
+      proceeds (adopting consumers choose their own posture, same model as
+      the scan-plugins action's input of the same name).
+    default: "false"
+  launch-shape-waivers:
+    description: >
+      Optional path (in the caller's checkout) to a package-grained waivers
+      file for adjudicated exceptions to the pin gate — same file format as
+      the scan-plugins action's input of the same name (`<entry-name>
+      <package-prefix>…`; every floating spec must match a granted prefix).
+      Empty (default) = no waivers. A path that is SET but missing is a HARD
+      FAILURE of the whole run (an explicit opt-in that silently degrades
+      would spuriously hold every waived entry) — land the file and this
+      input in the same PR.
+    default: ""
   claude-cli-version:
     description: Version of @anthropic-ai/claude-code to install
     default: latest
@@ -216,6 +240,11 @@ runs:
         ONLY: ${{ inputs.only }}
         TRACKING_CONFIG: ${{ inputs.tracking-config }}
         OWNER_BASELINE: ${{ inputs.owner-baseline }}
+        FAIL_ON_UNPINNED_AUTOEXEC: ${{ inputs.fail-on-unpinned-autoexec }}
+        LAUNCH_SHAPE_WAIVERS: ${{ inputs.launch-shape-waivers }}
+        # Shared classifier from the sibling scan-plugins action (same repo
+        # tree at the pinned SHA — the validate-plugins lib precedent).
+        PIN_CHECK_LIB: ${{ github.action_path }}/../scan-plugins/lib/pin-check.sh
         PR_MODE: ${{ inputs.pr-mode }}
         PR_BRANCH: ${{ inputs.pr-branch }}
         BASE_BRANCH: ${{ inputs.base-branch }}

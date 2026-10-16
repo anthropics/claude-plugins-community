@@ -84,6 +84,24 @@ case "$PR_MODE" in
   *) die "pr-mode must be 'batch' or 'per-entry' (got: $PR_MODE)" ;;
 esac
 
+# Static launcher pin gate — shared classifier with the sibling scan-plugins
+# action (same repo tree at the pinned SHA; the VALIDATE_LIB precedent).
+# Detection always runs on each bump candidate's tree at the new sha; whether
+# a floating spec REFUSES the bump is the fail-on-unpinned-autoexec input.
+# Default is self-derived from this script's own location (NOT $ACTION_PATH,
+# which direct scripts/bump.sh callers — e.g. the manifest test suite — do
+# not export).
+PIN_CHECK_LIB="${PIN_CHECK_LIB:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)/scan-plugins/lib/pin-check.sh}"
+source "$PIN_CHECK_LIB"
+FAIL_ON_UNPINNED_AUTOEXEC="${FAIL_ON_UNPINNED_AUTOEXEC:-false}"
+# A set-but-missing waivers file is a hard die, not a warn: silently running
+# with zero waivers would spuriously hold every waived entry (same structural
+# posture as the tracking-config guard above).
+LAUNCH_SHAPE_WAIVERS="${LAUNCH_SHAPE_WAIVERS:-}"
+if [[ -n "$LAUNCH_SHAPE_WAIVERS" && ! -f "$LAUNCH_SHAPE_WAIVERS" ]]; then
+  die "launch-shape-waivers not found at $LAUNCH_SHAPE_WAIVERS"
+fi
+
 [[ -f "$MARKETPLACE_PATH" ]] || die "marketplace not found at $MARKETPLACE_PATH"
 
 workroot="$(mktemp -d)"
@@ -477,6 +495,27 @@ while IFS= read -r entry; do
     detail="$(grep -E '❯|Error:' <<<"$out" | head -1 | sed -E 's/^[[:space:]]+//')"
     skip "$name" "validation failed at $full_url@${new_sha:0:8}: ${detail:-$(head -1 <<<"$out")}"
     rm -rf -- "$dest"; continue
+  fi
+
+  # Static launcher pin gate — classify the tree AT THE NEW SHA. Must run
+  # while $dest still exists (the bare-name vendored exemption is
+  # filesystem-dependent). A floating npx/bunx/uvx/pipx spec on a declared
+  # MCP server auto-launches registry-resolved code at session start, so
+  # advancing source.sha would re-bless content the pin cannot freeze. Same
+  # per-entry hold seam as the validation skip above — the run continues; in
+  # per-entry mode the entry simply gets no bump PR until upstream pins.
+  pin_rows="$(pin_check_tree "$target")"
+  pin_floating="$(pin_check_floating_specs "$pin_rows")"
+  if [[ -n "$pin_floating" ]]; then
+    pin_specs="$(paste -sd, - <<<"$pin_floating" | sed 's/,/, /g')"
+    if [[ -n "$LAUNCH_SHAPE_WAIVERS" ]] && pin_check_entry_waived "$name" "$pin_floating" "$LAUNCH_SHAPE_WAIVERS"; then
+      log "  $name: floating launcher spec(s) [$pin_specs] covered by waiver"
+    elif [[ "$FAIL_ON_UNPINNED_AUTOEXEC" == "true" ]]; then
+      skip "$name" "unpinned auto-exec MCP launcher at $full_url@${new_sha:0:8} [$pin_specs] — a floating npx/uvx/bunx/pipx spec resolves registry code at session start, which the source.sha pin does not fix; pin an exact version (pkg@1.2.3 / pkg==1.2.3)"
+      rm -rf -- "$dest"; continue
+    else
+      warn "$name: unpinned auto-exec MCP launcher spec(s) [$pin_specs] at ${new_sha:0:8} — not held (fail-on-unpinned-autoexec=false)"
+    fi
   fi
   rm -rf -- "$dest"
 
