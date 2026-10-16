@@ -1060,7 +1060,7 @@
         "url": "aiocean/claude-plugins",
         "path": "plugins/aio-watermill-kit",
         "ref": "main",
-        "sha": "a7033b9d6742e84c715c459c70f2d88fd79dd8a8"
+        "sha": "8dd93693deec21b7ca1e6328277944a7f3924f5d"
       },
       "homepage": "https://aiocean.github.io/claude-plugins/"
     },
