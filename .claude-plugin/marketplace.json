@@ -631,7 +631,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/keshrath/agent-tasks.git",
-        "sha": "2b421ca49141b82ad93723cabe21ed55b5270003"
+        "sha": "fd05dbfead7520a0edad86ca0554d0fda1bd73cc"
       },
       "homepage": "https://github.com/keshrath/agent-tasks"
     },
