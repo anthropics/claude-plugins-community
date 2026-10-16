@@ -665,7 +665,7 @@
         "url": "https://github.com/frane/agented.git",
         "path": "plugin",
         "ref": "master",
-        "sha": "09d9429cd1f1c239164b16b672e9b359baef3610"
+        "sha": "3feba12fa2960ff91dfec2ca76a75720653d5909"
       },
       "homepage": "https://github.com/frane/agented"
     },
