@@ -7898,7 +7898,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/marian-kamenistak/claude-email-assistant.git",
-        "sha": "9fdf52af8a8930ece879181c4143f9f4472f1e6a"
+        "sha": "d2daab24b793d91389db69afaf637632d076065f"
       },
       "homepage": "https://github.com/marian-kamenistak/claude-email-assistant"
     },
