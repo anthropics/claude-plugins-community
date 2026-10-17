@@ -8543,7 +8543,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Flowsery/claude-plugin.git",
-        "sha": "82b40033b622e936fe9e2f62a5068d1279777482"
+        "sha": "6cb98ef6fd4480423a0a22eabb1549ef502644d1"
       },
       "homepage": "https://flowsery.com/features/agents"
     },
