@@ -9084,7 +9084,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Giskard-AI/giskard-skills.git",
-        "sha": "88a5979bf6574f8889b07cfc4b67ff2596878026"
+        "sha": "030b7f5c253b93547b020cc2b2f73085a769ccde"
       },
       "homepage": "https://www.giskard.ai",
       "category": "testing"
