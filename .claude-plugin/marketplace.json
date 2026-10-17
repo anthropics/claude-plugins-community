@@ -8707,7 +8707,7 @@
         "url": "misfitdev/claude-plugins",
         "path": "plugins/frank-grimes",
         "ref": "main",
-        "sha": "125572c79fdfea9abad8994478fa5cf62a6a4513"
+        "sha": "cc4f5c475112238fd6cb991ede184141fd2e959f"
       },
       "homepage": "https://github.com/misfitdev/claude-plugins/tree/main/plugins/frank-grimes"
     },
