@@ -9463,7 +9463,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/xiaolai/grill-for-claude.git",
-        "sha": "26f8e23dc2094cb5160477240429a7b38a8cadf7"
+        "sha": "99c694ae857239706180867c1dc916b3149c06ae"
       },
       "homepage": "https://github.com/xiaolai/grill-for-claude"
     },
