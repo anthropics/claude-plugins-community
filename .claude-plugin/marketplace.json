@@ -9759,7 +9759,7 @@
         "url": "https://github.com/ShiftLeftSecurity/claude-plugins.git",
         "path": "plugins/harness-sast-and-sca",
         "ref": "master",
-        "sha": "841dc2e347dfad780a1d4f852643cc63d740e250"
+        "sha": "6ec4766b40f073e0f23c3631db044c975fc62fe1"
       },
       "homepage": "https://docs.shiftleft.io/sast/integrations/claude"
     },
