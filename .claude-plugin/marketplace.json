@@ -9595,7 +9595,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/orieg/gws-connector.git",
-        "sha": "3ea6246786feb4b2f03d81dca002bc670896358e"
+        "sha": "0b6364b7aabca3d267b361cab6a4f6c8781e7603"
       },
       "homepage": "https://orieg.github.io/gws-connector/"
     },
