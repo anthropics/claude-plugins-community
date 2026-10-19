@@ -10751,7 +10751,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/ix-infrastructure/ix-claude-plugin.git",
-        "sha": "bf99c1852b5a41ce95e90ecf3b5c4871fe2bf37d"
+        "sha": "9c0eefa70502c871ef216727f4019302a8168e5c"
       },
       "homepage": "https://ix-infra.com/docs/#claude-code-plugin"
     },
