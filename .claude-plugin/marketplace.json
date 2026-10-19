@@ -10721,7 +10721,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/iris-eval/mcp-server.git",
-        "sha": "b83394823c50242779dd16729e2866e32a1af044"
+        "sha": "ade0c5e4398e2ffee5cb54505667885b826a2641"
       },
       "homepage": "https://iris-eval.com"
     },
