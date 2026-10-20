@@ -10891,7 +10891,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/pattern-ai-labs/agentcall.git",
-        "sha": "0ce97d904f2f864904b7bfd33c2dc4095966e5f6"
+        "sha": "38831e80a20233953e8748e3169eb8a101140ebf"
       },
       "homepage": "https://agentcall.dev"
     },
