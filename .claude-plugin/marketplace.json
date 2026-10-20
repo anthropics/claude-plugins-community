@@ -11916,7 +11916,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Jwrede/llmprobe.git",
-        "sha": "06d3717fc0c096bba57bd377d426bb292f328357"
+        "sha": "3dc0a02f1d540ad5ab744f36fdec1b613c53dd08"
       },
       "homepage": "https://github.com/Jwrede/llmprobe"
     },
