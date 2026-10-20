@@ -10921,7 +10921,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/ej-technologies/jprofiler-mcp.git",
-        "sha": "433753c97c5177b1c5cf1a70b45169b2f2d09407"
+        "sha": "6d6915f0decc48cfe0d2c28d9cd50cab84eb0d22"
       },
       "homepage": "https://www.ej-technologies.com/jprofiler/mcp"
     },
