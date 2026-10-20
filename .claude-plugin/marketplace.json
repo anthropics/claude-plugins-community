@@ -10821,7 +10821,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/jettyio/jettyio-skills.git",
-        "sha": "773b168e53ff9681a2f5adcd89dd0ca819a213bd"
+        "sha": "1237577c30d4b0fb3a601e5ddc73ebcb75f73a09"
       },
       "homepage": "https://www.jetty.io"
     },
