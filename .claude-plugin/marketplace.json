@@ -11866,7 +11866,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/wildblue-ai/llm-secure-patterns.git",
-        "sha": "5b0bed1c49316d817f8e690b0c65c738da489836"
+        "sha": "5882e9eb07f0d6fb15b84d70022c94d812d818d6"
       },
       "homepage": "https://github.com/wildblue-ai/llm-secure-patterns"
     },
