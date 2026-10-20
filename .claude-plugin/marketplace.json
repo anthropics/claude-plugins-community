@@ -11876,7 +11876,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/epicsagas/llm-transpile.git",
-        "sha": "261654dc3ae771060379c43ea794b676b97eeb82"
+        "sha": "780910b055e210aef03efd615743f84be471150b"
       },
       "homepage": "https://github.com/epicsagas/plugins"
     },
