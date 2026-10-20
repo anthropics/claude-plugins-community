@@ -11443,7 +11443,7 @@
         "url": "https://github.com/builtform/launchpad.git",
         "path": "plugins/launchpad",
         "ref": "main",
-        "sha": "e790ce95d191a7f58d88e15d97ff97b8af1a50ed"
+        "sha": "c7a00ffe36c0347bd5f11d9916664423c7ec7fd3"
       },
       "homepage": "https://github.com/builtform/launchpad"
     },
