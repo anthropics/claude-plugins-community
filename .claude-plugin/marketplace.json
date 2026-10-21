@@ -12231,7 +12231,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/managelm/claude-extension.git",
-        "sha": "9bee415c66a3601f663106fd31132b0558b8844d"
+        "sha": "bef35cf62f4ea3e1642915fae71bfd8ad510e9cc"
       },
       "homepage": "https://www.managelm.com"
     },
