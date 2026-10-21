@@ -12379,7 +12379,7 @@
         "url": "modelcontextprotocol/ext-apps",
         "path": "plugins/mcp-apps",
         "ref": "main",
-        "sha": "ca1d29894fabbd1558885a9ec8620dcb01d7457e"
+        "sha": "82221c0c8ce7661efa6771c9d461511b1650495f"
       },
       "homepage": "https://github.com/modelcontextprotocol/ext-apps/",
       "category": "Developer Tools"
