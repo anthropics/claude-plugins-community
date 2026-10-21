@@ -12566,7 +12566,7 @@
         "url": "medusajs/medusa-claude-plugins",
         "path": "plugins/medusa-dev",
         "ref": "main",
-        "sha": "f923b9537cdebfc960779f2f036d1f0425297a78"
+        "sha": "4b495d5e2b4b0189a72de899e801eb84f168380e"
       },
       "homepage": "https://medusajs.com/"
     },
