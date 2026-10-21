@@ -11966,7 +11966,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/localstack/skills.git",
-        "sha": "59dee41a33c1e2f319460b40747fc9d4d1170366"
+        "sha": "3526362740dbdcc4bc9e871beb0d55a7b50e00b7"
       },
       "homepage": "https://github.com/localstack/skills"
     },
