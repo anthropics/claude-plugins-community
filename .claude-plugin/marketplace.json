@@ -4399,7 +4399,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/pmprompt/claude-plugin-product-management.git",
-        "sha": "3114dbe33fa2c38f781414c0b835023508db445f"
+        "sha": "b1a673cff5486a25f5227a14e7975f73e14f7b99"
       },
       "homepage": "https://github.com/pmprompt/claude-plugin-product-management"
     },
