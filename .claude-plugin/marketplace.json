@@ -13742,7 +13742,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/xiaolai/nlpm-for-claude.git",
-        "sha": "2b38d31fb5dfd45246d8f5e2c3555bbedc3daa45"
+        "sha": "7c80c008619bbd69a74a9d561e0490bb41939296"
       },
       "homepage": "https://nlpm.com"
     },
