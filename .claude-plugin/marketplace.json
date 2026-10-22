@@ -13232,7 +13232,7 @@
         "url": "https://github.com/mongodb/agent-skills.git",
         "path": "plugins/mongodb",
         "ref": "main",
-        "sha": "b4ea8150a020b9babaddc6c271c6dc177c06a83f"
+        "sha": "155bb9c4b42a9a3e019f47be0669de0e4547d1ea"
       },
       "homepage": "https://www.mongodb.com/docs/claude/"
     },
