@@ -13564,7 +13564,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/neonpanel/claude-plugin.git",
-        "sha": "6eb739af3dbe27c185bd4c1ad11e08584e5fbe19"
+        "sha": "52f76adb2de0e71745b53e327a5d09bbf3973bb9"
       },
       "homepage": "https://www.neonpanel.com/claude-plugin"
     },
