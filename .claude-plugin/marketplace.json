@@ -14324,7 +14324,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/opensearch-project/opensearch-agent-skills.git",
-        "sha": "8ebe59430c52543cccbbf0b65c0960bf04eb1c2d"
+        "sha": "5076c03d24fdd61d9b06fa4e451c900023ad00da"
       },
       "homepage": "https://opensearch.org/"
     },
