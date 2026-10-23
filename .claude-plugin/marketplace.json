@@ -8841,7 +8841,7 @@
         "url": "MSApps-Mobile/claude-plugins",
         "path": "plugins/gcloud-cli-health-check",
         "ref": "main",
-        "sha": "578bd7dc2a26cbb5e0852f0b386a455b16372c7b"
+        "sha": "ea7895e5bdd0c78495311863154d44f9b38440d9"
       },
       "homepage": "https://github.com/MSApps-Mobile/claude-plugins"
     },
