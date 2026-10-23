@@ -13924,7 +13924,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/aliksir/npm-postinstall-attack-scanner.git",
-        "sha": "833d1d06fbb50fcc185c182b5e771914cd4cebc2"
+        "sha": "9cfc232aa8ae7575019e2313d3f057eb4b9769e5"
       },
       "homepage": "https://github.com/aliksir/npm-postinstall-attack-scanner"
     },
