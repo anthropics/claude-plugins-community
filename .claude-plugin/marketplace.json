@@ -14154,7 +14154,7 @@
         "url": "https://github.com/ApurvBazari/claude-plugins.git",
         "path": "onboard",
         "ref": "develop",
-        "sha": "1529d2e5201f15e7a7340ebbffae7ba9e5c8d484"
+        "sha": "d24127b3e1a6fb8a8822db0e991456781ea531a8"
       },
       "homepage": "https://github.com/ApurvBazari/claude-plugins/tree/main/onboard"
     },
