@@ -14600,7 +14600,7 @@
         "url": "https://github.com/paper-design/agent-plugins.git",
         "path": "plugins/paper-desktop",
         "ref": "main",
-        "sha": "a30668a826916aa68fee8be0a00c85692ec9ffc4"
+        "sha": "a8ba8b21be02f68c83470213bc72ea43cf3b6d1f"
       },
       "homepage": "https://paper.design/docs/mcp"
     },
