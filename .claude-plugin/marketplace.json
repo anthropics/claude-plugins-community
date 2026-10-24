@@ -5407,7 +5407,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/codeqr-io/codeqr-plugin.git",
-        "sha": "0141883bebccd0711cadd14d2b84b38629a16bb0"
+        "sha": "de0d1e7ddbdff324cbedeee43323a3f149da8245"
       },
       "homepage": "https://codeqr.io"
     },
