@@ -15315,7 +15315,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/post-bridge-hq/agent-mode.git",
-        "sha": "4ecce3120c33da05ce916b8eefbdf255147e6afc"
+        "sha": "f9873362ccdb4c4d3d7a1d639f1b155e69e84f14"
       },
       "homepage": "https://www.post-bridge.com/agents"
     },
