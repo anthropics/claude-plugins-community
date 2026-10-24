@@ -14995,7 +14995,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/piomin/claude-ai-spring-boot.git",
-        "sha": "d87e7a38588a0a945ae2c11a251954897692330e"
+        "sha": "c7df6e28db7b737efa5ca460752bab168ee76cf0"
       },
       "homepage": "https://github.com/piomin/claude-ai-spring-boot"
     },
