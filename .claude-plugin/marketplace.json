@@ -14772,7 +14772,7 @@
         "url": "https://github.com/rophy/claude-peer-channel.git",
         "path": "plugin",
         "ref": "main",
-        "sha": "a3efeff50aaeb1e577b88e7e8af759ab999e5fd4"
+        "sha": "a6cbcb952cff103dba9ea46856dbd2f9f595b9a6"
       },
       "homepage": "https://github.com/rophy/claude-peer-channel"
     },
