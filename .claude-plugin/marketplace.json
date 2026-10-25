@@ -16312,7 +16312,7 @@
         "url": "https://github.com/medvertical/claude-records.git",
         "path": "plugins/records",
         "ref": "main",
-        "sha": "7a60fa06995dda98209bf6911fec315c84de0e36"
+        "sha": "cdfcbe541d5f11f204f25ad4c09c258e5a81c62e"
       },
       "homepage": "https://github.com/medvertical/claude-records#readme"
     },
