@@ -16176,7 +16176,7 @@
         "url": "railwayapp/railway-skills",
         "path": "plugins/railway",
         "ref": "main",
-        "sha": "5d1e97178f86c82795d6737928bd641e0552166a"
+        "sha": "526e95524e964ed326689cbac4464d97a58ab81c"
       },
       "homepage": "https://docs.railway.com/ai/claude-code-plugin"
     },
