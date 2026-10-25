@@ -15463,7 +15463,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/agent-sh/prepare-delivery.git",
-        "sha": "0e9685fe0e93e058af5ca9a0374f4f97e1db878c"
+        "sha": "5df28a4b76aabba42de6d008bdfc68c36f619686"
       },
       "homepage": "https://github.com/agent-sh/prepare-delivery"
     },
