@@ -15565,7 +15565,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/2389-research/journal-mcp.git",
-        "sha": "39823e7cd01dd4b2832cbe27bda10a3ac6d8956d"
+        "sha": "fb0077e0f4d6fd9a1ce1706f1626e24169215a62"
       },
       "homepage": "https://plugins.2389.dev/"
     },
