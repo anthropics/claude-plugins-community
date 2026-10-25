@@ -15770,7 +15770,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/severity1/claude-code-prompt-improver.git",
-        "sha": "306c325b7c152b537ede6a95ad1a8fc199f637eb"
+        "sha": "50aae187bb4f08b852f318234b654df3332726a4"
       },
       "homepage": "https://github.com/severity1/claude-code-prompt-improver"
     },
