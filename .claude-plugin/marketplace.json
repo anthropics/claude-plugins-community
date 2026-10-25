@@ -13159,7 +13159,7 @@
         "url": "mnemopay/mnemopay-sdk",
         "path": "claude-plugin",
         "ref": "master",
-        "sha": "c5e0c4695458e1f9083c68d90c578b7cd82819f3"
+        "sha": "5b40e6b93c596ef48036c0e6ed3bb1dfcfa1d438"
       },
       "homepage": "https://mnemopay.xyz"
     },
