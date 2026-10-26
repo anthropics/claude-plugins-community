@@ -16931,7 +16931,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/runwayml/skills.git",
-        "sha": "16353db3500ea5e346460755205991081567902a"
+        "sha": "3dcbb5b6cdc652e3bb651d6e6c5765e0afc515de"
       },
       "homepage": "https://github.com/runwayml/skills"
     },
