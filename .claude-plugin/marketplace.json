@@ -17007,7 +17007,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/juergenbr/claude-plugin-sailfishos-dev.git",
-        "sha": "3047b947f1bcd28c7f343d3ab6f4335b3a474e6f"
+        "sha": "30ddaa7ebcd9163456df45858b48f67690b221c7"
       },
       "homepage": "https://blog.breitenbaumer.com/claude-plugin-sailfishos-dev/"
     },
