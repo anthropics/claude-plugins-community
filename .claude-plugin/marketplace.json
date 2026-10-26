@@ -16510,7 +16510,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/agent-sh/repo-intel.git",
-        "sha": "59fa18f108d2e95e0e18c0bbf2a8385634f6c4be"
+        "sha": "cec26346c7fb7e3d2a60bc0369c4493893fec978"
       },
       "homepage": "https://github.com/agent-sh/repo-intel"
     },
