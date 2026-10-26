@@ -17059,7 +17059,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/sankaHQ/sanka-plugin.git",
-        "sha": "45238e1fabcefb1a589d3a847a25b96f1bb0a30c"
+        "sha": "2c8564f650b21aaca26e1a278a94551f6b0d1ad1"
       },
       "homepage": "https://sanka.com/docs/integrations/claude/"
     },
