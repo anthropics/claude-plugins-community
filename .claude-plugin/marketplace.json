@@ -17554,7 +17554,7 @@
         "url": "getsentry/cli",
         "path": "packages/cli/plugins/sentry-cli",
         "ref": "main",
-        "sha": "fa3b3e2a79c0158b302c2843eefd0a8cc65358f3"
+        "sha": "3567c3c937b5cc06667d5b023bda0b2d3f472c54"
       },
       "homepage": "https://cli.sentry.dev/"
     },
