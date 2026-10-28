@@ -18331,7 +18331,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/scaledown-team/SLM_Agent.git",
-        "sha": "c945eede80d8981d8ecede6560ed4c3e6cbef08d"
+        "sha": "ec2df3cfe1bfe90ac2835250fa193645ec17cad4"
       },
       "homepage": "https://github.com/scaledown-team/SLM_Agent/blob/main/README.md"
     },
