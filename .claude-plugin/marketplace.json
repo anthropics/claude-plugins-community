@@ -18603,7 +18603,7 @@
         "url": "MSApps-Mobile/claude-plugins",
         "path": "plugins/sosa-compliance-checker",
         "ref": "main",
-        "sha": "578bd7dc2a26cbb5e0852f0b386a455b16372c7b"
+        "sha": "22b5a9bc151ddf870198cf9cb773329bbf69138d"
       },
       "homepage": "https://github.com/MSApps-Mobile/claude-plugins"
     },
