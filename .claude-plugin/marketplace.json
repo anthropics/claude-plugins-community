@@ -18627,7 +18627,7 @@
         "url": "MSApps-Mobile/claude-plugins",
         "path": "plugins/sosa-orchestrator",
         "ref": "main",
-        "sha": "de37cefc7badfb25917a91af4ff864021f960b33"
+        "sha": "22b5a9bc151ddf870198cf9cb773329bbf69138d"
       },
       "homepage": "https://github.com/MSApps-Mobile/claude-plugins"
     },
