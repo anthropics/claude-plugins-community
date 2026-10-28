@@ -17676,7 +17676,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/mehmeteminduran/claude-session-handoff-plugin.git",
-        "sha": "4086e88a3023f6f1d63d50bbd0160f25fac5286a"
+        "sha": "18ca2aee82597687b756b421083124f1c10738a8"
       },
       "homepage": "https://github.com/mehmeteminduran/claude-session-handoff-plugin"
     },
