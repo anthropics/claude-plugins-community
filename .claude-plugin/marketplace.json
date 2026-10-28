@@ -17706,7 +17706,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Kanevry/session-orchestrator.git",
-        "sha": "fdb27d9261f6f9f24fd221db29cb86e573ec2d4d"
+        "sha": "7eb9aed8bba5df716aae28dc8bbe94b050516d78"
       },
       "homepage": "https://gotzendorfer.at/en/session-orchestrator"
     },
