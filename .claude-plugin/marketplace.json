@@ -18668,7 +18668,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/sourcegraph-community/sourcegraph-claudecode-plugin.git",
-        "sha": "332ee0ca9a409ccd791abee43c7abf2606469017"
+        "sha": "674a05e2e28677fc3fdce7491063459455ded573"
       },
       "homepage": "https://sourcegraph.com"
     },
