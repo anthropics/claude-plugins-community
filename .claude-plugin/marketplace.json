@@ -19471,7 +19471,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/Digital-Process-Tools/claude-supertool.git",
-        "sha": "dcb574ea3444080bb6977288498e4dc44d50cf57"
+        "sha": "622a2345f2768731748be6ef571c2cb337bafc77"
       },
       "homepage": "https://github.com/Digital-Process-Tools/claude-supertool"
     },
