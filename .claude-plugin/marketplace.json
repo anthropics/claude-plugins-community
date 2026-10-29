@@ -19411,7 +19411,7 @@
         "url": "https://github.com/supermetrics-public/claude-marketing-plugin.git",
         "path": "plugins/supermetrics-marketing",
         "ref": "main",
-        "sha": "ec16372eda880e58b1f97bca481e2a7b1bdc3a4d"
+        "sha": "ae5ca0190ffdf4530dd2cc1febd303040fc5be33"
       },
       "homepage": "https://supermetrics.com/products/claude"
     },
