@@ -18897,7 +18897,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/SpriteCook/spritecook-claude-plugin.git",
-        "sha": "e2305244df724571bba48f8ee0c315f79342013b"
+        "sha": "172292a47dd8ae9271ce125932db4595a542aaac"
       },
       "homepage": "https://www.spritecook.ai/agents?tab=claude"
     },
