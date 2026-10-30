@@ -20564,7 +20564,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/trunk-io/claude-code-plugin.git",
-        "sha": "61ff1c219d20370014dab97924ec81d65b456d3b"
+        "sha": "b369fe6f04205103d4740756346f8d3da91170ff"
       },
       "homepage": "https://docs.trunk.io/flaky-tests/use-mcp-server"
     },
