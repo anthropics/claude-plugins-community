@@ -20999,7 +20999,7 @@
         "url": "https://github.com/dstrupl/vardoger.git",
         "path": "plugins/claude-code",
         "ref": "main",
-        "sha": "f813e9ca00a39371d55994dcfdc75ae6172f26c6"
+        "sha": "b20a0a1f0163c5906b7cba18fa4dee51c1667971"
       },
       "homepage": "https://github.com/dstrupl/vardoger/tree/main/plugins/claude-code"
     },
