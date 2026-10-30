@@ -20278,7 +20278,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/haxybaxy/claude-tmux-status.git",
-        "sha": "7f3d345d106d68c3d49936ba5ba8ff909bab5b89"
+        "sha": "047a689bc1876243f1e35a1c714a0dfe4c8f86eb"
       },
       "homepage": "https://github.com/haxybaxy/claude-tmux-status"
     },
