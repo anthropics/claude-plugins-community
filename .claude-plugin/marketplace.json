@@ -20298,7 +20298,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/togethercomputer/skills.git",
-        "sha": "fa0811d63d3769609911126bd52bb60cbe5c99f7"
+        "sha": "a00c1b399ba38bd168e1d413dc0a37c64a1ed54c"
       },
       "homepage": "https://docs.together.ai/docs/agent-skills"
     },
