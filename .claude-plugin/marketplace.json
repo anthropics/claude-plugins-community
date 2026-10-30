@@ -20494,7 +20494,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/alibaba-flyai/flyai-skill.git",
-        "sha": "54277b27b68e53741954c08541faedba1d45cc7b"
+        "sha": "86fe2cc3e25464d0e0bd6a769b27b5f9f3b04128"
       },
       "homepage": "https://github.com/alibaba-flyai/flyai-skill"
     },
