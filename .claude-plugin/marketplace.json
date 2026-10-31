@@ -21685,7 +21685,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/frametric/wayfinder-connector.git",
-        "sha": "ab583d55c227cc668e223d50ac7e74a297dcf7b6"
+        "sha": "eeb84f4f82c8fc7d537a39399bcb49d99d1415c8"
       },
       "homepage": "https://frametric.ai/developers"
     },
