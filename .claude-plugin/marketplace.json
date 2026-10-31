@@ -21777,7 +21777,7 @@
         "url": "https://github.com/weeglooapi/weegloo-mcp-plugin.git",
         "path": "plugins/weegloo",
         "ref": "latest",
-        "sha": "749170882e59c84dd087d4c83b6fe0bb0963a6c2"
+        "sha": "50c11fff47d45db47600bdc23f0d4d71d6f6261f"
       },
       "homepage": "https://weegloo.com"
     },
