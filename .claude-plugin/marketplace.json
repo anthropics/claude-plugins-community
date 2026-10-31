@@ -21829,7 +21829,7 @@
         "url": "MSApps-Mobile/claude-plugins",
         "path": "plugins/whatsapp-mcp",
         "ref": "main",
-        "sha": "578bd7dc2a26cbb5e0852f0b386a455b16372c7b"
+        "sha": "f3685eceaa3359c00079b9461981cb1e4e65137c"
       },
       "homepage": "https://github.com/MSApps-Mobile/claude-plugins"
     },
