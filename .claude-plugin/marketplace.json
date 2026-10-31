@@ -21625,7 +21625,7 @@
         "url": "wasp-lang/claude-plugins",
         "path": "plugins/wasp",
         "ref": "main",
-        "sha": "b7b728ee49f570b9aac50454488e9a97458fdbe3"
+        "sha": "6708819f9d026f2b19c88f6612ded1592ebc82a7"
       },
       "homepage": "https://wasp.sh"
     },
