@@ -21861,7 +21861,7 @@
         "url": "clidey/whodb",
         "path": "cli/external-plugin/whodb",
         "ref": "main",
-        "sha": "889ecf5eb4a16c7c723b0b2e8278f67ef8e43962"
+        "sha": "55d6c5113aeb9388b38abb7eb74fd2ca2699502d"
       },
       "homepage": "https://github.com/clidey/whodb"
     },
