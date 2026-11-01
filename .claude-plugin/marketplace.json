@@ -22483,7 +22483,7 @@
         "url": "https://github.com/resolve-ai-oss/resolve-ai-plugins",
         "path": "plugins/claude/resolve-ai",
         "ref": "d6627cc32863f8f5f79bab4de1fb886f458b0236",
-        "sha": "d6627cc32863f8f5f79bab4de1fb886f458b0236"
+        "sha": "2d99d9707cfa1006b58bbf971a554d4a1c3433df"
       },
       "description": "Use Resolve for investigations, incidents, and production context.",
       "category": "development",
