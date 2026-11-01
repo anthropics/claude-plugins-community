@@ -22600,7 +22600,7 @@
         "url": "https://github.com/awslabs/startups.git",
         "path": "advisor/plugins/aws-startup-advisor",
         "ref": "main",
-        "sha": "b401bb1e40debab18518612b2fe3d558c4ac94f9"
+        "sha": "054bb04264c7534bc1b98b68f2550506807da05f"
       },
       "homepage": "https://github.com/awslabs/startups"
     },
