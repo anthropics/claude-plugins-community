@@ -22736,7 +22736,7 @@
         "url": "https://github.com/grafana/ai-marketplace.git",
         "path": "plugins/grafana-mcp",
         "ref": "main",
-        "sha": "a5c72f2d74c640e9675eb0249526447968535015"
+        "sha": "77a6f1a277c35d3205dc34abf78d85e49ca5ccf1"
       },
       "homepage": "https://grafana.com"
     },
