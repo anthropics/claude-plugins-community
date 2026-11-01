@@ -22372,7 +22372,7 @@
         "url": "https://github.com/agent-sh/zig-lsp.git",
         "path": "plugins/zig-lsp",
         "ref": "main",
-        "sha": "8f2914140ca7cb2f2743a60a8ea70f4e3cbadb1c"
+        "sha": "538e5fca58115641b6d69a276a86a992904cfc3e"
       },
       "homepage": "https://github.com/agent-sh/zig-lsp"
     },
