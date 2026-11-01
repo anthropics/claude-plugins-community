@@ -22405,7 +22405,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/zoom/zoom-plugin.git",
-        "sha": "3c779cd462960e56e43c87be970df846754f6ce7"
+        "sha": "86e2592334f5fb563ed273e26035844004e66165"
       },
       "homepage": "https://developers.zoom.us/",
       "category": "development"
