@@ -22383,7 +22383,7 @@
         "source": "url",
         "url": "https://github.com/zilliztech/zilliz-plugin.git",
         "path": "plugins/zilliz",
-        "sha": "768d3db5fdb69b74116ada2b371032a49bfb3fe1"
+        "sha": "a7620d282c706447e380745785c832a4dfda1f69"
       },
       "homepage": "https://github.com/zilliztech/zilliz-plugin"
     },
