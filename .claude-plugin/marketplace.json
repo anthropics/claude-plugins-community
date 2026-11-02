@@ -22979,7 +22979,7 @@
         "source": "git-subdir",
         "url": "https://github.com/semgrep/mcp-marketplace.git",
         "path": "plugin",
-        "sha": "426442e17e135a302b220e43b57c102cb33b39bb"
+        "sha": "653bd65347baf7f9fcfbf4f5376dee12599eb61b"
       },
       "homepage": "https://github.com/semgrep/mcp-marketplace.git"
     },
