@@ -23278,7 +23278,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/waldo-fyi/waldo-claude-plugin.git",
-        "sha": "dd7af1632ff8e720b1de84a1290b22612066cf4a"
+        "sha": "ef0e7fb170ef4ad57cfc52b1c1774a279a3e0724"
       },
       "description": "Waldo strategy agent skills for ad intelligence, social listening, web research, data analysis, and archival knowledge — powered by the Waldo MCP connector",
       "category": "development",
