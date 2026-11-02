@@ -23234,7 +23234,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/ncoevoet/claude-review-all",
-        "sha": "36c88b03bb7d1c529937317d5fede5a4102965f4"
+        "sha": "7bc5063adec2ec500a95284d961ea0fa01a24e29"
       },
       "description": "Comprehensive, project-agnostic, multi-agent code review for Claude Code with verification to eliminate false positives.",
       "category": "development",
