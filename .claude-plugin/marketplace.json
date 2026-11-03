@@ -23376,7 +23376,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/slogsdon/loop-and-gate-foundation",
-        "sha": "67097968d299a41066876dd4560c4e8865e05793"
+        "sha": "2f0fe5234102cd8ae2beea1ce4fdac80c2d0721c"
       },
       "description": "A self-improving agent loop with plain-text Obsidian memory. Skills for capture, reflect, and improve; a SessionStart hook injects working memory each session. The teaching-tier Foundation of the Loop & Gate stack.",
       "category": "development",
