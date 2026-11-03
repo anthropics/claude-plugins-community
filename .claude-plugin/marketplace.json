@@ -23411,7 +23411,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/probabl-ai/skills",
-        "sha": "96d77a4f96efb55c38c6ee4c8dcd01a29c30e1b7"
+        "sha": "d1d868744b841e00c37d611b160ced04d5626fb2"
       },
       "description": "Skills to support Machine Learning experimentation using the Python ecosystem.",
       "category": "development",
