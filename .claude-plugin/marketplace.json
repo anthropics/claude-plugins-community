@@ -7,7 +7,10 @@
     "qodo-skills": "qodo",
     "wordpress-com": "build-with-wordpress",
     "auth0-sdks": "auth0",
-    "twilio": "twilio-developer-kit"
+    "twilio": "twilio-developer-kit",
+    "geo-audit-by-alignment-ai": null,
+    "seedflip": null,
+    "telegram": null
   },
   "plugins": [
     {
@@ -8918,17 +8921,6 @@
       "homepage": "https://interfacex-co-jp.github.io/genshijin/"
     },
     {
-      "name": "geo-audit-by-alignment-ai",
-      "description": "Free AI visibility audit for any website. Discover how ChatGPT, Claude, and Perplexity perceive your brand across 5 dimensions and 30 checks — then get a one-click fix plan tailored to your tech stack (Shopify, WordPress, or custom). No sign-up required.",
-      "source": {
-        "source": "git-subdir",
-        "url": "Alignment-GEOAI/alignment-workspace",
-        "path": "05-Alignment-Visibility%20Proxy/06.worker-claude/plugin",
-        "ref": "main"
-      },
-      "homepage": "https://alignmenttech.ai"
-    },
-    {
       "name": "geo-generative-engine-optimisation",
       "description": "Monitor AI citations, score content for AI search visibility, validate crawl parity, and optimise structured data for ChatGPT, Perplexity, and Google AI Overviews. The only plugin in the directory dedicated to Generative Engine Optimisation (GEO) — the emerging discipline of making content visible to AI search engines. Includes 6 skills: geo-score, citation-check, crawl-parity, schema-optimization, ai-content-strategy, and llms-txt.",
       "source": {
@@ -17454,17 +17446,6 @@
       "homepage": "https://entelligentsia.in/open-source/skillforge"
     },
     {
-      "name": "seedflip",
-      "description": "100+ curated design seeds for AI-assisted development. Each seed is a complete design system with fonts, colors, chart tokens, shadows, and spacing. Claude queries the catalog by brand reference (Stripe, Vercel, Linear), style (dark minimal, warm editorial, brutalist), or vibe. Returns production-ready config files in Tailwind, CSS, shadcn/ui, or token formats. No API key. No account. Runs locally via MCP.",
-      "source": {
-        "source": "git-subdir",
-        "url": "bockenstette1/seedflip",
-        "path": "plugins/claude-code",
-        "ref": "main"
-      },
-      "homepage": "https://seedflip.co"
-    },
-    {
       "name": "self-improving-agent-pipeline",
       "description": "A pipeline of skills that implements two feedback loops for Claude Code. The inner loop (plan-interview, intent-framed-agent, context-surfing, verify-gate, simplify-and-harden) catches failures during a session — verifying against tests, detecting scope and context drift, and reviewing code before signaling done. The outer loop (learning-aggregator, harness-updater, eval-creator, pre-flight-check) captures learnings, promotes recurring patterns into CLAUDE.md as permanent rules, and turns failures into regression tests. The harness gets stronger with every cycle.",
       "source": {
@@ -19800,17 +19781,6 @@
         "sha": "3da79797291c6626d530f57a49973eaaea09babd"
       },
       "homepage": "https://ajbarea.github.io/techne/"
-    },
-    {
-      "name": "telegram",
-      "description": "Connect a Telegram bot to your Claude Code session over MCP. The server logs in as a bot, forwards inbound messages into the session as <channel> notifications, and exposes tools to reply (with attachments up to 50MB), react with emoji, edit prior messages, and download inbound files. Built-in access control supports DM pairing flows and group/supergroup allowlists managed through the /telegram:access skill. Forum-topic routing via TELEGRAM_TOPIC_IDS lets a single bot fan out to multiple parallel Claude Code sessions, each bound to its own supergroup topic, so four sessions can work on four projects without racing for inbound messages. Proxy-aware transport (TELEGRAM_PROXY / HTTPS_PROXY) routes both text and multipart uploads through an HTTP proxy for use in regions where                \n  api.telegram.org is blocked or rate-limited.",
-      "source": {
-        "source": "git-subdir",
-        "url": "mjavadalavi/claude-plugins-official",
-        "path": "telegram-topic-routing",
-        "ref": "feat"
-      },
-      "homepage": "https://github.com/anthropics/claude-plugins-official"
     },
     {
       "name": "telegram-per-project",
