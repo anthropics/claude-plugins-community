@@ -23304,7 +23304,7 @@
         "url": "https://github.com/auth0/agent-skills",
         "path": "plugins/auth0",
         "ref": "main",
-        "sha": "fe3d7c59d9d8721a14c4302d273de91c4cf06004"
+        "sha": "6331cf05ef6bbc6999d7a7b98a583e7429ebe3f6"
       },
       "description": "A single unified Auth0 skill that detects your framework, feature, and tooling, then loads the right reference guides for adding authentication — login, MFA, Organizations, ACUL, custom domains, branding, JWT validation, migration, and debugging — to any app.",
       "category": "security",
