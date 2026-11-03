@@ -23450,7 +23450,7 @@
         "url": "https://github.com/rudderlabs/rudder-agent-skills",
         "path": "plugins/rudder-mcp",
         "ref": "a01396401d7e9e03ed2ac7737c26f1bb76de5028",
-        "sha": "a01396401d7e9e03ed2ac7737c26f1bb76de5028"
+        "sha": "3a898b2b1c99e78313102dab6561c76b220e8e35"
       },
       "description": "Workflows for RudderStack's MCP server at mcp.rudderstack.com: connect AI/LLM agents to a RudderStack workspace and drive catalog, sources, destinations, transformations, RETL, tracking plans, and live events via MCP tool calls.",
       "category": "development",
