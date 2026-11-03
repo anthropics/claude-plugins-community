@@ -23500,7 +23500,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/VeritasActa/Acta.git",
-        "sha": "c801781ae02c10cbeefce1d8986cab2f249d194f"
+        "sha": "0c84087b42c317ab1ed731ef6b669907af53c7b4"
       },
       "strict": false,
       "description": "Offline Ed25519 receipt verifier — checks signed decision receipts, agent manifests, and audit bundles without contacting any server.",
