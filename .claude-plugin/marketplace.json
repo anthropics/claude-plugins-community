@@ -23717,7 +23717,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/lcapossio/hdldiagZero.git",
-        "sha": "a96e4cc5cb91f6dc510b9fb6d2fc064821ed249d"
+        "sha": "2fd5d632f77a588b7b7f0636c75f3085283ad7ea"
       },
       "description": "Generate clean SVG block diagrams of HDL/RTL/SoC designs. Color-codes by clock domain, distinguishes AXI-MM/Lite/Stream, draws CDC blocks with split fill, omits clock/reset/JTAG/debug clutter, and validates output geometry.",
       "category": "development",
