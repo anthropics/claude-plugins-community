@@ -2754,7 +2754,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/browserless/claude-plugin.git",
-        "sha": "948c4bffc6542c2f117d6b783c5648a7b096c83b"
+        "sha": "92212c56d5cde5ada2eeeb16fffce005e23b900e"
       },
       "homepage": "https://docs.browserless.io/ai-integrations/claude-plugin"
     },
