@@ -23463,7 +23463,7 @@
         "url": "https://github.com/rudderlabs/rudder-agent-skills",
         "path": "plugins/rudder-terraform",
         "ref": "a01396401d7e9e03ed2ac7737c26f1bb76de5028",
-        "sha": "a01396401d7e9e03ed2ac7737c26f1bb76de5028"
+        "sha": "9ba0d839d4891b6b2bf53fd780ddcf265444eee9"
       },
       "description": "Workflows for managing RudderStack workspaces with the Terraform provider: provider setup, resource and data-source usage, init/plan/apply cycles, module structure, and state management.",
       "category": "development",
