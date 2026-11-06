@@ -16926,16 +16926,6 @@
       "homepage": "https://colineberhardt.github.io/claude-running-coach/"
     },
     {
-      "name": "runway-api-skills",
-      "description": "These skills are designed to help implement Runway's API for you. Integrate image, video, audio, or even live talking characters easily with the Runway API.",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/runwayml/skills.git",
-        "sha": "16353db3500ea5e346460755205991081567902a"
-      },
-      "homepage": "https://github.com/runwayml/skills"
-    },
-    {
       "name": "rustunnel",
       "description": "Expose local services via secure tunnels directly from Claude Code. Create public HTTPS and TCP URLs for webhooks, demos, database access, and AI agent workflows.",
       "source": {
