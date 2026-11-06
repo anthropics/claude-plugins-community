@@ -49,6 +49,15 @@ while IFS= read -r ext; do
 
   log "---- $name ($kind) ----"
 
+  # An exempt command source has no repo to clone; invariants (step 11) already
+  # gated it on command-exempt and checked the command string.
+  if [[ "$kind" == "command" && "$name" =~ ^[a-z0-9][a-z0-9-]{1,63}$ \
+        && " ${COMMAND_EXEMPT:-} " == *" $name "* ]]; then
+    log "$name: command source (command-exempt); nothing to clone, skipping"
+    record_result "cli-external" "skip" "$name" "command source, exempt via command-exempt"
+    continue
+  fi
+
   if [[ -z "$url" ]]; then
     error "$name: no url/repo field on source"
     record_result "cli-external" "fail" "$name" "no url/repo on source"

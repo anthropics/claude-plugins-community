@@ -10,11 +10,15 @@
 # I3  description 10-2000 chars, no leading/trailing whitespace
 # I4  all source.url are https:// (re-checked here as defense-in-depth)
 # I5  every external source has a 40-char sha (names in SHA_EXEMPT may omit
-#     it entirely; a present-but-malformed sha still fails even for them)
+#     it entirely; a present-but-malformed sha still fails even for them;
+#     names in COMMAND_EXEMPT whose source is {"source":"command"} have no
+#     sha to pin and skip I5)
 # I6  per-file mode: filename matches .name
 # I7  per-file mode: PR does not edit assembled marketplace.json directly
 # I8  vendored source path exists and contains .claude-plugin/plugin.json
-# I9  url/path/sha contain no shell metacharacters
+# I9  string fields under .source contain no shell metacharacters (for a
+#     COMMAND_EXEMPT command source, .command may contain single spaces
+#     between words, and nothing else outside [A-Za-z0-9._/=:-])
 # I10 name/description contain no hidden-Unicode (zero-width / bidi controls)
 # I11 name matches ^[a-z0-9][a-z0-9-]{1,63}$
 
@@ -27,6 +31,12 @@ WARN_INVARIANTS=" ${WARN_INVARIANTS:-I1 I3 I5 I8} "
 # Space-padded for whole-word matching, same trick as WARN_INVARIANTS —
 # exempting "abc" must not exempt "abc-extra".
 SHA_EXEMPT=" ${SHA_EXEMPT:-} "
+# Plugin names allowed to use a {"source":"command"} source. Same
+# space-padded whole-word convention as SHA_EXEMPT.
+COMMAND_EXEMPT=" ${COMMAND_EXEMPT:-} "
+# An exempt .command is a plain argv: words of [A-Za-z0-9._/=:-] separated by
+# single spaces. No quotes, globs, substitutions, redirects or separators.
+COMMAND_RE='^[A-Za-z0-9][A-Za-z0-9._/=:-]*( [A-Za-z0-9._/=:-]+)*$'
 failures=0
 warnings=0
 
@@ -126,6 +136,16 @@ while IFS= read -r entry; do
   name="$(jq -r '.name' <<<"$entry")"
   url="$(jq -r '.source.url // .source.repo // empty' <<<"$entry")"
   sha="$(jq -r '.source.sha // empty' <<<"$entry")"
+  kind="$(jq -r '.source.source // empty' <<<"$entry")"
+  # A command source resolves the plugin by running a local command (e.g. a
+  # vendor CLI) on the user's machine, so there is no repo to pin. Allowed only
+  # for names listed in command-exempt. The name must be I11-shaped before
+  # consulting the list (same splice guard as SHA_EXEMPT below).
+  cmd_exempt=0
+  if [[ "$kind" == "command" && "$name" =~ ^[a-z0-9][a-z0-9-]{1,63}$ \
+        && "$COMMAND_EXEMPT" == *" $name "* ]]; then
+    cmd_exempt=1
+  fi
 
   if [[ -n "$url" ]]; then
     if [[ ! "$url" =~ ^https://[A-Za-z0-9./_-]+$ ]] && \
@@ -133,7 +153,10 @@ while IFS= read -r entry; do
       flag "I4" "$name: source url/repo is not a safe https URL or owner/repo shorthand: $url" "$name"
     fi
   fi
-  if [[ ! "$sha" =~ ^[0-9a-f]{40}$ ]]; then
+  if (( cmd_exempt )) && [[ -z "$sha" ]]; then
+    info "invariant I5: $name is a command source (allowed via command-exempt); no sha to pin"
+    record_result "invariants" "skip" "I5" "$name: command source, exempt via command-exempt"
+  elif [[ ! "$sha" =~ ^[0-9a-f]{40}$ ]]; then
     # The name must itself be I11-shaped before consulting the list: in
     # repos where I11 is a warning, a name containing a space could otherwise
     # splice across two adjacent exempt entries ("foo bar" vs "foo" + "bar").
@@ -143,17 +166,29 @@ while IFS= read -r entry; do
       info "invariant I5: $name has no source.sha (allowed via sha-exempt)"
       record_result "invariants" "skip" "I5" "$name: unpinned, exempt via sha-exempt"
     else
-      flag "I5" "$name: source.sha is missing or not a 40-char hex SHA" "$name"
+      msg="$name: source.sha is missing or not a 40-char hex SHA"
+      [[ "$kind" == "command" ]] && msg="$msg (command sources must be listed in command-exempt)"
+      flag "I5" "$msg" "$name"
     fi
   fi
 
   # I9: every string-valued field under .source must be free of shell metacharacters.
+  # For an exempt command source, .command is checked against COMMAND_RE instead
+  # (it is an argv, so it needs spaces); every other field keeps the strict check.
+  skip_key=""
+  if (( cmd_exempt )); then
+    skip_key="command"
+    cmd="$(jq -r '.source.command // empty' <<<"$entry")"
+    if [[ ! "$cmd" =~ $COMMAND_RE ]] || (( ${#cmd} > 256 )); then
+      flag "I9" "$name: source.command must be words of [A-Za-z0-9._/=:-] separated by single spaces (max 256 chars): $cmd" "$name"
+    fi
+  fi
   while IFS= read -r v; do
     [[ -z "$v" ]] && continue
     if has_unsafe_chars "$v"; then
       flag "I9" "$name: source field contains shell metacharacters: $v" "$name"
     fi
-  done < <(jq -r '.source | to_entries[] | select(.value|type=="string") | .value' <<<"$entry")
+  done < <(jq -r --arg skip "$skip_key" '.source | to_entries[] | select(.key != $skip) | select(.value|type=="string") | .value' <<<"$entry")
 done < <(jq -c '.plugins[] | select(.source | type == "object")' -- "$MP")
 
 # I6 / I7 — per-file mode only
