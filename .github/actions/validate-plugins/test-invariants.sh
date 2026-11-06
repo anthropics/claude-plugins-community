@@ -16,7 +16,7 @@ failures=0; total=0
 mk() { local f="$TMP/$1.json"; cat > "$f"; printf '%s' "$f"; }
 
 run_invariants() {
-  export VALIDATE_TMP="$TMP/v" MARKETPLACE_PATH="$1" BASE_REF=HEAD WARN_INVARIANTS="" ENTRIES_DIR="${2:-}" SHA_EXEMPT="${SHA_EXEMPT_FIXTURE:-}"
+  export VALIDATE_TMP="$TMP/v" MARKETPLACE_PATH="$1" BASE_REF=HEAD WARN_INVARIANTS="" ENTRIES_DIR="${2:-}" SHA_EXEMPT="${SHA_EXEMPT_FIXTURE:-}" COMMAND_EXEMPT="${COMMAND_EXEMPT_FIXTURE:-}"
   rm -rf "$VALIDATE_TMP"; mkdir -p "$VALIDATE_TMP"
   cp "$1" "$VALIDATE_TMP/marketplace.json"
   bash scripts/11-validate-invariants.sh 2>&1 || true
@@ -100,6 +100,57 @@ EOF
 SHA_EXEMPT_FIXTURE="foo bar"
 assert_fires "I5 spaced name cannot splice exempt entries" I5 "$f"
 SHA_EXEMPT_FIXTURE=""
+
+# command-exempt: {"source":"command"} entries. Without the exemption they
+# still fail (no sha, and a multi-word command trips I9); with it, a plain argv
+# passes, but any shell metacharacter, or a non-command source, still fails.
+f=$(mk cmd_ok <<'EOF'
+{"plugins":[{"name":"xcode","description":"ten chars ok","source":{"source":"command","command":"xcrun agent plugin path --plugin-format claude","mode":"link"}}]}
+EOF
+)
+assert_fires "command source, not exempt -> I5" I5 "$f"
+assert_fires "command source, not exempt -> I9" I9 "$f"
+COMMAND_EXEMPT_FIXTURE="xcode"
+assert_clean "command source, exempt, plain argv" "$f"
+COMMAND_EXEMPT_FIXTURE="xcode-extra"
+assert_fires "command-exempt is whole-word (xcode-extra does not cover xcode)" I5 "$f"
+COMMAND_EXEMPT_FIXTURE="xcode"
+
+f=$(mk cmd_semi <<'EOF'
+{"plugins":[{"name":"xcode","description":"ten chars ok","source":{"source":"command","command":"xcrun agent; curl evil","mode":"link"}}]}
+EOF
+); assert_fires "exempt command with ';' -> I9" I9 "$f"
+f=$(mk cmd_subst <<'EOF'
+{"plugins":[{"name":"xcode","description":"ten chars ok","source":{"source":"command","command":"xcrun $(id)","mode":"link"}}]}
+EOF
+); assert_fires "exempt command with substitution -> I9" I9 "$f"
+f=$(mk cmd_glob <<'EOF'
+{"plugins":[{"name":"xcode","description":"ten chars ok","source":{"source":"command","command":"xcrun agent *","mode":"link"}}]}
+EOF
+); assert_fires "exempt command with glob -> I9" I9 "$f"
+f=$(mk cmd_dblspace <<'EOF'
+{"plugins":[{"name":"xcode","description":"ten chars ok","source":{"source":"command","command":"xcrun  agent","mode":"link"}}]}
+EOF
+); assert_fires "exempt command with double space -> I9" I9 "$f"
+f=$(mk cmd_empty <<'EOF'
+{"plugins":[{"name":"xcode","description":"ten chars ok","source":{"source":"command","mode":"link"}}]}
+EOF
+); assert_fires "exempt command source with no command -> I9" I9 "$f"
+f=$(mk cmd_otherfield <<'EOF'
+{"plugins":[{"name":"xcode","description":"ten chars ok","source":{"source":"command","command":"xcrun agent","mode":"link;x"}}]}
+EOF
+); assert_fires "exempt command source, metachar in another field -> I9" I9 "$f"
+f=$(mk cmd_url <<'EOF'
+{"plugins":[{"name":"xcode","description":"ten chars ok","source":{"source":"url","url":"https://github.com/x/y"}}]}
+EOF
+); assert_fires "command-exempt does not waive I5 for a url source" I5 "$f"
+f=$(mk cmd_splice <<'EOF'
+{"plugins":[{"name":"foo bar","description":"ten chars ok","source":{"source":"command","command":"xcrun agent","mode":"link"}}]}
+EOF
+)
+COMMAND_EXEMPT_FIXTURE="foo bar"
+assert_fires "command-exempt: spaced name cannot splice exempt entries" I5 "$f"
+COMMAND_EXEMPT_FIXTURE=""
 
 # I6/I7: per-file mode invariants — need an entries-dir with a misnamed file
 mkdir -p "$TMP/entries"

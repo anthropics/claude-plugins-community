@@ -32,6 +32,17 @@ inputs:
       users can change without review. Pair with the same list on the
       bump-plugin-shas action, or the nightly bump will re-pin exempt entries.
     default: ""
+  command-exempt:
+    description: >
+      Space-separated plugin names allowed to use a {"source":"command"}
+      source, which resolves the plugin by running a local command on the
+      user's machine (e.g. a vendor CLI) instead of cloning a repo. Listed
+      names skip I5 (there is no sha to pin) and step 30 (there is nothing to
+      clone); their source.command must be plain words of [A-Za-z0-9._/=:-]
+      separated by single spaces (I9). Unlisted command sources still fail.
+      The command's output is not reviewed by this action, so list only
+      sources whose publisher you trust.
+    default: ""
   scope-errors-to-changed:
     description: >
       When true, a per-entry invariant violation on an entry this PR did NOT
@@ -210,6 +221,7 @@ runs:
         FAIL_ON_WARNINGS: ${{ inputs.fail-on-warnings }}
         WARN_INVARIANTS: ${{ inputs.warn-invariants }}
         SHA_EXEMPT: ${{ inputs.sha-exempt }}
+        COMMAND_EXEMPT: ${{ inputs.command-exempt }}
         SCOPE_ERRORS_TO_CHANGED: ${{ inputs.scope-errors-to-changed }}
       run: "$ACTION_PATH/scripts/11-validate-invariants.sh"
 
@@ -226,6 +238,7 @@ runs:
         EXTERNAL_TIMEOUT_SECS: ${{ inputs.external-timeout-secs }}
         ALLOWED_HOSTS: ${{ inputs.allowed-hosts }}
         VALIDATE_ALL_EXTERNAL: ${{ inputs.validate-all-external }}
+        COMMAND_EXEMPT: ${{ inputs.command-exempt }}
       run: "$ACTION_PATH/scripts/30-validate-cli-external.sh"
 
     - name: CLI validate changed in-repo folders
