@@ -20308,7 +20308,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/run-as-root/toggl-claude-plugin.git",
-        "sha": "f67b7647cd7b30ba2f8f03d53358ac333cbe0024"
+        "sha": "5b737582c2c4a72baa82bc0f190f6da73971c85b"
       },
       "homepage": "https://github.com/run-as-root/toggl-claude-plugin"
     },
