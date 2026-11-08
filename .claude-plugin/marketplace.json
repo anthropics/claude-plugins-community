@@ -20801,7 +20801,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/grodowski/undercover-claude.git",
-        "sha": "0cb2b27e5208e71ef00b3363f39b75861ebf4e46"
+        "sha": "10ee133b205b0f8fd7b8cdc8d2e048adc3576e8a"
       },
       "homepage": "https://undercover-ci.com/docs#claude-code"
     },
