@@ -23291,7 +23291,7 @@
         "url": "https://github.com/Unstructured-IO/unstructured-foundation-marketplace",
         "path": "plugins/foundation",
         "ref": "a632b2021dd277dd3fc75a2f6db570bad91d0ace",
-        "sha": "a632b2021dd277dd3fc75a2f6db570bad91d0ace"
+        "sha": "492770f062ba9f01e8a0ae9b111c89e4642fdb29"
       },
       "description": "Connect sources and search processed documents with Unstructured Foundation. Provides MCP access to source setup, processing status, document search, and document retrieval.",
       "category": "productivity",
