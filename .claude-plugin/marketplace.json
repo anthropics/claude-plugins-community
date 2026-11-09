@@ -23341,7 +23341,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/brentmitchell25/mise-plugin",
-        "sha": "96d7f34aa4ae32d4e3cd6c7b7eab23cdf4ac6ce0"
+        "sha": "0b1519cd92f4614e44e019d8eae22263f854e970"
       },
       "description": "Comprehensive mise skill for Claude Code covering the full mise ecosystem: task definition with usage spec arguments, dev tool management across 18 backends, environment configuration with profiles, hooks, and 100+ settings.",
       "category": "development",
