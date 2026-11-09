@@ -23424,7 +23424,7 @@
         "url": "https://github.com/rudderlabs/rudder-agent-skills",
         "path": "plugins/rudder-core",
         "ref": "a01396401d7e9e03ed2ac7737c26f1bb76de5028",
-        "sha": "a01396401d7e9e03ed2ac7737c26f1bb76de5028"
+        "sha": "3a898b2b1c99e78313102dab6561c76b220e8e35"
       },
       "description": "Cross-tool RudderStack domain knowledge: data catalog, data graphs, tracking plans, instrumentation planning, instrumentation debugging, and destination delivery debugging.",
       "category": "development",
