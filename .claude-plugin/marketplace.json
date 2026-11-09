@@ -23810,7 +23810,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/ozgurcd/gograph.git",
-        "sha": "aa4d6d549e64f35c492664263630ba1350c66920"
+        "sha": "3701e4eacddddf395cfa870cd8544493c5c8f7ab"
       },
       "description": "Local AST-aware Go repository analysis for coding agents. Provides 61 query, analysis, and workflow capabilities (65 MCP endpoints including session lifecycle) covering call graphs, impact, interfaces, type usage, security-flow candidates, architecture policies, diagrams, error flow, and local workflow telemetry.",
       "category": "development",
