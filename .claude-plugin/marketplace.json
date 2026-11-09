@@ -23512,7 +23512,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/WhimsicalCode/mcp-server-guide.git",
-        "sha": "f64a50aa1ec2ab65f047935ecdfbb842fd900f5e"
+        "sha": "b86d8eb1e6bf3fa1826c00933366f3b9815df35a"
       },
       "description": "Create flowcharts, mind maps, wireframes, sequence diagrams, and sticky notes in Whimsical from your conversation. Iterate with follow-up prompts, open boards in Whimsical to edit and collaborate, or search your existing workspace.",
       "category": "development",
