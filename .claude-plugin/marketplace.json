@@ -23763,7 +23763,7 @@
         "url": "https://github.com/john-farina/claude-plugins.git",
         "path": "plugins/conjure",
         "ref": "main",
-        "sha": "d97d75d6912d38bf56a32538775799d05f45fca5"
+        "sha": "9ead2405a716c3834cd2adfc94e6d69b15b3347a"
       },
       "description": "Build Claude Code skills, agents, hooks, and MCP servers from plain-language descriptions. Generate, validate, and ship plugins without writing boilerplate.",
       "category": "development",
