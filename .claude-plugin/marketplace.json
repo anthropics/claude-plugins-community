@@ -23437,7 +23437,7 @@
         "url": "https://github.com/rudderlabs/rudder-agent-skills",
         "path": "plugins/rudder-cli",
         "ref": "a01396401d7e9e03ed2ac7737c26f1bb76de5028",
-        "sha": "a01396401d7e9e03ed2ac7737c26f1bb76de5028"
+        "sha": "3a898b2b1c99e78313102dab6561c76b220e8e35"
       },
       "description": "Workflows for driving the rudder-cli and rudder-typer CLIs: validate, dry-run, apply, import, transformations.",
       "category": "development",
