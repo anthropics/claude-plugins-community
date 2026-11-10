@@ -23489,7 +23489,7 @@
         "url": "https://github.com/SynthFlowAI/AnthropicPlugin",
         "path": "plugins/synthflow",
         "ref": "main",
-        "sha": "205871ee83508502d2c982ee1bb7e65a2a29190b"
+        "sha": "e2b375d91cac13dc740e8c965c2f84ced3320516"
       },
       "description": "Connects Claude Code to the Synthflow AI voice-agent platform through its hosted MCP server. Lets Claude manage assistants, phone numbers, calls, and workflows.",
       "category": "development",
