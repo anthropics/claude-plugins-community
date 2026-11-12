@@ -22839,7 +22839,7 @@
         "url": "https://github.com/oracle/netsuite-suitecloud-sdk.git",
         "path": "packages/agent-skills",
         "ref": "master",
-        "sha": "d0069ddee009765d04e1afbe6ac5dde8b6b263cf"
+        "sha": "25488efa43523be7dccb9fe6bbefdbd8ae7a5806"
       },
       "strict": false,
       "skills": [
