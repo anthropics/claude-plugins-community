@@ -78,6 +78,29 @@ assert_no_manifest "strict:true with no manifest fails" "$t" "x" "true"
 t="$(mkdir_target)"
 assert_no_manifest "strict default (empty arg) with no manifest fails" "$t" "x" ""
 
+# 7. remove_escaping_symlinks: links out of the clone (or into .git) go, the rest stay
+t="$(mkdir_target)"; outside="$(mkdir_target)"; echo secret > "$outside/plugin.json"
+mkdir -p "$t/sub" "$t/.git"; echo '{"name":"x"}' > "$t/sub/plugin.json"; echo cfg > "$t/.git/config"
+ln -s sub "$t/kept-dir"; ln -s sub/plugin.json "$t/kept-file"
+ln -s "$outside" "$t/out-dir"; ln -s "../${outside##*/}/plugin.json" "$t/out-file"
+ln -s out-file "$t/out-chain"; ln -s "$outside/not-yet" "$t/out-dangling"; ln -s ../.git/config "$t/sub/into-git"
+ln -s "$outside" "$t/.claude-plugin"
+total=$((total+1))
+if remove_escaping_symlinks "$t" \
+   && [[ -L "$t/kept-dir" && -f "$t/kept-file" && -f "$t/.git/config" ]] \
+   && [[ ! -L "$t/out-dir" && ! -L "$t/out-file" && ! -L "$t/out-chain" ]] \
+   && [[ ! -L "$t/out-dangling" && ! -L "$t/sub/into-git" && ! -L "$t/.claude-plugin" ]] \
+   && [[ "$(cat "$outside/plugin.json")" == "secret" ]]; then
+  echo "  PASS removes escaping symlinks, keeps inside ones"
+else echo "  FAIL symlink containment"; failures=$((failures+1)); fi
+assert_no_manifest "a manifest reached through an escaping link is not used" "$t" "x" "true"
+
+# 8. a directory that cannot be walked fails closed
+total=$((total+1))
+if remove_escaping_symlinks "$t/no-such-dir" 2>/dev/null; then
+  echo "  FAIL missing clone should not pass"; failures=$((failures+1))
+else echo "  PASS missing clone is rejected"; fi
+
 echo
 echo "=== $((total-failures))/$total passed ==="
 [[ "$failures" -eq 0 ]]

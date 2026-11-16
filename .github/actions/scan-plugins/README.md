@@ -5,8 +5,8 @@ Companion to [`validate-plugins`](../validate-plugins/) and
 [`bump-plugin-shas`](../bump-plugin-shas/).
 
 **Non-blocking by default.** Findings surface as `::warning` annotations and a
-step-summary table. Set `fail-on-findings: true` to make policy failures fail
-the job.
+step-summary table. Set `fail-on-findings: true` to make policy failures, and
+entries that could not be reviewed, fail the job.
 
 **Bot-free.** Needs only Anthropic API auth — either an `ANTHROPIC_API_KEY`
 secret, or [Workload Identity Federation](https://github.com/anthropics/claude-code-action/blob/main/docs/setup.md)
@@ -40,6 +40,15 @@ Package invocations inside `skills/`, `commands/`, or `agents/` markdown are
 deliberately out of scope: those run agent-invoked and permission-gated, a
 different trust shape from a session-start auto-launch.
 
+The pin check clones each entry the way the AI review does (symlinks are
+checked out as plain files, no LFS smudge), so it reads only file content of
+the pinned commit. If an entry's `.mcp.json`, `plugin.json` or `.claude-plugin`
+folder is committed as a symlink, or a manifest is stored through git LFS, the
+check does not follow or fetch it: the entry gets a `pin-state not assessed`
+warning and `assessed: false` in `pin-scanned`. The job does not fail on this,
+even with `fail-on-unpinned-autoexec: true`; gate on `assessed` to block it.
+A bare package name under a symlinked `node_modules` counts as floating.
+
 Classifier logic lives in [`lib/pin-check.sh`](lib/pin-check.sh) (see its
 provenance header) with golden vectors in
 [`test-pin-check.sh`](test-pin-check.sh).
@@ -72,11 +81,30 @@ forking the action).
 1. Determines targets: external entries that changed vs `base-ref` (or all
    external entries if `scan-all-external: true`).
 2. For each target: clone at the pinned SHA into an isolated temp dir (same
-   SSRF allowlist, quoting, and `--` discipline as `validate-plugins`).
-3. Run `claude -p` headless with the policy prompt and read-only file tools,
-   scoped to the cloned directory.
-4. Parse the JSON verdict; emit `::warning` (or `::error` if
-   `fail-on-findings`) annotations with line numbers into `marketplace.json`.
+   SSRF allowlist, quoting, and `--` discipline as `validate-plugins`),
+   with symlinks checked out as plain files and LFS smudge disabled.
+3. Run `claude -p` headless with the policy prompt and file-reading tools
+   only (Read/Glob/Grep), confined to the cloned directory: no shell, edit or
+   network tools exist in the session, and no settings, hooks, `CLAUDE.md`,
+   skills, agents, commands or MCP servers are loaded from the clone
+   (`--safe-mode --setting-sources user --strict-mcp-config --tools
+   --allowed-tools --no-session-persistence`, plus `--restricted` when the
+   installed CLI supports it; a CLI too old for these flags fails the step).
+   The git calls the CLI makes on startup can only find the clone made in
+   step 2: `safe.bareRepository=explicit` is set in the runner user's git
+   config file for the duration of the step (and undone afterwards), and an
+   entry is not reviewed if git started in its directory resolves to anything
+   other than that clone. Pin `claude-cli-version` to a release you have
+   reviewed rather than `latest`: the confinement rests on CLI behaviour.
+   The consumer's `policy-prompt` should come from a trusted ref, not from
+   the change under review.
+4. Parse the JSON verdict, redact credential-shaped strings from it, and emit
+   `::warning` (or `::error` if `fail-on-findings`) annotations with line
+   numbers into `marketplace.json`. An entry that cannot be reviewed at all
+   (clone failure, error, timeout, unparseable result) is listed as "not
+   assessed" and, with `fail-on-findings`, fails the step instead of passing
+   unreviewed; the log carries a short redacted diagnostic, never the raw
+   model output.
 5. Write a step-summary table with passes/violations and the
    network-calls/software-install flags.
 
@@ -124,7 +152,7 @@ jobs:
 | `anthropic-service-account-id` | `""` | required when `anthropic-federation-rule-id` is set |
 | `marketplace-path` | `.claude-plugin/marketplace.json` | |
 | `base-ref` | PR base / push `before` / `origin/main` | |
-| `fail-on-findings` | `false` | if true, `passes:false` fails the job |
+| `fail-on-findings` | `false` | if true, `passes:false` fails the job, and so does an entry that could not be reviewed ("not assessed") |
 | `scan-all-external` | `false` | nightly full-sweep mode |
 | `policy-prompt` | bundled `policy/prompt.md` | override with a repo-local file |
 | `allowed-hosts` | `github.com gitlab.com bitbucket.org` | SSRF allowlist |
@@ -144,7 +172,7 @@ jobs:
 
 This runs as a step inside the calling job, so it shares that job's
 `GITHUB_TOKEN`. The `claude -p` invocation is restricted to read-only file
-tools (`Read Glob Grep LS`) scoped to the cloned plugin directory; the prompt
+tools (`Read Glob Grep`) scoped to the cloned plugin directory; the prompt
 is constructed by this action, not by the plugin. For repos accepting fully
 untrusted submissions, run this action in a separate job with
 `permissions: {}` for stronger isolation — see the consuming-workflow example

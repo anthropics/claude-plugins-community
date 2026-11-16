@@ -4,7 +4,7 @@ description: >
   Clones each changed entry at its pinned SHA, runs Claude headless against
   policy/prompt.md, and reports verdicts as inline annotations and a step
   summary. Non-blocking by default (warnings); set fail-on-findings to make
-  policy violations fail the job. Bot-free: needs only Anthropic API auth —
+  policy violations, and entries that could not be reviewed, fail the job. Bot-free: needs only Anthropic API auth —
   either an ANTHROPIC_API_KEY secret or Workload Identity Federation inputs
   (the latter requires `permissions: id-token: write` on the calling job).
   Also runs a deterministic, auth-free static pin check on each entry's
@@ -40,7 +40,7 @@ inputs:
     description: Git ref to diff against for change detection
     default: ${{ github.event.pull_request.base.sha || github.event.before || 'origin/main' }}
   fail-on-findings:
-    description: If true, a `passes:false` verdict fails the job. Default false (annotate-only).
+    description: If true, a `passes:false` verdict fails the job, and so does an entry that could not be reviewed at all. Default false (annotate-only).
     default: "false"
   fail-on-unpinned-autoexec:
     description: >
@@ -101,7 +101,8 @@ outputs:
       JSON array from the static pin check, one element per target:
       {name, assessed, unpinned_autoexec_runtime, unpinned_autoexec_specs}.
       Emitted even when the AI review is skipped (no Anthropic auth); gate on
-      `assessed` — an unclonable target records assessed=false.
+      `assessed` — an unclonable target, or one whose manifest is a symlink
+      or a git LFS pointer, records assessed=false.
     value: ${{ steps.pin.outputs.pin-scanned }}
   pin-failed:
     description: JSON array of plugin names with a non-waived floating auto-exec launcher
