@@ -121,6 +121,32 @@ cli_validate() {
   return 1
 }
 
+# ---- symlink containment ----------------------------------------------------
+# Delete every symlink in an external clone whose target is outside the clone
+# (or inside its .git), so the later steps use only the clone's own files.
+# Links that stay inside the clone are kept. Returns non-zero if the clone
+# could not be checked; the caller must then reject the entry.
+remove_escaping_symlinks() {
+  python3 -I - "$1" <<'PY'
+import os, sys
+root = os.path.realpath(sys.argv[1])
+git = os.path.join(root, ".git")
+def under(path, parent):
+    return path == parent or path.startswith(parent + os.sep)
+def fail(err):
+    raise err
+links = []
+for base, dirs, files in os.walk(root, onerror=fail):
+    if base == root and ".git" in dirs:
+        dirs.remove(".git")
+    links += [p for p in (os.path.join(base, n) for n in dirs + files) if os.path.islink(p)]
+bad = [p for p in links
+       if not under(os.path.realpath(p), root) or under(os.path.realpath(p), git)]
+for p in bad:
+    os.unlink(p)
+PY
+}
+
 # ---- external manifest resolution ------------------------------------------
 # Resolve the plugin manifest to validate for an external (cloned) plugin.
 # Echoes the manifest path on success (rc 0); rc 1 = no manifest found and the

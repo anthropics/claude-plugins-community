@@ -53,3 +53,5 @@ jobs:
           marketplace-path: .claude-plugin/marketplace.json
           skip-local-folders: "true"
           scope-errors-to-changed: "true"
+          # Same as the default, except a missing sha pin is an error.
+          warn-invariants: "I1 I3 I8"

@@ -14,6 +14,9 @@
 #
 # Runs with NO Anthropic auth, so consumers get pin enforcement even when the
 # AI review is skipped.
+#
+# An entry with a manifest committed as a symlink, or stored through git LFS,
+# is reported as not assessed.
 
 source "$VALIDATE_LIB"
 source "$ACTION_PATH/lib/pin-check.sh"
@@ -71,6 +74,57 @@ record() {
     '. + [{name:$n, assessed:$a, unpinned_autoexec_runtime:$r, unpinned_autoexec_specs:$s}]' <<<"$pin_scanned")"
 }
 
+# manifest_problem CLONE_ROOT PLUGIN_DIR SUBDIR: print one constant reason
+# (no text from the plugin repo) why the entry cannot be assessed, or nothing if
+# manifests and .claude-plugin are regular files or folders, not LFS pointers.
+manifest_problem() {
+  local root plug rel rec p
+  root="$(cd "$1" 2>/dev/null && pwd -P)" || root=""
+  plug="$(cd "$2" 2>/dev/null && pwd -P)" || plug=""
+  if [[ -z "$root" || -z "$plug" ]] || [[ "$plug" != "$root" && "$plug" != "$root"/* ]]; then
+    printf 'source.path does not resolve to a folder inside the plugin repository'; return 0
+  fi
+  # source.path as git spells it: one slash between names, no "." names, no
+  # leading slash, a trailing one. ".." was refused before the clone.
+  rel="/$3/"
+  while [[ "$rel" == *//* ]]; do rel="${rel//\/\//\/}"; done
+  while [[ "$rel" == */./* ]]; do rel="${rel//\/.\//\/}"; done
+  rel="${rel#/}"
+  # A committed symlink is a plain file on disk here, so ask git what it checked
+  # out: the index lists a symlink with mode 120000. Run from the clone root,
+  # paths literal. The folder's path also lists what is under the folder.
+  if ! git -C "$root" --literal-pathspecs ls-files -s -z -- \
+         "${rel}.mcp.json" "${rel}plugin.json" "${rel}.claude-plugin" \
+         > "$workroot/manifest-modes" 2>/dev/null; then
+    printf 'git could not list the plugin files at the pinned sha (a fault in this check, not in the plugin; re-run the job)'; return 0
+  fi
+  while IFS= read -r -d '' rec; do
+    [[ "$rec" == 120000\ * ]] || continue
+    case "${rec#*$'\t'}" in
+      "${rel}.claude-plugin/.mcp.json")   p=".claude-plugin/.mcp.json" ;;
+      "${rel}.claude-plugin/plugin.json") p=".claude-plugin/plugin.json" ;;
+      "${rel}.claude-plugin")             p="the .claude-plugin folder" ;;
+      "${rel}.mcp.json")                  p=".mcp.json" ;;
+      "${rel}plugin.json")                p="plugin.json" ;;
+      *) continue ;;
+    esac
+    printf '%s is a symlink in the plugin repository, and this check does not follow symlinks' "$p"; return 0
+  done < "$workroot/manifest-modes"
+  # On disk these must be regular files or folders (symlinks are gone by now).
+  for p in .claude-plugin .mcp.json plugin.json .claude-plugin/.mcp.json .claude-plugin/plugin.json; do
+    if [[ -L "$plug/$p" ]] || [[ -e "$plug/$p" && ! -f "$plug/$p" && ! -d "$plug/$p" ]]; then
+      printf '%s is a symlink or other special file, and this check reads only regular files and folders' "$p"; return 0
+    fi
+    # LFS objects are not fetched, so an LFS-stored manifest is a pointer file.
+    [[ -f "$plug/$p" ]] || continue
+    rec=""; IFS= read -r -n 48 rec < "$plug/$p" 2>/dev/null || true
+    if [[ "$rec" == "version https://git-lfs.github.com/spec/v1"* ]]; then
+      printf '%s is stored through git LFS, and this check does not download LFS files' "$p"; return 0
+    fi
+  done
+  return 0
+}
+
 while IFS= read -r ext; do
   idx=$((idx+1))
   name="$(jq -r '.name' <<<"$ext")"
@@ -84,9 +138,9 @@ while IFS= read -r ext; do
 
   # Target hygiene guards — KEEP IN SYNC with scan.sh's per-target guard block
   # (same order, same reject conditions). An unassessable target records
-  # assessed=false and is skipped, never failed: pin-state enforcement is about
-  # what a bump/add would ship, and an unclonable entry ships nothing new here
-  # (clone/URL problems are surfaced by validate/scan already).
+  # assessed=false and is skipped, never failed: an unclonable entry ships
+  # nothing new (validate/scan surface clone/URL problems), and one skipped for
+  # a symlinked or LFS-stored manifest is left to callers gating on `assessed`.
   skip_unassessed() {
     printf '::warning %s::static-pin-check: %s — %s; pin-state not assessed\n' "$loc" "$name" "$1"
     record "$name" false false '[]'
@@ -111,13 +165,20 @@ while IFS= read -r ext; do
 
   dest="$workroot/ext-$idx"
   mkdir -p -- "$dest"
-  if ! timeout 120 git clone --quiet --depth 1 -- "$url" "$dest" 2>&1 \
-     || ! git -C "$dest" fetch --quiet --depth 1 origin -- "$sha" 2>&1 \
-     || ! git -C "$dest" -c advice.detachedHead=false checkout --quiet "$sha" -- 2>&1; then
+  # KEEP IN SYNC with scan.sh's clone. core.symlinks=false: a symlink in the
+  # plugin repo is checked out as a plain file, so nothing read below leads out
+  # of the checkout. GIT_LFS_SKIP_SMUDGE: the checkout fetches no LFS objects.
+  if ! timeout 120 env GIT_LFS_SKIP_SMUDGE=1 GIT_TERMINAL_PROMPT=0 git clone --quiet --depth 1 --config core.symlinks=false -- "$url" "$dest" 2>&1 \
+     || ! env GIT_LFS_SKIP_SMUDGE=1 GIT_TERMINAL_PROMPT=0 git -C "$dest" fetch --quiet --depth 1 origin -- "$sha" 2>&1 \
+     || ! env GIT_LFS_SKIP_SMUDGE=1 git -C "$dest" -c advice.detachedHead=false checkout --quiet "$sha" -- 2>&1; then
     skip_unassessed "clone/fetch/checkout failed"; continue
   fi
+  # Second guard: delete any symlink left on disk despite core.symlinks=false.
+  find "$dest" -type l -delete 2>/dev/null || true
   target="$dest${subdir:+/$subdir}"
   if [[ ! -d "$target" ]]; then skip_unassessed "subdir not found at sha"; continue; fi
+  problem="$(manifest_problem "$dest" "$target" "$subdir")"
+  if [[ -n "$problem" ]]; then skip_unassessed "$problem"; continue; fi
 
   rows="$(pin_check_tree "$target")"
   floating_specs="$(pin_check_floating_specs "$rows")"
