@@ -87,19 +87,25 @@ jobs:
           pr-mode: per-entry
           claude-cli-version: latest
 
-      # Per-entry fan-out: dispatch the required validate check against EACH per-entry
+      # Per-entry fan-out: dispatch the required checks against EACH per-entry
       # bump branch (recursion guard → on:pull_request won't fire on a GITHUB_TOKEN-
       # opened PR). `pr-urls` is a JSON array of {name, old_sha, new_sha, branch,
-      # pr_url}. Attempt every dispatch, then fail the step if any failed — a missing
+      # pr_url}. Attempt every dispatch, then warn if any failed — a missing
       # required check would leave its bump PR silently unmergeable, and the action
       # skips slugs with an open PR so it would never be retried.
       #
+      # Dispatches BOTH validate-plugins.yml (deterministic, live) AND
+      # scan-plugins.yml (Claude policy scan). scan-plugins is advisory until its
+      # WIF rule is provisioned + SCAN_FAIL_ON_FINDINGS is flipped — until then a
+      # dispatch failure is harmless (the check is not required), but we still
+      # surface it so a real wiring break is visible.
+      #
       # NOTE (post-merge requirement): the bump branch is cut from `main`, so the
-      # dispatch resolves validate-plugins.yml as it exists on main — workflow_dispatch
-      # must already be on main (true once this feature is merged). A pre-merge test
-      # from a feature branch will fail here, which the `|| { … }` surfaces as a
-      # warning rather than masking an otherwise-successful bump.
-      - name: Dispatch validate per per-entry PR
+      # dispatch resolves each workflow as it exists on main — its workflow_dispatch
+      # trigger must already be on main (true once this feature is merged). A
+      # pre-merge test from a feature branch will fail here, which the `|| { … }`
+      # surfaces as a warning rather than masking an otherwise-successful bump.
+      - name: Dispatch required checks per per-entry PR
         if: steps.bump.outputs.pr-urls != '' && steps.bump.outputs.pr-urls != '[]'
         env:
           GH_TOKEN: ${{ github.token }}
@@ -110,10 +116,12 @@ jobs:
           jq -c '.[]' <<<"$PR_URLS" | while read -r entry; do
             branch=$(jq -r '.branch' <<<"$entry")
             name=$(jq -r '.name' <<<"$entry")
-            echo "Dispatching validate-plugins.yml against $branch ($name)"
-            gh workflow run validate-plugins.yml --ref "$branch" \
-              || { echo "::warning::Could not dispatch validate-plugins.yml against $branch ($name) — is validate-plugins.yml with workflow_dispatch on the base branch yet? Re-dispatch: gh workflow run validate-plugins.yml --ref $branch"; echo "$branch" >> "$fails"; }
+            for wf in validate-plugins scan-plugins; do
+              echo "Dispatching ${wf}.yml against $branch ($name)"
+              gh workflow run "${wf}.yml" --ref "$branch" \
+                || { echo "::warning::Could not dispatch ${wf}.yml against $branch ($name) — is ${wf}.yml with workflow_dispatch on the base branch yet? Re-dispatch: gh workflow run ${wf}.yml --ref $branch"; echo "$branch $wf" >> "$fails"; }
+            done
           done
           if [ -s "$fails" ]; then
-            echo "::warning::$(wc -l < "$fails" | tr -d ' ') validate dispatch(es) failed (see annotations); those bump PR(s) need a manual re-dispatch for their required check."
+            echo "::warning::$(wc -l < "$fails" | tr -d ' ') check dispatch(es) failed (see annotations); those bump PR(s) need a manual re-dispatch for their required check."
           fi
