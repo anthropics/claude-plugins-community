@@ -13636,7 +13636,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/agent-sh/next-task.git",
-        "sha": "17ee8564af0b97a075311c938278ed0669a3bfc6"
+        "sha": "6fadc095f6d038574d29ec528c9762fa9bc73ac8"
       },
       "homepage": "https://github.com/agent-sh/next-task"
     },
