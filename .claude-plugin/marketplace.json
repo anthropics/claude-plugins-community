@@ -14802,7 +14802,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/agent-sh/perf.git",
-        "sha": "18416de01e88814b26a6dc5ee1de3bb6c278736c"
+        "sha": "7d1ffea9ec9c7ef5f0ed578b5daf777c022dcd0e"
       },
       "homepage": "https://github.com/agent-sh/perf"
     },
