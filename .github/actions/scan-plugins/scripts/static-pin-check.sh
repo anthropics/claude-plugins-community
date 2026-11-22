@@ -165,7 +165,7 @@ while IFS= read -r ext; do
 
   dest="$workroot/ext-$idx"
   mkdir -p -- "$dest"
-  # KEEP IN SYNC with scan.sh's clone. core.symlinks=false: a symlink in the
+  # Unlike scan.sh, this checks files out. core.symlinks=false: a symlink in the
   # plugin repo is checked out as a plain file, so nothing read below leads out
   # of the checkout. GIT_LFS_SKIP_SMUDGE: the checkout fetches no LFS objects.
   if ! timeout 120 env GIT_LFS_SKIP_SMUDGE=1 GIT_TERMINAL_PROMPT=0 git clone --quiet --depth 1 --config core.symlinks=false -- "$url" "$dest" 2>&1 \

@@ -40,8 +40,8 @@ Package invocations inside `skills/`, `commands/`, or `agents/` markdown are
 deliberately out of scope: those run agent-invoked and permission-gated, a
 different trust shape from a session-start auto-launch.
 
-The pin check clones each entry the way the AI review does (symlinks are
-checked out as plain files, no LFS smudge), so it reads only file content of
+The pin check checks each entry out with symlinks as plain files and no LFS
+smudge, so it reads only file content of
 the pinned commit. If an entry's `.mcp.json`, `plugin.json` or `.claude-plugin`
 folder is committed as a symlink, or a manifest is stored through git LFS, the
 check does not follow or fetch it: the entry gets a `pin-state not assessed`
@@ -72,36 +72,32 @@ input:
           policy-prompt: .github/policy/prompt.md   # repo-local, synced from private source
 ```
 
-The verdict shape is in [`policy/schema.json`](policy/schema.json)
-(`additionalProperties: true`, so a private prompt can add fields without
-forking the action).
+The output shape is in [`policy/schema.json`](policy/schema.json). The model
+answers with its five required fields only: what a private prompt asks for beyond
+them goes into `violations`.
 
 ## What it does
 
 1. Determines targets: external entries that changed vs `base-ref` (or all
    external entries if `scan-all-external: true`).
-2. For each target: clone at the pinned SHA into an isolated temp dir (same
-   SSRF allowlist, quoting, and `--` discipline as `validate-plugins`),
-   with symlinks checked out as plain files and LFS smudge disabled.
-3. Run `claude -p` headless with the policy prompt and file-reading tools
-   only (Read/Glob/Grep), confined to the cloned directory: no shell, edit or
-   network tools exist in the session, and no settings, hooks, `CLAUDE.md`,
-   skills, agents, commands or MCP servers are loaded from the clone
-   (`--safe-mode --setting-sources user --strict-mcp-config --tools
-   --allowed-tools --no-session-persistence`, plus `--restricted` when the
-   installed CLI supports it; a CLI too old for these flags fails the step).
-   The git calls the CLI makes on startup can only find the clone made in
-   step 2: `safe.bareRepository=explicit` is set in the runner user's git
-   config file for the duration of the step (and undone afterwards), and an
-   entry is not reviewed if git started in its directory resolves to anything
-   other than that clone. Pin `claude-cli-version` to a release you have
-   reviewed rather than `latest`: the confinement rests on CLI behaviour.
-   The consumer's `policy-prompt` should come from a trusted ref, not from
-   the change under review.
+2. For each target: fetch the pinned SHA into an isolated temp dir (same
+   SSRF allowlist, quoting, and `--` discipline as `validate-plugins`).
+   Nothing is checked out for the review: the files are read from git objects.
+3. Send the policy prompt and all the plugin's files to Claude in **one request
+   with no tools** ([`scripts/review.py`](scripts/review.py)). The model sees
+   only that request: it can't read the runner, run anything or use the network.
+   Images, fonts and documents are listed without their content. A plugin is not
+   reviewed (see 4) if it has any other file that isn't text, a submodule, a Git
+   LFS file or other git filter, a symlink that doesn't lead straight to one of
+   its own files, names that differ only in case, over 1.5 MB of text or over
+   5,000 files. The consumer's
+   `policy-prompt` should come from a trusted ref, not from the change under
+   review.
 4. Parse the JSON verdict, redact credential-shaped strings from it, and emit
    `::warning` (or `::error` if `fail-on-findings`) annotations with line
    numbers into `marketplace.json`. An entry that cannot be reviewed at all
-   (clone failure, error, timeout, unparseable result) is listed as "not
+   (clone failure, too large, error, timeout, an answer that isn't exactly a
+   verdict) is listed as "not
    assessed" and, with `fail-on-findings`, fails the step instead of passing
    unreviewed; the log carries a short redacted diagnostic, never the raw
    model output.
@@ -147,7 +143,7 @@ jobs:
 | Input | Default | |
 |---|---|---|
 | `anthropic-api-key` | `""` | static key. If neither this nor `anthropic-federation-rule-id` is set, the scan is skipped (graceful no-op) |
-| `anthropic-federation-rule-id` | `""` | WIF rule ID (`fdrl_...`). When set, the action mints a GitHub OIDC token; the CLI exchanges it. Requires `permissions: id-token: write` on the calling job |
+| `anthropic-federation-rule-id` | `""` | WIF rule ID (`fdrl_...`). When set, the action mints a GitHub OIDC token and exchanges it. Requires `permissions: id-token: write` on the calling job |
 | `anthropic-organization-id` | `""` | required when `anthropic-federation-rule-id` is set |
 | `anthropic-service-account-id` | `""` | required when `anthropic-federation-rule-id` is set |
 | `marketplace-path` | `.claude-plugin/marketplace.json` | |
@@ -156,8 +152,7 @@ jobs:
 | `scan-all-external` | `false` | nightly full-sweep mode |
 | `policy-prompt` | bundled `policy/prompt.md` | override with a repo-local file |
 | `allowed-hosts` | `github.com gitlab.com bitbucket.org` | SSRF allowlist |
-| `claude-cli-version` | `latest` | **pin in your workflow** |
-| `npm-registry` | `""` | optional internal mirror |
+| `model` | `claude-opus-4-8` | model that reviews each plugin |
 | `scan-timeout-secs` | `300` | per-plugin timeout |
 
 ## Outputs
@@ -171,9 +166,9 @@ jobs:
 ## Isolation note
 
 This runs as a step inside the calling job, so it shares that job's
-`GITHUB_TOKEN`. The `claude -p` invocation is restricted to read-only file
-tools (`Read Glob Grep`) scoped to the cloned plugin directory; the prompt
-is constructed by this action, not by the plugin. For repos accepting fully
-untrusted submissions, run this action in a separate job with
-`permissions: {}` for stronger isolation — see the consuming-workflow example
-above (already `contents: read` only).
+`GITHUB_TOKEN`. The model has no tools, so text in a plugin can at most change
+its own verdict; the policy prompt, a strict check of the answer's shape and
+human review are the limits on that. For repos accepting fully untrusted
+submissions, run this action in a separate job with `permissions: {}` for
+stronger isolation — see the consuming-workflow example above (already
+`contents: read` only).

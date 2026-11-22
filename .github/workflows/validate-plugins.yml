@@ -43,6 +43,12 @@ jobs:
       - name: External manifest resolution tests
         run: bash .github/actions/validate-plugins/test-external-manifest.sh
 
+      - name: Known-errors tests
+        run: bash .github/actions/validate-plugins/test-known-errors.sh
+
+      - name: scan-plugins review tests
+        run: python3 -I .github/actions/scan-plugins/test-review.py
+
       - name: scan-plugins pin-check golden vectors
         run: bash .github/actions/scan-plugins/test-pin-check.sh
 

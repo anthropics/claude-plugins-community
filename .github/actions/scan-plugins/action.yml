@@ -1,8 +1,8 @@
 name: Scan Plugins
 description: >
   Claude-based policy/safety scan of changed external marketplace entries.
-  Clones each changed entry at its pinned SHA, runs Claude headless against
-  policy/prompt.md, and reports verdicts as inline annotations and a step
+  Fetches each changed entry at its pinned SHA, sends its files to Claude with
+  policy/prompt.md in one request without tools, and reports verdicts as inline annotations and a step
   summary. Non-blocking by default (warnings); set fail-on-findings to make
   policy violations, and entries that could not be reviewed, fail the job. Bot-free: needs only Anthropic API auth —
   either an ANTHROPIC_API_KEY secret or Workload Identity Federation inputs
@@ -22,7 +22,7 @@ inputs:
   anthropic-federation-rule-id:
     description: >
       Anthropic Workload Identity Federation rule ID (fdrl_...). When set,
-      the action mints a GitHub OIDC token and the claude CLI exchanges it
+      the action mints a GitHub OIDC token and exchanges it
       for a short-lived access token — no static API key needed. The calling
       job must grant `permissions: id-token: write`. Takes precedence over
       anthropic-api-key when both are set.
@@ -71,12 +71,9 @@ inputs:
   allowed-hosts:
     description: Space-separated allowlist of git hosts to clone from (SSRF guard).
     default: "github.com gitlab.com bitbucket.org"
-  claude-cli-version:
-    description: Version of @anthropic-ai/claude-code to install
-    default: latest
-  npm-registry:
-    description: Optional npm registry URL for tooling installs
-    default: ""
+  model:
+    description: Claude model that reviews each plugin
+    default: claude-opus-4-8
   scan-timeout-secs:
     description: Per-plugin timeout for the Claude scan
     default: "300"
@@ -188,9 +185,8 @@ runs:
         }
         (umask 077; fetch_jwt > "$TOKEN_FILE")
         echo "::add-mask::$(cat "$TOKEN_FILE")"
-        # Background refresh: GHA OIDC JWTs are ~5min TTL; the claude CLI
-        # re-reads the token file when its exchanged bearer nears expiry, so
-        # long scan loops (>5min total) need the file to stay fresh.
+        # Background refresh: GHA OIDC JWTs are ~5min TTL, and each entry's
+        # review reads the token file, so it has to stay fresh in a long scan.
         ( while sleep 240; do
             [ -f "$CURL_CFG" ] || exit 0
             J="$(fetch_jwt)" && [ -n "$J" ] || continue
@@ -204,71 +200,12 @@ runs:
           echo "ANTHROPIC_IDENTITY_TOKEN_FILE=$TOKEN_FILE"
         } >> "$GITHUB_ENV"
 
-    - name: Install Node
-      if: env.SCAN_HAS_AUTH == 'true'
-      uses: actions/setup-node@v4
-      with:
-        node-version: "20"
-
-    - name: Configure npm registry
-      if: env.SCAN_HAS_AUTH == 'true' && inputs.npm-registry != ''
-      shell: bash
-      env:
-        NPM_REGISTRY: ${{ inputs.npm-registry }}
-      run: npm config set registry "$NPM_REGISTRY"
-
-    - name: Install claude CLI
-      if: env.SCAN_HAS_AUTH == 'true'
-      shell: bash
-      env:
-        CLAUDE_CLI_VERSION: ${{ inputs.claude-cli-version }}
-      run: |
-        set -euo pipefail
-        # See validate-plugins/action.yml for the full rationale. claude-code ships
-        # its runtime as a platform-native OPTIONAL dep fetched by postinstall; on
-        # hosted runners that fetch intermittently stalls or is skipped, leaving
-        # "added 1 package" but no usable `claude` binary. Make the install
-        # self-healing: force the optional dep, verify, re-run the postinstall on a
-        # miss, bound every network step with a timeout, retry with real reinstalls.
-        PKG="@anthropic-ai/claude-code@${CLAUDE_CLI_VERSION}"
-        pkg_root() { echo "$(npm root -g 2>/dev/null || true)/@anthropic-ai/claude-code"; }
-        clean_state() {
-          local root; root="$(pkg_root)"
-          [[ "$root" == */node_modules/@anthropic-ai/claude-code ]] && rm -rf "$root" 2>/dev/null || true
-          npm cache clean --force >/dev/null 2>&1 || true
-        }
-        install_attempt() { timeout -k 10 300 npm install -g --include=optional "$PKG"; }
-        heal_postinstall() {
-          local root; root="$(pkg_root)"
-          if [[ -f "$root/install.cjs" ]]; then
-            echo "claude binary missing after install; running postinstall: $root/install.cjs"
-            timeout -k 10 300 node "$root/install.cjs" || true
-          fi
-        }
-        ok=""
-        for attempt in 1 2 3; do
-          echo "::group::Install claude CLI (attempt ${attempt}/3)"
-          [[ "$attempt" -gt 1 ]] && clean_state
-          install_attempt || echo "npm install attempt ${attempt} failed or timed out"
-          if claude --version 2>/dev/null; then ok=1; echo "::endgroup::"; break; fi
-          heal_postinstall
-          if claude --version 2>/dev/null; then ok=1; echo "::endgroup::"; break; fi
-          echo "::endgroup::"
-          [[ "$attempt" -lt 3 ]] && sleep $((attempt * 10))
-        done
-        if [[ -z "$ok" ]]; then
-          echo "::error::claude CLI did not become usable after 3 attempts (native-binary fetch failing — see logs above)." >&2
-          echo "diag: node=$(node --version 2>/dev/null) npm=$(npm --version 2>/dev/null) omit=$(npm config get omit 2>/dev/null)" >&2
-          exit 1
-        fi
-        claude --version
-
     - name: Scan
       if: env.SCAN_HAS_AUTH == 'true'
       id: scan
       shell: bash
       env:
-        # On the WIF path this is empty; the claude CLI reads the
+        # On the WIF path this is empty; review.py reads the
         # ANTHROPIC_FEDERATION_* / _IDENTITY_TOKEN_FILE env exported by
         # the mint step above instead. scan.sh's auth guard accepts either.
         ANTHROPIC_API_KEY: ${{ inputs.anthropic-api-key }}
@@ -279,4 +216,5 @@ runs:
         POLICY_PROMPT: ${{ inputs.policy-prompt }}
         ALLOWED_HOSTS: ${{ inputs.allowed-hosts }}
         SCAN_TIMEOUT_SECS: ${{ inputs.scan-timeout-secs }}
+        SCAN_MODEL: ${{ inputs.model }}
       run: "$ACTION_PATH/scripts/scan.sh"
