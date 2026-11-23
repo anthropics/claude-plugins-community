@@ -445,6 +445,9 @@ while IFS= read -r entry; do
   if ! git -C "$dest" -c advice.detachedHead=false checkout --quiet "$new_sha" -- 2>&1; then
     skip "$name" "checkout of new sha failed"; rm -rf -- "$dest"; continue
   fi
+  if ! remove_escaping_symlinks "$dest"; then
+    skip "$name" "could not check the clone's symlinks"; rm -rf -- "$dest"; continue
+  fi
 
   target="$dest${subdir:+/$subdir}"
   # A declared subdir that's gone at the new SHA is a hard skip, NOT a synthesis

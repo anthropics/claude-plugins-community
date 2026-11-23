@@ -106,6 +106,13 @@ while IFS= read -r ext; do
     continue
   fi
 
+  if ! remove_escaping_symlinks "$dest"; then
+    error "$name: could not check the clone's symlinks — $ref"
+    record_result "cli-external" "fail" "$name" "could not check the clone's symlinks — $ref"
+    failures=$((failures+1))
+    continue
+  fi
+
   target="$dest"
   if [[ -n "$subdir" ]]; then
     target="$dest/$subdir"

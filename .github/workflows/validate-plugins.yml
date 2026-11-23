@@ -43,6 +43,12 @@ jobs:
       - name: External manifest resolution tests
         run: bash .github/actions/validate-plugins/test-external-manifest.sh
 
+      - name: Known-errors tests
+        run: bash .github/actions/validate-plugins/test-known-errors.sh
+
+      - name: scan-plugins review tests
+        run: python3 -I .github/actions/scan-plugins/test-review.py
+
       - name: scan-plugins pin-check golden vectors
         run: bash .github/actions/scan-plugins/test-pin-check.sh
 
@@ -53,3 +59,5 @@ jobs:
           marketplace-path: .claude-plugin/marketplace.json
           skip-local-folders: "true"
           scope-errors-to-changed: "true"
+          # Same as the default, except a missing sha pin is an error.
+          warn-invariants: "I1 I3 I8"

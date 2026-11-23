@@ -50,7 +50,9 @@ inputs:
       on the base branch cannot block an unrelated PR (the entry is still
       surfaced as a warning). Per-entry invariants (I3-I6, I8-I11) downgrade;
       the entry-name-less, whole-marketplace invariants (I1 alpha-sort, I2
-      duplicate names, I7 direct-edit) always error. Note: if fail-on-warnings
+      duplicate names, I7 direct-edit) always error. The CLI's marketplace check
+      downgrades too, when each of its errors is about an unchanged entry and
+      the base marketplace already has it. Note: if fail-on-warnings
       is also enabled, the downgraded warnings still fail the run. Default false
       (opt-in): the action hard-enforces every invariant across the full
       marketplace unless a repo enables this.
@@ -229,6 +231,7 @@ runs:
       shell: bash
       env:
         FAIL_ON_WARNINGS: ${{ inputs.fail-on-warnings }}
+        SCOPE_ERRORS_TO_CHANGED: ${{ inputs.scope-errors-to-changed }}
       run: "$ACTION_PATH/scripts/20-validate-cli-marketplace.sh"
 
     - name: CLI validate external plugins
